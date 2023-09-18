@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithmic}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage[utf8]{inputenc}
+\usepackage{algpseudocode}
+
+\title{Conscious Fairness through Unawareness with Proxy Removal}
+\author{Antonio Iannotta}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In this article, we explore the concept of conscious fairness through the lens of unawareness and proxy removal. Fairness in various decision-making processes has become a critical concern in our society. Unawareness refers to the idea that by deliberately avoiding information about certain sensitive attributes, we can potentially reduce bias and enhance fairness in decision-making. Proxy removal involves the identification and elimination of indirect indicators (proxies) of sensitive attributes to mitigate bias in algorithmic decision systems.
+
+The goals of our proposed approach are as follows:
+\begin{enumerate}
+    \item Make the dataset bias-free by removing both the protected attributes and proxy variables.
+    \item Ensure that the algorithm is independent of any specific machine learning models used during the training step.
+    \item Extend the approach beyond the removal of only protected attributes to eliminate all other attributes that, according to a certain rule, could indirectly lead to the protected attributes.
+\end{enumerate}
+
+Achieving these goals is essential for building a fair and transparent algorithm that is not only effective in removing biases but is also adaptable to different contexts and machine learning models.
+
+\section{General Concepts}
+Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables.
+
+\subsection{Formalization of Fairness Evaluation}
+We define \textit{fairness\_evaluation} as follows:
+\[
+\text{fairness\_evaluation}(v_i, Y) = \lambda(v_i, Y) \quad \forall i \in [1, k]
+\]
+
+where:
+\begin{align*}
+v\_i & : \text{ith attribute belonging to the protected variables}, \\
+Y & : \text{output column}.
+\end{align*}
+
+The fairness function \( \lambda \) evaluates the relationship between a protected attribute \( v_i \) and the output \( Y \), producing a value that represents the level of fairness for that protected attribute.
+
+\subsection{Formalization of dataset\_fair}
+We define \textit{dataset\_fair} as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
+\[ 0.8 \leq v \leq 1.25 \]
+
+\section{Utilizing the Apriori Algorithm}
+The Apriori algorithm is a powerful tool in association mining, often used for discovering frequent itemsets in transaction databases. In our context, we adapt the Apriori algorithm to identify associations and dependencies between attributes in the dataset. By analyzing the correlations and patterns among attributes, we aim to uncover potential proxies that indirectly lead to sensitive attributes.
+
+To apply the Apriori algorithm, we transform the dataset into a suitable transactional format, where each transaction corresponds to an instance and contains the attributes present in that instance. The algorithm then identifies frequent itemsets, which represent combinations of attributes that occur with high frequency in the dataset.
+
+We interpret these frequent itemsets as potential proxies or indirect indicators of sensitive attributes. By carefully examining and validating these associations, we can make informed decisions about which attributes to remove from the dataset to achieve fairness through unawareness.
+
+\subsection{Identifying Proxy Variables with Apriori}
+
+We define \textit{proxy\_detection} as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
+
+\[\lambda(A_i, C_j) < 0.8 \quad \text{or} \quad \lambda(A_i, C_j) > 1.25\]
+
+In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range [0.8, 1.25].
+
+\section{Proxy detection only considering variables}
+In this section, we delve into the critical task of identifying proxy variables within the dataset. We specifically concentrate on leveraging fairness metrics, normal variables, and protected variables to determine proxies. Proxy variables are indirect indicators or correlates that may indirectly affect sensitive attributes, potentially introducing bias in our dataset. By examining the relationships between these variables and evaluating them based on fairness metrics, we aim to discern which variables exhibit significant associations with the sensitive attributes, leading to their identification as potential proxies. We focus on utilizing fairness metrics to ensure a comprehensive evaluation that considers both the fairness and equity aspects of the dataset, with the ultimate goal of achieving a more equitable and unbiased data representation.
+
+Let us now explore the methodology and approach involved in identifying these crucial proxy variables.
+
+\subsection{Proxy detection}
+Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
+
+We define \textit{proxy\_detection} as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
+
+\[
+\lambda(\text{var}, \text{var\_protected}) < 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) > 1.25
+\]
+
+In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range [0.8, 1.25].
+
+\section{Other general concepts}
+
+\subsection{Proxy-Free Dataset Function}
+
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \( k \) as the number of identified proxy variables, we define the function \( \text{proxy\_free\_dataset} \) as follows:
+
+\[
+\text{proxy\_free\_dataset}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (m - k)}
+\]
+
+where \( j = m - k \) and \( \text{proxy\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times j} \) devoid of the proxy variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes.
+
+\subsection{Protected-Attributes-Free Dataset Function}
+
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where j are the columns obtained after the proxy removals and \( k \) as the number of identified protected variables, we define the function \( \text{protected\_attributes\_free\_dataset} \) as follows:
+
+\[
+\text{protected\_attributes\_free\_dataset}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (j - k)}
+\]
+
+where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times p} \) devoid of the protected variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes.
+
+\section{Pseudocode}
+Here's the pseudocode of the algorithm described before. \\
+
+\begin{algorithm}
+\caption{Dataset Processing Algorithm}
+\begin{algorithmic}[1]
+\Procedure{ProcessDataset}{\text{dataset}}
+  \While{\textbf{not} \Call{DatasetFair}{$\text{dataset}$} \textbf{or} \text{protected\_attributes in dataset}}
+    \State \text{proxies} $\gets$ \Call{ProxyDetection}{$\text{dataset}$}
+    \If{\text{proxies is empty}}
+      \State $\text{dataset} \gets \text{ProtectedAttributesFreeDataset}(\text{dataset})$
+    \Else
+      \State $\text{dataset} \gets \text{ProxyFreeDataset}(\text{dataset})$
+    \EndIf
+  \EndWhile
+  \State \textbf{return} \text{dataset}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\end{document}
+
