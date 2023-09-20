@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithmic}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage[utf8]{inputenc}
+\usepackage{algpseudocode}
+
+\title{Fairness Through Data Rebalancing}
+\author{Antonio Iannotta}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Achieving fairness in machine learning models is a critical goal to mitigate biases and ensure equitable outcomes across different demographic groups. In many real-world scenarios, datasets are imbalanced, especially concerning sensitive attributes such as race or gender, which can lead to biased predictions. Biased predictions can perpetuate and even exacerbate existing societal inequalities. Addressing this bias and promoting fairness in predictive models is essential for responsible and ethical deployment of machine learning solutions.
+
+This work introduces an innovative algorithm aimed at addressing dataset imbalance and promoting fairness. The algorithm achieves this by rebalancing the dataset through the strategic addition of rows, effectively mitigating the inherent unfairness in certain variables' distribution. The process involves identifying underrepresented groups and generating synthetic data points to balance their representation, resulting in a more equitable dataset.
+
+The proposed algorithm not only focuses on data balancing but also incorporates elements of data augmentation. By strategically generating new data points, it enhances the dataset's diversity, promoting a fairer representation of various attributes. This approach goes beyond traditional data balancing techniques, offering a comprehensive solution that leverages the power of data augmentation for achieving fairness.
+
+In this article, we delve into the details of the algorithm, explaining its methodology and demonstrating its effectiveness in promoting fairness through data rebalancing and augmentation. We also discuss the significance of this approach and its potential impact on advancing fairness and equity in machine learning models.
+
+\section{General Concepts}
+In this section, we will introduce and discuss some fundamental concepts related to fairness, imbalanced datasets, data rebalancing, and data augmentation. Understanding these concepts is crucial for comprehending the proposed algorithm and its implications in achieving fairness.
+
+\subsection{Fairness Metric Formalization}
+Let \( R^{n \times m} \) represent a dataset with \( n \) samples and \( m \) features. In this dataset, there are \( k \) protected variables denoted by \( R^{n \times k} \) and an output column denoted by \( R^{n \times 1} \). We define a fairness metric \( \lambda \) as a function:
+\[ \lambda: R^{n \times k} \times R^{n \times 1} \rightarrow \text{value} \]
+that formalizes the relationship between the protected variables and the output column in terms of fairness evaluation.
+
+\subsection{Fairness Evaluation}
+We define a fairness evaluation function, denoted as \( \text{fairness\_evaluation} \), which considers each protected variable (\( \text{var} \)) and its associated fairness metric (\( \lambda \)) for the given output:
+\[ \text{fairness\_evaluation}(\text{var}, \text{output}) = \lambda(\text{var}, \text{output}) \]
+Fairness evaluation forms a set, and based on this set, a decision is made to determine whether the dataset is fair or not.
+
+\subsection{Fair Dataset Definition}
+We define a fair dataset (\( \text{dataset\_fair} \)) based on the fairness evaluation values. For each fairness evaluation value (\( \text{val} \)):
+\[ \text{dataset\_fair}(\text{val}) = \begin{cases} 
+      \text{True} & \text{if } 0.8 < \text{val} < 1.25 \\
+      \text{False} & \text{otherwise}
+   \end{cases}
+\]
+Here, a dataset is considered fair if the fairness evaluation value (\( \text{val} \)) falls within the specified range of 0.8 to 1.25.
+
+\subsection{Biased Attributes}
+We define a set of biased attributes (\( \text{biased\_attributes} \)) based on the fairness metric \( \lambda \). For each protected variable (\( \text{prot} \)) belonging to the set of protected variables (\( \text{variabili\_protette} \)):
+\[ \text{biased\_attributes}(\text{prot}) = \begin{cases} 
+      \text{True} & \text{if } \lambda(\text{prot}, \text{output}) < 0.8 \text{ or } \lambda(\text{prot}, \text{output}) > 1.25 \\
+      \text{False} & \text{otherwise}
+   \end{cases}
+\]
+Here, an attribute (\( \text{prot} \)) is considered biased if the fairness evaluation value (\( \lambda(\text{prot}, \text{output}) \)) is less than 0.8 or greater than 1.25.
+
+\subsection{Algorithm Objective}
+The goal of this algorithm is to add a new row to a non-fair dataset until the dataset becomes effectively fair. It's important to note that each row is composed of columns, known as attributes, which can belong to different categories:
+- Biased attributes
+- Protected attributes
+- Normal attributes
+
+\subsection{Adding Values to New Row}
+At this point, we need to investigate how values are added for each column of the new row to be added to the dataset.
+
+\subsubsection{Definitions}
+...
+
+\subsubsection{Adding Values for New Row}
+...
+
+\paragraph{Biased Attributes:}
+As previously stated, a biased attribute is defined for every attribute that is biased with respect to a certain fairness metric \( \lambda \). For this typically discrete attribute, the value added in the respective column of the new row to be added is the least frequent value in the respective column of the original dataset.
+
+\paragraph{Protected Attributes:}
+In this category, we identify all columns that are protected variables but not biased. If the protected variable is discrete, the less\_frequent\_value is added; otherwise, for a continuous variable, a value is randomly chosen within the least frequent interval.
+
+\paragraph{Normal Attributes:}
+For normal variables, the policy adopted is identical to that for protected variables.
+
+\subsubsection{New Value Function}
+At this point, we can define the \textit{new\_value} function as a piecewise-defined function as follows:
+
+\[
+\text{new\_value}(variable) = 
+\begin{cases} 
+      \text{less\_frequent\_value} & \text{if } \text{variable} \text{ is discrete} \\
+      \text{random\_value\_in\_less\_frequent\_bin} & \text{if } \text{variable} \text{ is  continuous}
+\end{cases}
+\]
+
+Here, we define two cases for the \textit{new\_value} function based on the type of the variable:
+\begin{itemize}
+    \item variable either biased or discrete, the \textit{new\_value} is set to the least frequent value in the respective column.
+    \item variable continue the \textit{new\_value} is randomly chosen within the least frequent interval.
+\end{itemize}
+
+\section{Algorithm Pseudocode}
+
+The algorithm is outlined using a pseudocode representation below:
+
+\begin{verbatim}
+while not dataset_fair(dataset):
+    new_row = {}
+    for var in list_variables:
+        new_row[var] = new_value(var)
+    dataset.append(new_row)
+\end{verbatim}
+
+In this pseudocode, we use a dataset represented by \( R^{n \times n} \). The algorithm iteratively checks if the dataset is fair using the function \( \text{dataset\_fair} \). If the dataset is not fair, a new row is created, and for each variable in the list of variables (\( \text{list\_variables} \)), a new value is assigned using the function \( \text{new\_value} \). Finally, the new row is appended to the dataset.
+
+
+\end{document}
