@@ -1,8 +1,3 @@
-%%%%
-% Consiglio la visione dei seguenti tutorial:
-% - https://www.youtube.com/watch?v=ihxSUsJB_14
-% - https://www.youtube.com/watch?v=XTFWaV55uDo
-%%%%
 \documentclass[12pt,a4paper,openright,twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -39,9 +34,6 @@ Our work has been evaluated exploiting a real-world dataset on the education on 
 the prediction obtained without consider fairness.
 \end{abstract}
 
-%\begin{dedication} % this is optional
-%Optional. Max a few lines.
-%\end{dedication}
 
 \begin{acknowledgements} % this is optional
 Never too far down, to come back
@@ -183,30 +175,20 @@ where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) y
 \subsection{Pseudocode}
 Here's the pseudocode of the algorithm described before. \\
 
-\begin{algorithm}
-\caption{Dataset Processing Algorithm}
-\begin{algorithmic}[1]
-\Procedure{ProcessDataset}{\text{dataset}}
-  \While{\textbf{not} \Call{DatasetFair}{$\text{dataset}$} \textbf{or} \text{protected\_attributes in dataset}}
-    \State \text{proxies} $\gets$ \Call{ProxyDetection}{$\text{dataset}$}
-    \If{\text{proxies is empty}}
-      \State $\text{dataset} \gets \text{ProtectedAttributesFreeDataset}(\text{dataset})$
-    \Else
-      \State $\text{dataset} \gets \text{ProxyFreeDataset}(\text{dataset})$
-    \EndIf
-  \EndWhile
-  \State \textbf{return} \text{dataset}
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
+\begin{verbatim}
+while not dataset_fair(dataset) or protected_attributes in dataset:
+	proxies = proxy_detection(dataset)
+	if proxies is empty:
+		dataset = protected_attributes_free_dataset(dataset)
+	else:
+		dataset = proxy_free_dataset(dataset)
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth]{figures/classes.pdf}
-	\caption{A class diagram created with PlantUML}
-	\label{fig:classes}
-\end{figure}
+for attribute in protected_attribute:
+	if attribute in dataset:
+		dataset = protected_attribute_free_dataset(dataset)
 
+return dataset
+\end{verbatim}
 
 \section{Fairness through data rebalancing}
 chieving fairness in machine learning models is a critical goal to mitigate biases and ensure equitable outcomes across different demographic groups. In many real-world scenarios, datasets are imbalanced, especially concerning sensitive attributes such as race or gender, which can lead to biased predictions. Biased predictions can perpetuate and even exacerbate existing societal inequalities. Addressing this bias and promoting fairness in predictive models is essential for responsible and ethical deployment of machine learning solutions.
