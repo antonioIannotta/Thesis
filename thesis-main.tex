@@ -403,7 +403,7 @@ As previously stated, a biased attribute is defined for every attribute that is 
 In this category, we identify all columns that are protected variables but not biased. If the protected variable is discrete, the less\_frequent\_value is added; otherwise, for a continuous variable, a value is randomly chosen within the least frequent interval.
 
 \paragraph{Normal Attributes:}
-For normal variables, the policy adopted is identical to that for protected variables.
+For normal variables, if the attribute is a disccrete one a random value inside the boundaries is picked, otherwise it is performed the same process computed for the continuous variable in the protected attribues scenario.
 
 \subsubsection{New Value Function}
 At this point, we can define the \textit{new\_value} function as a piecewise-defined function as follows:
