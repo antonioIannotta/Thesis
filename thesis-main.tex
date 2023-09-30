@@ -103,6 +103,133 @@ Fairness in AI refers to the absence of discrimination or bias in the creation, 
 Unfair AI can perpetuate and amplify existing societal inequalities, reinforcing stereotypes and excluding certain groups. Inaccurate credit scoring, biased hiring practices, and unfair sentencing are just a few examples of how unfair AI systems can have real and damaging consequences. \\
 To build AI systems that are fair and just, interdisciplinary collaboration and a commitment to inclusivity are essential. Developers, policymakers, and communities must work together to identify, understand, and rectify biases and disparities in AI. By embedding fairness as a core principle in AI development, we can create a future where AI benefits all, contributing to a more equitable society. \\
 
+\subsection{Fairness Techniques in AI}
+
+\subsubsection{Pre-processing:}
+Pre-processing focuses on handling the initial data before it is used to train the AI model. This stage is crucial to ensure that the data is balanced and representative of the diversity in the population. Common pre-processing techniques include oversampling, undersampling, noise removal from the data, and creating balanced synthetic datasets.
+
+\subsubsection{In-processing:}
+In-processing techniques intervene directly during the model training phase. This is a more specific approach to ensure fairness in the model. For example, regularization techniques can be used to penalize the model if it shows a discriminatory tendency based on certain sensitive features (such as gender or ethnic origin). Other techniques include modifying the cost functions or manipulating the model's predictions to ensure fair treatment across different categories.
+
+\subsubsection{Post-processing:}
+Post-processing occurs after the model has been trained and has generated predictions. This phase focuses on corrections or modifications to the model's predictions to ensure fairness. For instance, realignments or adjustments can be applied to balance predictions so that there are no unjustified disparities among demographic groups. This process may involve recalibrations or other transformations of the model's results to mitigate biases.
+
+Implementing these techniques requires a deep understanding of the specific fairness challenges in the data and models, as well as ongoing evaluation to ensure that AI adheres to ethical standards and promotes fairness.
+
+\subection{Pre-processing Techniques for Addressing Fairness in AI}
+
+Pre-processing plays a vital role in mitigating fairness issues within AI systems by preparing the data before it is utilized to train a model. The objective is to ensure that the data is unbiased, representative, and equitable across different demographic groups. Various techniques can be employed during pre-processing to promote fairness:
+
+\subsubsection{Oversampling and Undersampling}
+Oversampling involves increasing the representation of underrepresented groups in the dataset, while undersampling reduces the overrepresentation of certain groups. This rebalancing technique helps to achieve a more equal distribution of samples from different categories, addressing potential biases.
+
+\textbf{Example:} In a credit approval scenario, if a particular group is underrepresented in the dataset, oversampling can be employed to create synthetic instances for that group, ensuring fair credit evaluations.
+
+\subsubsection{Noise Removal}
+Identifying and removing noise or irrelevant data from the dataset is crucial to improve the quality of the training data. Noise may introduce biases or distortions in the model, and cleaning the data helps ensure a fair and accurate representation of each group.
+
+\textbf{Example:} In sentiment analysis, if a dataset contains biased reviews based on certain demographics, such as gender, removing these biased reviews helps in training a fair sentiment analysis model.
+
+\subsubsection{Data Augmentation}
+Data augmentation techniques involve generating additional training samples by applying transformations (e.g., rotation, translation) to the existing data. This process helps to enhance the diversity and balance within the dataset, leading to a more equitable model.
+
+\textbf{Example:} In image recognition, augmenting images by rotating or flipping them can provide a more balanced representation of different features, promoting fairness in the model's predictions.
+
+\subsubsection{Bias Mitigation Algorithms}
+Specialized algorithms can be applied to preprocess the data and reduce biases. These algorithms aim to adjust the dataset to ensure that the model is not unfairly influenced by specific attributes, such as gender or race. Techniques like re-weighting or re-sampling can be used to achieve a fairer representation.
+
+\textbf{Example:} When training a model for a hiring platform, using a bias mitigation algorithm to adjust the dataset to have an equal representation of genders can lead to a more fair hiring process.
+
+\subsubsection{Sensitive Attribute Removal or Neutralization}
+In some cases, sensitive attributes (e.g., race, gender) can be removed from the dataset or transformed into more neutral representations. This prevents the model from relying on these attributes to make predictions, promoting fairness.
+
+\textbf{Example:} In a loan approval system, sensitive attributes like race can be neutralized by removing them or encoding them in a way that the model cannot identify them, ensuring unbiased loan decisions.
+
+\subsubsection{Synthetic Data Generation}
+Creating synthetic data that accurately represents underrepresented groups can help balance the dataset and improve fairness. This process involves generating new data points based on the existing information, particularly focusing on minority groups.
+
+\textbf{Example:} In healthcare AI, generating synthetic medical records for underrepresented medical conditions ensures that the AI system is trained fairly, considering all health conditions adequately.
+
+These pre-processing techniques are essential steps in the AI development pipeline to ensure that the subsequent models are fair, unbiased, and capable of providing equitable outcomes across various demographic categories.
+
+\subection{In-processing Techniques for Addressing Fairness in AI}
+
+In-processing techniques aim to mitigate fairness issues directly during the model training phase, influencing the learning process to ensure fairness in model predictions. These approaches target bias reduction and fairness promotion within the model's decision-making process. Several techniques can be employed during model training to achieve fairness:
+
+\subsubsection{Regularization}
+Regularization is a common in-processing technique used to penalize the model for exhibiting biased behavior based on sensitive attributes. By adjusting the regularization terms in the model's training objective, we can discourage the model from relying heavily on such attributes.
+
+\textbf{Example:} In a hiring model, a regularization term can be added to the loss function to penalize the model for making biased predictions related to gender or ethnicity.
+
+\subsubsection{Reweighting Training Samples}
+This technique involves assigning different weights to training samples based on their sensitive attributes to balance the influence of different groups during training. It aims to ensure that the model learns equally from all demographic categories.
+
+\textbf{Example:} In a credit scoring model, training samples from underrepresented demographics can be assigned higher weights to ensure their impact on model training is more significant.
+
+\subsubsection{Adversarial Training}
+Adversarial training involves training a fairness-specific adversarial network alongside the primary model. The adversarial network aims to predict the sensitive attributes from the model's hidden representations, encouraging the primary model to generate features that are independent of these attributes.
+
+\textbf{Example:} In facial recognition, an adversarial network can be used to ensure that the model's features are not biased towards specific racial characteristics.
+
+\subsubsection{Prejudice Remover Regularizer}
+This technique involves adding a prejudice remover regularizer to the model's training process. The regularizer encourages the model to learn a fair representation by minimizing the correlation between the learned features and the sensitive attributes.
+
+\textbf{Example:} In a recommendation system, the prejudice remover regularizer can help ensure that recommendations are not influenced by the gender of the user.
+
+\subsubsection{Demographic Parity Loss}
+Demographic parity loss is a technique that incorporates fairness directly into the model's loss function. It ensures that the model's predictions are as similar as possible across different demographic groups.
+
+\textbf{Example:} In a loan approval system, the demographic parity loss can be added to the loss function to minimize disparities in approval rates between different ethnic groups.
+
+\subsubsection{Fair Adversarial Training}
+Fair adversarial training extends adversarial training to explicitly reduce disparate treatment among different demographic groups. It adds an adversarial component to the loss function to minimize the unfairness of the model's predictions.
+
+\textbf{Example:} In a criminal recidivism prediction model, fair adversarial training can help mitigate the biased prediction rates for different racial groups.
+
+These in-processing techniques are vital tools in promoting fairness within AI models. Integrating them appropriately during model training can significantly contribute to reducing biases and achieving equitable outcomes across various demographic categories.
+
+\subection{Post-processing Techniques for Addressing Fairness in AI}
+
+Post-processing techniques are applied after the model has been trained and predictions have been generated. Their purpose is to rectify any biases or disparities in the model's outputs and ensure fairness in the final outcomes. Several techniques can be employed during post-processing to promote fairness:
+
+\subsubsection{Re-ranking or Re-scoring}
+This technique involves adjusting the ranking or scores assigned by the model to instances. The scores are modified based on fairness criteria, aiming to minimize any discriminatory impact on different demographic groups.
+
+\textbf{Example:} In a college admissions system, the initial ranking of applicants can be adjusted to ensure a fair representation of students from diverse socioeconomic backgrounds.
+
+\subsubsection{Threshold Adjustments}
+Threshold adjustments involve modifying the decision thresholds of the model based on fairness considerations. By setting different decision thresholds for various demographic groups, we can balance false positives and false negatives across these groups.
+
+\textbf{Example:} In a predictive policing model, different arrest thresholds can be applied to balance false arrest rates between different neighborhoods, ensuring fair law enforcement practices.
+
+\subsubsection{Additive Counterfactuals}
+This technique generates counterfactuals or alternative outcomes by modifying the model's predictions while keeping the sensitive attributes fixed. It aims to provide individuals with insights into how they might have been treated in a fairer system.
+
+\textbf{Example:} In a loan approval system, generating counterfactuals can show rejected applicants how their outcomes would have differed with a fairer decision-making process.
+
+\subsubsection{Equalized Odds Post-processing}
+Equalized odds post-processing adjusts the predicted probabilities for each group to ensure that the false positive and false negative rates are equal across different demographic categories. This promotes fairness in the allocation of benefits or opportunities.
+
+\textbf{Example:} In a job application screening model, the predicted probabilities of being shortlisted can be equalized for candidates from different age groups to minimize age-based discrimination.
+
+\subsubsection{Reject Option Classification}
+This technique involves adding a "reject" category to the model's output, providing an alternative for cases where the model's predictions may be biased. The reject option aims to ensure fairness by withholding potentially biased predictions.
+
+\textbf{Example:} In a credit scoring model, if the prediction is close to the approval threshold, the model may opt for rejection to prevent biased decisions.
+
+\subsubsection{Oversampling for Minority Groups}
+In this technique, the predictions for the minority group are oversampled to balance the representation of outcomes, aiming to reduce biases and ensure fair treatment.
+
+\textbf{Example:} In a medical diagnosis model, oversampling predictions for rare diseases ensures that the model is equally proficient in predicting both common and rare conditions.
+
+\subsubsection{Confidence Calibration}
+Confidence calibration adjusts the predicted probabilities to align with the actual probabilities of the predicted outcomes. This helps in reducing overconfidence or underconfidence in the model's predictions.
+
+\textbf{Example:} In a fraud detection system, confidence calibration ensures that the predicted fraud probabilities accurately reflect the actual likelihood of fraud, promoting fair treatment of all cases.
+
+These post-processing techniques are crucial in rectifying biases and promoting fairness in AI models. Utilizing them effectively can lead to more equitable outcomes and decisions across various demographic categories.
+
+
 In conclusion, fairness in AI is not just an ethical necessity but a fundamental requirement for fostering trust and ensuring the responsible and equitable deployment of AI systems. As we navigate the evolving landscape of AI, our collective efforts must prioritize fairness to harness the true potential of AI for the greater good.
 
 %Write background here.
