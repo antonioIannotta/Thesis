@@ -276,7 +276,7 @@ The fairness function \( \lambda \) evaluates the relationship between a protect
 
 \subsubsection{Formalization of dataset\_fair}
 We define \textit{dataset\_fair} as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
-\[ 0.8 \leq v \leq 1.25 \]
+\[ 0.8 < v < 1.25 \]
 
 \subsection{Utilizing the Apriori Algorithm}
 The Apriori algorithm is a powerful tool in association mining, often used for discovering frequent itemsets in transaction databases. In our context, we adapt the Apriori algorithm to identify associations and dependencies between attributes in the dataset. By analyzing the correlations and patterns among attributes, we aim to uncover potential proxies that indirectly lead to sensitive attributes.
@@ -289,7 +289,7 @@ We interpret these frequent itemsets as potential proxies or indirect indicators
 
 We define \textit{proxy\_detection} as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
 
-\[\lambda(A_i, C_j) < 0.8 \quad \text{or} \quad \lambda(A_i, C_j) > 1.25\]
+\[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) => 1.25\]
 
 In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range [0.8, 1.25].
 
@@ -304,7 +304,7 @@ Let's consider the set \( A \), represented as the set of all variables in the d
 We define \textit{proxy\_detection} as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
 
 \[
-\lambda(\text{var}, \text{var\_protected}) < 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) > 1.25
+\lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
 \]
 
 In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range [0.8, 1.25].
@@ -381,11 +381,11 @@ Here, a dataset is considered fair if the fairness evaluation value (\( \text{va
 \subsubsection{Biased Attributes}
 We define a set of biased attributes (\( \text{biased\_attributes} \)) based on the fairness metric \( \lambda \). For each protected variable (\( \text{prot} \)) belonging to the set of protected variables (\( \text{variabili\_protette} \)):
 \[ \text{biased\_attributes}(\text{prot}) = \begin{cases} 
-      \text{True} & \text{if } \lambda(\text{prot}, \text{output}) < 0.8 \text{ or } \lambda(\text{prot}, \text{output}) > 1.25 \\
+      \text{True} & \text{if } \lambda(\text{prot}, \text{output}) <= 0.8 \text{ or } \lambda(\text{prot}, \text{output}) >= 1.25 \\
       \text{False} & \text{otherwise}
    \end{cases}
 \]
-Here, an attribute (\( \text{prot} \)) is considered biased if the fairness evaluation value (\( \lambda(\text{prot}, \text{output}) \)) is less than 0.8 or greater than 1.25.
+Here, an attribute (\( \text{prot} \)) is considered biased if the fairness evaluation value (\( \lambda(\text{prot}, \text{output}) \)) is lesser or equal than 0.8 or greater or equal than 1.25.
 
 \subsubsection{Algorithm Objective}
 The goal of this algorithm is to add a new row to a non-fair dataset until the dataset becomes effectively fair. It's important to note that each row is composed of columns, known as attributes, which can belong to different categories:
