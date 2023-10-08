@@ -444,13 +444,13 @@ Here's the pseudocode of proxy\textunderscore detection function. There are 2 sc
     return proxy_list
 \end{verbatim}
 
-\subsection{Fairness through data rebalancing}
+\section{Fairness through data rebalancing}
 
 In recent years, the rise of automated decision-making systems has necessitated an examination of fairness and equity within algorithmic processes. Addressing fairness concerns, particularly in domains involving sensitive attributes, has become crucial to ensure that the resulting decisions are not biased against specific groups or individuals. Traditional approaches to fairness often revolve around defining and optimizing for specific fairness metrics, such as demographic parity, equal opportunity, or disparate impact. However, these metrics might not capture the complex interplay of variables that influence fairness.
 
 Here, we propose an innovative approach to rebalancing algorithms that transcends the limitations of conventional fairness metrics. Our focus is on achieving a state of equilibrium, where the occurrences of all possible combinations of values for protected variables and the output variable are balanced. This approach aims to mitigate bias and promote fairness by distributing the outcomes more evenly across different segments of the dataset, while ensuring that no specific value combination is disproportionately favored. By fostering a sense of balance and inclusivity in the decision-making process, we contribute to a more equitable framework for automated systems.
 
-\subsubsection{General concepts}
+\subsection{General concepts}
 Let \( D \) be a dataset \( R^{n \times m} \), where \( n \) is the number of samples and \( m \) is the number of features. Let \( k \) be the number of protected variables represented as \( R^{n \times 1} \), and let there be a single output variable represented as \( R^{n \times 1} \).
 
 A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
@@ -461,7 +461,7 @@ A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
 
 where \( l > m \), and the function \( \mathcal{R} \) transforms the input dataset \( D \) of dimensions \( n \times m \) into an output dataset \( D' \) of dimensions \( l \times m \).
 
-\subsubsection{Number of Rows of the Resulting Dataset}
+\subsection{Number of Rows of the Resulting Dataset}
 
 Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
 
@@ -474,7 +474,7 @@ l = \text{Max}(\text{Combination-frequency})
 \]
 
 
-\subsubsection{Rebalancing}
+\subsection{Rebalancing}
 
 Let \( l \) be the desired number of rows for the final dataset. For each combination of values, we calculate the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
 
