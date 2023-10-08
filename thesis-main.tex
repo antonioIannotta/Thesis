@@ -244,20 +244,7 @@ In conclusion, fairness in AI is not just an ethical necessity but a fundamental
 %----------------------------------------------------------------------------------------
 In the subsequent discussion, we will delve into algorithms specifically crafted to address and mitigate fairness concerns. Fairness in algorithms has gained significant attention in recent years due to the realization that traditional computational processes can inadvertently perpetuate biases and disparities. Various approaches, ranging from re-weighting instances to modifying decision boundaries, aim to rectify these issues and promote a more equitable and just application of algorithms across diverse demographics. By exploring these approaches, we aim to shed light on the potential solutions that can contribute to a more inclusive and fair technological landscape.
 
-\section{Conscious fairness through unawareness}
-
-This methodology belongs to the pre-processing techniques to deal with unfairness-issues in a dataset.
-
-The goals of our proposed approach are as follows:
-\begin{enumerate}
-    \item Make the dataset bias-free by removing both the protected attributes and proxy variables.
-    \item Ensure that the algorithm is independent of any specific machine learning models used during the training step.
-    \item Extend the approach beyond the removal of only protected attributes to eliminate all other attributes that, according to a certain rule, could indirectly lead to the protected attributes.
-\end{enumerate}
-
-Achieving these goals is essential for building a fair and transparent algorithm that is not only effective in removing biases but is also adaptable to different contexts and machine learning models.
-
-\subsection{General Concepts}
+\subsection{Fairness through Unawareness with Proxy Detection}
 Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables.
 
 \subsubsection{Formalization of Fairness Evaluation}
@@ -276,40 +263,9 @@ The fairness function \( \lambda \) evaluates the relationship between a protect
 
 \subsubsection{Formalization of dataset\_fair}
 We define \textit{dataset\_fair} as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
-\[ 0.8 < v < 1.25 \]
+\[ 0.8  < v < 1.25 \]
 
-\subsection{Utilizing the Apriori Algorithm}
-The Apriori algorithm is a powerful tool in association mining, often used for discovering frequent itemsets in transaction databases. In our context, we adapt the Apriori algorithm to identify associations and dependencies between attributes in the dataset. By analyzing the correlations and patterns among attributes, we aim to uncover potential proxies that indirectly lead to sensitive attributes.
-
-To apply the Apriori algorithm, we transform the dataset into a suitable transactional format, where each transaction corresponds to an instance and contains the attributes present in that instance. The algorithm then identifies frequent itemsets, which represent combinations of attributes that occur with high frequency in the dataset.
-
-We interpret these frequent itemsets as potential proxies or indirect indicators of sensitive attributes. By carefully examining and validating these associations, we can make informed decisions about which attributes to remove from the dataset to achieve fairness through unawareness.
-
-\subsubsection{Identifying Proxy Variables with Apriori}
-
-We define \textit{proxy\_detection} as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
-
-\[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) => 1.25\]
-
-In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range [0.8, 1.25].
-
-\subsection{Proxy detection only considering variables}
 In this section, we delve into the critical task of identifying proxy variables within the dataset. We specifically concentrate on leveraging fairness metrics, normal variables, and protected variables to determine proxies. Proxy variables are indirect indicators or correlates that may indirectly affect sensitive attributes, potentially introducing bias in our dataset. By examining the relationships between these variables and evaluating them based on fairness metrics, we aim to discern which variables exhibit significant associations with the sensitive attributes, leading to their identification as potential proxies. We focus on utilizing fairness metrics to ensure a comprehensive evaluation that considers both the fairness and equity aspects of the dataset, with the ultimate goal of achieving a more equitable and unbiased data representation.
-
-Let us now explore the methodology and approach involved in identifying these crucial proxy variables.
-
-\subsubsection{Proxy detection}
-Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
-
-We define \textit{proxy\_detection} as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
-
-\[
-\lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
-\]
-
-In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range [0.8, 1.25].
-
-\section{Other general concepts}
 
 \subsubsection{Proxy-Free Dataset Function}
 
@@ -331,111 +287,227 @@ Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where
 
 where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times p} \) devoid of the protected variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes.
 
-\subsection{Pseudocode}
-Here's the pseudocode of the algorithm described before. \\
+Let us now explore the methodology and approach involved in identifying these crucial proxy variables.
 
-\begin{verbatim}
-while not dataset_fair(dataset) or protected_attributes in dataset:
-	proxies = proxy_detection(dataset)
-	if proxies is empty:
-		dataset = protected_attributes_free_dataset(dataset)
-	else:
-		dataset = proxy_free_dataset(dataset)
+\subsection{Proxy detection via attributes only}
+Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
 
-for attribute in protected_attribute:
-	if attribute in dataset:
-		dataset = protected_attribute_free_dataset(dataset)
-
-return dataset
-\end{verbatim}
-
-\section{Fairness through data rebalancing}
-chieving fairness in machine learning models is a critical goal to mitigate biases and ensure equitable outcomes across different demographic groups. In many real-world scenarios, datasets are imbalanced, especially concerning sensitive attributes such as race or gender, which can lead to biased predictions. Biased predictions can perpetuate and even exacerbate existing societal inequalities. Addressing this bias and promoting fairness in predictive models is essential for responsible and ethical deployment of machine learning solutions.
-
-This work introduces an innovative algorithm aimed at addressing dataset imbalance and promoting fairness. The algorithm achieves this by rebalancing the dataset through the strategic addition of rows, effectively mitigating the inherent unfairness in certain variables' distribution. The process involves identifying underrepresented groups and generating synthetic data points to balance their representation, resulting in a more equitable dataset.
-
-The proposed algorithm not only focuses on data balancing but also incorporates elements of data augmentation. By strategically generating new data points, it enhances the dataset's diversity, promoting a fairer representation of various attributes. This approach goes beyond traditional data balancing techniques, offering a comprehensive solution that leverages the power of data augmentation for achieving fairness.
-
-\subsection{General Concepts}
-In this section, we will introduce and discuss some fundamental concepts related to fairness, imbalanced datasets, data rebalancing, and data augmentation. Understanding these concepts is crucial for comprehending the proposed algorithm and its implications in achieving fairness.
-
-\subsubsection{Fairness Metric Formalization}
-Let \( R^{n \times m} \) represent a dataset with \( n \) samples and \( m \) features. In this dataset, there are \( k \) protected variables denoted by \( R^{n \times k} \) and an output column denoted by \( R^{n \times 1} \). We define a fairness metric \( \lambda \) as a function:
-\[ \lambda: R^{n \times k} \times R^{n \times 1} \rightarrow \text{value} \]
-that formalizes the relationship between the protected variables and the output column in terms of fairness evaluation.
-
-\subsubsection{Fairness Evaluation}
-We define a fairness evaluation function, denoted as \( \text{fairness\_evaluation} \), which considers each protected variable (\( \text{var} \)) and its associated fairness metric (\( \lambda \)) for the given output:
-\[ \text{fairness\_evaluation}(\text{var}, \text{output}) = \lambda(\text{var}, \text{output}) \]
-Fairness evaluation forms a set, and based on this set, a decision is made to determine whether the dataset is fair or not.
-
-\subsubsection{Fair Dataset Definition}
-We define a fair dataset (\( \text{dataset\_fair} \)) based on the fairness evaluation values. For each fairness evaluation value (\( \text{val} \)):
-\[ \text{dataset\_fair}(\text{val}) = \begin{cases} 
-      \text{True} & \text{if } 0.8 < \text{val} < 1.25 \\
-      \text{False} & \text{otherwise}
-   \end{cases}
-\]
-Here, a dataset is considered fair if the fairness evaluation value (\( \text{val} \)) falls within the specified range of 0.8 to 1.25.
-
-\subsubsection{Biased Attributes}
-We define a set of biased attributes (\( \text{biased\_attributes} \)) based on the fairness metric \( \lambda \). For each protected variable (\( \text{prot} \)) belonging to the set of protected variables (\( \text{variabili\_protette} \)):
-\[ \text{biased\_attributes}(\text{prot}) = \begin{cases} 
-      \text{True} & \text{if } \lambda(\text{prot}, \text{output}) <= 0.8 \text{ or } \lambda(\text{prot}, \text{output}) >= 1.25 \\
-      \text{False} & \text{otherwise}
-   \end{cases}
-\]
-Here, an attribute (\( \text{prot} \)) is considered biased if the fairness evaluation value (\( \lambda(\text{prot}, \text{output}) \)) is lesser or equal than 0.8 or greater or equal than 1.25.
-
-\subsubsection{Algorithm Objective}
-The goal of this algorithm is to add a new row to a non-fair dataset until the dataset becomes effectively fair. It's important to note that each row is composed of columns, known as attributes, which can belong to different categories:
-- Biased attributes
-- Protected attributes
-- Normal attributes
-
-\subsubsection{Adding Values to New Row}
-At this point, we need to investigate how values are added for each column of the new row to be added to the dataset.
-
-\paragraph{Biased Attributes:}
-As previously stated, a biased attribute is defined for every attribute that is biased with respect to a certain fairness metric \( \lambda \). For this typically discrete attribute, the value added in the respective column of the new row to be added is the least frequent value in the respective column of the original dataset.
-
-\paragraph{Protected Attributes:}
-In this category, we identify all columns that are protected variables but not biased. If the protected variable is discrete, the less\_frequent\_value is added; otherwise, for a continuous variable, a value is randomly chosen within the least frequent interval.
-
-\paragraph{Normal Attributes:}
-For normal variables, if the attribute is a disccrete one a random value inside the boundaries is picked, otherwise it is performed the same process computed for the continuous variable in the protected attribues scenario.
-
-\subsubsection{New Value Function}
-At this point, we can define the \textit{new\_value} function as a piecewise-defined function as follows:
+We define \textit{proxy\_detection} as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
 
 \[
-\text{new\_value}(variable) = 
-\begin{cases} 
-      \text{less\_frequent\_value} & \text{if } \text{variable} \text{ is discrete} \\
-      \text{random\_value\_in\_less\_frequent\_bin} & \text{if } \text{variable} \text{ is  continuous}
-\end{cases}
+\lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
 \]
 
-Here, we define two cases for the \textit{new\_value} function based on the type of the variable:
+In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range ]0.8, 1.25[.
+
+\subsection{Proxy detection via apriori}
+
+It's important to give a brief background of the Association Rule Mining, the family algorithm Apriori belongs to.
+
+\subsubsection{Association Rule Mining}
+
+Association Rule Mining is a data mining technique used to discover interesting relationships and patterns within large volumes of data. The goal is to identify associations and correlations among various elements present in the data.
+
+\subsubsection{Apriori algorithm}
+
+Suppose we have a set of transactions $T$, each containing a set of items. Let's define:
+
 \begin{itemize}
-    \item variable either biased or discrete, the \textit{new\_value} is set to the least frequent value in the respective column.
-    \item variable continue the \textit{new\_value} is randomly chosen within the least frequent interval.
+  \item $I$: the set of all distinct items in the data.
+  \item $D$: the set of transactions, each represented by a set of items.
+  \item $F_k$: the set of frequent itemsets of length $k$.
 \end{itemize}
 
-\subsection{Algorithm Pseudocode}
+The Apriori algorithm operates in iterations, generating $F_k$ from $F_{k-1}$.
 
-The algorithm is outlined using a pseudocode representation below:
+\textbf{Step 1:} Initialization:
+$$F_1 = \{ \text{frequent item } i, i \in I \}$$
+
+\textbf{Step 2:} Candidate itemset generation:
+$$C_k = \{ \text{set } c \text{ of items such that } c \subseteq F_{k-1} \}$$
+
+\textbf{Step 3:} Database scan:
+$$\text{For each transaction } t \text{ in } D, \text{ increment the support count of each candidate in } C_k \text{ contained in } t.$$
+
+\textbf{Step 4:} Selection of frequent itemsets:
+$$F_k = \{ c \in C_k \text{ such that the support of } c \geq \text{ specified threshold} \}$$
+
+\subsubsection{Row Selection with a Confidence Level}
+Suppose we have obtained association rules using the Apriori algorithm. Each rule $R$ is in the form $A \rightarrow B$, where $A$ is the antecedent and $B$ is the consequent. The confidence of $R$ is defined as:
+
+\[
+\text{Confidence}(R) = \frac{\text{Support}(A \cup B)}{\text{Support}(A)}
+\]
+
+To select rows with a certain confidence level, we consider a confidence threshold $C_{\text{min}}$. If the confidence of a rule $R$ exceeds this threshold, the rule is accepted.
+
+Formally, a rule $A \rightarrow B$ is accepted if:
+
+\[
+\text{Confidence}(A \rightarrow B) \geq C_{\text{min}}
+\]
+In our scenario
+\[
+C_{\text{min}}
+\]
+is equal to 0.8. \\
+
+Furthermore, in order to have a proper rows selection, we are particularly interested in privacy and data protection. We only want to consider rules where the consequent ($B$) contains at least one item representing a sensitive attribute or a variable that needs to be protected.
+
+The consequent filtering process involves evaluating each rule to ensure it meets this criteria. If the consequent of a rule does not contain any sensitive attributes, we discard that rule from our final selection. \\
+
+Formally, a rule $A \rightarrow B$ is considered if:
+
+\[
+\exists b \in B : b \in S
+\]
+
+If this condition is not met, the rule is discarded from our final selection.
+
+\subsubsection{Identifying Proxy Variables with Apriori}
+Now we can go on with the definition of proxies using Apriori. \\
+
+We define \textit{proxy\_detection} as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
+
+\[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) >= 1.25\]
+
+In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range ]0.8, 1.25[.
+
+\section{Pseudocode}
+
+Here's the pseudocode of the \emph{Fairness through unawareness with proxy detection}:
 
 \begin{verbatim}
-while not dataset_fair(dataset):
-    new_row = {}
-    for var in list_variables:
-        new_row[var] = new_value(var)
-    dataset.append(new_row)
+    while not dataset_fair(dataset) or protected_attributes in dataset:
+        proxies = proxy_detection(dataset)
+        if proxies is empty:
+            dataset = protected_attributes_free_dataset(dataset)
+        else:
+            dataset = proxy_free_dataset(dataset)
+    return dataset
 \end{verbatim}
 
-In this pseudocode, we use a dataset represented by \( R^{n \times n} \). The algorithm iteratively checks if the dataset is fair using the function \( \text{dataset\_fair} \). If the dataset is not fair, a new row is created, and for each variable in the list of variables (\( \text{list\_variables} \)), a new value is assigned using the function \( \text{new\_value} \). Finally, the new row is appended to the dataset.
+\subsection{dataset\textunderscore fair pseudocode}
+Here's the pseudocode that establish if the dataset is either \emph{Fair} or not
+\begin{verbatim}
+    if fairness_evaluation(dataset, protcted_attribute) is empty:
+        return True
+    return False
+\end{verbatim}
 
+\subsection{fairness\textunderscore evaluation pseudocode}
+Here's the pseudocode to perform the fairness evaluation, given a specific \emph{fairness metric}
+\begin{verbatim}
+    fairness_evaluation_list
+    output = dataset[output_column]
+    for attribute in protected attribute:
+        if metric(attribute, output) <= 0.8 or metric(attribute, output) >= 1.25:
+            fairness_evaluation_list.append(attribute)
+\end{verbatim}
+
+\subsection{protected\textunderscore attributes\textunderscore free\textunderscore dataset pseudocode}
+Here's the pseudocode to remove protected attributes from the dataset
+\begin{verbatim}
+    for attribute in protected_attributes:
+        dataset.remove(attribute)
+    return dataset
+\end{verbatim}
+
+\subsection{proxy\textunderscore free\textunderscore dataset pdeudocode}
+Here's the pseudocode to remove proxy attributes from the dataset
+\begin{verbatim}
+    for attribute in proxy_list:
+        dataset.remove(proxy)
+    return dataset
+\end{verbatim}
+
+\subsection{proxy\textunderscore detection pseudocode}
+Here's the pseudocode of proxy\textunderscore detection function. There are 2 scenarios that are presented here, the one in which the \emph{variables only}  approach is used and the one in which the \emph{apriori} approach is used
+
+\subsubsection{variables only}
+\begin{verbatim}
+    proxy_list = []
+    for protected_attribute in protected_attributes_list:
+        for attribute in attributes and not in protected_attribues_list and not in proxy_list:
+            if metric(attribute, protected_attribute) <= 0.8 or metric(attribute, protected_attribute) >= 1.25:
+                proxy_list.append(attribute)
+    return proxy_list
+\end{verbatim}
+
+\subsubsection{apriori}
+\begin{verbatim}
+    proxy_list = []
+    for consequent in apriori_dataset:
+        for antecedent in apriori_dataset:
+            if metric(antecedent, consequent) <= 0.8 or metric(antecedent, consequent) >= 1.25:
+                proxy_list.append(antecent)
+    return proxy_list
+\end{verbatim}
+
+\subsection{Fairness through data rebalancing}
+
+In recent years, the rise of automated decision-making systems has necessitated an examination of fairness and equity within algorithmic processes. Addressing fairness concerns, particularly in domains involving sensitive attributes, has become crucial to ensure that the resulting decisions are not biased against specific groups or individuals. Traditional approaches to fairness often revolve around defining and optimizing for specific fairness metrics, such as demographic parity, equal opportunity, or disparate impact. However, these metrics might not capture the complex interplay of variables that influence fairness.
+
+Here, we propose an innovative approach to rebalancing algorithms that transcends the limitations of conventional fairness metrics. Our focus is on achieving a state of equilibrium, where the occurrences of all possible combinations of values for protected variables and the output variable are balanced. This approach aims to mitigate bias and promote fairness by distributing the outcomes more evenly across different segments of the dataset, while ensuring that no specific value combination is disproportionately favored. By fostering a sense of balance and inclusivity in the decision-making process, we contribute to a more equitable framework for automated systems.
+
+\subsubsection{General concepts}
+Let \( D \) be a dataset \( R^{n \times m} \), where \( n \) is the number of samples and \( m \) is the number of features. Let \( k \) be the number of protected variables represented as \( R^{n \times 1} \), and let there be a single output variable represented as \( R^{n \times 1} \).
+
+A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
+
+\[
+\mathcal{R}: R^{n \times m} \rightarrow R^{l \times m}
+\]
+
+where \( l > m \), and the function \( \mathcal{R} \) transforms the input dataset \( D \) of dimensions \( n \times m \) into an output dataset \( D' \) of dimensions \( l \times m \).
+
+\subsubsection{Number of Rows of the Resulting Dataset}
+
+Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
+
+Consider a set \( \text{Combination-frequency} \) where we have occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
+
+Mathematically, the number of rows (\( l \)) the final dataset should have for each combination is given by:
+
+\[
+l = \text{Max}(\text{Combination-frequency})
+\]
+
+
+\subsubsection{Rebalancing}
+
+Let \( l \) be the desired number of rows for the final dataset. For each combination of values, we calculate the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
+
+The total number of rows to be added is given by:
+
+\[
+\text{total\_rows\_to\_add} = l - \sum_{i=1}^{2^{(k+1)}} \text{occurrence}_i
+\]
+
+For each iteration:
+\begin{itemize}
+    \item The values of the protected and output variables are set according to the specific combination.
+    \item For all other attributes, a random value \( \text{random\_value}_{ij} \) is generated, where \( j \) represents the specific attribute and \( i \) represents the row being added for that attribute. \( \text{random\_value}_{ij} \) is within the minimum and maximum range for attribute \( j \).
+\end{itemize}
+
+\subsection{Pseudocode}
+\begin{verbatim}
+    max_frequency = max(combination_frequency)
+    for index in range(0, len(combination_set)):
+        combination = combination_set[index]
+        frequency = combination_frequency[index]
+        while frequency < max_frequency:
+            new_row = empty
+            for attr, val in (combination, protected_attributes)
+                new_row[attr] = val
+
+            for attr in dataset_attributes and not in protected_attribues:
+                new_row[attr] = random(max(attr), min(attr))
+
+            dataset.add(new_row)
+            frequency += 1
+    
+\end{verbatim}
 
 %You may want to reference images in your thesis.
 %
