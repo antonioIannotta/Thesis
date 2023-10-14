@@ -343,8 +343,7 @@ Formally, a rule $A \rightarrow B$ is considered if:
 If this condition is not met, the rule is discarded from our final selection.
 \end{enumerate}
 \\
-After this brief introduction of the concepts used to apply this algorithm we present our approach to detect proxy variables. \\
-
+After this brief introduction of the concepts used to apply this algorithm we present our approach to detect proxy variables.
 We define \textit{proxy\_detection} as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
 
 \[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) >= 1.25\]
