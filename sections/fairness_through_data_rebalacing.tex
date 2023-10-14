@@ -5,109 +5,93 @@
 \usepackage{algorithm}
 \usepackage[utf8]{inputenc}
 \usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 
-\title{Fairness Through Data Rebalancing}
-\author{Antonio Iannotta}
-\date{\today}
+\section{Fairness through data rebalancing}
+\subsection{A New Definition of Fairness}
+In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes. We propose a new definition of fairness that takes into account the representation of all combinations of $k$ protected attributes, aiming for equitable representation across these combinations.
 
-\begin{document}
+\subsubsection{Equal Representation of Combinations}
 
-\maketitle
-
-\section{Introduction}
-Achieving fairness in machine learning models is a critical goal to mitigate biases and ensure equitable outcomes across different demographic groups. In many real-world scenarios, datasets are imbalanced, especially concerning sensitive attributes such as race or gender, which can lead to biased predictions. Biased predictions can perpetuate and even exacerbate existing societal inequalities. Addressing this bias and promoting fairness in predictive models is essential for responsible and ethical deployment of machine learning solutions.
-
-This work introduces an innovative algorithm aimed at addressing dataset imbalance and promoting fairness. The algorithm achieves this by rebalancing the dataset through the strategic addition of rows, effectively mitigating the inherent unfairness in certain variables' distribution. The process involves identifying underrepresented groups and generating synthetic data points to balance their representation, resulting in a more equitable dataset.
-
-The proposed algorithm not only focuses on data balancing but also incorporates elements of data augmentation. By strategically generating new data points, it enhances the dataset's diversity, promoting a fairer representation of various attributes. This approach goes beyond traditional data balancing techniques, offering a comprehensive solution that leverages the power of data augmentation for achieving fairness.
-
-In this article, we delve into the details of the algorithm, explaining its methodology and demonstrating its effectiveness in promoting fairness through data rebalancing and augmentation. We also discuss the significance of this approach and its potential impact on advancing fairness and equity in machine learning models.
-
-\section{General Concepts}
-In this section, we will introduce and discuss some fundamental concepts related to fairness, imbalanced datasets, data rebalancing, and data augmentation. Understanding these concepts is crucial for comprehending the proposed algorithm and its implications in achieving fairness.
-
-\subsection{Fairness Metric Formalization}
-Let \( R^{n \times m} \) represent a dataset with \( n \) samples and \( m \) features. In this dataset, there are \( k \) protected variables denoted by \( R^{n \times k} \) and an output column denoted by \( R^{n \times 1} \). We define a fairness metric \( \lambda \) as a function:
-\[ \lambda: R^{n \times k} \times R^{n \times 1} \rightarrow \text{value} \]
-that formalizes the relationship between the protected variables and the output column in terms of fairness evaluation.
-
-\subsection{Fairness Evaluation}
-We define a fairness evaluation function, denoted as \( \text{fairness\_evaluation} \), which considers each protected variable (\( \text{var} \)) and its associated fairness metric (\( \lambda \)) for the given output:
-\[ \text{fairness\_evaluation}(\text{var}, \text{output}) = \lambda(\text{var}, \text{output}) \]
-Fairness evaluation forms a set, and based on this set, a decision is made to determine whether the dataset is fair or not.
-
-\subsection{Fair Dataset Definition}
-We define a fair dataset (\( \text{dataset\_fair} \)) based on the fairness evaluation values. For each fairness evaluation value (\( \text{val} \)):
-\[ \text{dataset\_fair}(\text{val}) = \begin{cases} 
-      \text{True} & \text{if } 0.8 < \text{val} < 1.25 \\
-      \text{False} & \text{otherwise}
-   \end{cases}
-\]
-Here, a dataset is considered fair if the fairness evaluation value (\( \text{val} \)) falls within the specified range of 0.8 to 1.25.
-
-\subsection{Biased Attributes}
-We define a set of biased attributes (\( \text{biased\_attributes} \)) based on the fairness metric \( \lambda \). For each protected variable (\( \text{prot} \)) belonging to the set of protected variables (\( \text{variabili\_protette} \)):
-\[ \text{biased\_attributes}(\text{prot}) = \begin{cases} 
-      \text{True} & \text{if } \lambda(\text{prot}, \text{output}) < 0.8 \text{ or } \lambda(\text{prot}, \text{output}) > 1.25 \\
-      \text{False} & \text{otherwise}
-   \end{cases}
-\]
-Here, an attribute (\( \text{prot} \)) is considered biased if the fairness evaluation value (\( \lambda(\text{prot}, \text{output}) \)) is less than 0.8 or greater than 1.25.
-
-\subsection{Algorithm Objective}
-The goal of this algorithm is to add a new row to a non-fair dataset until the dataset becomes effectively fair. It's important to note that each row is composed of columns, known as attributes, which can belong to different categories:
-- Biased attributes
-- Protected attributes
-- Normal attributes
-
-\subsection{Adding Values to New Row}
-At this point, we need to investigate how values are added for each column of the new row to be added to the dataset.
-
-\subsubsection{Definitions}
-...
-
-\subsubsection{Adding Values for New Row}
-...
-
-\paragraph{Biased Attributes:}
-As previously stated, a biased attribute is defined for every attribute that is biased with respect to a certain fairness metric \( \lambda \). For this typically discrete attribute, the value added in the respective column of the new row to be added is the least frequent value in the respective column of the original dataset.
-
-\paragraph{Protected Attributes:}
-In this category, we identify all columns that are protected variables but not biased. If the protected variable is discrete, the less\_frequent\_value is added; otherwise, for a continuous variable, a value is randomly chosen within the least frequent interval.
-
-\paragraph{Normal Attributes:}
-For normal variables, the policy adopted is identical to that for protected variables.
-
-\subsubsection{New Value Function}
-At this point, we can define the \textit{new\_value} function as a piecewise-defined function as follows:
+We define a fair dataset as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$, the representation is equal and proportional. Mathematically, a dataset is fair if:
 
 \[
-\text{new\_value}(variable) = 
-\begin{cases} 
-      \text{less\_frequent\_value} & \text{if } \text{variable} \text{ is discrete} \\
-      \text{random\_value\_in\_less\_frequent\_bin} & \text{if } \text{variable} \text{ is  continuous}
-\end{cases}
+\forall i_1, i_2, \ldots, i_k: \frac{|D_{i_1, i_2, \ldots, i_k}|}{|D|} = \text{constant}
 \]
 
-Here, we define two cases for the \textit{new\_value} function based on the type of the variable:
+where:
+- $D$ is the dataset,
+- $|D_{i_1, i_2, \ldots, i_k}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$,
+- $|D|$ is the total number of samples in the dataset.
+
+This entails that any combination of demographic groups, defined by the protected attributes, should have comparable representation, thereby fostering a balanced and unbiased dataset.
+
+\subsubsection{Promoting Comprehensive Fairness}
+
+By striving for equal representation of combinations of protected attributes, we address a fundamental aspect of fairness that transcends individual attributes. This approach provides a more nuanced understanding of fairness by considering the intersections of various demographic groups. It encourages a broader examination of potential biases that may arise when considering multiple attributes simultaneously.
+
+Incorporating this definition of fairness into the dataset rebalancing process enables us to promote a comprehensive notion of fairness, aligning with the principles of equal opportunity and non-discrimination across all combinations of protected attributes. Our subsequent algorithm and experimental evaluation are designed to actualize this definition and demonstrate its effectiveness in achieving a more equitable representation within the dataset.
+
+\subsection{Algorithm description}
+
+Let \( D \) be a dataset \( R^{n \times m} \), where \( n \) is the number of samples and \( m \) is the number of features. Let \( k \) be the number of protected variables represented as \( R^{n \times 1} \), and let there be a single output variable represented as \( R^{n \times 1} \).
+
+A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
+
+\[
+\mathcal{R}: R^{n \times m} \rightarrow R^{l \times m}
+\]
+
+where \( l > m \), and the function \( \mathcal{R} \) transforms the input dataset \( D \) of dimensions \( n \times m \) into an output dataset \( D' \) of dimensions \( l \times m \).\\
+\\
+Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
+
+Consider a set \( \text{Combination-frequency} \) where we have occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
+
+Mathematically, the number of rows (\( l \)) the final dataset should have for each combination is given by:
+
+\[
+l = \text{Max}(\text{Combination-frequency})
+\]\\
+\\
+Let \( l \) be the desired number of rows for the final dataset. For each combination of values, we calculate the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
+
+The total number of rows to be added is given by:
+
+\[
+\text{total\_rows\_to\_add} = l - \sum_{i=1}^{2^{(k+1)}} \text{occurrence}_i
+\]
+
+For each iteration:
 \begin{itemize}
-    \item variable either biased or discrete, the \textit{new\_value} is set to the least frequent value in the respective column.
-    \item variable continue the \textit{new\_value} is randomly chosen within the least frequent interval.
+    \item The values of the protected and output variables are set according to the specific combination.
+    \item For all other attributes, a random value \( \text{random\_value}_{ij} \) is generated, where \( j \) represents the specific attribute and \( i \) represents the row being added for that attribute. \( \text{random\_value}_{ij} \) is within the minimum and maximum range for attribute \( j \).
 \end{itemize}
 
-\section{Algorithm Pseudocode}
+\subsection{Pseudocode}
+\begin{algorithm}[H]
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
 
-The algorithm is outlined using a pseudocode representation below:
+    \Input{combination\_set, combination\_frequency, protected\_attributes, dataset\_attributes}
+    \Output{Updated dataset}
 
-\begin{verbatim}
-while not dataset_fair(dataset):
-    new_row = {}
-    for var in list_variables:
-        new_row[var] = new_value(var)
-    dataset.append(new_row)
-\end{verbatim}
-
-In this pseudocode, we use a dataset represented by \( R^{n \times n} \). The algorithm iteratively checks if the dataset is fair using the function \( \text{dataset\_fair} \). If the dataset is not fair, a new row is created, and for each variable in the list of variables (\( \text{list\_variables} \)), a new value is assigned using the function \( \text{new\_value} \). Finally, the new row is appended to the dataset.
-
-
-\end{document}
+    max\_frequency $\gets$ max(combination\_frequency)\;
+    \For{index $\gets$ 0 \KwTo len(combination\_set)}{
+        combination $\gets$ combination\_set[index]\;
+        frequency $\gets$ combination\_frequency[index]\;
+        \While{frequency $<$ max\_frequency}{
+            new\_row $\gets$ empty\;
+            \For{(attr, val) \textbf{in} (combination, protected\_attributes)}{
+                new\_row[attr] $\gets$ val\;
+            }
+            \For{attr \textbf{in} dataset\_attributes \textbf{and not in} protected\_attributes}{
+                new\_row[attr] $\gets$ random(min(attr), max(attr))\;
+            }
+            dataset.add(new\_row)\;
+            frequency $+$= 1\;
+        }
+    }
+\end{algorithm}
