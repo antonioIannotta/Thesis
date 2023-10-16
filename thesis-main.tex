@@ -627,10 +627,17 @@ The Disparate Impact metric is defined as the ratio of the probability of a favo
 \]
 
 where $P(\text{Favorable Outcome} | \text{Disadvantaged Group})$ is the probability of a favorable outcome given membership in the disadvantaged group, and  \\ $P(\text{Favorable Outcome} | \text{Advantaged Group})$ is the probability of a favorable outcome given membership in the advantaged group.
-
 \subsection{Proxy detection via apriori}
 The implementation of this approach has proceeded according a modular approach and, more specifically, has been developed a module named \emph{fairness} in which there are all the sub-modules needed to implement this approach.
 \subsubsection{fairness\textunderscore metric module}
+This module has been thought to contain the implementation of the several fairness metrics considered in the context of the study. In our scenario it only contains the implementation of the \emph{Disparate Impact} metric. \\
+This implementation provides to the user the information about the fairness status of the dataset provided together with the protected attributes, the otuput attribute and the possible values that this value may have. \\
+\lstinputlisting[
+	float,
+	language=Python,
+	caption={Fairness evaluation implementation},
+]{listings/fairness_eval.py}
+
 \subsubsection{matching module}
 \subsubsection{pre\textunderscore processing module}
 \subsubsection{proxy module}
