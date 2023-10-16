@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage{algorithm}
+\usepackage{listings}
 \usepackage{algpseudocode}
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -631,13 +631,29 @@ where $P(\text{Favorable Outcome} | \text{Disadvantaged Group})$ is the probabil
 The implementation of this approach has proceeded according a modular approach and, more specifically, has been developed a module named \emph{fairness} in which there are all the sub-modules needed to implement this approach.
 \subsubsection{fairness\textunderscore metric module}
 This module has been thought to contain the implementation of the several fairness metrics considered in the context of the study. In our scenario it only contains the implementation of the \emph{Disparate Impact} metric. \\
-This implementation provides to the user the information about the fairness status of the dataset provided together with the protected attributes, the otuput attribute and the possible values that this value may have. \\
-\lstinputlisting[
-	float,
-	language=Python,
-	caption={Fairness evaluation implementation},
-    label={lst:fairness_eval}
-]{listings/fairness_eval.py}
+This implementation provides to the user the information about the fairness status of the dataset provided together with the protected attributes, the otuput attribute and the possible values that this value may have: \\
+\begin{lstlisting}
+    def fairness_evaluation(self, dataset: pd.DataFrame, protected_attributes: list, output_column_values: list,
+                            output_column: str) -> str:
+        """
+        This method perform an evaluation of the fairness of a given dataset according to the Disparate Impact metric
+        :param dataset: this is the dataset on which to be labelled as fair or unfair
+        :param protected_attributes: the list of the protected attributes on which compute the disparate impact value
+        :param output_column: the column of the dataset that represents the output
+        :return: return 'fair' if the dataset is fair, unfair 'otherwise'
+        """
+        bias_analysis_dataframe = self.bias_detection(dataset, protected_attributes, output_column_values, output_column)
+        return_value = 'unfair'
+        for value in bias_analysis_dataframe['Disparate Impact'].values:
+            if value <= 0.80 or value >= 1.25:
+                return_value = 'unfair'
+                break
+            else:
+                return_value = 'fair'
+
+        return return_value
+\end{lstlisting}
+
 
 \subsubsection{matching module}
 \subsubsection{pre\textunderscore processing module}
