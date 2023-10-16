@@ -575,7 +575,31 @@ For each iteration:
 %----------------------------------------------------------------------------------------
 \section{Dataset description}
 Before moving on into the several details of the implementation of the algorithms previously presented we have to present the dataset on which these algorithms have been applied.
+The dataset chosen for this work is \emph{ULL dataset}. \\
+This dataset contains information on the educational system in Canary Island. It's composed by the census of students enrolled in 4 different academic years.
 
+\subsection{Pre-processing operations on ULL dataset}
+A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
+Furthermore, after a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
+\begin{enumerate}
+    \item sex
+    \item capital island: if the student comes from the capital of the city
+    \item public_private: if the school is public or private
+    \item inmigrant: if the student is either inmigrant or not
+    \item inmigrant second gen: if the student is either inmigrand of second gen or not
+    \item parent expectation
+    \item mothly houseold income
+    \item cconomic, social and cultural satus index
+\end{enumerate}
+It's furthermore fundamental to remark the ways in which we decided to consider this protected attributes (together with the other ones not considered to fed the algorithm).
+More specifically:
+\begin{itemize}
+    \item if the attribute is binary no transformation is applied
+    \item if the attribue is not binary that it's trnasformed into a binary attribute where the value \emph{1} means over the mean and the \emph{0} under the mean.
+\end{itemize}
+
+\subsection{Goal of this work}
+The goal of this work is the one to predict the level of english for the current grade (3/4/6) based on past experience. To achieve this we computed on the \emph{level_ing} attribute the same pre-processing transofrmation used for not-binary protected attributes. This means that we want \textbf{match} the students to establish if a given student is either under or over the mean.
 
 \lstinputlisting[
 	float,
