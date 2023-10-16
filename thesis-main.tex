@@ -375,6 +375,7 @@ where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) y
 
 \subsection{Pseudocode}
 Here's the pseudocode of the \emph{Fairness through unawareness with proxy detection}:
+
 \begin{algorithm}[H]
     \KwData{dataset}
     \KwResult{fair dataset}
@@ -392,6 +393,7 @@ Here's the pseudocode of the \emph{Fairness through unawareness with proxy detec
 
 \subsubsection{dataset\textunderscore fair pseudocode}
 Here's the pseudocode that establish if the dataset is either \emph{Fair} or not
+
 \begin{algorithm}[H]
     \KwData{dataset, protected\_attribute}
     \KwResult{Boolean value indicating fairness}
@@ -403,6 +405,7 @@ Here's the pseudocode that establish if the dataset is either \emph{Fair} or not
 
 \subsubsection{fairness\textunderscore evaluation pseudocode}
 Here's the pseudocode to perform the fairness evaluation, given a specific \emph{fairness metric}
+
 \begin{algorithm}[H]
     \KwData{dataset, output\_column, protected\_attributes}
     \KwResult{List of attributes failing fairness evaluation}
@@ -430,6 +433,7 @@ Here's the pseudocode to remove protected attributes from the dataset
 
 \subsubsection{proxy\textunderscore free\textunderscore dataset pdeudocode}
 Here's the pseudocode to remove proxy attributes from the dataset
+
 \begin{algorithm}[H]
     \KwData{dataset, proxy\_list}
     \KwResult{Dataset with proxies removed}
