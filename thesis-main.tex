@@ -760,6 +760,27 @@ This module is the core of the whole algorithm. This module contains other two s
 \end{enumerate}
 
 \subsection{Proxy detection via variables only}
+The implementation of this approach differs with the implementation of the apriori approach because of the operation of proxy detection and processing have been mixed together and the proxy removal operation has been delegated to the \emph{matching} module. In the following there's the code that computes the proxy detection:
+\begin{lstlisting}
+    def proxy_detection(dataset: pd.DataFrame, protected_attributes: list, output_column: str) -> list:
+    attributes_list = []
+    for attr in dataset.columns:
+        if attr not in protected_attributes:
+            attributes_list.append(attr)
+            
+          
+    if output_column in attributes_list:
+        attributes_list.remove(output_column)
+        
+    proxy_list = []
+    for attribute in attributes_list:
+        for protected_attribute in protected_attributes:
+            if _compute_disparate_impact_for_proxy(attribute, protected_attribute, dataset) == 'PROXY':
+                proxy_list.append(attribute)
+
+    return proxy_list
+
+\end{lstlisting}
 \section{Fairness through data rebalancing}
 \section{Fairness through equity attributes in linear models}
 
