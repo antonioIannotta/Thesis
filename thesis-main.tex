@@ -807,9 +807,29 @@ The key part of this module is the one in which the other attributes are inserte
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
 %----------------------------------------------------------------------------------------
+It's important to remark the goal of this work: predict if a student's english level is under or over the mean for each grade: 3,4,6. With this in mind we splitted the dataset into 3 different ones, any of them with their own grade selected.\\
+For each grade have been applied the following approaches, in order to perform a proper comparaison:
+\begin{enumerate}
+    \item No fairness assumptions are made
+    \item Fairness through unawareness
+    \item Fairness through unawareness with proxy detection via apriori
+    \item Fairness through unawareness with proxy detection via variables only
+    \item Fairness through data rebalancing
+\end{enumerate}\\
+For each of the previous approaches have been chosen 3 models to perform the prediction:
+\begin{enumerate}
+    \item RandomForest Classifier
+    \item XGBoost Classifier
+    \item DecisionTree Classifier
+\end{enumerate}
 
-Write Validation here
-
+On the previous models is applied the GridSearch in order to select the best parameters combination for each one. In the following are reported the specific parameters for each model:
+\begin{enumerate}
+    \item RandomForest Classifier:
+    \begin{enumerate}
+        
+    \end{enumerate}
+\end{enumerate}
 %----------------------------------------------------------------------------------------
 \chapter{\conclusionsname}
 \label{chap:conclusions}
