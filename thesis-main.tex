@@ -816,6 +816,8 @@ For each grade have been applied the following approaches, in order to perform a
     \item Fairness through unawareness with proxy detection via variables only
     \item Fairness through data rebalancing
 \end{enumerate}\\
+
+\section{Experiment setup}
 For each of the previous approaches have been chosen 3 models to perform the prediction:
 \begin{enumerate}
     \item RandomForest Classifier
@@ -823,13 +825,114 @@ For each of the previous approaches have been chosen 3 models to perform the pre
     \item DecisionTree Classifier
 \end{enumerate}
 
-On the previous models is applied the GridSearch in order to select the best parameters combination for each one. In the following are reported the specific parameters for each model:
+On the previous models is applied the GridSearch with a cv of 10 in order to select the best parameters combination for each one. In the following are reported the specific parameters for each model:
 \begin{enumerate}
     \item RandomForest Classifier:
     \begin{enumerate}
-        
+        \item \emph{n\textunderscore estimators}: [10, 100, 10]
+        \item \emph{criterion}: [gini, entropy, log\textunderscore loss]
+        \item \emph{max\textunderscore depth}: [10, 50, 10]
+        \item \emph{max\textunderscore leaf\textunderscore nodes}: [10, 50, 10]
+    \end{enumerate}
+    \item XGBoost Classifier:
+    \begin{enumerate}
+        \item \emph{min\textunderscore child\textunderscore weight}: [1, 5, 10]
+        \item \emph{gamma}: [0.5, 1, 1.5, 2.5]
+        \item \emph{subsample}: [0.6, 0.8, 1.0]
+        \item \emph{colsample\textunderscore bytree}: [0.6, 0.6, 1.0]
+        \item \emph{max\textunderscore depth}: [3, 4, 5]
+    \end{enumerate}
+    \item DecisionTree Classifier:
+    \begin{enumerate}
+        \item \emph{criterion}: [gini, entropy, log\textunderscore loss]
+        \item \emph{max\textunderscore depth}: [10, 50, 10]
+        \item \emph{max\textunderscore leaf\textunderscore nodes}: [10, 50, 10]
     \end{enumerate}
 \end{enumerate}
+
+Each model is trained with the 67\% of the dataset while the 33\% is left for the test.
+In the following are reported the results for each grade. More specifically for each model is reported the best model selected and the accuracy on the test set.
+
+\section{Grade 3}
+\subsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\section{Grade 4}
+\subsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+\section{Grade 6}
+\subsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
 %----------------------------------------------------------------------------------------
 \chapter{\conclusionsname}
 \label{chap:conclusions}
