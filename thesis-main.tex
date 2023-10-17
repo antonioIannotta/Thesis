@@ -697,7 +697,70 @@ This module is the core of the whole algorithm. This module contains other two s
 
     return dataframe
     \end{lstlisting}
-    \item \emph{proxy\textunderscore processing}:
+    \item \emph{proxy\textunderscore processing}: this module contains two key methods. The first method, \emph{\textunderscore return\textunderscore proxy\textunderscore protected\textunderscore attribute} returns a dataframe in which for each sensitive attribute as consequent are related the antecedents that are the possible proxies for that sensitive attribute. The second method is \emph{proxy\textunderscore fixing}, in which for each antecedent is computed the Disparate impact value related to that consequent with that specific value. Only the variables with DI value lesser than 0.8 or greater than 1.25 are considered as proxies. In the following is reported the code of both methods:
+    \begin{enumerate}
+        \item \emph{\textunderscore return\textunderscore proxy\textunderscore protected\textunderscore attribute}
+        \begin{lstlisting}
+            def _return_proxy_protected_attribute(proxy_variables: pd.DataFrame,
+                                      protected_attributes: list) -> pd.DataFrame:
+    """This method returns a dataframe containing the proxy variables for each sensitive attribute
+
+    Args:
+        proxy_variables (pd.DataFrame): the dataframe of the proxy variables (antecedent, consequent, confidence)
+        protected_attributes (list): the list of the protected attributes
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+    sensitive_antecedent = []
+    sensitive_consequent = []
+    for index, proxy_row in proxy_variables.iterrows():
+        for consequent in proxy_row['Consequent']:
+            for sensitive_attribute in protected_attributes:
+                if str(consequent).startswith(sensitive_attribute):
+                    sensitive_antecedent.append(proxy_row['Antecedent'])
+                    sensitive_consequent.append(consequent)
+
+    dataframe = pd.DataFrame(
+        {'Antecedent': pd.Series(sensitive_antecedent), 'Consequent': pd.Series(sensitive_consequent)})
+
+    return dataframe
+
+        \end{lstlisting}
+        \item \emph{proxy\textunderscore fixing}
+        \begin{lstlisting}
+            def proxy_fixing(original_dataset: pd.DataFrame, protected_attributes: list) -> pd.DataFrame:
+    """This method returns a dataset with proxy variables founded in the original dataset analyzed.
+    In case these proxies lead to unfairness the proxies are deleted
+
+    Args: original_dataset (pd.DataFrame): the dataset on which the proxy variable have to be deleted if they lead to
+    unfairness
+    protected_attributes (list): the list of protected attribute on which perform the proxy analysis
+
+    Returns:
+        pd.DataFrame: returns the dataframe in which the proxies do not lead to fairness
+    """
+    proxy_variables = return_proxy_variables(original_dataset)
+    proxy_variables_for_sensitive_attributes = _return_proxy_protected_attribute(proxy_variables,
+                                                                                 protected_attributes)
+    
+    dataset = original_dataset
+    for index, row in proxy_variables_for_sensitive_attributes.iterrows():
+        for antecedent in row['Antecedent']:
+            consequent = row['Consequent']
+
+            disparate_impact_value = _compute_disparate_impact_for_proxy(antecedent, consequent,
+                                                                         original_dataset)
+            if not 0.8 < disparate_impact_value < 1.25 and _proxy_format_to_column(antecedent) not in protected_attributes:
+                dataset = _remove_proxy_from_dataset(original_dataset, antecedent)
+
+            else:
+                continue
+
+    return dataset
+
+        \end{lstlisting}
+    \end{enumerate}
 \end{enumerate}
 
 \subsection{Proxy detection via variables only}
