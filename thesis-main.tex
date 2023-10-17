@@ -698,10 +698,8 @@ This module is the core of the whole algorithm. This module contains other two s
     return dataframe
     \end{lstlisting}
     \item \emph{proxy\textunderscore processing}: this module contains two key methods. The first method, \emph{\textunderscore return\textunderscore proxy\textunderscore protected\textunderscore attribute} returns a dataframe in which for each sensitive attribute as consequent are related the antecedents that are the possible proxies for that sensitive attribute. The second method is \emph{proxy\textunderscore fixing}, in which for each antecedent is computed the Disparate impact value related to that consequent with that specific value. Only the variables with DI value lesser than 0.8 or greater than 1.25 are considered as proxies. In the following is reported the code of both methods:
-    \begin{enumerate}
-        \item \emph{\textunderscore return\textunderscore proxy\textunderscore protected\textunderscore attribute}
-        \begin{lstlisting}
-            def _return_proxy_protected_attribute(proxy_variables: pd.DataFrame,
+    \begin{lstlisting}
+        def _return_proxy_protected_attribute(proxy_variables: pd.DataFrame,
                                       protected_attributes: list) -> pd.DataFrame:
     """This method returns a dataframe containing the proxy variables for each sensitive attribute
 
@@ -726,10 +724,10 @@ This module is the core of the whole algorithm. This module contains other two s
 
     return dataframe
 
-        \end{lstlisting}
-        \item \emph{proxy\textunderscore fixing}
-        \begin{lstlisting}
-            def proxy_fixing(original_dataset: pd.DataFrame, protected_attributes: list) -> pd.DataFrame:
+
+    \end{lstlisting}
+    \begin{lstlisting}
+        def proxy_fixing(original_dataset: pd.DataFrame, protected_attributes: list) -> pd.DataFrame:
     """This method returns a dataset with proxy variables founded in the original dataset analyzed.
     In case these proxies lead to unfairness the proxies are deleted
 
@@ -759,8 +757,7 @@ This module is the core of the whole algorithm. This module contains other two s
 
     return dataset
 
-        \end{lstlisting}
-    \end{enumerate}
+    \end{lstlisting}
 \end{enumerate}
 
 \subsection{Proxy detection via variables only}
