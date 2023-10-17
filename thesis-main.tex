@@ -567,8 +567,6 @@ For each iteration:
     }
 \end{algorithm}
 
-\section{Fairness through equity attributes in linear models}
-
 %----------------------------------------------------------------------------------------
 \chapter{Implementation} % possible chapter for Projects
 \label{chap:implementation}
@@ -782,14 +780,35 @@ The implementation of this approach differs with the implementation of the aprio
 
 \end{lstlisting}
 \section{Fairness through data rebalancing}
-\section{Fairness through equity attributes in linear models}
+The first big difference between this approach and the two previous ones is that no fairness-metrics is used here. The reason behind this is the new definition we provide for fairness, where we assume it as a parity in combination occurrance. So the core of this algorithm is the \emph{rebalancing} module in which we add rows to dataset according to the most frequent combination occurrance in the original dataset.
+The key part of this module is the one in which the other attributes are inserted. In this scenario we add a new value considering the minimum and the maximum in the temporary dataset, where this dataset is the dataset in which a certain combination of protected\textunderscore attributes and output is occurred. It's furthermore important to remark that since we choose a a value randomically this may alter the distribution for that attribute. So we do not look for a uniform distribution.
+\begin{lstlisting}
+    for index in range(0, len(combination_list)):
+        combination = combination_list[index]
+        temp_dataset = final_dataset.query(return_query_for_dataframe(combination, combination_attributes))
+        if combination_frequency[index] == combination_frequency_target:
+            continue
+        else:
+            for counter in range(0, combination_frequency_target - combination_frequency[index]):
+                new_row = {}
+                for (attr, value) in zip(combination_attributes, combination):
+                    new_row[attr] = value
+                for attribute in final_dataset.columns:
+                    if attribute not in combination_attributes:
+                        if is_variable_discrete(temp_dataset, attribute):
+                            new_row[attribute] = random.randint(temp_dataset[attribute].min(), temp_dataset[attribute].max())
+                        else:
+                            new_row[attribute] = random.uniform(temp_dataset[attribute].min(), temp_dataset[attribute].max())
+                
+                final_dataset.loc[len(final_dataset)] = new_row
 
+\end{lstlisting}
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
 %----------------------------------------------------------------------------------------
 
-Write implementation here
+Write Validation here
 
 %----------------------------------------------------------------------------------------
 \chapter{\conclusionsname}
