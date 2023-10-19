@@ -50,10 +50,8 @@
 \input{front.tex}
 
 \begin{abstract}
-    In light of growing AI adoption, concerns about potential discrimination have emerged. This study introduces a set of "fair-by-design" methodologies, which systematically embed fairness principles into AI systems. These techniques, primarily relying on established Python libraries and customized toolsets, focus on mitigating bias in AI predictions.
-    
-    The research commenced with an exploration of pre-processing fairness techniques. To evaluate their efficacy, we employed a real-world education dataset from the Canary Islands. Comparative analysis was conducted between predictions generated using fair-by-design methods and those produced without fairness considerations. The results highlight the substantial impact of proactive fairness integration in system design.
-    
+    In light of growing AI adoption, concerns about potential discrimination have emerged. This study introduces a set of "fair-by-design" methodologies, which systematically embed fairness principles into AI systems. These techniques, primarily relying on established Python libraries and customized toolsets, focus on mitigating bias in AI predictions.\\
+    The research commenced with an exploration of pre-processing fairness techniques. To evaluate their efficacy, a real-world education dataset from the Canary Islands has been used. Comparative analysis was conducted between predictions generated using fair-by-design methods and those produced without fairness considerations. The results highlight the substantial impact of proactive fairness integration in system design.
     Amid broader discussions concerning the ethical implications of AI, these fair-by-design methods offer a dispassionate approach to promoting equitable AI system performance, minimizing bias, and fostering responsible AI use.
 \end{abstract}
 
@@ -75,10 +73,10 @@ Never too far down, to come back
 \label{chap:introduction}
 %----------------------------------------------------------------------------------------
 
-In recent years, there has been a notable increase in the utilization of artificial intelligence (AI) systems across various sectors. This rise is attributed to advancements in technology, the accessibility of extensive data, and heightened computational capabilities. AI has transcended its role as a mere performance enhancer and has begun exerting a profound impact on social contexts. These systems are now pervasive in healthcare, education, criminal justice, and other crucial domains, fundamentally reshaping decision-making processes and societal interactions. However, the reliance of AI systems on data for learning and decision-making implies that they inherit the biases embedded in these data. This inherent bias has the potential to perpetuate existing societal imbalances and prejudices. Addressing bias and ensuring fairness in AI algorithms is hence a pressing concern, necessitating continuous research, responsible development practices, and vigilant oversight to guarantee equitable outcomes for all. In this discussion, we will delve into the intricate dynamics of biases and fairness in AI systems, exploring viable strategies to effectively mitigate these challenges.
+In recent years, there has been a notable increase in the utilization of artificial intelligence (AI) systems across various sectors. This rise is attributed to advancements in technology, the accessibility of extensive data, and heightened computational capabilities. AI has transcended its role as a mere performance enhancer and has begun exerting a profound impact on social contexts. These systems are now pervasive in healthcare, education, criminal justice, and other crucial domains, fundamentally reshaping decision-making processes and societal interactions. However, the reliance of AI systems on data for learning and decision-making implies that they inherit the biases embedded in these data. This inherent bias has the potential to perpetuate existing societal imbalances and prejudices. Addressing bias and ensuring fairness in AI algorithms is hence a pressing concern, necessitating continuous research, responsible development practices, and vigilant oversight to guarantee equitable outcomes for all. In this discussion, there will be a deep inspection into the intricate dynamics of biases and fairness in AI systems, exploring viable strategies to effectively mitigate these challenges.
 
 \paragraph{Artificial Intelligence}
-In recent years, artificial intelligence (AI) has undergone a remarkable evolution, transforming from a theoretical concept to a pervasive force shaping various facets of our lives. Advances in machine learning, particularly deep learning, have fueled this growth, enabling AI systems to process vast amounts of data and extract meaningful insights. Notably, breakthroughs in natural language processing have led to more conversational AI, making interactions with machines increasingly human-like. Moreover, AI applications have expanded across sectors, encompassing healthcare, finance, transportation, and more. However, ethical considerations and the responsible development of AI have gained significant traction, prompting discussions on privacy, bias mitigation, and ensuring that AI benefits all of society. The future of AI promises continued innovation, fostering a symbiotic relationship between humans and machines for a more technologically enriched world.
+In recent years, artificial intelligence (AI) has undergone a remarkable evolution, transforming from a theoretical concept to a pervasive force shaping various facets of our lives. Advances in machine learning, particularly deep learning, have fueled this growth, enabling AI systems to process vast amounts of data and extract meaningful insights. Notably, breakthroughs in natural language processing have led to more conversational AI, making interactions with machines increasingly human-like. Moreover, AI applications have expanded across sectors, encompassing healthcare, finance, transportation, and more. However, ethical considerations and the responsible development of AI have gained significant traction, prompting discussions on privacy, bias mitigation, and ensuring that AI benefits all of society. The future of AI promises continued innovation, fostering a symbiotic relationship between humans and machines for a more technologically enriched world.\cite{mehrabi2021}
 \paragraph{Bias}
 In the realm of artificial intelligence, the issue of bias is a critical concern. AI systems are trained on historical data, and if this data carries biases related to gender, race, or other factors, the AI can inadvertently perpetuate and amplify these biases in its predictions or decisions. Addressing bias in AI necessitates a proactive approach, from carefully curating training data to developing algorithms that are designed to detect and mitigate bias. Furthermore, promoting diversity and inclusivity in the development teams is vital to ensuring that biases are recognized and addressed effectively.
 \paragraph{Fairness}
@@ -86,14 +84,17 @@ Ensuring fairness in AI is an ongoing and essential goal. It involves designing 
 \paragraph{Machine Learning and data}
 ! Machine learning algorithms heavily rely on data to make predictions and decisions. However, the quality and representativeness of the data used are critical factors, especially in the context of fairness. Biases and unfairness can be inadvertently ingrained in machine learning models if the training data is skewed or reflects historical biases present in society. The data source plays a pivotal role in fairness issues, as biases present in the data, whether due to societal, cultural, or historical factors, can perpetuate and reinforce discriminatory outcomes. If the training data disproportionately represents a certain group, the model may learn to favor that group, leading to biased predictions and decisions. It is imperative to carefully curate and preprocess data, strive for diversity and representativeness, and continually evaluate and mitigate biases to promote fairness and ensure equitable outcomes in machine learning applications.
 \paragraph{Fair-by-design method}
-Since the huge impact that AI systems are having on daily life and more in general on the whole socio-technical systems it becomes crucial to design new AI methods and model that take account of fairness since the design step. That's why we call them fair-by-design methods.
+Since the huge impact that AI systems are having on daily life and more in general on the whole socio-technical systems it becomes crucial to design new AI methods and model that take account of fairness since the design step. That's why they are called fair-by-design methods.
+
+\paragraph{Structure of the Thesis}
+In the following is presented the \emph{State of the Art}, where are presented the basic concept on which this work is based. Then in \emph{Contribution} chapter there is the new contribution related to this work, that are the algorithms designed and implemented starting from the \emph{State of the Art}. The \emph{Evaluation} chapter provides a complete evalutation of the experiments results and the \emph{Conclusion and future work} presents ideas on what it's possible to achieve starting from the results of the work.
 %----------------------------------------------------------------------------------------
 \chapter{State of the Art} % or Background
 \label{chap:background}
 %----------------------------------------------------------------------------------------
 
 This chapter provides an overview of the previous works and scientific literature that led us to the implementation of fair-by-design methods. This chapter strats
-with an overview on \textbf{artificial intelligence} and its application in both critical sectors and socio-technical systems. Then we go deeply into the issues of \textbf{bias} and \textbf{fairness} in AI systems.
+with an overview on \textbf{artificial intelligence} and its application in both critical sectors and socio-technical systems, going deeply into the issues of \textbf{bias} and \textbf{fairness} in AI systems.
 
 \section{Artificial Intelligence}
 Artificial Intelligence (AI) and Machine Learning (ML) are transformative technologies that are redefining the way we interact with the world. AI refers to the development of computer systems capable of performing tasks that typically require human intelligence, such as speech recognition, problem-solving, and learning. Machine Learning is a subset of AI, involving the creation of algorithms that allow computers to learn patterns and make predictions based on data, improving their performance over time. \\
@@ -313,8 +314,8 @@ In conclusion, fairness in AI is not just an ethical necessity but a fundamental
 %For instance in \cite{AnzengruberSocInfo2013} the authors propose a novel means for tackling with the problem of preventing bad things from happening.
 
 %----------------------------------------------------------------------------------------
-\chapter{Design} % possible chapter for Projects
-\label{chap:design}
+\chapter{Contribution} % possible chapter for Projects
+\label{chap:contibution}
 %----------------------------------------------------------------------------------------
 In the subsequent discussion, we will delve into algorithms specifically crafted to address and mitigate fairness concerns. Fairness in algorithms has gained significant attention in recent years due to the realization that traditional computational processes can inadvertently perpetuate biases and disparities. Various approaches, ranging from re-weighting instances to modifying decision boundaries, aim to rectify these issues and promote a more equitable and just application of algorithms across diverse demographics. By exploring these approaches, we aim to shed light on the potential solutions that can contribute to a more inclusive and fair technological landscape.
 
@@ -639,8 +640,8 @@ For each iteration:
 \end{algorithm}
 
 %----------------------------------------------------------------------------------------
-\chapter{Implementation} % possible chapter for Projects
-\label{chap:implementation}
+%\chapter{Implementation} % possible chapter for Projects
+%\label{chap:implementation}
 %----------------------------------------------------------------------------------------
 \section{Dataset description}
 Before moving on into the several details of the implementation of the algorithms previously presented we have to present the dataset on which these algorithms have been applied.
@@ -683,7 +684,7 @@ The goal of this work is the one to predict the level of english for the current
 %
 %For instance, in \Cref{lst:helloworld}, we describe an hello world program in Java.
 
-\section{Fairness through unawareness with proxy detection}
+\section{Fairness through unawareness with proxy detection: implementation}
 In this section we go through the several implementative issues that have been encountered during the development of this algorithm. We will explore in detail the two approaches, the one with \textbf{apriori} and the one in which only the \textbf{variables} have been taken in account. \\
 Before moving on it's important to be more detailed about the fairness metric we decided to use.
 \subsection{Disparate Impact}
@@ -828,7 +829,7 @@ This module is the core of the whole algorithm. This module contains other two s
     \end{lstlisting}
 \end{enumerate}
 
-\subsection{Proxy detection via variables only}
+\subsection{Proxy detection via variables only: implementation}
 The implementation of this approach differs with the implementation of the apriori approach because of the operation of proxy detection and processing have been mixed together and the proxy removal operation has been delegated to the \emph{matching} module. In the following there's the code that computes the proxy detection:
 \begin{lstlisting}
     def proxy_detection(dataset: pd.DataFrame, protected_attributes: list, output_column: str) -> list:
