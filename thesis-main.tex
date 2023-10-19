@@ -6,17 +6,41 @@
 \usepackage{algpseudocode}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{disi-thesis}
+\usepackage{code-lstlistings}
+\usepackage{notes}
+\usepackage{shortcuts}
+\usepackage{acronym}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 
 
-\newcommand{\thesislang}{english} % commentare in caso di tesi in italiano
-\usepackage{thesis-style}
+%\newcommand{\thesislang}{english} % commentare in caso di tesi in italiano
+%\usepackage{thesis-style}
 % version
-\newcommand{\versionmajor}{0}
-\newcommand{\versionminor}{1}
-\newcommand{\versionpatch}{2}
-\newcommand{\version}{\versionmajor.\versionminor.\versionpatch}
-\typeout{Document version: \version}
+%\newcommand{\versionmajor}{0}
+%\newcommand{\versionminor}{1}
+%\newcommand{\versionpatch}{2}
+%\newcommand{\version}{\versionmajor.\versionminor.\versionpatch}
+%\typeout{Document version: \version}
+
+\school{\unibo}
+\programme{Corso di Laurea [Magistrale?] in Ingegneria e Scienze Informatiche}
+\title{Fancy Title}
+\author{Candidate Name}
+\date{\today}
+\subject{Supervisor's course name}
+\supervisor{Prof. Supervisor Here}
+\cosupervisor{Dott. CoSupervisor 1}
+\morecosupervisor{Dott. CoSupervisor 2}
+\session{I}
+\academicyear{2022-2023}
+
+% Definition of acronyms
+\acrodef{IoT}{Internet of Thing}
+\acrodef{vm}[VM]{Virtual Machine}
+
+
+\mainlinespacing{1.241} % line spacing in mainmatter, comment to default (1)
 
 \begin{document}
 	
@@ -1040,8 +1064,8 @@ In the following are reported the results for each grade. More specifically for 
 \end{tabular}
 
 
-\section{Grade 4}\subsection{No-fair approach}
-\subsubsection{Best models}
+\section{Grade 4}
+\subsection{Best models}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
@@ -1054,7 +1078,7 @@ In the following are reported the results for each grade. More specifically for 
     \hline
 \end{tabular}
 
-\subsubsection{Accuracy}
+\subsection{Accuracy}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Accuracy} \\
@@ -1066,9 +1090,8 @@ In the following are reported the results for each grade. More specifically for 
     DecisionTree Classifier &  \\
     \hline
 \end{tabular}
-
-\subsection{Fairness throguh unawareness}
-\subsubsection{Best models}
+\section{Grade 6}
+\subsection{Best models}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
@@ -1081,223 +1104,7 @@ In the following are reported the results for each grade. More specifically for 
     \hline
 \end{tabular}
 
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fairness through unawareness with proxy detection via apriori}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fariness through unawareness with proxy detection via variables only}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fairness through data rebalancing}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\section{Grade 6}\subsection{No-fair approach}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fairness throguh unawareness}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fairness through unawareness with proxy detection via apriori}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fariness through unawareness with proxy detection via variables only}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsection{Fairness through data rebalancing}
-\subsubsection{Best models}
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier &  \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
+\subsection{Accuracy}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Accuracy} \\
@@ -1322,8 +1129,11 @@ Write conclusions here.
 % BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
-%\nocite{*} % uncomment this to show all the reference in the .bib file
-\bibliographystyle{plain}
+\backmatter
+
+\nocite{*} % comment this to only show the referenced entries from the .bib file
+
+\bibliographystyle{alpha}
 \bibliography{bibliography}
 
 
