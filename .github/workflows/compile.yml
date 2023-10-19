@@ -36,7 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: 'Iannotta-ISE-Thesis'
+          tag_name: 'Iannotta-ISE-Thesis-{{date + %Y-%m-%d-%H-%M }}'
           
       - name: Upload Release Asset
         id: upload-release-asset
