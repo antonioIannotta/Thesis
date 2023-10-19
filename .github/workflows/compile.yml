@@ -36,7 +36,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: '${{ steps.get-version.outputs.version }}+${{ steps.current-time.outputs.time }}'
+          tag_name: 'Iannotta-ISE-Thesis'
           
       - name: Upload Release Asset
         id: upload-release-asset
