@@ -165,6 +165,74 @@ Post-processing occurs after the model has been trained and has generated predic
 
 Implementing these techniques requires a deep understanding of the specific fairness challenges in the data and models, as well as ongoing evaluation to ensure that AI adheres to ethical standards and promotes fairness. \cite{10.1145/3616865}
 
+\subsection{Pre-processing Techniques for Addressing Fairness in AI}
+
+Pre-processing techniques in AI systems are a critical component of the machine learning pipeline, laying the foundation for robust and accurate model training. Pre-processing involves preparing and cleaning the raw data to ensure it is suitable for feeding into machine learning algorithms. This step is essential as the quality of input data significantly impacts the performance and effectiveness of the AI system.
+
+The pre-processing phase encompasses a variety of operations, including data cleaning, data transformation, feature selection, and feature engineering. Data cleaning involves handling missing or erroneous data, removing duplicates, and addressing inconsistencies. Data transformation includes normalization and scaling, ensuring that features are on a consistent scale to prevent biases in model training. Feature selection involves identifying and selecting the most relevant features for the model, reducing complexity and improving efficiency. Feature engineering involves creating new features or modifying existing ones to enhance the model's ability to capture patterns and make accurate predictions.
+
+Additionally, pre-processing techniques are crucial for handling imbalanced data, where one class significantly outnumbers the others. Techniques like oversampling, undersampling, or generating synthetic samples can help address this imbalance and improve model performance. Handling categorical data through techniques like one-hot encoding or label encoding is another vital pre-processing step to convert categorical variables into a format suitable for model training.
+
+\subsubsection{Oversampling and Undersampling}
+Oversampling and undersampling are techniques used to address class imbalance, where one class significantly outnumbers the others in a dataset. In the context of fairness, these techniques are employed to ensure that the AI model is not biased towards the majority class and that the predictions are fair and equitable for all classes, particularly when sensitive attributes like race, gender, or ethnicity are involved. \cite{9442706}
+\begin{enumerate}
+    \item \textbf{Oversampling}
+
+    \begin{itemize}
+        \item \textbf{Definition:} Oversampling involves increasing the number of instances in the minority class by generating synthetic samples or replicating existing ones.
+        \item \textbf{Fairness Context:} Oversampling aims to boost the representation of underrepresented groups, promoting fairness and equal consideration of all groups. It prevents the model from exhibiting bias towards the majority group.
+    \end{itemize}
+
+    \item \textbf{Undersampling}
+
+    \begin{itemize}
+        \item \textbf{Definition:} Undersampling involves reducing the number of instances in the majority class by removing samples, ideally in a strategic and unbiased manner.
+        \item \textbf{Fairness Context:} Undersampling can be employed to level the playing field by reducing the dominance of the majority group. This ensures that the model's predictions are not disproportionately influenced by the majority group, promoting fairness in the model's outcomes.
+    \end{itemize}
+
+\end{enumerate}
+
+\textbf{Example:} In a credit approval scenario, if a particular group is underrepresented in the dataset, oversampling can be employed to create synthetic instances for that group, ensuring fair credit evaluations.
+
+\subsubsection{Noise Removal}
+Noise removal in the context of fairness typically refers to the process of identifying and mitigating the effects of noisy or incorrect data points that may introduce biases or distortions in the data used to train or evaluate machine learning models. In fairness considerations, noise removal plays a crucial role in ensuring that the AI system's predictions and decisions are as accurate and unbiased as possible, particularly when sensitive attributes like race, gender, or ethnicity are involved. \cite{NEURIPS2019_8d5e957f}
+
+\textbf{Example:} In sentiment analysis, if a dataset contains biased reviews based on certain demographics, such as gender, removing these biased reviews helps in training a fair sentiment analysis model.
+
+\subsubsection{Data Augmentation}
+Data augmentation is a technique often used in machine learning and data preprocessing to artificially increase the size and diversity of a training dataset by generating new data points based on the existing ones. In the context of fairness, data augmentation can play a crucial role in addressing imbalances and biases in the data, particularly when sensitive attributes are involved. Here's how data augmentation can be applied in the context of fairness:
+\begin{enumerate}
+    \item \textbf{Generating Additional Data for Underrepresented Groups}
+    \begin{itemize}
+        \item In scenarios where certain groups or classes are underrepresented in the training data, data augmentation techniques can be used to create additional examples for those groups. \cite{sharma2020data}
+    \end{itemize}
+    \item \textbf{Balancing Class or Group Representation}
+    \begin{itemize}
+        \item Data augmentation can be employed to balance class or group representation in the training data. By creating synthetic data points for underrepresented groups, it helps ensure that the model is not biased towards majority groups.
+    \end{itemize}
+    \item \textbf{Feature Engineering for Fairness}
+    \begin{itemize}
+        \item Data augmentation can also involve feature engineering that considers sensitive attributes. For example, it can create new features that better capture the nuances and characteristics of underrepresented groups. \cite{10.14778/3461535.3463474}
+    \end{itemize}
+    \item \textbf{Fair Data Augmentation}
+    \begin{itemize}
+        \item In the fairness context, it's important to ensure that data augmentation techniques do not introduce additional biases. Care should be taken to create synthetic data that aligns with the fairness and equity goals of the AI system. \cite{10.1145/3531146.3534644}
+    \end{itemize}
+\end{enumerate}
+\textbf{Example:} In image recognition, augmenting images by rotating or flipping them can provide a more balanced representation of different features, promoting fairness in the model's predictions.
+
+\subsubsection{Bias Mitigation Algorithms}
+Bias mitigation in the context of fairness refers to the process of identifying, reducing, or eliminating biases within machine learning models and algorithms, particularly those that could lead to unfair or discriminatory outcomes, often associated with sensitive attributes like race, gender, age, or ethnicity. The goal of bias mitigation is to ensure that AI systems provide equitable and unbiased predictions and decisions for all individuals or groups.
+
+\textbf{Example:} When training a model for a hiring platform, using a bias mitigation algorithm to adjust the dataset to have an equal representation of genders can lead to a more fair hiring process.
+
+\subsubsection{Sensitive Attribute Removal or Neutralization}
+In some cases, sensitive attributes (e.g., race, gender) can be removed from the dataset or transformed into more neutral representations. This prevents the model from relying on these attributes to make predictions, promoting fairness. \cite{NEURIPS2021_64ff7983}
+
+\textbf{Example:} In a loan approval system, sensitive attributes like race can be neutralized by removing them or encoding them in a way that the model cannot identify them, ensuring unbiased loan decisions.
+
+
+These pre-processing techniques are essential steps in the AI development pipeline to ensure that the subsequent models are fair, unbiased, and capable of providing equitable outcomes across various demographic categories.
 %Write background here.
 
 %This section is likely to contain a lot of citations.
