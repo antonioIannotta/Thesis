@@ -241,3 +241,121 @@ url = {https://proceedings.neurips.cc/paper_files/paper/2021/file/64ff7983a47d33
 volume = {34},
 year = {2021}
 }
+
+@INPROCEEDINGS{6137441,
+author={Kamishima, Toshihiro and Akaho, Shotaro and Sakuma, Jun},
+booktitle={2011 IEEE 11th International Conference on Data Mining Workshops}, 
+title={Fairness-aware Learning through Regularization Approach}, 
+year={2011},
+volume={},
+number={},
+pages={643-650},
+doi={10.1109/ICDMW.2011.83}}
+
+@inproceedings{10.1145/3178876.3186133,
+author = {Krasanakis, Emmanouil and Spyromitros-Xioufis, Eleftherios and Papadopoulos, Symeon and Kompatsiaris, Yiannis},
+title = {Adaptive Sensitive Reweighting to Mitigate Bias in Fairness-Aware Classification},
+year = {2018},
+isbn = {9781450356398},
+publisher = {International World Wide Web Conferences Steering Committee},
+address = {Republic and Canton of Geneva, CHE},
+url = {https://doi.org/10.1145/3178876.3186133},
+doi = {10.1145/3178876.3186133},
+abstract = {Machine learning bias and fairness have recently emerged as key issues due to the pervasive deployment of data-driven decision making in a variety of sectors and services. It has often been argued that unfair classifications can be attributed to bias in training data, but previous attempts to 'repair' training data have led to limited success. To circumvent shortcomings prevalent in data repairing approaches, such as those that weight training samples of the sensitive group (e.g. gender, race, financial status) based on their misclassification error, we present a process that iteratively adapts training sample weights with a theoretically grounded model. This model addresses different kinds of bias to better achieve fairness objectives, such as trade-offs between accuracy and disparate impact elimination or disparate mistreatment elimination. We show that, compared to previous fairness-aware approaches, our methodology achieves better or similar trades-offs between accuracy and unfairness mitigation on real-world and synthetic datasets.},
+booktitle = {Proceedings of the 2018 World Wide Web Conference},
+pages = {853–862},
+numpages = {10},
+keywords = {classification fairness, reweighting, algorithm bias},
+location = {Lyon, France},
+series = {WWW '18}
+}
+
+@InProceedings{10.1007/978-3-642-33486-3_3,
+author="Kamishima, Toshihiro
+and Akaho, Shotaro
+and Asoh, Hideki
+and Sakuma, Jun",
+editor="Flach, Peter A.
+and De Bie, Tijl
+and Cristianini, Nello",
+title="Fairness-Aware Classifier with Prejudice Remover Regularizer",
+booktitle="Machine Learning and Knowledge Discovery in Databases",
+year="2012",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="35--50",
+abstract="With the spread of data mining technologies and the accumulation of social data, such technologies and data are being used for determinations that seriously affect individuals' lives. For example, credit scoring is frequently determined based on the records of past credit data together with statistical prediction techniques. Needless to say, such determinations must be nondiscriminatory and fair in sensitive features, such as race, gender, religion, and so on. Several researchers have recently begun to attempt the development of analysis techniques that are aware of social fairness or discrimination. They have shown that simply avoiding the use of sensitive features is insufficient for eliminating biases in determinations, due to the indirect influence of sensitive information. In this paper, we first discuss three causes of unfairness in machine learning. We then propose a regularization approach that is applicable to any prediction algorithm with probabilistic discriminative models. We further apply this approach to logistic regression and empirically show its effectiveness and efficiency.",
+isbn="978-3-642-33486-3"
+}
+
+@inproceedings{jiang2022generalized,
+title={Generalized Demographic Parity for Group Fairness},
+author={Zhimeng Jiang and Xiaotian Han and Chao Fan and Fan Yang and Ali Mostafavi and Xia Hu},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=YigKlMJwjye}
+}
+
+
+@InProceedings{pmlr-v139-xu21b,
+title={To be Robust or to be Fair: Towards Fairness in Adversarial Training},
+author={Xu, Han and Liu, Xiaorui and Li, Yaxin and Jain, Anil and Tang, Jiliang},
+booktitle={Proceedings of the 38th International Conference on Machine Learning},
+pages={11492--11501},
+year={2021},
+editor={Meila, Marina and Zhang, Tong},
+volume={139},
+series={Proceedings of Machine Learning Research},
+month={18--24 Jul},
+publisher={PMLR},
+pdf={http://proceedings.mlr.press/v139/xu21b/xu21b.pdf},
+url={https://proceedings.mlr.press/v139/xu21b.html},
+abstract={Adversarial training algorithms have been proved to be reliable to improve machine learning models’ robustness against adversarial examples. However, we find that adversarial training algorithms tend to introduce severe disparity of accuracy and robustness between different groups of data. For instance, PGD adversarially trained ResNet18 model on CIFAR-10 has 93% clean accuracy and 67% PGD l_infty-8 adversarial accuracy on the class ”automobile” but only 65% and 17% on class ”cat”. This phenomenon happens in balanced datasets and does not exist in naturally trained models when only using clean samples. In this work, we empirically and theoretically show that this phenomenon can generally happen under adversarial training algorithms which minimize DNN models’ robust errors. Motivated by these findings, we propose a Fair-Robust-Learning (FRL) framework to mitigate this unfairness problem when doing adversarial defenses and experimental results validate the effectiveness of FRL.}
+}
+
+@inproceedings{10.1145/3447548.3467251,
+author={Cui, Sen and Pan, Weishen and Zhang, Changshui and Wang, Fei},
+title={Towards Model-Agnostic Post-Hoc Adjustment for Balancing Ranking Fairness and Algorithm Utility},
+year={2021},
+isbn={9781450383325},
+publisher={Association for Computing Machinery},
+address={New York, NY, USA},
+url={https://doi.org/10.1145/3447548.3467251},
+doi={10.1145/3447548.3467251},
+abstract={Bipartite ranking, which aims to learn a scoring function that ranks positive individuals higher than negative ones from labeled data, is widely adopted in various applications where sample prioritization is needed. Recently, there have been rising concerns on whether the learned scoring function can cause systematic disparity across different protected groups defined by sensitive attributes. While there could be trade-off between fairness and performance, in this paper we propose a model agnostic post-processing framework for balancing them in the bipartite ranking scenario. Specifically, we maximize a weighted sum of the utility and fairness by directly adjusting the relative ordering of samples across groups. By formulating this problem as the identification of an optimal warping path across different protected groups, we propose a non-parametric method to search for such an optimal path through a dynamic programming process. Our method is compatible with various classification models and applicable to a variety of ranking fairness metrics. Comprehensive experiments on a suite of benchmark data sets and two real-world patient electronic health record repositories show that our method can achieve a great balance between the algorithm utility and ranking fairness. Furthermore, we experimentally verify the robustness of our method when faced with the fewer training samples and the difference between training and testing ranking score distributions.},
+booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+pages={207-217},
+numpages={11},
+location={Virtual Event, Singapore},
+series={KDD '21}
+}
+
+@inproceedings{NIPS2017_a486cd07,
+ author={Kusner, Matt J and Loftus, Joshua and Russell, Chris and Silva, Ricardo},
+ booktitle={Advances in Neural Information Processing Systems},
+ editor={I. Guyon and U. Von Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},
+ pages={},
+ publisher={Curran Associates, Inc.},
+ title={Counterfactual Fairness},
+ url={https://proceedings.neurips.cc/paper_files/paper/2017/file/a486cd07e4ac3d270571622f4f316ec5-Paper.pdf},
+ volume={30},
+ year={2017}
+}
+
+@inproceedings{10.1145/3442188.3445902,
+author={Mishler, Alan and Kennedy, Edward H. and Chouldechova, Alexandra},
+title={Fairness in Risk Assessment Instruments: Post-Processing to Achieve Counterfactual Equalized Odds},
+year={2021},
+isbn={9781450383097},
+publisher={Association for Computing Machinery},
+address={New York, NY, USA},
+url={https://doi.org/10.1145/3442188.3445902},
+doi={10.1145/3442188.3445902},
+abstract={In domains such as criminal justice, medicine, and social welfare, decision makers increasingly have access to algorithmic Risk Assessment Instruments (RAIs). RAIs estimate the risk of an adverse outcome such as recidivism or child neglect, potentially informing high-stakes decisions such as whether to release a defendant on bail or initiate a child welfare investigation. It is important to ensure that RAIs are fair, so that the benefits and harms of such decisions are equitably distributed.The most widely used algorithmic fairness criteria are formulated with respect to observable outcomes, such as whether a person actually recidivates, but these criteria are misleading when applied to RAIs. Since RAIs are intended to inform interventions that can reduce risk, the prediction itself affects the downstream outcome. Recent work has argued that fairness criteria for RAIs should instead utilize potential outcomes, i.e. the outcomes that would occur in the absence of an appropriate intervention [11]. However, no methods currently exist to satisfy such fairness criteria.In this paper, we target one such criterion, counterfactual equalized odds. We develop a post-processed predictor that is estimated via doubly robust estimators, extending and adapting previous postprocessing approaches [16] to the counterfactual setting. We also provide doubly robust estimators of the risk and fairness properties of arbitrary fixed post-processed predictors. Our predictor converges to an optimal fair predictor at fast rates. We illustrate properties of our method and show that it performs well on both simulated and real data.},
+booktitle={Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency},
+pages={386-400},
+numpages={15},
+keywords={fairness, post-processing, counterfactual, risk assessment},
+location={Virtual Event, Canada},
+series={FAccT '21}
+}
