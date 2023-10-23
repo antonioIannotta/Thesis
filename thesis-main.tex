@@ -102,9 +102,10 @@ This chapter provides an overview of the previous works and scientific literatur
 with an overview on \textbf{artificial intelligence} and its application in both critical sectors and socio-technical systems, going deeply into the issues of \textbf{bias} and \textbf{fairness} in AI systems.
 
 \section{Artificial Intelligence}
-Artificial Intelligence (AI) and Machine Learning (ML) are transformative technologies that are redefining the way we interact with the world. AI refers to the development of computer systems capable of performing tasks that typically require human intelligence, such as speech recognition, problem-solving, and learning. Machine Learning is a subset of AI, involving the creation of algorithms that allow computers to learn patterns and make predictions based on data, improving their performance over time. \\
+Artificial Intelligence (AI) and Machine Learning (ML) are transformative technologies that are redefining the way people interact with the world. AI refers to the development of computer systems capable of performing tasks that typically require human intelligence, such as speech recognition, problem-solving, and learning. \\
+Machine Learning is a subset of AI, involving the creation of algorithms that allow computers to learn patterns and make predictions based on data, improving their performance over time. \\
 AI encompasses a broad range of techniques, including natural language processing, computer vision, robotics, and expert systems. Machine Learning, on the other hand, involves algorithms that enable machines to learn and improve their performance without being explicitly programmed. ML algorithms are designed to identify patterns and make informed decisions based on data input. \\
-If we consider examples of AI in critical sectors such as healthcare and autonomous driving it becomes clear how AI could impact our lives. Beyond these applications it becomes necessary to consider the applications of AI in socio-technical systems. \\
+Considering examples of AI in critical sectors such as healthcare and autonomous driving it becomes clear how AI could impact people's lives. Beyond these applications it becomes necessary to consider the applications of AI in socio-technical systems. \\
 Socio-technical systems refer to complex interplays between people, technology, and social institutions. AI and ML have a profound impact on these systems, influencing how individuals interact with technology and how society functions as a whole. \\
 The integration of AI and ML raises ethical questions regarding privacy, biases in algorithms, and job displacement due to automation. It is crucial to develop frameworks that ensure fairness, transparency, and accountability in AI systems to mitigate potential harm and ensure equitable benefits. \cite{GRUETZEMACHER202210288} \\ 
 
@@ -293,7 +294,7 @@ Equalized Odds Post-processing is a technique used to mitigate bias and promote 
 
 These post-processing techniques are crucial in rectifying biases and promoting fairness in AI models. Utilizing them effectively can lead to more equitable outcomes and decisions across various demographic categories.
 
-In conclusion, fairness in AI is not just an ethical necessity but a fundamental requirement for fostering trust and ensuring the responsible and equitable deployment of AI systems. As we navigate the evolving landscape of AI, our collective efforts must prioritize fairness to harness the true potential of AI for the greater good.
+In conclusion, fairness in AI is not just an ethical necessity but a fundamental requirement for fostering trust and ensuring the responsible and equitable deployment of AI systems. Moving into the evolving landscape of AI, the collective efforts must prioritize fairness to harness the true potential of AI for the greater good.
 %Write background here.
 
 %This section is likely to contain a lot of citations.
@@ -304,7 +305,7 @@ In conclusion, fairness in AI is not just an ethical necessity but a fundamental
 \chapter{Contribution} % possible chapter for Projects
 \label{chap:contibution}
 %----------------------------------------------------------------------------------------
-In the subsequent discussion, there is a dissertation into the algorithms specifically crafted to address and mitigate fairness concerns. Fairness in algorithms has gained significant attention in recent years due to the realization that traditional computational processes can inadvertently perpetuate biases and disparities. Various approaches, ranging from re-weighting instances to modifying decision boundaries, aim to rectify these issues and promote a more equitable and just application of algorithms across diverse demographics. By exploring these approaches, we aim to shed light on the potential solutions that can contribute to a more inclusive and fair technological landscape.
+In the subsequent discussion, there is a dissertation into the algorithms specifically crafted to address and mitigate fairness concerns. Fairness in algorithms has gained significant attention in recent years due to the realization that traditional computational processes can inadvertently perpetuate biases and disparities. Various approaches, ranging from re-weighting instances to modifying decision boundaries, aim to rectify these issues and promote a more equitable and just application of algorithms across diverse demographics. By exploring these approaches, the goal is to shed light on the potential solutions that can contribute to a more inclusive and fair technological landscape.
 
 \section{Fairness through unawareness with proxy detection}
 
@@ -326,17 +327,15 @@ Y & : \text{output column}.
 
 The fairness function \( \lambda \) evaluates the relationship between a protected attribute \( v_i \) and the output \( Y \), producing a value that represents the level of fairness for that protected attribute. \\
 
-We define \textit{dataset\_fair} as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
+\textit{dataset\_fair} is defined as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
 \[ 0.8  < v < 1.25 \] \\
 
-Before going on it's important to remark that we delve into the critical task of identifying proxy variables within the dataset. We specifically concentrate on leveraging fairness metrics, normal variables, and protected variables to determine proxies. Proxy variables are indirect indicators or correlates that may indirectly affect sensitive attributes, potentially introducing bias in our dataset. By examining the relationships between these variables and evaluating them based on fairness metrics, we aim to discern which variables exhibit significant associations with the sensitive attributes, leading to their identification as potential proxies. We focus on utilizing fairness metrics to ensure a comprehensive evaluation that considers both the fairness and equity aspects of the dataset, with the ultimate goal of achieving a more equitable and unbiased data representation. \\
-
-So, considering the relevance of proxy detection in this algorithm it's important to move on and define the two approaches to detect these variables. \\
+Considering the relevance of proxy detection in this algorithm it's important to move on and define the two approaches to detect these variables. \\
 
 \subsubsection{Proxy detection via attributes only}
 Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
 
-We define \textit{proxy\_detection} as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
+\textit{proxy\_detection} is defined as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
 
 \[
 \lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
@@ -350,7 +349,7 @@ It's important to give a brief background of the Association Rule Mining, the fa
 \begin{enumerate}
     \item \textbf{Association rule mining}: this is a data mining technique used to discover interesting relationships and patterns within large volumes of data. The goal is to identify associations and correlations among various elements present in the data.
 
-    \item \textbf{Apriori algorithm}: Suppose we have a set of transactions $T$, each containing a set of items. Let's define:
+    \item \textbf{Apriori algorithm}: Suppose to have a set of transactions $T$, each containing a set of items. Let's define:
 
 \begin{itemize}
   \item $I$: the set of all distinct items in the data.
@@ -373,13 +372,13 @@ $$\text{For each transaction } t \text{ in } D, \text{ increment the support cou
 $$F_k = \{ c \in C_k \text{ such that the support of } c \geq \text{ specified threshold} \}$$
 
 \item \textbf{Row Selection with a Confidence Level}: 
-suppose we have obtained association rules using the Apriori algorithm. Each rule $R$ is in the form $A \rightarrow B$, where $A$ is the antecedent and $B$ is the consequent. The confidence of $R$ is defined as:
+suppose to have obtained association rules using the Apriori algorithm. Each rule $R$ is in the form $A \rightarrow B$, where $A$ is the antecedent and $B$ is the consequent. The confidence of $R$ is defined as:
 
 \[
 \text{Confidence}(R) = \frac{\text{Support}(A \cup B)}{\text{Support}(A)}
 \]
 
-To select rows with a certain confidence level, we consider a confidence threshold $C_{\text{min}}$. If the confidence of a rule $R$ exceeds this threshold, the rule is accepted.
+To select rows with a certain confidence level, is considered a confidence threshold $C_{\text{min}}$. If the confidence of a rule $R$ exceeds this threshold, the rule is accepted.
 
 Formally, a rule $A \rightarrow B$ is accepted if:
 
@@ -392,9 +391,7 @@ C_{\text{min}}
 \]
 is equal to 0.8. \\
 
-Furthermore, in order to have a proper rows selection, we are particularly interested in privacy and data protection. We only want to consider rules where the consequent ($B$) contains at least one item representing a sensitive attribute or a variable that needs to be protected.
-
-The consequent filtering process involves evaluating each rule to ensure it meets this criteria. If the consequent of a rule does not contain any sensitive attributes, we discard that rule from our final selection. \\
+The consequent filtering process involves evaluating each rule to ensure it meets this criteria. If the consequent of a rule does not contain any sensitive attributes, that rule is discarded from the final selection. \\
 
 Formally, a rule $A \rightarrow B$ is considered if:
 
@@ -402,10 +399,10 @@ Formally, a rule $A \rightarrow B$ is considered if:
 \exists b \in B : b \in S
 \]
 
-If this condition is not met, the rule is discarded from our final selection.
+If this condition is not met, the rule is discarded from the final selection.
 \end{enumerate}
-After this brief introduction of the concepts used to apply this algorithm we present our approach to detect proxy variables. \\
-We define \textit{proxy\_detection} as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
+After this brief introduction of the concepts used to apply this algorithm is presented the approach to detect proxy variables. \\
+\textit{proxy\_detection} is defined as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
 
 \[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) >= 1.25\]
 
@@ -415,7 +412,7 @@ In other words, an antecedent \( A_i \) is considered a proxy if the fairness me
 There are two other fucnctions that needs to be defined in order to complete our algorithm.
 \\
 \\
-Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \( k \) as the number of identified proxy variables, we define the function \( \text{proxy\_free\_dataset} \) as follows:
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \( k \) as the number of identified proxy variables, the function \( \text{proxy\_free\_dataset} \) is defined as follows:
 
 \[
 \text{\textbf{proxy\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (m - k)}
@@ -423,7 +420,7 @@ Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \
 
 where \( j = m - k \) and \( \text{proxy\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times j} \) devoid of the proxy variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes. \\
 \\
-Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where j are the columns obtained after the proxy removals and \( k \) as the number of identified protected variables, we define the function \( \text{protected\_attributes\_free\_dataset} \) as follows:
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where j are the columns obtained after the proxy removals and \( k \) as the number of identified protected variables, the function \( \text{protected\_attributes\_free\_dataset} \) is defined as follows:
 
 \[
 \text{\textbf{protected\_attributes\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (j - k)}
@@ -541,11 +538,11 @@ Here's the pseudocode of proxy\textunderscore detection function. There are 2 sc
 
 \section{Fairness through data rebalancing}
 \subsection{A New Definition of Fairness}
-In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes. We propose a new definition of fairness that takes into account the representation of all combinations of $k$ protected attributes, aiming for equitable representation across these combinations.
+In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes. A new definition of fairness that takes into account the representation of all combinations of $k$ protected attributes is proposed, aiming for equitable representation across these combinations.
 
 \subsubsection{Equal Representation of Combinations}
 
-We define a fair dataset as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$, the representation is equal and proportional. Mathematically, a dataset is fair if:
+A fair dataset is defined as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$, the representation is equal and proportional. Mathematically, a dataset is fair if:
 
 \[
 \forall i_1, i_2, \ldots, i_k: \frac{|D_{i_1, i_2, \ldots, i_k}|}{|D|} = \text{constant}
@@ -560,7 +557,7 @@ This entails that any combination of demographic groups, defined by the protecte
 
 \subsubsection{Promoting Comprehensive Fairness}
 
-By striving for equal representation of combinations of protected attributes, we address a fundamental aspect of fairness that transcends individual attributes. This approach provides a more nuanced understanding of fairness by considering the intersections of various demographic groups. It encourages a broader examination of potential biases that may arise when considering multiple attributes simultaneously.
+By striving for equal representation of combinations of protected attributes, is addressed a fundamental aspect of fairness that transcends individual attributes. This approach provides a more nuanced understanding of fairness by considering the intersections of various demographic groups. It encourages a broader examination of potential biases that may arise when considering multiple attributes simultaneously.
 
 Incorporating this definition of fairness into the dataset rebalancing process enables us to promote a comprehensive notion of fairness, aligning with the principles of equal opportunity and non-discrimination across all combinations of protected attributes. Our subsequent algorithm and experimental evaluation are designed to actualize this definition and demonstrate its effectiveness in achieving a more equitable representation within the dataset.
 
@@ -578,7 +575,7 @@ where \( l > m \), and the function \( \mathcal{R} \) transforms the input datas
 \\
 Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
 
-Consider a set \( \text{Combination-frequency} \) where we have occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
+Consider a set \( \text{Combination-frequency} \) with occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
 
 Mathematically, the number of rows (\( l \)) the final dataset should have for each combination is given by:
 
@@ -586,7 +583,7 @@ Mathematically, the number of rows (\( l \)) the final dataset should have for e
 l = \text{Max}(\text{Combination-frequency})
 \]\\
 \\
-Let \( l \) be the desired number of rows for the final dataset. For each combination of values, we calculate the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
+Let \( l \) be the desired number of rows for the final dataset. For each combination of values, is calculated the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
 
 The total number of rows to be added is given by:
 
@@ -631,7 +628,7 @@ For each iteration:
 %\label{chap:implementation}
 %----------------------------------------------------------------------------------------
 \section{Dataset description}
-Before moving on into the several details of the implementation of the algorithms previously presented we have to present the dataset on which these algorithms have been applied.
+Before moving on into the several details of the implementation of the algorithms previously presented it's described the dataset on which these algorithms have been applied.
 The dataset chosen for this work is \emph{ULL dataset}. \\
 This dataset contains information on the educational system in Canary Island. It's composed by the census of students enrolled in 4 different academic years.
 
@@ -648,7 +645,7 @@ Furthermore, after a proper domain analysis the protected attributes selected to
     \item mothly houseold income
     \item cconomic, social and cultural satus index
 \end{enumerate}
-It's furthermore fundamental to remark the ways in which we decided to consider this protected attributes (together with the other ones not considered to fed the algorithm).
+It's furthermore fundamental to remark the methodology behind the ways in which the protected attributes are considered(together with the other ones not considered to fed the algorithm).
 More specifically:
 \begin{itemize}
     \item if the attribute is binary no transformation is applied
@@ -656,7 +653,7 @@ More specifically:
 \end{itemize}
 
 \subsection{Goal of this work}
-The goal of this work is the one to predict the level of english for the current grade based on past experience. To achieve this we computed on the \emph{level\textunderscore ing} attribute the same pre-processing transofrmation used for not-binary protected attributes. This means that we want \textbf{match} the students to establish if a given student is either under or over the mean.
+The goal of this work is the one to predict the level of english for the current grade based on past experience. To achieve this is computed on the \emph{level\textunderscore ing} attribute the same pre-processing transofrmation used for not-binary protected attributes. This means that the goal is to \textbf{match} the students to establish if a given student is either under or over the mean.
 
 %\lstinputlisting[
 %	float,
@@ -672,8 +669,8 @@ The goal of this work is the one to predict the level of english for the current
 %For instance, in \Cref{lst:helloworld}, we describe an hello world program in Java.
 
 \section{Fairness through unawareness with proxy detection: implementation}
-In this section we go through the several implementative issues that have been encountered during the development of this algorithm. We will explore in detail the two approaches, the one with \textbf{apriori} and the one in which only the \textbf{variables} have been taken in account. \\
-Before moving on it's important to be more detailed about the fairness metric we decided to use.
+In this section are reported the several implementative issues and features that have been encountered and designed during the development of this algorithm. Two approaches are explored in detail, the one with \textbf{apriori} and the one in which only the \textbf{variables} have been taken in account. \\
+Before moving on it's important to be more detailed about the fairness metric used.
 \subsection{Disparate Impact}
 isparate Impact (DI) is a fairness metric commonly used in the context of algorithmic decision-making and predictive modeling. It is designed to measure the potential discriminatory effects of a decision-making process on different demographic groups.
 
@@ -839,8 +836,8 @@ The implementation of this approach differs with the implementation of the aprio
 
 \end{lstlisting}
 \section{Fairness through data rebalancing}
-The first big difference between this approach and the two previous ones is that no fairness-metrics is used here. The reason behind this is the new definition we provide for fairness, where we assume it as a parity in combination occurrance. So the core of this algorithm is the \emph{rebalancing} module in which we add rows to dataset according to the most frequent combination occurrance in the original dataset.
-The key part of this module is the one in which the other attributes are inserted. In this scenario we add a new value considering the minimum and the maximum in the temporary dataset, where this dataset is the dataset in which a certain combination of protected\textunderscore attributes and output is occurred. It's furthermore important to remark that since we choose a a value randomically this may alter the distribution for that attribute. So we do not look for a uniform distribution.
+The first big difference between this approach and the two previous ones is that no fairness-metrics is used here. The reason behind this is the new definition provided for fairness, where is assumed as a parity in combination occurrance. So the core of this algorithm is the \emph{rebalancing} module in which rows are added to the dataset according to the most frequent combination occurrance in the original dataset.
+The key part of this module is the one in which the other attributes are inserted. In this scenario a new value is added considering the minimum and the maximum in the temporary dataset, where this dataset is the dataset in which a certain combination of protected\textunderscore attributes and output is occurred. It's furthermore important to remark that since a value has been  randomically chosen this may alter the distribution for that attribute.
 \begin{lstlisting}
     for index in range(0, len(combination_list)):
         combination = combination_list[index]
@@ -866,7 +863,6 @@ The key part of this module is the one in which the other attributes are inserte
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
 %----------------------------------------------------------------------------------------
-It's important to remark the goal of this work: predict if a student's english level is under or over the mean for each grade: 3,4,6. With this in mind we splitted the dataset into 3 different ones, any of them with their own grade selected.\\
 For each grade have been applied the following approaches, in order to perform a proper comparaison:
 \begin{enumerate}
     \item No fairness assumptions are made
