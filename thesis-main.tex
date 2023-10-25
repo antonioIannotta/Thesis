@@ -538,22 +538,23 @@ Here's the pseudocode of proxy\textunderscore detection function. There are 2 sc
 
 \section{Fairness through data rebalancing}
 \subsection{A New Definition of Fairness}
-In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes. A new definition of fairness that takes into account the representation of all combinations of $k$ protected attributes is proposed, aiming for equitable representation across these combinations.
+
+In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes and the output. A new definition of fairness is proposed, which takes into account the representation of all combinations of $k$ protected attributes and the output, aiming for equitable representation across these combinations.
 
 \subsubsection{Equal Representation of Combinations}
 
-A fair dataset is defined as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$, the representation is equal and proportional. Mathematically, a dataset is fair if:
+A fair dataset is defined as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$ and the output $O_j$, the representation is equal and proportional. Mathematically, a dataset is fair if:
 
 \[
-\forall i_1, i_2, \ldots, i_k: \frac{|D_{i_1, i_2, \ldots, i_k}|}{|D|} = \text{constant}
+\forall i_1, i_2, \ldots, i_k, j: \frac{|D_{i_1, i_2, \ldots, i_k, j}|}{|D|} = \text{constant}
 \]
 
 where:
 - $D$ is the dataset,
-- $|D_{i_1, i_2, \ldots, i_k}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$,
+- $|D_{i_1, i_2, \ldots, i_k, j}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ and output $O_j$,
 - $|D|$ is the total number of samples in the dataset.
 
-This entails that any combination of demographic groups, defined by the protected attributes, should have comparable representation, thereby fostering a balanced and unbiased dataset.
+This entails that any combination of demographic groups, defined by the protected attributes, and the output should have comparable representation, thereby fostering a balanced and unbiased dataset.
 
 \subsubsection{Promoting Comprehensive Fairness}
 
