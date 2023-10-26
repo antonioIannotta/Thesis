@@ -617,6 +617,53 @@ For each iteration:
     }
 \end{algorithm}
 
+\section{Fairness through threshold optimizer with equalized odds constraint}
+\subsection{Equalized Odds}
+
+Equalized Odds is a fairness metric used to evaluate the disparate impact of a machine learning model's predictions on different demographic groups. It aims to ensure that both true positives and false positives are distributed equitably across these groups.
+
+\section{Mathematical Formulation}
+
+Let's define the following notations:
+
+\begin{align*}
+A & : \text{Sensitive attribute (e.g., gender, race)} \\
+Y & : \text{Binary true label variable (1 for positive, 0 for negative)} \\
+\hat{Y} & : \text{Binary predicted label (1 for positive prediction, 0 for negative prediction)}
+\end{align*}
+
+The Equalized Odds metric can be formulated as follows:
+
+\subsection{Equalized True Positives Rate (Equalized TPR)}
+
+\[
+P(\hat{Y} = 1 | A = a, Y = 1) = P(\hat{Y} = 1 | A = b, Y = 1) \text{ for all } a, b
+\]
+
+This ensures that the true positive rate is approximately equal for all sensitive attribute values.
+
+\subsection{Equalized False Positives Rate (Equalized FPR)}
+
+\[
+P(\hat{Y} = 1 | A = a, Y = 0) = P(\hat{Y} = 1 | A = b, Y = 0) \text{ for all } a, b
+\]
+
+This ensures that the false positive rate is approximately equal for all sensitive attribute values.
+
+\subsection{Threshold adjustment}
+n binary classification, the decision threshold is used to determine the predicted class label. By default, the threshold is set at 0.5, meaning that if the predicted probability of the positive class is greater than or equal to 0.5, the sample is classified as positive; otherwise, it's classified as negative.
+
+\subsection{Mathematical Formulation}
+
+Mathematically, the decision threshold can be adjusted as follows:
+
+\begin{align*}
+\text{Lowering the threshold:} & \quad \text{Predict positive class if } P(\hat{Y}=1) \geq \text{Threshold}, \\
+\text{Raising the threshold:} & \quad \text{Predict positive class if } P(\hat{Y}=1) < \text{Threshold}.
+\end{align*}
+
+Adjusting the threshold (\text{Threshold}) changes the classification rule and impacts performance metrics such as precision and recall.
+
 %----------------------------------------------------------------------------------------
 %\chapter{Implementation} % possible chapter for Projects
 %\label{chap:implementation}
@@ -853,6 +900,10 @@ The key part of this module is the one in which the other attributes are inserte
                 final_dataset.loc[len(final_dataset)] = new_row
 
 \end{lstlisting}
+
+\section{Fairness through threshold optimizer with equalized odds constraint}
+To accomplish the results outlined in the abstract, we leveraged the \emph{ThresholdOptimizer} class from the \emph{FairLearn} library, a powerful tool for mitigating bias and achieving fairness in machine learning models. In particular, we utilized the \emph{Equalized Odds} constraint, a key fairness objective, to ensure that the distribution of false positives and false negatives was balanced across different demographic groups.\\
+The `ThresholdOptimizer` class allowed us to fine-tune the decision threshold for model predictions, ensuring that fairness constraints were met. By systematically adjusting the classification threshold, we optimized the trade-off between precision and recall while adhering to the Equalized Odds fairness metric.
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
