@@ -954,6 +954,7 @@ Each model is trained with the 67\% of the dataset while the 33\% is left for th
 In the following are reported the results for each grade. More specifically for each model is reported the best model selected and the accuracy on the test set.
 
 \section{Grade 3}
+
 \subsection{No-fair approach}
 \subsubsection{Best models}
 \begin{tabular}{|c|c|}
@@ -1089,9 +1090,8 @@ In the following are reported the results for each grade. More specifically for 
     \hline
 \end{tabular}
 
-
-\section{Grade 4}
-\subsection{Best models}
+\subection{Fairness through threshold optimizer with equalized odds constraint}
+\subsubsection{Best models}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
@@ -1104,7 +1104,7 @@ In the following are reported the results for each grade. More specifically for 
     \hline
 \end{tabular}
 
-\subsection{Accuracy}
+\subsubsection{Accuracy}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Accuracy} \\
@@ -1116,8 +1116,12 @@ In the following are reported the results for each grade. More specifically for 
     DecisionTree Classifier &  \\
     \hline
 \end{tabular}
-\section{Grade 6}
-\subsection{Best models}
+
+
+\section{Grade 4}
+
+\subsection{No-fair approach}
+\subsubsection{Best models}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
@@ -1130,7 +1134,306 @@ In the following are reported the results for each grade. More specifically for 
     \hline
 \end{tabular}
 
-\subsection{Accuracy}
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fairness throguh unawareness}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fairness through unawareness with proxy detection via apriori}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fariness through unawareness with proxy detection via variables only}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fairness through data rebalancing}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subection{Fairness through threshold optimizer with equalized odds constraint}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\section{Grade 6}
+
+\subsection{No-fair approach}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fairness throguh unawareness}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fairness through unawareness with proxy detection via apriori}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fariness through unawareness with proxy detection via variables only}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsection{Fairness through data rebalancing}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Accuracy} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subection{Fairness through threshold optimizer with equalized odds constraint}
+\subsubsection{Best models}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Best parameters} \\
+    \hline
+    RandomForest Classifier  &  \\
+    \hline
+    XGBoost Classifier & \\
+    \hline
+    DecisionTree Classifier &  \\
+    \hline
+\end{tabular}
+
+\subsubsection{Accuracy}
 \begin{tabular}{|c|c|}
     \hline
     \textbf{Model} & \textbf{Accuracy} \\
