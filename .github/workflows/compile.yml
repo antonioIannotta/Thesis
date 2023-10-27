@@ -5,6 +5,7 @@ on:
       - main
       - master
       - final-version
+      - final-version-with-sections
 env:
   LATEX_ROOT: thesis-main
 jobs:
