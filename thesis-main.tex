@@ -376,8 +376,11 @@ In summary, the model validation step plays a fundamental role in the workflow, 
 \\
 In the following are presented the several algorithms that have been put into the \textbf{Fairness pre-processing} step to perform a final comparaison.
 
-\section{Fairness through unawareness with proxy detection}
-This algorithm is based on the \emph{Fairness through unawareness approach} where the goal is to mitigate bias removing attributes. In this scenario not only the protected attributes are removed but are presented 2 algorihtms where the proxy \cite{Gupta2018ProxyF} variables have been defined, detected and removed, together with the protected ones.
+\section{Fairness through unawareness with proxy detection} \cite{Gupta2018ProxyF}
+The algorithm presented in this section is rooted in the fundamental concept of "Fairness through Unawareness." This approach is underpinned by the overarching goal of mitigating bias by removing certain attributes from the dataset. Notably, in this scenario, the removal extends beyond solely the protected attributes, introducing a novel perspective on addressing bias. \\
+In the spirit of "Fairness through Unawareness," this approach advocates the removal of both the protected attributes and a set of proxy variables. These proxy variables serve as a distinctive feature of the algorithm, as they are strategically identified and eliminated alongside the protected attributes. The proxy variables are defined with a specific focus on aspects that could potentially introduce or perpetuate bias within the AI system. \cite{Gupta2018ProxyF}\\
+The identification and removal of these proxy variables align with the commitment to promoting fairness and equity. By addressing not only the protected attributes but also the factors that may indirectly influence bias, this algorithm adopts a comprehensive approach to bias mitigation. \\
+The incorporation of proxy variables represents an innovative and proactive step within the workflow, enhancing the system's ability to address bias from multiple angles. This multifaceted approach contributes to the overarching mission of developing AI systems that are not only accurate but also equitable, just, and fair.
 
 \subsection{Algorithm description}
 In the following there is the description of the algorithm presented here in its two different versions: the one that comes out using the \textbf{apriori} algorithm and the one that comes out using \textbf{variables only} to perform proxy detection. \\
