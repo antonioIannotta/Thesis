@@ -305,11 +305,576 @@ In the pages that follow, the intricacies of this workflow will be explored, pro
 The journey will embark on a comprehensive exploration of the Fair-by-Design workflow, with the ultimate goal of mitigating bias, ensuring fairness, and achieving equitable outcomes in AI-driven decision-making.
 
 \section{Workflow description}
-The workflow presented in this work is composed of 4 different steps:
-\subsection{Data acquisition}
-\subsection{Data pre-processing}
-\subsection{Model Tuning}
-\subsection{Performance evaluation}
+The workflow presented in this work is composed of 5 different steps:
+\begin{itemize}
+    \item \textbf{Data acquisition}: this stage is the one in charge of acquire data in order to pass them to the subsequent step.
+    \item \textbf{Data pre-processing}: this stage is the one in charge of perform pre-processing operations on data acquired in the previous step. These pre-processing operations may include the
+    filling of null values, the data normalization and the removal of attributes according to a specific policy.
+    \item \textbf{Fairness pre-processing}: this step is the one in which the fairness has addressed and the one that makes the whole workflow a fair-by-design one. This step may be void in the case in which no fair assumptions are made, may contain the fairness through unawareness approach in which only the protected attributes are removed from the dataset or, finally, may contain one of the algorithm proposed in this work and presented in the following.
+    \item \textbf{Model Tuning}: this step is the one in charge to train the proper model on the data obtained by the previous step.
+    \item \textbf{Performance evaluation}: this step is the one in which is performed a performance evaluation on the model previosuly trained.
+\end{itemize}
+
+In the following are presented the several algorithms that have been put into the \textbf{Fairness pre-processing} step to perform a final comparaison.
+
+\section{Fairness through unawareness with proxy detection}
+This algorithm is based on the \emph{Fairness through unawareness approach} where the goal is to mitigate bias removing attributes. In this scenario not only the protected attributes are removed but are presented 2 algorihtms where the proxy \cite{Gupta2018ProxyF} variables have been defined, detected and removed, together with the protected ones.
+
+\subsection{Algorithm description}
+In the following there is the description of the algorithm presented here in its two different versions: the one that comes out using the \textbf{apriori} algorithm and the one that comes out using \textbf{variables only} to perform proxy detection. \\
+
+Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables. \\
+
+\textit{fairness\_evaluation} is defined as follows:
+\[
+\text{fairness\_evaluation}(v_i, Y) = \lambda(v_i, Y) \quad \forall i \in [1, k]
+\]
+
+where:
+\begin{align*}
+v\_i & : \text{ith attribute belonging to the protected variables}, \\
+Y & : \text{output column}.
+\end{align*}
+
+The fairness function \( \lambda \) evaluates the relationship between a protected attribute \( v_i \) and the output \( Y \), producing a value that represents the level of fairness for that protected attribute. \\
+
+\textit{dataset\_fair} is defined as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
+\[ 0.8  < v < 1.25 \] \\
+
+Considering the relevance of proxy detection in this algorithm it's important to move on and define the two approaches to detect these variables. \\
+
+\subsubsection{Proxy detection via attributes only}
+Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
+
+\textit{proxy\_detection} is defined as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
+
+\[
+\lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
+\]
+
+In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range ]0.8, 1.25[. \\
+
+\subsubsection{Proxy detection via apriori}
+It's important to give a brief background of the Association Rule Mining, the family algorithm \textbf{apriori} belongs to.
+
+\begin{enumerate}
+    \item \textbf{Association rule mining}: this is a data mining technique used to discover interesting relationships and patterns within large volumes of data. The goal is to identify associations and correlations among various elements present in the data.
+
+    \item \textbf{Apriori algorithm}: Suppose to have a set of transactions $T$, each containing a set of items. Let's define:
+
+\begin{itemize}
+  \item $I$: the set of all distinct items in the data.
+  \item $D$: the set of transactions, each represented by a set of items.
+  \item $F_k$: the set of frequent itemsets of length $k$.
+\end{itemize}
+
+The Apriori algorithm operates in iterations, generating $F_k$ from $F_{k-1}$.
+
+\textbf{Step 1:} Initialization:
+$$F_1 = \{ \text{frequent item } i, i \in I \}$$
+
+\textbf{Step 2:} Candidate itemset generation:
+$$C_k = \{ \text{set } c \text{ of items such that } c \subseteq F_{k-1} \}$$
+
+\textbf{Step 3:} Database scan:
+$$\text{For each transaction } t \text{ in } D, \text{ increment the support count of each candidate in } C_k \text{ contained in } t.$$
+
+\textbf{Step 4:} Selection of frequent itemsets:
+$$F_k = \{ c \in C_k \text{ such that the support of } c \geq \text{ specified threshold} \}$$
+
+\item \textbf{Row Selection with a Confidence Level}: 
+suppose to have obtained association rules using the Apriori algorithm. Each rule $R$ is in the form $A \rightarrow B$, where $A$ is the antecedent and $B$ is the consequent. The confidence of $R$ is defined as:
+
+\[
+\text{Confidence}(R) = \frac{\text{Support}(A \cup B)}{\text{Support}(A)}
+\]
+
+To select rows with a certain confidence level, is considered a confidence threshold $C_{\text{min}}$. If the confidence of a rule $R$ exceeds this threshold, the rule is accepted.
+
+Formally, a rule $A \rightarrow B$ is accepted if:
+
+\[
+\text{Confidence}(A \rightarrow B) \geq C_{\text{min}}
+\]
+In our scenario
+\[
+C_{\text{min}}
+\]
+is equal to 0.8. \\
+
+The consequent filtering process involves evaluating each rule to ensure it meets this criteria. If the consequent of a rule does not contain any sensitive attributes, that rule is discarded from the final selection. \\
+
+Formally, a rule $A \rightarrow B$ is considered if:
+
+\[
+\exists b \in B : b \in S
+\]
+
+If this condition is not met, the rule is discarded from the final selection.
+\end{enumerate}
+After this brief introduction of the concepts used to apply this algorithm is presented the approach to detect proxy variables. \\
+\textit{proxy\_detection} is defined as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
+
+\[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) >= 1.25\]
+
+In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range ]0.8, 1.25[.
+\\
+\\
+There are two other fucnctions that needs to be defined in order to complete our algorithm.
+\\
+\\
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \( k \) as the number of identified proxy variables, the function \( \text{proxy\_free\_dataset} \) is defined as follows:
+
+\[
+\text{\textbf{proxy\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (m - k)}
+\]
+
+where \( j = m - k \) and \( \text{proxy\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times j} \) devoid of the proxy variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes. \\
+\\
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where j are the columns obtained after the proxy removals and \( k \) as the number of identified protected variables, the function \( \text{protected\_attributes\_free\_dataset} \) is defined as follows:
+
+\[
+\text{\textbf{protected\_attributes\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (j - k)}
+\]
+
+where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times p} \) devoid of the protected variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes.
+
+\subsection{Pseudocode}
+Here's the pseudocode of the \emph{Fairness through unawareness with proxy detection}:
+
+\begin{algorithm}[H]
+    \KwData{dataset}
+    \KwResult{fair dataset}
+    \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}{
+        proxies = \textit{proxy\_detection(dataset)}\;
+        \If{proxies \textbf{is empty}}{
+            dataset = \textit{protected\_attributes\_free\_dataset(dataset)}\;
+        }
+        \Else{
+            dataset = \textit{proxy\_free\_dataset(dataset)}\;
+        }
+    }
+    \KwRet{dataset}
+\end{algorithm}
+
+\subsubsection{dataset\textunderscore fair pseudocode}
+Here's the pseudocode that establish if the dataset is either \emph{Fair} or not
+
+\begin{algorithm}[H]
+    \KwData{dataset, protected\_attribute}
+    \KwResult{Boolean value indicating fairness}
+    \If{\textit{fairness\_evaluation(dataset, protected\_attribute)} \textbf{is empty}}{
+        \KwRet{\textbf{True}}\;
+    }
+    \KwRet{\textbf{False}}
+\end{algorithm}
+
+\subsubsection{fairness\textunderscore evaluation pseudocode}
+Here's the pseudocode to perform the fairness evaluation, given a specific \emph{fairness metric}
+
+\begin{algorithm}[H]
+    \KwData{dataset, output\_column, protected\_attributes}
+    \KwResult{List of attributes failing fairness evaluation}
+    fairness\_evaluation\_list $\gets$ empty list\;
+    output $\gets$ dataset[output\_column]\;
+    \For{attribute \textbf{in} protected\_attributes}{
+        \If{\textit{metric(attribute, output)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, output)} $\geq$ 1.25}{
+            \textit{fairness\_evaluation\_list.append(attribute)}\;
+        }
+    }
+    \KwRet{fairness\_evaluation\_list}
+\end{algorithm}
+
+\subsubsection{protected\textunderscore attributes\textunderscore free\textunderscore dataset pseudocode}
+Here's the pseudocode to remove protected attributes from the dataset
+
+\begin{algorithm}[H]
+    \KwData{dataset, protected\_attributes}
+    \KwResult{Dataset with protected attributes removed}
+    \For{attribute \textbf{in} protected\_attributes}{
+        \textit{dataset.remove(attribute)}\;
+    }
+    \KwRet{dataset}
+\end{algorithm}
+
+\subsubsection{proxy\textunderscore free\textunderscore dataset pdeudocode}
+Here's the pseudocode to remove proxy attributes from the dataset
+
+\begin{algorithm}[H]
+    \KwData{dataset, proxy\_list}
+    \KwResult{Dataset with proxies removed}
+    \For{proxy \textbf{in} proxy\_list}{
+        \textit{dataset.remove(proxy)}\;
+    }
+    \KwRet{dataset}
+\end{algorithm}
+
+\subsubsection{proxy\textunderscore detection pseudocode}
+Here's the pseudocode of proxy\textunderscore detection function. There are 2 scenarios that are presented here, the one in which the \emph{variables only}  approach is used and the one in which the \emph{apriori} approach is used
+
+\begin{enumerate}
+    \item \textbf{Variables only}: 
+            
+\begin{algorithm}[H]
+    \KwData{protected\_attributes\_list, attributes}
+    \KwResult{List of proxies}
+    proxy\_list $\gets$ empty list\;
+    \For{protected\_attribute \textbf{in} protected\_attributes\_list}{
+        \For{attribute \textbf{in} attributes \textbf{and not in} protected\_attributes\_list \textbf{and not in} proxy\_list}{
+            \If{\textit{metric(attribute, protected\_attribute)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, protected\_attribute)} $\geq$ 1.25}{
+                \textit{proxy\_list.append(attribute)}\;
+            }
+        }
+    }
+    \KwRet{proxy\_list}
+\end{algorithm}
+
+    \item \textbf{Apriori}:
+
+    \begin{algorithm}[H]
+    \KwData{apriori\_dataset}
+    \KwResult{List of proxies}
+    proxy\_list $\gets$ empty list\;
+    \For{consequent \textbf{in} apriori\_dataset}{
+        \For{antecedent \textbf{in} apriori\_dataset}{
+            \If{\textit{metric(antecedent, consequent)} $\leq$ 0.8 \textbf{or} \textit{metric(antecedent, consequent)} $\geq$ 1.25}{
+                \textit{proxy\_list.append(antecedent)}\;
+            }
+        }
+    }
+    \KwRet{proxy\_list}
+\end{algorithm}
+\end{enumerate}
+\newpage
+
+\section{Fairness through data rebalancing}
+
+In this approach the bias mitigation has been addressed with a data augmentation perspective rather than a removal attribute ones. More specifically through this approach data are added to the dataset, leading to a different definition of fairness.
+
+\subsection{A New Definition of Fairness}
+
+In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes and the output. A new definition of fairness is proposed, which takes into account the representation of all combinations of $k$ protected attributes and the output, aiming for equitable representation across these combinations.
+
+\subsubsection{Equal Representation of Combinations}
+
+A fair dataset is defined as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$ and the output $O_j$, the representation is equal and proportional. Mathematically, a dataset is fair if:
+
+\[
+\forall i_1, i_2, \ldots, i_k, j: \frac{|D_{i_1, i_2, \ldots, i_k, j}|}{|D|} = \text{constant}
+\]
+
+where:
+- $D$ is the dataset,
+- $|D_{i_1, i_2, \ldots, i_k, j}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ and output $O_j$,
+- $|D|$ is the total number of samples in the dataset.
+
+This entails that any combination of demographic groups, defined by the protected attributes, and the output should have comparable representation, thereby fostering a balanced and unbiased dataset.
+
+\subsubsection{Promoting Comprehensive Fairness}
+
+By striving for equal representation of combinations of protected attributes, is addressed a fundamental aspect of fairness that transcends individual attributes. This approach provides a more nuanced understanding of fairness by considering the intersections of various demographic groups. It encourages a broader examination of potential biases that may arise when considering multiple attributes simultaneously.
+
+Incorporating this definition of fairness into the dataset rebalancing process enables us to promote a comprehensive notion of fairness, aligning with the principles of equal opportunity and non-discrimination across all combinations of protected attributes. Our subsequent algorithm and experimental evaluation are designed to actualize this definition and demonstrate its effectiveness in achieving a more equitable representation within the dataset.
+
+\subsection{Algorithm description}
+
+Let \( D \) be a dataset \( R^{n \times m} \), where \( n \) is the number of samples and \( m \) is the number of features. Let \( k \) be the number of protected variables represented as \( R^{n \times 1} \), and let there be a single output variable represented as \( R^{n \times 1} \).
+
+A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
+
+\[
+\mathcal{R}: R^{n \times m} \rightarrow R^{l \times m}
+\]
+
+where \( l > m \), and the function \( \mathcal{R} \) transforms the input dataset \( D \) of dimensions \( n \times m \) into an output dataset \( D' \) of dimensions \( l \times m \).\\
+\\
+Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
+
+Consider a set \( \text{Combination-frequency} \) with occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
+
+Mathematically, the number of rows (\( l \)) the final dataset should have for each combination is given by:
+
+\[
+l = \text{Max}(\text{Combination-frequency})
+\]\\
+\\
+Let \( l \) be the desired number of rows for the final dataset. For each combination of values, is calculated the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
+
+The total number of rows to be added is given by:
+
+\[
+\text{total\_rows\_to\_add} = l - \sum_{i=1}^{2^{(k+1)}} \text{occurrence}_i
+\]
+
+For each iteration:
+\begin{itemize}
+    \item The values of the protected and output variables are set according to the specific combination.
+    \item For all other attributes, a random value \( \text{random\_value}_{ij} \) is generated, where \( j \) represents the specific attribute and \( i \) represents the row being added for that attribute. \( \text{random\_value}_{ij} \) is within the minimum and maximum range for attribute \( j \).
+\end{itemize}
+
+\subsection{Pseudocode}
+\begin{algorithm}[H]
+    \SetKwInOut{Input}{Input}
+    \SetKwInOut{Output}{Output}
+
+    \Input{combination\_set, combination\_frequency, protected\_attributes, dataset\_attributes}
+    \Output{Updated dataset}
+
+    max\_frequency $\gets$ max(combination\_frequency)\;
+    \For{index $\gets$ 0 \KwTo len(combination\_set)}{
+        combination $\gets$ combination\_set[index]\;
+        frequency $\gets$ combination\_frequency[index]\;
+        \While{frequency $<$ max\_frequency}{
+            new\_row $\gets$ empty\;
+            \For{(attr, val) \textbf{in} (combination, protected\_attributes)}{
+                new\_row[attr] $\gets$ val\;
+            }
+            \For{attr \textbf{in} dataset\_attributes \textbf{and not in} protected\_attributes}{
+                new\_row[attr] $\gets$ random(min(attr), max(attr))\;
+            }
+            dataset.add(new\_row)\;
+            frequency $+$= 1\;
+        }
+    }
+\end{algorithm}
+
+%----------------------------------------------------------------------------------------
+%\chapter{Implementation} % possible chapter for Projects
+%\label{chap:implementation}
+%----------------------------------------------------------------------------------------
+\section{Dataset description}
+Before moving on into the several details of the implementation of the algorithms previously presented it's described the dataset on which these algorithms have been applied.
+The dataset chosen for this work is \emph{ULL dataset}. \\
+This dataset contains information on the educational system in Canary Island. It's composed by the census of students enrolled in 4 different academic years.
+
+\subsection{Pre-processing operations on ULL dataset}
+A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
+Furthermore, after a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
+\begin{enumerate}
+    \item sex
+    \item capital island: if the student comes from the capital of the city
+    \item public\textunderscore private: if the school is public or private
+    \item inmigrant: if the student is either inmigrant or not
+    \item inmigrant second gen: if the student is either inmigrand of second gen or not
+    \item parent expectation
+    \item mothly houseold income
+    \item cconomic, social and cultural satus index
+\end{enumerate}
+It's furthermore fundamental to remark the methodology behind the ways in which the protected attributes are considered(together with the other ones not considered to fed the algorithm).
+More specifically:
+\begin{itemize}
+    \item if the attribute is binary no transformation is applied
+    \item if the attribue is not binary that it's trnasformed into a binary attribute where the value \emph{1} means over the mean and the \emph{0} under the mean.
+\end{itemize}
+
+\subsection{Goal of this work}
+The goal of this work is the one to predict the level of english for the current grade based on past experience. To achieve this is computed on the \emph{level\textunderscore ing} attribute the same pre-processing transofrmation used for not-binary protected attributes. This means that the goal is to \textbf{match} the students to establish if a given student is either under or over the mean.
+
+%\lstinputlisting[
+%	float,
+%	language=Java,
+%	caption={My very first program in Java},
+%	label={lst:helloworld},
+%]{listings/HelloWorld.java}
+
+%You may need to reference listings in your thesis.
+%
+%In this case, you are encouraged to make them \emph{floating}, and reference them by means of labels.
+%
+%For instance, in \Cref{lst:helloworld}, we describe an hello world program in Java.
+
+\section{Fairness through unawareness with proxy detection: implementation}
+In this section are reported the several implementative issues and features that have been encountered and designed during the development of this algorithm. Two approaches are explored in detail, the one with \textbf{apriori} and the one in which only the \textbf{variables} have been taken in account. \\
+Before moving on it's important to be more detailed about the fairness metric used.
+\subsection{Disparate Impact}
+isparate Impact (DI) is a fairness metric commonly used in the context of algorithmic decision-making and predictive modeling. It is designed to measure the potential discriminatory effects of a decision-making process on different demographic groups.
+
+The Disparate Impact metric is defined as the ratio of the probability of a favorable outcome for the disadvantaged group to the probability of a favorable outcome for the advantaged group:
+
+\[
+\text{Disparate Impact (DI)} = \frac{P(\text{Favorable Outcome} | \text{Disadvantaged Group})}{P(\text{Favorable Outcome} | \text{Advantaged Group})}
+\]
+
+where $P(\text{Favorable Outcome} | \text{Disadvantaged Group})$ is the probability of a favorable outcome given membership in the disadvantaged group, and  \\ $P(\text{Favorable Outcome} | \text{Advantaged Group})$ is the probability of a favorable outcome given membership in the advantaged group.
+\subsection{Proxy detection via apriori}
+The implementation of this approach has proceeded according a modular approach and, more specifically, has been developed a module named \emph{fairness} in which there are all the sub-modules needed to implement this approach.
+\subsubsection{fairness\textunderscore metric module}
+This module has been thought to contain the implementation of the several fairness metrics considered in the context of the study. In our scenario it only contains the implementation of the \emph{Disparate Impact} metric. \\
+This implementation provides to the user the information about the fairness status of the dataset provided together with the protected attributes, the otuput attribute and the possible values that this value may have: \\
+\begin{lstlisting}
+    def fairness_evaluation(self, dataset: pd.DataFrame, protected_attributes: list, output_column_values: list,
+                            output_column: str) -> str:
+        """
+        This method perform an evaluation of the fairness of a given dataset according to the Disparate Impact metric
+        :param dataset: this is the dataset on which to be labelled as fair or unfair
+        :param protected_attributes: the list of the protected attributes on which compute the disparate impact value
+        :param output_column: the column of the dataset that represents the output
+        :return: return 'fair' if the dataset is fair, unfair 'otherwise'
+        """
+        bias_analysis_dataframe = self.bias_detection(dataset, protected_attributes, output_column_values, output_column)
+        return_value = 'unfair'
+        for value in bias_analysis_dataframe['Disparate Impact'].values:
+            if value <= 0.80 or value >= 1.25:
+                return_value = 'unfair'
+                break
+            else:
+                return_value = 'fair'
+
+        return return_value
+\end{lstlisting}
+
+
+\subsubsection{matching module}
+This module only contains the method \emph{conscious\textunderscore fairness\textunderscore through\textunderscore unawareness} that can return the dataset in two possible configurations:
+\begin{enumerate}
+    \item if the dataset is fair it returns the dataset itself only with variables pre-processed. Since these pre-processing operations are performed before the fairness checking these are the same for both scenarios. These operations are the transformation of every \emph{categorical} attribute into a numerical one and the transformation of protected attributes as explained above.
+    \item if the dataset is not fair the algorithm looks for the proxies and remove the proxies found if there are some and the protected attributes.
+\end{enumerate}
+\subsubsection{proxy module}
+This module is the core of the whole algorithm. This module contains other two sub-modules. More specifically it contains a module whose goal is to detect proxy and the other one is the module in charge to translate the result of the proxy detection to provide a list of proxies to be used into the \emph{matching} module
+\begin{enumerate}
+    \item \emph{proxy\textunderscore detection}: this module is the one in which the \emph{apriori} algorithm is applied in order to found the relation between antecedents and consequents with a confidence value of 0.8. The key method of this module is the private method \emph{\textunderscore return\textunderscore apriori\textunderscore dataframe}. This method performs computation on the result of the application of the apriori algorithm. More specifically it returns a dataframe with 3 columns \textbf{Antecedent}, \textbf{Consequent}, \textbf{Confidence} \\
+    \begin{lstlisting}
+        def _return_apriori_dataframe(association_results: list) -> pd.DataFrame:
+    """This function returns the dataframe with the association generated by the apriori algorithm
+
+    Args:
+        association_results (list): is the list of the association returned by the apriori algorithm
+
+    Returns:
+        pd.DataFrame: is the dataframe equivalent to the association result list
+    """
+    antecedent = []
+    consequent = []
+    confidence = []
+
+    for association_result in association_results:
+        for ordered_statistic in association_result.ordered_statistics:
+            antecedent_elements = list(ordered_statistic.items_base)
+            antecedent.append(antecedent_elements)
+            consequent_elements = list(ordered_statistic.items_add)
+            consequent.append(consequent_elements)
+            confidence_elements = ordered_statistic.confidence
+            confidence.append(confidence_elements)
+
+    antecedent_series = pd.Series(antecedent)
+    consequent_series = pd.Series(consequent)
+    confidence_series = pd.Series(confidence)
+
+    dataframe = pd.DataFrame(
+        {'Antecedent': antecedent_series, 'Consequent': consequent_series, 'Confidence': confidence_series})
+
+    return dataframe
+    \end{lstlisting}
+    \item \emph{proxy\textunderscore processing}: this module contains two key methods. The first method, \emph{\textunderscore return\textunderscore proxy\textunderscore protected\textunderscore attribute} returns a dataframe in which for each sensitive attribute as consequent are related the antecedents that are the possible proxies for that sensitive attribute. The second method is \emph{proxy\textunderscore fixing}, in which for each antecedent is computed the Disparate impact value related to that consequent with that specific value. Only the variables with DI value lesser than 0.8 or greater than 1.25 are considered as proxies. In the following is reported the code of both methods:
+    \begin{lstlisting}
+        def _return_proxy_protected_attribute(proxy_variables: pd.DataFrame, protected_attributes: list) -> pd.DataFrame:
+    """This method returns a dataframe containing the proxy variables for each sensitive attribute
+
+    Args:
+        proxy_variables (pd.DataFrame): the dataframe of the proxy variables (antecedent, consequent, confidence)
+        protected_attributes (list): the list of the protected attributes
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+    sensitive_antecedent = []
+    sensitive_consequent = []
+    for index, proxy_row in proxy_variables.iterrows():
+        for consequent in proxy_row['Consequent']:
+            for sensitive_attribute in protected_attributes:
+                if str(consequent).startswith(sensitive_attribute):
+                    sensitive_antecedent.append(proxy_row['Antecedent'])
+                    sensitive_consequent.append(consequent)
+
+    dataframe = pd.DataFrame(
+        {'Antecedent': pd.Series(sensitive_antecedent), 'Consequent': pd.Series(sensitive_consequent)})
+
+    return dataframe
+
+
+    \end{lstlisting}
+    \begin{lstlisting}
+        def proxy_fixing(original_dataset: pd.DataFrame, protected_attributes: list) -> pd.DataFrame:
+    """This method returns a dataset with proxy variables founded in the original dataset analyzed.
+    In case these proxies lead to unfairness the proxies are deleted
+
+    Args: original_dataset (pd.DataFrame): the dataset on which the proxy variable have to be deleted if they lead to
+    unfairness
+    protected_attributes (list): the list of protected attribute on which perform the proxy analysis
+
+    Returns:
+        pd.DataFrame: returns the dataframe in which the proxies do not lead to fairness
+    """
+    proxy_variables = return_proxy_variables(original_dataset)
+    proxy_variables_for_sensitive_attributes = _return_proxy_protected_attribute(proxy_variables,
+                                                                                 protected_attributes)
+    
+    dataset = original_dataset
+    for index, row in proxy_variables_for_sensitive_attributes.iterrows():
+        for antecedent in row['Antecedent']:
+            consequent = row['Consequent']
+
+            disparate_impact_value = _compute_disparate_impact_for_proxy(antecedent, consequent,
+                                                                         original_dataset)
+            if not 0.8 < disparate_impact_value < 1.25 and _proxy_format_to_column(antecedent) not in protected_attributes:
+                dataset = _remove_proxy_from_dataset(original_dataset, antecedent)
+
+            else:
+                continue
+
+    return dataset
+
+    \end{lstlisting}
+\end{enumerate}
+
+\subsection{Proxy detection via variables only: implementation}
+The implementation of this approach differs with the implementation of the apriori approach because of the operation of proxy detection and processing have been mixed together and the proxy removal operation has been delegated to the \emph{matching} module. In the following there's the code that computes the proxy detection:
+\begin{lstlisting}
+    def proxy_detection(dataset: pd.DataFrame, protected_attributes: list, output_column: str) -> list:
+    attributes_list = []
+    for attr in dataset.columns:
+        if attr not in protected_attributes:
+            attributes_list.append(attr)
+            
+          
+    if output_column in attributes_list:
+        attributes_list.remove(output_column)
+        
+    proxy_list = []
+    for attribute in attributes_list:
+        for protected_attribute in protected_attributes:
+            if _compute_disparate_impact_for_proxy(attribute, protected_attribute, dataset) == 'PROXY':
+                proxy_list.append(attribute)
+
+    return proxy_list
+
+\end{lstlisting}
+\section{Fairness through data rebalancing}
+The first big difference between this approach and the two previous ones is that no fairness-metrics is used here. The reason behind this is the new definition provided for fairness, where is assumed as a parity in combination occurrance. So the core of this algorithm is the \emph{rebalancing} module in which rows are added to the dataset according to the most frequent combination occurrance in the original dataset.
+The key part of this module is the one in which the other attributes are inserted. In this scenario a new value is added considering the minimum and the maximum in the temporary dataset, where this dataset is the dataset in which a certain combination of protected\textunderscore attributes and output is occurred. It's furthermore important to remark that since a value has been  randomically chosen this may alter the distribution for that attribute.
+\begin{lstlisting}
+    for index in range(0, len(combination_list)):
+        combination = combination_list[index]
+        temp_dataset = final_dataset.query(return_query_for_dataframe(combination, combination_attributes))
+        if combination_frequency[index] == combination_frequency_target:
+            continue
+        else:
+            for counter in range(0, combination_frequency_target - combination_frequency[index]):
+                new_row = {}
+                for (attr, value) in zip(combination_attributes, combination):
+                    new_row[attr] = value
+                for attribute in final_dataset.columns:
+                    if attribute not in combination_attributes:
+                        if is_variable_discrete(temp_dataset, attribute):
+                            new_row[attribute] = random.randint(temp_dataset[attribute].min(), temp_dataset[attribute].max())
+                        else:
+                            new_row[attribute] = random.uniform(temp_dataset[attribute].min(), temp_dataset[attribute].max())
+                
+                final_dataset.loc[len(final_dataset)] = new_row
+
+\end{lstlisting}
+
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
