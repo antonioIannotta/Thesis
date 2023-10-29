@@ -376,7 +376,7 @@ In summary, the model validation step plays a fundamental role in the workflow, 
 \\
 In the following are presented the several algorithms that have been put into the \textbf{Fairness pre-processing} step to perform a final comparaison.
 
-\section{Fairness through unawareness with proxy detection} \cite{Gupta2018ProxyF}
+\section{Fairness through unawareness with proxy detection}
 The algorithm presented in this section is rooted in the fundamental concept of "Fairness through Unawareness." This approach is underpinned by the overarching goal of mitigating bias by removing certain attributes from the dataset. Notably, in this scenario, the removal extends beyond solely the protected attributes, introducing a novel perspective on addressing bias. \\
 In the spirit of "Fairness through Unawareness," this approach advocates the removal of both the protected attributes and a set of proxy variables. These proxy variables serve as a distinctive feature of the algorithm, as they are strategically identified and eliminated alongside the protected attributes. The proxy variables are defined with a specific focus on aspects that could potentially introduce or perpetuate bias within the AI system. \cite{Gupta2018ProxyF}\\
 The identification and removal of these proxy variables align with the commitment to promoting fairness and equity. By addressing not only the protected attributes but also the factors that may indirectly influence bias, this algorithm adopts a comprehensive approach to bias mitigation. \\
@@ -420,7 +420,13 @@ In other words, a variable \( \text{var} \) is considered a proxy if the fairnes
 It's important to give a brief background of the Association Rule Mining, the family algorithm \textbf{apriori} belongs to.
 
 \begin{enumerate}
-    \item \textbf{Association rule mining}: this is a data mining technique used to discover interesting relationships and patterns within large volumes of data. The goal is to identify associations and correlations among various elements present in the data.
+    \item \textbf{Association rule mining}:
+    Association rule mining represents a pivotal data mining technique employed to unearth intriguing relationships and patterns hidden within extensive datasets. This technique is specifically tailored to the task of identifying associations and correlations among diverse elements present in the data, thereby revealing valuable insights and connections that might otherwise remain concealed. \\
+    The primary objective of association rule mining is to expose the inherent dependencies between data items or attributes. It scrutinizes the dataset in search of rules that reveal the co-occurrence and relationships between different items. These rules often manifest in the form of "if-then" statements, where the presence of one item is associated with the presence or absence of another. \\
+    This technique is particularly advantageous when applied to large volumes of data, as it excels in discovering subtle, non-obvious associations that might elude simple statistical analysis. Association rule mining is a versatile tool with a wide array of applications, spanning domains such as market basket analysis, recommendation systems, and fraud detection. \\
+    The process of association rule mining involves the generation of itemsets and the identification of frequent itemsets—combinations of items that appear together frequently. The algorithm then extracts association rules from these frequent itemsets, offering valuable insights into the relationships and co-occurrences within the data. \\
+    The outcomes of association rule mining have the potential to drive informed decision-making, such as product recommendations based on customer purchase history, optimizing supply chain management, and identifying suspicious patterns in financial transactions.
+    
 
     \item \textbf{Apriori algorithm}: Suppose to have a set of transactions $T$, each containing a set of items. Let's define:
 
@@ -611,7 +617,11 @@ Here's the pseudocode of proxy\textunderscore detection function. There are 2 sc
 
 \section{Fairness through data rebalancing}
 
-In this approach the bias mitigation has been addressed with a data augmentation perspective rather than a removal attribute ones. More specifically through this approach data are added to the dataset, leading to a different definition of fairness.
+In this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.\\
+The essence of this approach revolves around the augmentation of the dataset by introducing new data instances that offer a more comprehensive and inclusive representation of the underlying population. This expanded dataset is designed to be more diverse, representative, and balanced, transcending the limitations of the original data and fostering a more nuanced understanding of fairness. \\
+The introduction of augmented data instances leads to a redefined notion of fairness within the AI system. Instead of solely focusing on the absence of biased attributes, fairness is now measured in terms of the dataset's inclusivity and its ability to capture the diversity and nuances present within the population it seeks to serve. \\
+This approach aligns with the broader philosophy of ensuring that AI systems are equitable, just, and capable of making informed and unbiased decisions. By augmenting the dataset, it strives to bridge the gaps in representation and provide a more equitable playing field for all individuals, regardless of their background or characteristics. \\
+The process of data augmentation necessitates a careful selection of techniques and methodologies that can introduce new data instances while maintaining the integrity and quality of the dataset. These techniques may encompass oversampling, synthetic data generation, or other data synthesis methods, each tailored to the specific context and objectives of the AI system.
 
 \subsection{A New Definition of Fairness}
 
@@ -705,9 +715,11 @@ For each iteration:
 %\label{chap:implementation}
 %----------------------------------------------------------------------------------------
 \section{Dataset description}
-Before moving on into the several details of the implementation of the algorithms previously presented it's described the dataset on which these algorithms have been applied.
-The dataset chosen for this work is \emph{ULL dataset}. \\
-This dataset contains information on the educational system in Canary Island. It's composed by the census of students enrolled in 4 different academic years.
+Before delving into the intricate details of the algorithm implementations presented earlier, it is imperative to provide a comprehensive overview of the dataset on which these algorithms have been applied. The chosen dataset for this work is the "ULL dataset," an invaluable resource that underpins the empirical exploration of bias mitigation strategies in the context of the educational system in the Canary Islands. \\
+The ULL dataset is a rich and expansive repository of information, meticulously compiled to capture various facets of the educational landscape within the Canary Islands. This dataset comprises the comprehensive census of students enrolled over four distinct academic years, offering a multifaceted glimpse into the educational ecosystem. \\
+The dataset encompasses a diverse array of attributes and data points, encapsulating critical information such as student demographics, academic performance, socioeconomic factors, and other pertinent variables. These attributes collectively provide a holistic perspective on the educational landscape, enabling a nuanced analysis of the factors that influence student outcomes and experiences. \\
+The temporal dimension of the dataset, spanning four academic years, further enriches the analytical potential. It allows for the investigation of temporal trends, shifts in educational policies, and the evolution of student characteristics over time. This temporal depth is particularly valuable when examining the efficacy of bias mitigation strategies, as it facilitates the assessment of their impact across different academic years. \\
+The ULL dataset is not merely a repository of numbers and statistics; it is a window into the educational opportunities and challenges faced by students in the Canary Islands. By harnessing the insights gleaned from this dataset, it becomes possible to proactively address biases and promote equity within the educational system, ultimately striving for a more inclusive and just educational landscape.
 
 \subsection{Pre-processing operations on ULL dataset}
 A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
@@ -730,20 +742,10 @@ More specifically:
 \end{itemize}
 
 \subsection{Goal of this work}
-The goal of this work is the one to predict the level of english for the current grade based on past experience. To achieve this is computed on the \emph{level\textunderscore ing} attribute the same pre-processing transofrmation used for not-binary protected attributes. This means that the goal is to \textbf{match} the students to establish if a given student is either under or over the mean.
-
-%\lstinputlisting[
-%	float,
-%	language=Java,
-%	caption={My very first program in Java},
-%	label={lst:helloworld},
-%]{listings/HelloWorld.java}
-
-%You may need to reference listings in your thesis.
-%
-%In this case, you are encouraged to make them \emph{floating}, and reference them by means of labels.
-%
-%For instance, in \Cref{lst:helloworld}, we describe an hello world program in Java.
+At the core of this endeavor lies a fundamental goal: to predict the level of English proficiency for students in their current grade based on their past experiences and academic trajectory. This predictive undertaking is driven by a commitment to harness data-driven insights and analytical methodologies to empower educational institutions and decision-makers in enhancing the educational experience and opportunities for students. \\
+To achieve this ambitious objective, a critical aspect of the workflow is the computation of the "level_ing" attribute, employing the same pre-processing transformations that have been meticulously applied to the non-binary protected attributes. These transformations serve as the cornerstone for establishing a uniform basis for analysis and prediction. \\
+The ultimate aim is to match students to discern whether a given student falls into one of two categories: either being under the mean English proficiency level or exceeding the mean. This binary categorization is essential for designing effective interventions, personalized learning pathways, and targeted support systems. \\
+By matching students to these categories, it becomes feasible to identify patterns, trends, and critical factors that influence students' English proficiency. This predictive model, rooted in the wealth of data encapsulated within the ULL dataset, offers a powerful tool for educational institutions and stakeholders to proactively address disparities, tailor educational strategies, and ensure that students receive the support and opportunities they need to thrive.
 
 \section{Fairness through unawareness with proxy detection: implementation}
 In this section are reported the several implementative issues and features that have been encountered and designed during the development of this algorithm. Two approaches are explored in detail, the one with \textbf{apriori} and the one in which only the \textbf{variables} have been taken in account. \\
