@@ -107,6 +107,7 @@ The transformative impact of AI becomes vividly apparent when considering its ap
 Socio-technical systems are emblematic of the intricate interplay between people, technology, and social institutions. AI and ML have cast profound ripples across these systems, profoundly influencing how individuals engage with technology and reshaping the very fabric of society. As AI becomes more deeply woven into the social fabric, it is imperative to address the ethical conundrums it raises. \\
 The integration of AI and ML has led to a cascade of ethical questions concerning issues of privacy, the presence of biases within algorithms, and the potential displacement of jobs due to automation. In this context, it becomes indispensable to construct robust ethical frameworks that ensure fairness, transparency, and accountability within AI systems. These frameworks serve as a safeguard against potential harm and ensure that the benefits of AI are distributed equitably. \cite{GRUETZEMACHER202210288}.
 
+\newpage
 \section{Bias}
 Artificial Intelligence (AI) stands as a transformative force with the potential to reshape numerous facets of our existence. Its applications range from enhancing decision-making processes to automating routine tasks, embedding AI systems more deeply into our daily experiences. However, a growing concern resonates within the AI community and society as a whole: the pervasive issue of biases woven into the very fabric of AI algorithms. \cite{10.1145/3308560.3317590}
 
@@ -157,7 +158,7 @@ Recruitment bias is a critical issue within the hiring process, where unconsciou
 One of the most prevalent forms of recruitment bias is racial or ethnic bias. Hiring decisions can be influenced by stereotypes, leading to the underrepresentation of certain racial or ethnic groups in the workplace. Similarly, gender bias can result in disparities in hiring and promotion opportunities, favoring one gender over another. Age bias often affects older candidates who may be overlooked in favor of younger, perceived to be more 'tech-savvy' individuals. \\
 Educational and socio-economic biases can also seep into the hiring process, where candidates from prestigious institutions or privileged backgrounds may be given preferential treatment. Appearance-based biases, although highly unfortunate, can influence decisions, impacting individuals based on their physical attributes, such as weight, height, or even hairstyle. \\
 Addressing recruitment bias requires a multipronged approach. Firstly, raising awareness and providing training on unconscious bias is essential for hiring teams. Implementing structured and standardized interview processes, blind recruitment techniques (removing personally identifiable information), and diverse interview panels can help mitigate biases. Moreover, organizations should focus on promoting diversity and inclusion, fostering a culture that values different perspectives and backgrounds, and monitoring and analyzing recruitment data to identify patterns of bias. Striving for fairness and inclusivity in the hiring process not only leads to a more diverse workforce but also improves organizational innovation, creativity, and overall success.
-
+\newpage
 \section{Fairness} 
 The concept of fairness within AI systems represents a dynamic and indispensable area of focus within the ever-expanding realm of artificial intelligence. At its core, fairness underscores an ethical and moral imperative to ensure that AI technologies and algorithms treat all individuals with equitable respect, devoid of bias or discrimination. As AI increasingly penetrates diverse facets of society, from decision-making processes to job recruitment, lending, and law enforcement, the salience of fairness is unequivocal.\\
 The pursuit of fairness in AI is an all-encompassing endeavor, entailing an array of considerations that orbit around the ambition to eliminate bias predicated on attributes such as race, gender, age, ethnicity, and socio-economic status. Bias in AI manifests in multifarious ways, originating from the training data's inherent biases or the algorithms themselves. Fair AI systems, therefore, endeavor to minimize these biases, upholding the principles of impartiality and justice in the outcomes they produce.\\
@@ -371,11 +372,8 @@ The model validation phase also incorporates techniques like cross-validation to
 Furthermore, model validation may involve sensitivity analyses, where the model's performance is evaluated under varying conditions or with perturbed data to identify potential vulnerabilities and areas for improvement. \\
 The results of the model validation are integral to gauging the model's effectiveness, uncovering potential biases, and making informed decisions about further refinement or deployment. The insights gained from the validation process contribute to the ongoing quest for fairness, accuracy, and ethical decision-making within the AI system. \\
 In summary, the model validation step plays a fundamental role in the workflow, offering a comprehensive evaluation of the AI model's performance, fairness, and predictive power. Its insights are crucial for guiding the system's development and ensuring that it aligns with the principles of fairness, equity, and accuracy. \\
-\\
-\\
-\\
+\newpage
 In the following are presented the several algorithms that have been put into the \textbf{Fairness pre-processing} step to perform a final comparaison.
-
 \section{Fairness through unawareness with proxy detection}
 The algorithm presented in this section is rooted in the fundamental concept of "Fairness through Unawareness." This approach is underpinned by the overarching goal of mitigating bias by removing certain attributes from the dataset. Notably, in this scenario, the removal extends beyond solely the protected attributes, introducing a novel perspective on addressing bias. \\
 In the spirit of "Fairness through Unawareness," this approach advocates the removal of both the protected attributes and a set of proxy variables. These proxy variables serve as a distinctive feature of the algorithm, as they are strategically identified and eliminated alongside the protected attributes. The proxy variables are defined with a specific focus on aspects that could potentially introduce or perpetuate bias within the AI system. \cite{Gupta2018ProxyF}\\
@@ -709,7 +707,7 @@ For each iteration:
         }
     }
 \end{algorithm}
-
+\newpage
 %----------------------------------------------------------------------------------------
 %\chapter{Implementation} % possible chapter for Projects
 %\label{chap:implementation}
@@ -746,7 +744,7 @@ At the core of this endeavor lies a fundamental goal: to predict the level of En
 To achieve this ambitious objective, a critical aspect of the workflow is the computation of the "level_ing" attribute, employing the same pre-processing transformations that have been meticulously applied to the non-binary protected attributes. These transformations serve as the cornerstone for establishing a uniform basis for analysis and prediction. \\
 The ultimate aim is to match students to discern whether a given student falls into one of two categories: either being under the mean English proficiency level or exceeding the mean. This binary categorization is essential for designing effective interventions, personalized learning pathways, and targeted support systems. \\
 By matching students to these categories, it becomes feasible to identify patterns, trends, and critical factors that influence students' English proficiency. This predictive model, rooted in the wealth of data encapsulated within the ULL dataset, offers a powerful tool for educational institutions and stakeholders to proactively address disparities, tailor educational strategies, and ensure that students receive the support and opportunities they need to thrive.
-
+\newpage
 \section{Fairness through unawareness with proxy detection: implementation}
 In this section are reported the several implementative issues and features that have been encountered and designed during the development of this algorithm. Two approaches are explored in detail, the one with \textbf{apriori} and the one in which only the \textbf{variables} have been taken in account. \\
 Before moving on it's important to be more detailed about the fairness metric used.
@@ -917,7 +915,8 @@ The implementation of this approach differs with the implementation of the aprio
     return proxy_list
 
 \end{lstlisting}
-\section{Fairness through data rebalancing}
+\newpage
+\section{Fairness through data rebalancing: implementation}
 The first big difference between this approach and the two previous ones is that no fairness-metrics is used here. The reason behind this is the new definition provided for fairness, where is assumed as a parity in combination occurrance. So the core of this algorithm is the \emph{rebalancing} module in which rows are added to the dataset according to the most frequent combination occurrance in the original dataset.
 The key part of this module is the one in which the other attributes are inserted. In this scenario a new value is added considering the minimum and the maximum in the temporary dataset, where this dataset is the dataset in which a certain combination of protected\textunderscore attributes and output is occurred. It's furthermore important to remark that since a value has been  randomically chosen this may alter the distribution for that attribute.
 \begin{lstlisting}
@@ -990,7 +989,7 @@ On the previous models is applied the GridSearch with a cv of 10 in order to sel
 
 Each model is trained with the 67\% of the dataset while the 33\% is left for the test.
 In the following are reported the results for each grade. More specifically for each model is reported the best model selected and the accuracy on the test set.
-
+\newpage
 \section{Grade 3}
 \subsection{No-fair approach}
 \subsubsection{Best models}
@@ -1127,7 +1126,7 @@ In the following are reported the results for each grade. More specifically for 
     \hline
 \end{tabular}
 
-
+\newpage
 \section{Grade 4}
 \subsection{Best models}
 \begin{tabular}{|c|c|}
@@ -1154,6 +1153,8 @@ In the following are reported the results for each grade. More specifically for 
     DecisionTree Classifier &  \\
     \hline
 \end{tabular}
+
+\newpage
 \section{Grade 6}
 \subsection{Best models}
 \begin{tabular}{|c|c|}
