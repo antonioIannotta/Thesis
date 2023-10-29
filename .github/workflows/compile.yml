@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - master
+      - workflow-version
 env:
   LATEX_ROOT: thesis-main
 jobs:
