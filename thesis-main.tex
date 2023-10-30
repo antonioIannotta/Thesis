@@ -871,8 +871,7 @@ This module is the core of the whole algorithm. This module contains other two s
     """
     proxy_variables = return_proxy_variables(original_dataset)
     proxy_variables_for_sensitive_attributes = 
-    _return_proxy_protected_attribute(proxy_variables,
-                                                                                 protected_attributes)
+    _return_proxy_protected_attribute(proxy_variables, protected_attributes)
     
     dataset = original_dataset
     for index, row in proxy_variables_for_sensitive_attributes.iterrows():
