@@ -221,12 +221,8 @@ Oversampling and undersampling are techniques used to address class imbalance, w
 
 \end{enumerate}
 
-\textbf{Example:} In a credit approval scenario, if a particular group is underrepresented in the dataset, oversampling can be employed to create synthetic instances for that group, ensuring fair credit evaluations.
-
 \subsubsection{Noise Removal}
 Noise removal in the context of fairness typically refers to the process of identifying and mitigating the effects of noisy or incorrect data points that may introduce biases or distortions in the data used to train or evaluate machine learning models. In fairness considerations, noise removal plays a crucial role in ensuring that the AI system's predictions and decisions are as accurate and unbiased as possible, particularly when sensitive attributes like race, gender, or ethnicity are involved. \cite{NEURIPS2019_8d5e957f}
-
-\textbf{Example:} In sentiment analysis, if a dataset contains biased reviews based on certain demographics, such as gender, removing these biased reviews helps in training a fair sentiment analysis model.
 
 \subsubsection{Data Augmentation}
 Data augmentation is a technique often used in machine learning and data preprocessing to artificially increase the size and diversity of a training dataset by generating new data points based on the existing ones. In the context of fairness, data augmentation can play a crucial role in addressing imbalances and biases in the data, particularly when sensitive attributes are involved. Here's how data augmentation can be applied in the context of fairness:
@@ -248,17 +244,12 @@ Data augmentation is a technique often used in machine learning and data preproc
         \item In the fairness context, it's important to ensure that data augmentation techniques do not introduce additional biases. Care should be taken to create synthetic data that aligns with the fairness and equity goals of the AI system. \cite{10.1145/3531146.3534644}
     \end{itemize}
 \end{enumerate}
-\textbf{Example:} In image recognition, augmenting images by rotating or flipping them can provide a more balanced representation of different features, promoting fairness in the model's predictions.
 
 \subsubsection{Bias Mitigation Algorithms}
 Bias mitigation in the context of fairness refers to the process of identifying, reducing, or eliminating biases within machine learning models and algorithms, particularly those that could lead to unfair or discriminatory outcomes, often associated with sensitive attributes like race, gender, age, or ethnicity. The goal of bias mitigation is to ensure that AI systems provide equitable and unbiased predictions and decisions for all individuals or groups.
 
-\textbf{Example:} When training a model for a hiring platform, using a bias mitigation algorithm to adjust the dataset to have an equal representation of genders can lead to a more fair hiring process.
-
 \subsubsection{Sensitive Attribute Removal or Neutralization}
 In some cases, sensitive attributes (e.g., race, gender) can be removed from the dataset or transformed into more neutral representations. This prevents the model from relying on these attributes to make predictions, promoting fairness. \cite{NEURIPS2021_64ff7983}
-
-\textbf{Example:} In a loan approval system, sensitive attributes like race can be neutralized by removing them or encoding them in a way that the model cannot identify them, ensuring unbiased loan decisions.
 
 
 These pre-processing techniques are essential steps in the AI development pipeline to ensure that the subsequent models are fair, unbiased, and capable of providing equitable outcomes across various demographic categories.
@@ -270,27 +261,17 @@ In-processing techniques aim to mitigate fairness issues directly during the mod
 \subsubsection{Regularization}
 Regularization  aims to address and mitigate potential biases within models, particularly when sensitive attributes like race, gender, or ethnicity are involved. Regularization techniques work by adding constraints or penalties to the model's training process to reduce the impact of sensitive attributes on predictions and ensure that fairness is maintained. \cite{6137441}
 
-\textbf{Example:} In a hiring model, a regularization term can be added to the loss function to penalize the model for making biased predictions related to gender or ethnicity.
-
 \subsubsection{Reweighting Training Samples}
 Reweighting training samples is a technique used to address bias and promote fairness in machine learning models, particularly when sensitive attributes are involved. This approach involves assigning different weights to training samples to influence the learning process of the model in a way that mitigates bias and ensures that predictions are more equitable. \cite{10.1145/3178876.3186133}
-
-\textbf{Example:} In a credit scoring model, training samples from underrepresented demographics can be assigned higher weights to ensure their impact on model training is more significant.
 
 \subsubsection{Prejudice Remover Regularizer}
 The Prejudice Remover Regularizer is a technique used to mitigate bias and promote equitable outcomes in machine learning models. It's a form of regularization that aims to reduce discrimination by encouraging the model to make predictions that are less influenced by sensitive attributes such as race, gender, or ethnicity. \cite{10.1007/978-3-642-33486-3_3}
 
-\textbf{Example:} In a recommendation system, the prejudice remover regularizer can help ensure that recommendations are not influenced by the gender of the user.
-
 \subsubsection{Demographic Parity Loss}
 The Demographic Parity Loss is a fairness metric and regularization technique used to promote fairness and reduce bias, particularly with regard to sensitive attributes like race, gender, or ethnicity. It is designed to ensure that the predictions made by a model are distributed equally or fairly across different demographic groups. \cite{jiang2022generalized}
 
-\textbf{Example:} In a loan approval system, the demographic parity loss can be added to the loss function to minimize disparities in approval rates between different ethnic groups.
-
 \subsubsection{Fair Adversarial Training}
 air adversarial training is a technique used in the context of fairness to reduce bias and discrimination in machine learning models, particularly when sensitive attributes like race, gender, or ethnicity are involved. This approach incorporates adversarial networks into the training process to promote fairness and equitable outcomes. \cite{pmlr-v139-xu21b}
-
-\textbf{Example:} In a criminal recidivism prediction model, fair adversarial training can help mitigate the biased prediction rates for different racial groups.
 
 These in-processing techniques are vital tools in promoting fairness within AI models. Integrating them appropriately during model training can significantly contribute to reducing biases and achieving equitable outcomes across various demographic categories.
 
@@ -301,17 +282,11 @@ Post-processing techniques are applied after the model has been trained and pred
 \subsubsection{Threshold Adjustments}
 Threshold adjustment is a technique used to promote equity and reduce bias in machine learning models, especially in scenarios where sensitive attributes like race, gender, or age play a significant role. It involves modifying the decision threshold that determines whether a model's output is classified as a positive or negative prediction. This adjustment aims to balance the rates of false positives and false negatives across different demographic or group categories, ensuring that all groups are treated more fairly. \cite{10.1145/3447548.3467251}
 
-\textbf{Example:} In a predictive policing model, different arrest thresholds can be applied to balance false arrest rates between different neighborhoods, ensuring fair law enforcement practices.
-
 \subsubsection{Additive Counterfactuals}
 Additive counterfactual explanations in the context of fairness refer to a method used to assess and promote fairness in machine learning models. Counterfactual explanations are designed to provide insights into the impact of sensitive attributes on model predictions and help identify potential bias or discrimination. The "additive" aspect suggests that changes are made to the original input to create counterfactual scenarios, allowing for a better understanding of the fairness implications. \cite{NIPS2017_a486cd07}
 
-\textbf{Example:} In a loan approval system, generating counterfactuals can show rejected applicants how their outcomes would have differed with a fairer decision-making process.
-
 \subsubsection{Equalized Odds Post-processing}
 Equalized Odds Post-processing is a technique used to mitigate bias and promote equal treatment in machine learning models, particularly in scenarios involving binary classification tasks. This technique is applied after a model has made predictions and aims to adjust those predictions to ensure that equal error rates are achieved across different demographic or group categories. \cite{10.1145/3442188.3445902}
-
-\textbf{Example:} In a job application screening model, the predicted probabilities of being shortlisted can be equalized for candidates from different age groups to minimize age-based discrimination.
 
 
 These post-processing techniques are crucial in rectifying biases and promoting fairness in AI models. Utilizing them effectively can lead to more equitable outcomes and decisions across various demographic categories.
