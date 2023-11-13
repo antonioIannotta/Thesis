@@ -554,9 +554,25 @@ The fairness assessment in the Fair-by-Design workflow is an essential checkpoin
 
 Disparate Impact provides a quantitative measure of the disparate treatment of different groups within the dataset. It assesses the ratio of favorable outcomes for different demographic groups, highlighting potential bias and disparities. This metric serves as a crucial indicator during the data acquisition phase, allowing practitioners to make informed decisions regarding fairness considerations before proceeding to subsequent stages of the machine learning pipeline.
 
-\section{Data pre-processing}
+\subsection{Data pre-processing}
 
+The data pre-processing step in the Fair-by-Design workflow is designed as a comprehensive process, integrating both traditional and fairness-oriented sub-steps. The workflow envisions two primary sub-steps to ensure the dataset's readiness for subsequent model development.
 
+\subsubsection{Usual Pre-processing Step}
+
+The first sub-step in data pre-processing addresses typical operations aimed at enhancing the overall quality of the dataset. Handling missing values is a crucial pre-processing task. In this workflow, NaN values are filled using the mean for continuous attributes and the median for discrete attributes. This conventional operation ensures a more complete and standardized dataset.
+
+However, the Fair-by-Design workflow goes beyond standard pre-processing by incorporating operations specific to protected attributes and the output variable. These operations set the stage for defining the learning prediction goal and establishing how the protected attributes should be treated.
+
+\begin{itemize}
+    \item \textbf{Handling Protected Attributes:} Protected attributes, assumed as categorical attributes in this workflow, undergo a transformation. The most frequent value for each protected attribute is computed, and instances with this value are replaced with 1, while others are replaced with 0. This binary encoding enables the model to recognize instances that are privileged concerning specific attributes.
+    
+    \item \textbf{Handling Output Variable:} The treatment of the output variable depends on its nature. If categorical, the most frequent value is computed, and instances with this value are replaced with 1, while others are replaced with 0. This transforms the prediction task into determining whether the sample belongs to the most frequent outcome. For continuous output, values above the mean are replaced with 1, and others with 0, converting the prediction task into establishing whether the sample is above the mean.
+\end{itemize}
+
+This nuanced pre-processing step sets the groundwork for a fair and unbiased learning prediction, aligning the dataset with the ethical considerations embedded in the Fair-by-Design workflow.
+
+\subsubsection{Fairness pre-processing algorithms}
 
 
 %----------------------------------------------------------------------------------------
