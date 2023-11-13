@@ -134,6 +134,27 @@ The integration of AI and ML within these systems has precipitated a cascade of 
 These ethical frameworks serve as a safeguard, ensuring that AI systems adhere to the principles of fairness, transparency, and accountability. They stand as the bulwark against potential harm and serve to distribute the benefits of AI equitably across society. As this chapter unfolds, it endeavors to delve deeper into these ethical considerations, offering insights into how technology and ethics converge in the evolving landscape of AI and ML. \cite{GRUETZEMACHER2022102884}.
 
 \newpage
+\section{Traditional Machine Learning Workflow}
+
+The traditional machine learning (ML) workflow comprises several fundamental steps, each playing a crucial role in the development of predictive models. These steps are designed to transform raw data into a trained and evaluated model. The following sections outline the four main stages of the traditional ML workflow: data acquisition, data pre-processing, modeling, and performance evaluation.
+
+\subsection{Data Acquisition}
+
+The first step in any machine learning project is acquiring the necessary data. This involves identifying and collecting datasets relevant to the problem at hand. The quality and quantity of the data directly impact the performance and generalization ability of the model. Data acquisition may involve obtaining datasets from public repositories, creating custom datasets, or integrating data from various sources.
+
+\subsection{Data Pre-processing}
+
+Once the data is collected, it undergoes pre-processing to make it suitable for training machine learning models. This stage involves cleaning the data to handle missing values, removing outliers, and addressing any inconsistencies. Additionally, feature engineering may be performed to extract relevant information and create new features. Data normalization or scaling may also be applied to ensure that all features contribute equally to the model.
+
+\subsection{Modeling}
+
+With pre-processed data, the next step is to select and train a machine learning model. This involves choosing an appropriate algorithm based on the nature of the problem (classification, regression, etc.) and the characteristics of the data. The selected model is then trained on a portion of the dataset, learning the patterns and relationships within the data. Hyperparameter tuning may be conducted to optimize the model's performance.
+
+\subsection{Performance Evaluation}
+
+The final stage of the traditional ML workflow is evaluating the model's performance on unseen data. This is typically done using a separate test dataset that the model has not encountered during training. Common evaluation metrics include accuracy, precision, recall, F1 score, and area under the receiver operating characteristic (ROC) curve. The goal is to assess how well the model generalizes to new, unseen instances and to identify areas for potential improvement.
+
+\newpage
 \section{Bias}
 
 Artificial Intelligence (AI) is undeniably a transformative force, poised to reshape multiple dimensions of our existence in profound ways. Its versatile applications extend far and wide, from refining and expediting decision-making processes to seamlessly automating mundane and repetitive tasks. In this ever-evolving landscape, AI systems are becoming increasingly integrated into our daily experiences, orchestrating a paradigm shift in how we interact with the world around us. 
@@ -512,6 +533,29 @@ The Fair-by-Design workflow serves as the linchpin of this research. It guides t
 In the pages that follow, the intricacies of this workflow will be explored, providing a step-by-step elucidation of its various components and how they collectively contribute to the realization of a fair and unbiased AI system. This workflow will not only be a central theme throughout this chapter but also a thread that ties the entire thesis together. It signifies the commitment to addressing bias and promoting fairness within AI systems, particularly in the context of the educational domain. 
 
 The journey will embark on a comprehensive exploration of the Fair-by-Design workflow, with the ultimate goal of mitigating bias, ensuring fairness, and achieving equitable outcomes in AI-driven decision-making.
+
+\section{Workflow description}
+
+The Fair-by-Design workflow is structured upon the conventional machine learning (ML) workflow, with notable modifications in data acquisition, data pre-processing, and performance evaluation. The modeling stage adheres to traditional ML practices, focusing on algorithm selection and training.
+
+This section delves into the specifics of these adaptations, illustrating how the Fair-by-Design workflow introduces a nuanced approach to data acquisition, redefines data pre-processing strategies, and enhances the performance evaluation process. By retaining the robust modeling methodologies of traditional ML, the Fair-by-Design workflow integrates established techniques with a heightened commitment to fairness, ensuring equitable outcomes in machine learning applications.
+
+\subsection{Data Acquisition}
+
+In the Fair-by-Design workflow, the traditional data acquisition process is augmented with a deeper focus on the nature of the data, particularly emphasizing the need to identify and understand sensitive attributes. While conventional data acquisition primarily aims at collecting relevant datasets, the Fair-by-Design approach recognizes the necessity of an in-depth exploration of sensitive attributes, pivotal for evaluating fairness.
+
+Understanding these sensitive attributes is critical, as they play a significant role in determining the fairness of the model's outcomes. This knowledge can be obtained through direct communication with stakeholders, as sensitive attributes may sometimes be a deliberate business choice. Alternatively, common-sense reasoning can be applied to identify potential sensitive attributes that might impact fairness.
+
+Upon acquiring the data and obtaining a comprehensive understanding of the sensitive attributes, the next step in the Fair-by-Design workflow involves a fairness evaluation. This evaluation aims to assess the fairness of the dataset concerning these identified sensitive attributes, setting the stage for subsequent model development.
+
+\subsubsection{Fairness Assessment}
+
+The fairness assessment in the Fair-by-Design workflow is an essential checkpoint, ensuring that the dataset is unbiased and aligns with ethical considerations. Disparate Impact, a widely used fairness metric, is employed to quantify and evaluate the fairness of the dataset over the identified sensitive attributes.
+
+Disparate Impact provides a quantitative measure of the disparate treatment of different groups within the dataset. It assesses the ratio of favorable outcomes for different demographic groups, highlighting potential bias and disparities. This metric serves as a crucial indicator during the data acquisition phase, allowing practitioners to make informed decisions regarding fairness considerations before proceeding to subsequent stages of the machine learning pipeline.
+
+\subsection{Data pre-processing}
+
 
 
 
