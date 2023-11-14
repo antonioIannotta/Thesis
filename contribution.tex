@@ -1,59 +1,6 @@
 \chapter{Contribution} % possible chapter for Projects
 \label{chap:contribution}
 %----------------------------------------------------------------------------------------
-\section{Dataset description}
-
-Before delving into the intricate details of the algorithm implementations presented earlier, it is imperative to provide a comprehensive overview of the dataset on which these algorithms have been applied. The chosen dataset for this work is the \emph{Canary Island Educational dataset}, an invaluable resource that underpins the empirical exploration of bias mitigation strategies in the context of the educational system in the Canary Islands. 
-
-The Canary Island Educational dataset is a rich and expansive repository of information, meticulously compiled to capture various facets of the educational landscape within the Canary Islands. This dataset comprises the comprehensive census of students enrolled over four distinct academic years, offering a multifaceted glimpse into the educational ecosystem. 
-
-The dataset encompasses a diverse array of attributes and data points, encapsulating critical information such as student demographics, academic performance, socioeconomic factors, and other pertinent variables. These attributes collectively provide a holistic perspective on the educational landscape, enabling a nuanced analysis of the factors that influence student outcomes and experiences. 
-
-The temporal dimension of the dataset, spanning four academic years, further enriches the analytical potential. It allows for the investigation of temporal trends, shifts in educational policies, and the evolution of student characteristics over time. This temporal depth is particularly valuable when examining the efficacy of bias mitigation strategies, as it facilitates the assessment of their impact across different academic years. 
-
-The Canary Island Educational dataset is not merely a repository of numbers and statistics; it is a window into the educational opportunities and challenges faced by students in the Canary Islands. By harnessing the insights gleaned from this dataset, it becomes possible to proactively address biases and promote equity within the educational system, ultimately striving for a more inclusive and just educational landscape.
-
-\subsection{Pre-processing operations on Canary Island Educational dataset}
-A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
-\subsubsection{Protected attributes choice}
-After a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
-\begin{enumerate}
-    \item sex
-    \item capital island: if the student comes from the capital of the city
-    \item public\textunderscore private: if the school is public or private
-    \item inmigrant: if the student is either inmigrant or not
-    \item inmigrant second gen: if the student is either inmigrand of second gen or not
-    \item parent expectation
-    \item mothly houseold income
-    \item cconomic, social and cultural satus index
-\end{enumerate}
-\subsubsection{Attributes pre-processing}
-The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as follows.
-\begin{itemize}
-    \item Each categorical attribute has been replaced with an encoded value
-    \item For each protected attribute has been computed the following operation:
-    \begin{itemize}
-        \item If the protected attirbute is a binary one, assuming that the binary values may not be onlu 0 and 1, then the greatest value has been replaced with 1 and the other one with 0.
-        \item If the protected attribute is a categorical one then is performed a search of the most frequent value in the column. Then this value in the column is replaced with 1, otherwise with 0. With this policy is established that the fairness must be guaranteed between the most frequent value and the others.
-        \item if the protected attribute is a continuous one then is computed the the theshold resulting from the sum of minimum value and maximum value in the column divided by 2. Every value in the column above this threshold is replaced with 1, otherwise with 0. This means that the fairness must be guaranteed between the students that are above the threshold for a specific attribute and the other ones.
-    \end{itemize}
-\end{itemize}
-
-\subsection{Goal of this work}
-The several output in this dataset are considered as protected attributes. More specifically the goal of this work is to predict the english level of a given student. Since the \emph{level\textunderscore ing} attribute is a categorical ones then the output states if a student has the same level of the majority of the students or if not. The goal is to make the predictor and the prediction fair, this means that the belonging of a student to a specific output, the match indeed, must no be influenced by any other factors rather than the predictor's mechanisms.
-
-
-Following the information reported into the \emph{Dataset} section the models presented in the following have been trained with the goal to predict wether the english level is above or behind the thershold. 
-
-For each grade have been applied the following approaches, in order to perform a proper comparaison:
-\begin{enumerate}
-    \item No fairness assumptions are made
-    \item Fairness through unawareness
-    \item Fairness through unawareness with proxy detection via apriori
-    \item Fairness through unawareness with proxy detection via variables only
-    \item Fairness through data rebalancing
-\end{enumerate}
-
 \newpage
 %----------------------------------------------------------------------------------------
 %\chapter{Implementation} % possible chapter for Projects
