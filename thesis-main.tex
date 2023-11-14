@@ -794,18 +794,18 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
     \begin{algorithmic}[1]
         \Require{dataset}
         \Ensure{fair dataset}
-        \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$ \Comment{Initialize the global variable}
+        \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$
         \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}
             \State proxies $\gets$ \textit{proxy\_detection(dataset)}\;
             \If{proxies \textbf{is empty}}
                 \State dataset $\gets$ \textit{protected\_attributes\_free\_dataset(dataset)}\;
-                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{protected\_attributes}$ \Comment{Append protected attributes}
+                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{protected\_attributes}$ 
             \Else
                 \State dataset $\gets$ \textit{proxy\_free\_dataset(dataset)}\;
-                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{proxies}$ \Comment{Append proxies}
+                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{proxies}$
             \EndIf
         \EndWhile
-        \State dataset $\gets$ \textit{proxy\_protected\_attributes\_avoiding(dataset, proxy\_protected\_attributes)} \Comment{Apply the avoidance function}
+        \State dataset $\gets$ \textit{proxy\_protected\_attributes\_avoiding(dataset, proxy\_protected\_attributes)}
         \State \textbf{return} dataset
     \end{algorithmic}
 \end{algorithm}
