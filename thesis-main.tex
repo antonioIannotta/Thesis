@@ -793,7 +793,7 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
 \begin{algorithm}[H]
     \caption{Fairness through unawareness with proxy detection}
     \label{alg:fairness_algorithm}
-    \begin{algorithmic}
+    \begin{algorithmic}[1]
         \Require{dataset}
         \Ensure{fair dataset}
         \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$
@@ -838,7 +838,7 @@ It's relevant to provide an explaination of the algorithm above:
 \begin{algorithm}[H]
     \caption{Dataset Fairness Checking}
     \label{alg:fairness_checking}
-    \begin{algorithmic}
+    \begin{algorithmic}[2]
         \Require{dataset, protected\_attribute}
         \Ensure{Boolean value indicating fairness}
         \If{\textit{fairness\_evaluation(dataset, protected\_attribute)} \textbf{is empty}}
@@ -854,7 +854,7 @@ This algorithm assesses the fairness of a given dataset with respect to a specif
 \begin{algorithm}[H]
     \caption{Fairness Evaluation}
     \label{alg:fairness_evaluation}
-    \begin{algorithmic}
+    \begin{algorithmic}[3]
         \Require{dataset, output\_column, protected\_attributes}
         \Ensure{List of attributes failing fairness evaluation}
         \State fairness\_evaluation\_list $\gets$ empty list\;
@@ -874,7 +874,7 @@ For each protected attribute, the algorithm computes a fairness metric using the
 \begin{algorithm}[H]
     \caption{Proxy and Protected Attributes Avoiding}
     \label{alg:proxy_protected_attributes_avoiding}
-    \begin{algorithmic}
+    \begin{algorithmic}[4]
         \Require{dataset, proxy\_protected\_attributes}
         \Ensure{Processed dataset avoiding proxy and protected attributes}
         
@@ -899,7 +899,7 @@ The only goal of this algorithm is to avoid the effects of proxy and protected a
 \begin{algorithm}[H]
     \caption{Proxy Detection via Variables Only}
     \label{alg:proxy_detection_variables_only}
-    \begin{algorithmic}
+    \begin{algorithmic}[5]
         \Require{protected\_attributes\_list, attributes}
         \Ensure{List of proxies}
         
@@ -922,7 +922,7 @@ This algorithm returns the proxy list obtained the fairness metric choice as est
 \begin{algorithm}[H]
     \caption{Proxy Detection via FP-growth}
     \label{alg:proxy_detection_fp_growth}
-    \begin{algorithmic}
+    \begin{algorithmic}[6]
         \Require{fp\_growth\_dataset}
         \Ensure{List of proxies}
         \State $\text{proxy\_list} \gets \{\}$ \Comment{Initialize an empty list to store detected proxies}
@@ -941,6 +941,89 @@ This algorithm returns the proxy list obtained computing the fairness metric cho
 
 \subsection{Fairness through data rebalancing}
 
+In this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
+
+The essence of this approach revolves around the augmentation of the dataset by introducing new data instances that offer a more comprehensive and inclusive representation of the underlying population. This expanded dataset is designed to be more diverse, representative, and balanced, transcending the limitations of the original data and fostering a more nuanced understanding of fairness. 
+
+The introduction of augmented data instances leads to a redefined notion of fairness within the AI system. Instead of solely focusing on the absence of biased attributes, fairness is now measured in terms of the dataset's inclusivity and its ability to capture the diversity and nuances present within the population it seeks to serve. 
+
+This approach aligns with the broader philosophy of ensuring that AI systems are equitable, just, and capable of making informed and unbiased decisions. By augmenting the dataset, it strives to bridge the gaps in representation and provide a more equitable playing field for all individuals, regardless of their background or characteristics. 
+
+The process of data augmentation necessitates a careful selection of techniques and methodologies that can introduce new data instances while maintaining the integrity and quality of the dataset. These techniques may encompass oversampling, synthetic data generation, or other data synthesis methods, each tailored to the specific context and objectives of the AI system.
+
+\subsubsection{A New Definition of Fairness}
+
+In traditional fairness definitions, the focus often revolves around ensuring fair treatment for individual protected attributes, denoted as $A_1, A_2, \ldots, A_k$. While this is undoubtedly crucial, a more comprehensive understanding of fairness calls for an examination of fairness in the context of combinations of protected attributes and the output. A new definition of fairness is proposed, which takes into account the representation of all combinations of $k$ protected attributes and the output, aiming for equitable representation across these combinations.
+
+\subsubsection{Equal Representation of Combinations}
+
+A fair dataset is defined as one in which, for each combination of protected attributes $\{A_1, A_2, \ldots, A_k\}$ and the output $O_j$, the representation is equal and proportional. Mathematically, a dataset is fair if:
+
+\[
+\forall i_1, i_2, \ldots, i_k, j: \frac{|D_{i_1, i_2, \ldots, i_k, j}|}{|D|} = \text{constant}
+\]
+
+where:
+- $D$ is the dataset,
+- $|D_{i_1, i_2, \ldots, i_k, j}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ and output $O_j$,
+- $|D|$ is the total number of samples in the dataset.
+
+This entails that any combination of demographic groups, defined by the protected attributes, and the output should have comparable representation, thereby fostering a balanced and unbiased dataset.
+
+\subsubsection{Promoting Comprehensive Fairness}
+
+By striving for equal representation of combinations of protected attributes, is addressed a fundamental aspect of fairness that transcends individual attributes. This approach provides a more nuanced understanding of fairness by considering the intersections of various demographic groups. It encourages a broader examination of potential biases that may arise when considering multiple attributes simultaneously.
+
+Incorporating this definition of fairness into the dataset rebalancing process enables us to promote a comprehensive notion of fairness, aligning with the principles of equal opportunity and non-discrimination across all combinations of protected attributes. Our subsequent algorithm and experimental evaluation are designed to actualize this definition and demonstrate its effectiveness in achieving a more equitable representation within the dataset.
+
+At this point it's necessary to begin with a formalization for the algorithm itself.
+
+
+Let \( D \) be a dataset \( R^{n \times m} \), where \( n \) is the number of samples and \( m \) is the number of features. Let \( k \) be the number of protected variables represented as \( R^{n \times 1} \), and let there be a single output variable represented as \( R^{n \times 1} \).
+
+A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
+
+\[
+\mathcal{R}: R^{n \times m} \rightarrow R^{l \times m}
+\]
+
+where \( l > m \), and the function \( \mathcal{R} \) transforms the input dataset \( D \) of dimensions \( n \times m \) into an output dataset \( D' \) of dimensions \( l \times m \).
+
+
+
+Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
+
+Consider a set \( \text{Combination-frequency} \) with occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
+
+Mathematically, the number of rows (\( l \)) the final dataset should have for each combination is given by:
+
+\[
+l = \text{Max}(\text{Combination-frequency})
+\]
+
+
+
+Let \( l \) be the desired number of rows for the final dataset. For each combination of values, is calculated the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
+
+The total number of rows to be added is given by:
+
+\[
+\text{total\_rows\_to\_add} = l - \sum_{i=1}^{2^{(k+1)}} \text{occurrence}_i
+\]
+
+For each iteration:
+
+\begin{itemize}
+
+    \item The values of the protected and output variables are set according to the specific combination.
+    
+    \item For all other attributes, a random value \( \text{random\_value}_{ij} \) is generated, where \( j \) represents the specific attribute and \( i \) represents the row being added for that attribute. \( \text{random\_value}_{ij} \) is within the minimum and maximum range for attribute \( j \).
+
+\end{itemize}
+
+\subsubsection{Pseudocode}
+
+%WRITE THE PSEUDOCODE FOR DATA REBALANCING
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
