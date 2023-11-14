@@ -2,71 +2,8 @@
 \label{chap:contribution}
 %----------------------------------------------------------------------------------------
 \
-\subsection{Data pre-processing}
-The data pre-processing stage stands as a pivotal component within the workflow, responsible for executing essential operations on the data that has been acquired in the previous stage. This preparatory phase encompasses a range of transformative activities, each aimed at enhancing the quality, reliability, and suitability of the data for subsequent analysis and modeling. 
-
-The core operations conducted during data pre-processing encompass several critical dimensions. Firstly, the stage addresses the management of missing data, including the filling of null or missing values. This operation is essential to mitigate the potential for information loss and ensure that the dataset remains complete and robust. Various techniques, such as imputation, interpolation, or removal, may be employed to address missing values, guided by the specific dataset and the problem's context. 
-
-Another fundamental aspect of data pre-processing involves data normalization, which serves to standardize the data's scale and distribution. This normalization ensures that different attributes within the dataset are on the same scale, preventing any single attribute from disproportionately influencing the analysis or modeling process. Techniques like Min-Max scaling, z-score normalization, or log transformation are commonly employed to achieve this standardization. 
-
-Furthermore, the data pre-processing stage may involve attribute selection or removal based on a predefined policy. Attributes that are deemed irrelevant, redundant, or not aligned with the objectives of the AI system may be excluded from the dataset. This step not only reduces the dimensionality of the data but also enhances the model's efficiency and interpretability. 
-
-Data pre-processing is a multifaceted and nuanced endeavor that plays a critical role in setting the stage for subsequent phases of the workflow. Its meticulous execution ensures that the data is clean, complete, and appropriately prepared for the modeling and validation processes that follow. 
-
-In summary, the data pre-processing stage serves as a foundational and indispensable link in the workflow chain, working to prepare and refine the data acquired in the previous stage, ultimately contributing to the achievement of fairness and accuracy in the AI system.
-
-\subsection{Fairness pre-processing}
-The integration of fairness considerations marks a critical juncture within the workflow, as it is the stage where fairness is addressed, thereby imbuing the entire process with the ethos of "fair-by-design." This phase represents the proactive commitment to fairness, a fundamental principle guiding the development of equitable and unbiased AI systems. 
-
-The presence and nature of this step within the workflow are contingent upon the underlying assumptions regarding fairness. In some instances, when no explicit assumptions about fairness are made, this step may be void, and the workflow proceeds with a more conventional approach. However, for situations where fairness is a paramount concern, this stage becomes instrumental. 
-
-One approach to addressing fairness, particularly in the context of "fairness through unawareness," involves the removal of protected attributes from the dataset. This approach seeks to mitigate the impact of sensitive attributes, such as race, gender, or ethnicity, on the AI model's predictions by excluding these attributes from the analysis. While it offers a degree of fairness, it may not comprehensively address fairness challenges. 
-
-An alternative and more comprehensive approach is to incorporate one of the algorithms proposed in this work, which are presented in the following chapters. These algorithms are specifically designed to tackle fairness challenges and mitigate biases within the AI system. They offer a proactive and targeted means of addressing fairness, going beyond the scope of "fairness through unawareness." 
-
-The inclusion of these algorithms signifies a commitment to fairness that extends from the earliest stages of AI system design. By actively integrating fairness into the workflow, the goal is to ensure that the AI system generates predictions and decisions that are not only accurate but also equitable and just. 
-
-In summary, the fairness integration step represents a pivotal phase in the "fair-by-design" workflow. Its presence and nature are shaped by the assumptions and priorities related to fairness, and it serves as a proactive means of addressing bias and promoting fairness within the AI system.
-
-\subsection{Model Tuning}
-The model training step represents a pivotal phase within the workflow, entrusted with the critical responsibility of developing a robust and accurate AI model using the data obtained in the previous stage. This phase is the crucible where data is transformed into actionable insights and predictions. 
-
-The model training process begins with the selection of an appropriate algorithm or model architecture tailored to the specific objectives of the AI system. The chosen model is then fed with the pre-processed data, which has been meticulously cleaned, normalized, and, where applicable, imbued with fairness considerations. 
-
-The model training phase leverages advanced techniques and methodologies to iteratively refine the model's parameters, enhancing its predictive capabilities. This optimization process seeks to achieve the delicate balance of minimizing prediction errors while simultaneously upholding the principles of fairness, equity, and unbiased decision-making. 
-
-The training phase may involve a range of considerations, such as hyperparameter tuning, cross-validation, and regularization, to fine-tune the model's performance. Notably, in the context of "fair-by-design," the model training process may also integrate fairness-aware algorithms or techniques proposed in this work, ensuring that fairness is ingrained within the model's learning process. 
-
-Throughout the model training phase, continuous monitoring and evaluation are crucial to assess the model's performance, including its fairness outcomes. Metrics and criteria related to fairness, accuracy, and ethical considerations are employed to gauge the model's effectiveness in producing equitable and unbiased predictions. 
-
-The culmination of the model training phase results in a well-honed AI model, capable of making informed, accurate, and fair predictions. It is the embodiment of the data's transformation into actionable knowledge, and it is primed to contribute to the overarching goals of the AI system. 
-
-In summary, the model training step is central to the workflow, where data is transmuted into the intelligence and predictive power of the AI system. It embodies the principles of fairness, accuracy, and ethical decision-making, shaping the AI model into a powerful tool for promoting equity and justice.
-
-\subsection{Performance evaluation}
-The model validation step represents a pivotal phase within the workflow, focused on the rigorous evaluation of the AI model previously trained. This evaluation process is essential for ensuring the model's performance, fairness, and overall effectiveness. 
-
-Model validation begins with the development of comprehensive evaluation criteria and metrics. These criteria encompass a range of dimensions, including predictive accuracy, robustness, and ethical considerations related to fairness. Accuracy metrics assess the model's ability to make correct predictions, while fairness metrics gauge its performance in generating equitable and unbiased outcomes. 
-
-To assess predictive accuracy, common metrics such as precision, recall, F1 score, and area under the receiver operating characteristic curve (AUC-ROC) may be employed. These metrics provide a quantitative measure of the model's predictive power and its ability to discriminate between different classes or categories. 
-
-In the context of fairness, specialized fairness metrics, including disparate impact, equal opportunity, and demographic parity, are utilized to evaluate the model's performance with respect to different demographic groups. These metrics offer insights into the model's propensity to generate disparate outcomes based on sensitive attributes like race, gender, or ethnicity. 
-
-The model validation phase also incorporates techniques like cross-validation to assess the model's robustness and generalizability. Cross-validation involves partitioning the data into multiple subsets and evaluating the model's performance on each subset, ensuring that it can make consistent and accurate predictions across different data splits. 
-
-Furthermore, model validation may involve sensitivity analyses, where the model's performance is evaluated under varying conditions or with perturbed data to identify potential vulnerabilities and areas for improvement. 
-
-The results of the model validation are integral to gauging the model's effectiveness, uncovering potential biases, and making informed decisions about further refinement or deployment. The insights gained from the validation process contribute to the ongoing quest for fairness, accuracy, and ethical decision-making within the AI system. 
-
-In summary, the model validation step plays a fundamental role in the workflow, offering a comprehensive evaluation of the AI model's performance, fairness, and predictive power. Its insights are crucial for guiding the system's development and ensuring that it aligns with the principles of fairness, equity, and accuracy. 
 
 
-Here's the graphical representation of the presented workflow:
-\begin{center}
-\includegraphics[width=.2\textwidth, height=0.6\textwidth]{FbD.png}
-\end{center}
-\newpage
-In the following are presented the several algorithms that have been put into the \textbf{Fairness pre-processing} step to perform a final comparaison.
 \section{Fairness through unawareness with proxy detection}
 The algorithm presented in this section is rooted in the fundamental concept of "Fairness through Unawareness." This approach is underpinned by the overarching goal of mitigating bias by removing certain attributes from the dataset. Notably, in this scenario, the removal extends beyond solely the protected attributes, introducing a novel perspective on addressing bias. 
 
