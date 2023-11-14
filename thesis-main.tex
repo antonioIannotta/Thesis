@@ -1064,7 +1064,25 @@ A critical aspect of our work revolves around the selection and interpretation o
 
 In the Fairness through Unawareness algorithms, particularly via Apriori and FP-growth, the Disparate Impact metric takes on a distinctive form. Here, each row in the FP-growth dataset undergoes a tailored treatment. The value of the antecedent is considered the privileged value for the attribute, while the value of the consequent is treated as the outcome. This nuanced interpretation aligns with the intricacies of our workflow, enhancing the relevance and effectiveness of the fairness assessment within the Unawareness paradigm.
 
+\section{Data Generation in Fairness through Rebalancing}
 
+An essential facet of the Fairness through Rebalancing algorithm lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
+
+For each value outside the combination set, the algorithm discerns both the least frequent and most frequent occurrences. The next step involves randomly selecting a value for the new row to be added to the dataset. This random selection occurs within the range defined by the least frequent and most frequent values. The careful orchestration of this process ensures that the augmented dataset maintains statistical coherence while introducing the necessary variations to rebalance the fairness aspects within the model.
+
+This deliberate approach to data generation underscores the commitment to preserving the integrity of the dataset while mitigating potential biases, contributing to the overarching goal of developing fair and unbiased machine learning models.
+
+\section{Fairness Evaluation with fairlearn}
+
+The critical task of evaluating the fairness of the developed machine learning models was conducted using the fairlearn library. This powerful Python library provides a comprehensive set of tools for assessing and mitigating bias in machine learning models, aligning with the broader goals of promoting fairness and equity.
+
+Two key fairness metrics, namely \textit{equalized\_odds\_ratio} and \textit{demographic\_parity\_ratio}, were employed to scrutinize the performance of the models. These metrics are integral to the fairlearn library, offering a quantitative means to measure disparities and imbalances across different demographic groups.
+
+\textbf{Equalized Odds Ratio} ensures parity in both true positive and false positive rates across various demographic groups. This metric is crucial for achieving fairness by minimizing discrepancies in model predictions for different subpopulations.
+
+\textbf{Demographic Parity Ratio} necessitates the equality of positive outcomes' proportions for all demographic groups, irrespective of their protected attributes. This metric facilitates a broader understanding of the model's impact on different groups, contributing to a more unbiased evaluation.
+
+Leveraging fairlearn not only enhances the precision of fairness evaluations but also aligns with contemporary best practices in fairness-aware machine learning, reinforcing the commitment to ethical AI development.
 %----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
