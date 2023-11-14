@@ -617,6 +617,8 @@ The proposed algorithms are elucidated as follows:
 
 \end{itemize}
 
+Before apply the presented algorithm or each other fairness pre-processing algorithm, the fundamental design choice at this step of the workflow is to choose the fairness metric.
+
 The forthcoming section (\cref{section:fairness}) will provide an in-depth exploration of each algorithm, offering a comprehensive understanding of their theoretical underpinnings, practical implementation, and the specific fairness considerations they target. This detailed examination aims to equip practitioners with the insights necessary to make informed decisions about algorithm selection within the Fair-by-Design workflow.
 
 \subsection{Performance evaluation}
@@ -809,6 +811,136 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
         \State \textbf{return} dataset
     \end{algorithmic}
 \end{algorithm}
+
+It's relevant to provide an explaination of the algorithm above:
+
+\begin{enumerate}
+
+    \item \emph{Initialization}: Initialize the global variable \textit{proxy\_protected\_attributes} as an empty set.
+
+    \item \emph{Main Loop}:
+
+        \begin{itemize}
+
+            \item Continue iterating until the dataset is fair or no protected attributes are present.
+
+            \item Inside the loop, detect proxies and decide whether to remove proxies or protected attributes.
+
+        \end{itemize}
+
+    \item \emph{Avoidance Step}: After the loop, apply the \textit{proxy\_protected\_attributes\_avoiding} function to mitigate the impact of proxies and protected attributes.
+    
+    \item \emph{Output}: Return the resulting fair dataset.
+
+\end{enumerate}
+
+
+\begin{algorithm}[H]
+    \caption{Dataset Fairness Checking}
+    \label{alg:fairness_checking}
+    \begin{algorithmic}[1]
+        \Require{dataset, protected\_attribute}
+        \Ensure{Boolean value indicating fairness}
+        \If{\textit{fairness\_evaluation(dataset, protected\_attribute)} \textbf{is empty}}
+            \State \KwRet{\textbf{True}}\;
+        \EndIf
+        \State \KwRet{\textbf{False}}
+    \end{algorithmic}
+\end{algorithm}
+
+This algorithm assesses the fairness of a given dataset with respect to a specified protected attribute. The goal is to determine whether the dataset exhibits fairness concerning the provided attribute. 
+
+
+\begin{algorithm}[H]
+    \caption{Fairness Evaluation}
+    \label{alg:fairness_evaluation}
+    \begin{algorithmic}[1]
+        \Require{dataset, output\_column, protected\_attributes}
+        \Ensure{List of attributes failing fairness evaluation}
+        \State fairness\_evaluation\_list $\gets$ empty list\;
+        \State output $\gets$ dataset[output\_column]\;
+        \For{attribute \textbf{in} protected\_attributes}
+            \If{\textit{metric(attribute, output)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, output)} $\geq$ 1.25}
+                \State \textit{fairness\_evaluation\_list.append(attribute)}\;
+            \EndIf
+        \EndFor
+        \KwRet{fairness\_evaluation\_list}
+    \end{algorithmic}
+\end{algorithm}
+
+For each protected attribute, the algorithm computes a fairness metric using the \textit{metric} function and compares it against predefined thresholds (0.8 and 1.25). If the metric indicates a failure in fairness, the attribute is added to the \textit{fairness\_evaluation\_list}. The algorithm returns a list of attributes that fail the fairness evaluation.
+
+
+\begin{algorithm}[H]
+    \caption{Proxy and Protected Attributes Avoiding}
+    \label{alg:proxy_protected_attributes_avoiding}
+    \begin{algorithmic}[1]
+        \Require{dataset, proxy\_protected\_attributes}
+        \Ensure{Processed dataset avoiding proxy and protected attributes}
+        
+        \State $D \gets \text{copy}(dataset)$
+        
+        \For{attribute \textbf{in} proxy\_protected\_attributes}
+            \If{\textit{is\_protected\_attribute}(attribute)}
+                \State $D[\text{attribute}] \gets 0$ 
+            \EndIf
+            \If{\textit{is\_proxy\_attribute}(attribute)}
+                \State $D[\text{attribute}] \gets 0$
+            \EndIf
+        \EndFor
+        
+        \KwRet{D}
+    \end{algorithmic}
+\end{algorithm}
+
+The only goal of this algorithm is to avoid the effects of proxy and protected attributes on the training. This way the fairness evaluation in the \emph{Performance evaluation} step of the workflow will be accurate.
+
+
+\begin{algorithm}[H]
+    \caption{Proxy Detection via Variables Only}
+    \label{alg:proxy_detection_variables_only}
+    \begin{algorithmic}[1]
+        \Require{protected\_attributes\_list, attributes}
+        \Ensure{List of proxies}
+        
+        \State $\text{proxy\_list} \gets$ empty list\;
+        
+        \For{$\text{protected\_attribute}$ \textbf{in} $\text{protected\_attributes\_list}$}
+            \For{$\text{attribute}$ \textbf{in} $\text{attributes}$ \textbf{and not in} $\text{protected\_attributes\_list}$ \textbf{and not in} $\text{proxy\_list}$}
+                \If{\textit{metric(attribute, protected\_attribute)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, protected\_attribute)} $\geq$ 1.25}
+                    \State $\text{proxy\_list.append(attribute)}$
+                \EndIf
+            \EndFor
+        \EndFor
+        
+        \KwRet{proxy\_list}
+    \end{algorithmic}
+\end{algorithm}
+
+This algorithm returns the proxy list obtained the fairness metric choice as established in the proposed workflow for each non-sensitive attribute and each protected attribute.
+
+\begin{algorithm}[H]
+    \caption{Proxy Detection via FP-growth}
+    \label{alg:proxy_detection_fp_growth}
+    \begin{algorithmic}[1]
+        \Require{fp\_growth\_dataset}
+        \Ensure{List of proxies}
+        \State $\text{proxy\_list} \gets \{\}$ \Comment{Initialize an empty list to store detected proxies}
+        \For{\text{consequent} \textbf{in} fp\_growth\_dataset}
+            \For{\text{antecedent} \textbf{in} fp\_growth\_dataset}
+                \If{\textit{metric(antecedent, consequent)} $\leq$ 0.8 \textbf{or} \textit{metric(antecedent, consequent)} $\geq$ 1.25}
+                    \State \textit{proxy\_list.append(antecedent)}
+                \EndIf
+            \EndFor
+        \EndFor
+        \State \textbf{return} \text{proxy\_list}
+    \end{algorithmic}
+\end{algorithm}
+
+This algorithm returns the proxy list obtained computing the fairness metric choice as established in the proposed workflow on each antecedent and the corresponding consequent.
+
+\subsection{Fairness through data rebalancing}
+
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
