@@ -797,16 +797,16 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
 \begin{algorithm}
     \caption{Fairness through Unawareness with Proxy Detection}
     \begin{algorithmic}[1]
-        \Procedure{FairnessUnawarenessProxy}{$\text{dataset}$}
-        \While{\textbf{not} $\text{dataset\_fair(dataset)}$ \textbf{or} $\text{protected\_attributes}$ \textbf{in} $\text{dataset}$}
-            \State $\text{proxies} \gets \text{proxy\_detection(dataset)}$
-            \If{\text{proxies is empty}}
-                \State $\text{dataset} \gets \text{protected\_attributes\_free\_dataset(dataset)}$
+        \Procedure{FairnessUnawarenessProxy}{\textit{dataset}}
+        \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}
+            \State \textit{proxies} $\gets$ \textit{proxy\_detection(dataset)}
+            \If{\textit{proxies} \textbf{is empty}}
+                \State \textit{dataset} $\gets$ \textit{protected\_attributes\_free\_dataset(dataset)}
             \Else
-                \State $\text{dataset} \gets \text{proxy\_free\_dataset(dataset)}$
+                \State \textit{dataset} $\gets$ \textit{proxy\_free\_dataset(dataset)}
             \EndIf
         \EndWhile
-        \State \textbf{return} $\text{dataset}$
+        \State \textbf{return} \textit{dataset}
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
