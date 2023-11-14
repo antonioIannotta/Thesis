@@ -542,17 +542,25 @@ This section delves into the specifics of these adaptations, illustrating how th
 
 \subsection{Data Acquisition}
 
-In the Fair-by-Design workflow, the traditional data acquisition process is augmented with a deeper focus on the nature of the data, particularly emphasizing the need to identify and understand sensitive attributes. While conventional data acquisition primarily aims at collecting relevant datasets, the Fair-by-Design approach recognizes the necessity of an in-depth exploration of sensitive attributes, pivotal for evaluating fairness.
+In the Fair-by-Design workflow, the data acquisition process extends beyond the traditional scope by placing a heightened emphasis on the intricacies of the data, particularly underscoring the identification and understanding of sensitive attributes. While conventional data acquisition primarily concentrates on the collection of relevant datasets, the Fair-by-Design approach recognizes the imperative of delving into sensitive attributes, which proves pivotal in the evaluation of fairness.
 
-Understanding these sensitive attributes is critical, as they play a significant role in determining the fairness of the model's outcomes. This knowledge can be obtained through direct communication with stakeholders, as sensitive attributes may sometimes be a deliberate business choice. Alternatively, common-sense reasoning can be applied to identify potential sensitive attributes that might impact fairness.
+The importance of understanding these sensitive attributes cannot be overstated, as they wield substantial influence over the fairness of the model's outcomes. This understanding is multifaceted, encompassing various dimensions such as legal considerations, ethical implications, and societal norms. Obtaining this knowledge is a nuanced process that often involves direct communication with stakeholders. In certain scenarios, sensitive attributes may be deliberate business choices, and engaging with stakeholders becomes crucial to discern the underlying motivations and expectations.
 
-Upon acquiring the data and obtaining a comprehensive understanding of the sensitive attributes, the next step in the Fair-by-Design workflow involves a fairness evaluation. This evaluation aims to assess the fairness of the dataset concerning these identified sensitive attributes, setting the stage for subsequent model development.
+Alternatively, common-sense reasoning is applied to identify potential sensitive attributes that might impact fairness. This involves a thoughtful and context-specific analysis of the data, taking into account historical and societal contexts. Common-sense reasoning acts as a supplementary approach, especially in cases where direct communication might be limited or where latent, non-obvious sensitive attributes could influence the model's outcomes.
+
+Once the data has been acquired, and a comprehensive understanding of sensitive attributes has been obtained, the Fair-by-Design workflow progresses to the next crucial step: fairness evaluation. This stage is fundamental as it sets the foundation for subsequent model development. The fairness evaluation is designed to rigorously assess the fairness of the dataset concerning the identified sensitive attributes. This involves quantitative analysis, statistical testing, and the application of fairness metrics, ensuring a systematic and objective evaluation of potential biases and disparities within the dataset.
+
+By incorporating this nuanced and comprehensive approach to data acquisition and fairness evaluation, the Fair-by-Design workflow establishes a robust foundation for the development of machine learning models that not only meet technical performance criteria but also adhere to ethical and fairness considerations. The insights gained from this initial phase guide the subsequent stages of the workflow, contributing to the overall integrity and equity of the machine learning process.
 
 \subsubsection{Fairness Assessment}
 
-The fairness assessment in the Fair-by-Design workflow is an essential checkpoint, ensuring that the dataset is unbiased and aligns with ethical considerations. Disparate Impact, a widely used fairness metric, is employed to quantify and evaluate the fairness of the dataset over the identified sensitive attributes.
+The fairness assessment within the Fair-by-Design workflow represents a critical checkpoint, functioning as a meticulous examination to ascertain the absence of biases and the alignment of the dataset with ethical considerations. At this stage, the objective is to rigorously evaluate the fairness of the dataset, particularly in relation to the identified sensitive attributes. This process is pivotal in establishing the ethical foundation of the subsequent stages in the machine learning pipeline.
 
-Disparate Impact provides a quantitative measure of the disparate treatment of different groups within the dataset. It assesses the ratio of favorable outcomes for different demographic groups, highlighting potential bias and disparities. This metric serves as a crucial indicator during the data acquisition phase, allowing practitioners to make informed decisions regarding fairness considerations before proceeding to subsequent stages of the machine learning pipeline.
+To conduct this comprehensive evaluation, the Fair-by-Design workflow leverages Disparate Impact, a widely recognized and utilized fairness metric. Disparate Impact offers a quantitative measure of the differential treatment experienced by distinct groups within the dataset. Specifically, it assesses the ratio of favorable outcomes for various demographic groups, shedding light on potential biases and disparities that might be present.
+
+The implementation of Disparate Impact serves as a vital indicator during the data acquisition phase, allowing practitioners to make well-informed decisions pertaining to fairness considerations. By quantifying the differential impact on different demographic groups, Disparate Impact facilitates a nuanced understanding of potential imbalances within the dataset, empowering practitioners to address and rectify biases before proceeding with subsequent stages of the machine learning pipeline.
+
+The strategic integration of Disparate Impact into the fairness assessment phase underscores the commitment of the Fair-by-Design workflow to a principled and thorough approach in ensuring fairness. This metric acts as a guiding compass, steering practitioners towards fair and equitable machine learning practices from the outset of the workflow.
 
 \subsection{Data pre-processing}
 
@@ -574,7 +582,36 @@ This nuanced pre-processing step sets the groundwork for a fair and unbiased lea
 
 \subsubsection{Fairness pre-processing algorithms}
 
+The second sub-step of the data pre-processing phase in the Fair-by-Design workflow is meticulously crafted to address and mitigate bias in the dataset, employing a pre-processing approach explicitly designed for fairness considerations. This phase builds upon the dataset and protected attributes obtained during the data acquisition phase, introducing three distinct algorithms strategically devised to promote fairness.
 
+The proposed algorithms are elucidated as follows:
+
+\begin{itemize}
+    \item \emph{Fairness through Unawareness with Proxy Detection via Association Rules Mining:} This algorithm harnesses the principles of association rule mining to detect proxies within the dataset. Proxies, in this context, refer to factors that may act as intermediaries, influencing the model's predictions and potentially leading to biased outcomes. By identifying and mitigating the impact of both protected attributes and potential proxies, this algorithm aims to enhance fairness in the dataset. Detailed insights into the design, implementation, and specific fairness considerations addressed by this algorithm will be expounded upon in \cref{section:fairness}.
+    
+    \item \emph{Fairness through Unawareness with Proxy Detection via Variables Only:} Similar to the aforementioned approach, this algorithm focuses on averting the impact of protected attributes. However, it places specific emphasis on considering only the protected attributes during the proxy detection process. The distinctions between this approach and the association rules mining-based approach will be thoroughly delineated in \cref{section:fairness}.
+    
+    \item \emph{Fairness through Data Rebalancing:} In a departure from the first two approaches, which aim to mitigate the effects of specific attributes, this algorithm adopts a data rebalancing strategy. The primary goal is to render the dataset fair by proposing a novel fairness definition and redistributing the data distribution. This approach introduces a new dimension to fairness considerations, focusing on rebalancing the dataset to mitigate biases and ensure equitable representation. The intricacies of the design, implementation, and the novel fairness perspective proposed by this algorithm will be dissected in \cref{section:fairness}.
+\end{itemize}
+
+The forthcoming section (\cref{section:fairness}) will provide an in-depth exploration of each algorithm, offering a comprehensive understanding of their theoretical underpinnings, practical implementation, and the specific fairness considerations they target. This detailed examination aims to equip practitioners with the insights necessary to make informed decisions about algorithm selection within the Fair-by-Design workflow.
+
+\subsection{Performance evaluation}
+
+After the model has undergone the training process, the evaluation phase in the Fair-by-Design workflow extends beyond traditional accuracy-based assessments. This phase places particular emphasis on incorporating fairness metrics to comprehensively evaluate the model's performance and rigorously assess the fairness of the entire workflow.
+
+In the realm of fairness assessment, two key metrics, namely \emph{Equalized Odds} and \emph{Demographic Parity}, play a pivotal role in quantifying and analyzing the fairness implications of the model's predictions:
+
+\begin{itemize}
+    \item \emph{Equalized Odds:} This metric is designed to ensure parity in the true positive rate and false positive rate across different demographic groups. Mathematically, it involves minimizing the disparities in error rates between various subgroups. By focusing on achieving equity in both the benefits (true positives) and errors (false positives) of the model for diverse demographic groups, Equalized Odds offers a nuanced perspective on fairness. It provides a more granular understanding of how the model performs across different segments of the population, allowing practitioners to identify and rectify potential biases in prediction outcomes.
+    
+    \item \emph{Demographic Parity:} Demographic Parity is a fundamental fairness metric that mandates the proportion of positive outcomes to be the same for all demographic groups, irrespective of the protected attributes. This metric serves as a cornerstone for evaluating the overall fairness in the distribution of positive outcomes. It ensures that the model does not disproportionately favor or disadvantage specific demographic groups, contributing to a more unbiased and equitable evaluation of the model's performance. Demographic Parity provides valuable insights into the distributional aspects of the model's predictions and aids in uncovering any systemic disparities in positive outcome rates among different subgroups.
+\end{itemize}
+
+The integration of these advanced fairness metrics in the evaluation process enhances the transparency and ethical considerations of the Fair-by-Design workflow. Beyond traditional accuracy metrics, these fairness metrics offer a more nuanced understanding of how the model impacts different demographic groups, promoting a comprehensive evaluation of fairness implications. The upcoming sections will delve into a detailed analysis of the results obtained through the application of these metrics, providing deeper insights into the fairness considerations of the developed machine learning model.
+
+\section{Fairness pre-processing algorithms}
+\label{section:fairness}
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
