@@ -686,7 +686,109 @@ The fairness metric \( \lambda \) evaluates the relationship between a protected
 \textit{dataset\_fair} is defined as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
 \[ 0.8  < v < 1.25 \] 
 
+\subsubsection{Proxy detection via attributes only}
 
+Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
+
+\textit{proxy\_detection} is defined as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
+
+\[
+\lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
+\]
+
+In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range ]0.8, 1.25[.
+
+\subsubsection{Proxy detection via fp-growth algorithm}
+
+It's important to give a brief background of the Association Rule Mining, the family algorithm \emph{fp-growth} belongs to.
+
+\begin{enumerate}
+    
+    \item \emph{Association rule mining}:
+
+        Association rule mining represents a pivotal data mining technique employed to unearth intriguing relationships and patterns hidden within extensive datasets. This technique is specifically tailored to the task of identifying associations and correlations among diverse elements present in the data, thereby revealing valuable insights and connections that might otherwise remain concealed. 
+
+        The primary objective of association rule mining is to expose the inherent dependencies between data items or attributes. It scrutinizes the dataset in search of rules that reveal the co-occurrence and relationships between different items. These rules often manifest in the form of "if-then" statements, where the presence of one item is associated with the presence or absence of another. 
+
+        This technique is particularly advantageous when applied to large volumes of data, as it excels in discovering subtle, non-obvious associations that might elude simple statistical analysis. Association rule mining is a versatile tool with a wide array of applications, spanning domains such as market basket analysis, recommendation systems, and fraud detection. 
+
+        The process of association rule mining involves the generation of itemsets and the identification of frequent itemsets—combinations of items that appear together frequently. The algorithm then extracts association rules from these frequent itemsets, offering valuable insights into the relationships and co-occurrences within the data. 
+
+        The outcomes of association rule mining have the potential to drive informed decision-making, such as product recommendations based on customer purchase history, optimizing supply chain management, and identifying suspicious patterns in financial transactions.
+
+    \item \emph{Fp-growth}:
+    
+        The FP-Growth (Frequent Pattern Growth) algorithm is a popular and efficient method for mining frequent itemsets in a transaction database. It is particularly used in association rule mining, where the goal is to discover interesting relationships between variables in large datasets.
+
+        Here's a deeper explaination on this algorithm:
+
+        \begin{itemize}
+
+            \item \emph{Frequent Itemsets}: An itemset is a collection of one or more items in a transaction, while a frequent itemset is one that appears in a dataset with a frequency greater than or equal to a specified minimum support threshold.
+            
+            \item \emph{The FP-Growth Process}: The FP-Growth algorithm employs a divide-and-conquer strategy to mine frequent itemsets efficiently. It constructs a data structure called the FP-tree (Frequent Pattern tree) from the given dataset.
+            
+            \item \emph{Building the FP-Tree}: The dataset is initially scanned to determine the frequency of each item. Items are sorted in descending order of frequency, and the dataset is reprocessed to build the FP-tree. The FP-tree is a compact representation of the dataset, where each path from the root to a leaf represents a frequent itemset.
+
+            \item \emph{Mining Frequent Itemsets}: Frequent itemsets can be extracted directly from the FP-tree without the need for repeated database scans. The algorithm recursively mines the FP-tree, considering conditional databases for each frequent item in the tree.
+
+            \item \emph{Association Rule Generation}: Once frequent itemsets are identified, association rules can be generated. These rules express relationships between items based on their co-occurrence in transactions.
+
+        \end{itemize}
+
+        Let's define some terms:
+
+        \begin{itemize}
+
+            \item \emph{Itemset}: $I = \{i_1, i_2, \ldots, i_k\}$, where $i$ represents an item.
+
+            \item \emph{Transaction Database}: $D = \{T_1, T_2, \ldots, T_n\}$, where $T$ is a transaction.
+
+        \end{itemize}
+
+        At this point it's important to introduce some mathematical notation
+
+        \begin{itemize}
+
+            \item \emph{Support Count ($\text{supp}(I)$)}: The number of transactions in the database containing the itemset $I$. $\text{supp}(I) = |\{T \in D : I \subseteq T\}|$ 
+
+            \item \emph{Support ($\text{supp}(I)$)}: The fraction of transactions in the database that contain the itemset $I$. $\text{supp}(I) = \frac{\text{supp}(I)}{|D|}$
+
+            \item \emph{FP-Tree}: The FP-tree is a tree structure where each node represents an item, and the paths from the root to the leaves represent frequent itemsets.
+
+            \item \emph{Conditional FP-Tree}: For a given item $i$, the conditional FP-tree is constructed from the database by considering only transactions containing $i$.
+
+        \end{itemize}
+
+\end{enumerate}
+
+After having introduced the necessary theoretical concepts here's presented the approach to detect the proxy attributes for the protected attributes previously established.
+
+\textit{proxy\_detection} is defined as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
+
+\[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) >= 1.25\]
+
+In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range ]0.8, 1.25[.
+
+Here it's possible to notice how, as previously said, the concepts of protected attributes and output provided as inputs for the fairness metric are dependent on the scenario. While the typical scenario involves the protected attribute as input together with the output of the dataset, in this one the protected attribute acts like the output while the actual protected attributes are inferred from the results of the metric.
+
+There are two other fucnctions that needs to be defined in order to complete the algorithm.
+
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \( k \) as the number of identified proxy variables, the function \( \text{proxy\_free\_dataset} \) is defined as follows:
+
+\[
+\text{\textbf{proxy\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (m - k)}
+\]
+
+where \( j = m - k \) and \( \text{proxy\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times j} \) devoid of the proxy variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes. 
+
+Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where j are the columns obtained after the proxy removals and \( k \) as the number of identified protected variables, the function \( \text{protected\_attributes\_free\_dataset} \) is defined as follows:
+
+\[
+\text{\textbf{protected\_attributes\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (j - k)}
+\]
+
+where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times p} \) devoid of the protected variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes.
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
