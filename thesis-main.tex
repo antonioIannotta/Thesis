@@ -1017,7 +1017,7 @@ For each iteration:
         \For{index \textbf{in} (0, len(combination\_set) - 1)}
             \State combination $\gets$ combination\_set[index]
             \State frequency $\gets$ combination\_frequency[index]
-            \State combination\_dataset $\gets$ dataset[dataset[combination] \eq combination\_set[index]]
+            \State combination\_dataset $\gets$ dataset[dataset[combination] == combination\_set[index]]
 
             \While{frequency $<$ max\_frequency}
                 \State new\_row $\gets$ empty
