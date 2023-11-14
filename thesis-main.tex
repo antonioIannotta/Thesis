@@ -430,7 +430,7 @@ Threshold adjustment is a technique used to promote equity and reduce bias in ma
 
 \subsubsection{Additive Counterfactuals}
 
-Additive counterfactual explanations in the context of fairness refer to a method used to assess and promote fairness in machine learning models. Counterfactual explanations are designed to provide insights into the impact of sensitive attributes on model predictions and help identify potential bias or discrimination. The "additive" aspect suggests that changes are made to the original input to create counterfactual scenarios, allowing for a better understanding of the fairness implications. \cite{NIPS2017_a486cd07}
+Additive counterfactual explanations in the context of fairness refer to a method used to assess and promote fairness in machine learning models. Counterfactual explanations are designed to provide insights into the impact of sensitive attributes on model predictions and help identify potential bias or discrimination. The additive aspect suggests that changes are made to the original input to create counterfactual scenarios, allowing for a better understanding of the fairness implications. \cite{NIPS2017_a486cd07}
 
 \subsubsection{Equalized Odds Post-processing}
 
@@ -711,7 +711,7 @@ It's important to give a brief background of the Association Rule Mining, the fa
 
         Association rule mining represents a pivotal data mining technique employed to unearth intriguing relationships and patterns hidden within extensive datasets. This technique is specifically tailored to the task of identifying associations and correlations among diverse elements present in the data, thereby revealing valuable insights and connections that might otherwise remain concealed. 
 
-        The primary objective of association rule mining is to expose the inherent dependencies between data items or attributes. It scrutinizes the dataset in search of rules that reveal the co-occurrence and relationships between different items. These rules often manifest in the form of "if-then" statements, where the presence of one item is associated with the presence or absence of another. 
+        The primary objective of association rule mining is to expose the inherent dependencies between data items or attributes. It scrutinizes the dataset in search of rules that reveal the co-occurrence and relationships between different items. These rules often manifest in the form of if-then statements, where the presence of one item is associated with the presence or absence of another. 
 
         This technique is particularly advantageous when applied to large volumes of data, as it excels in discovering subtle, non-obvious associations that might elude simple statistical analysis. Association rule mining is a versatile tool with a wide array of applications, spanning domains such as market basket analysis, recommendation systems, and fraud detection. 
 
@@ -797,7 +797,7 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
         \Require{dataset}
         \Ensure{fair dataset}
         \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$
-        \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}
+        \While{\textbf{not} \textit{dataset\_fair(dataset)}}
             \State proxies $\gets$ \textit{proxy\_detection(dataset)}\;
             \If{proxies \textbf{is empty}}
                 \State dataset $\gets$ \textit{protected\_attributes\_free\_dataset(dataset)}\;
@@ -834,27 +834,10 @@ It's relevant to provide an explaination of the algorithm above:
 
 \end{enumerate}
 
-
-\begin{algorithm}[H]
-    \caption{Dataset Fairness Checking}
-    \label{alg:fairness_checking}
-    \begin{algorithmic}[2]
-        \Require{dataset, protected\_attribute}
-        \Ensure{Boolean value indicating fairness}
-        \If{\textit{fairness\_evaluation(dataset, protected\_attribute)} \textbf{is empty}}
-            \State \textbf{return} True
-        \EndIf
-        \State \textbf{return} False
-    \end{algorithmic}
-\end{algorithm}
-
-This algorithm assesses the fairness of a given dataset with respect to a specified protected attribute. The goal is to determine whether the dataset exhibits fairness concerning the provided attribute. 
-
-
 \begin{algorithm}[H]
     \caption{Fairness Evaluation}
     \label{alg:fairness_evaluation}
-    \begin{algorithmic}[3]
+    \begin{algorithmic}[2]
         \Require{dataset, output\_column, protected\_attributes}
         \Ensure{List of attributes failing fairness evaluation}
         \State fairness\_evaluation\_list $\gets$ empty list\;
@@ -874,7 +857,7 @@ For each protected attribute, the algorithm computes a fairness metric using the
 \begin{algorithm}[H]
     \caption{Proxy and Protected Attributes Avoiding}
     \label{alg:proxy_protected_attributes_avoiding}
-    \begin{algorithmic}[4]
+    \begin{algorithmic}[3]
         \Require{dataset, proxy\_protected\_attributes}
         \Ensure{Processed dataset avoiding proxy and protected attributes}
         
@@ -899,7 +882,7 @@ The only goal of this algorithm is to avoid the effects of proxy and protected a
 \begin{algorithm}[H]
     \caption{Proxy Detection via Variables Only}
     \label{alg:proxy_detection_variables_only}
-    \begin{algorithmic}[5]
+    \begin{algorithmic}[4]
         \Require{protected\_attributes\_list, attributes}
         \Ensure{List of proxies}
         
@@ -922,7 +905,7 @@ This algorithm returns the proxy list obtained the fairness metric choice as est
 \begin{algorithm}[H]
     \caption{Proxy Detection via FP-growth}
     \label{alg:proxy_detection_fp_growth}
-    \begin{algorithmic}[6]
+    \begin{algorithmic}[5]
         \Require{fp\_growth\_dataset}
         \Ensure{List of proxies}
         \State $\text{proxy\_list} \gets \{\}$ \Comment{Initialize an empty list to store detected proxies}
@@ -1023,12 +1006,96 @@ For each iteration:
 
 \subsubsection{Pseudocode}
 
-%WRITE THE PSEUDOCODE FOR DATA REBALANCING
+\begin{algorithm}[H]
+    \caption{Reabalancing}
+    \begin{algorithmic}[6]
+        \State \textbf{Input:} combination\_set, combination\_frequency, protected\_attributes, dataset\_attributes
+        \State \textbf{Output:} Updated dataset
+
+        \State max\_frequency $\gets$ max(combination\_frequency)
+
+        \For{index $\gets$ 0 \To len(combination\_set)}
+            \State combination $\gets$ combination\_set[index]
+            \State frequency $\gets$ combination\_frequency[index]
+            \State combination\_dataset $\gets$ dataset[dataset[combination] \eq combination\_set[index]]
+
+            \While{frequency $<$ max\_frequency}
+                \State new\_row $\gets$ empty
+
+                \For{(attr, val) \textbf{in} (combination, protected\_attributes)}
+                    \State new\_row[attr] $\gets$ val
+                \EndFor
+
+                \For{attr \textbf{in} dataset\_attributes \textbf{and not in} protected\_attributes}
+                    \State new\_row[attr] $\gets$ random(min(combination\_dataset[attr]), max(combination\_dataset[attr]))
+                \EndFor
+
+                \State dataset.add(new\_row)
+                \State frequency $+$= 1
+            \EndWhile
+        \EndFor
+
+        \State \textbf{return} Updated dataset
+    \end{algorithmic}
+\end{algorithm}
+
+This algorithm adds rows to the dataset until every combination have the same frequency. Fundamental for this algorithm is the way in which are generate the value for the variables not involved into the combination. These are added considering the sub-dataset of the original dataset in which the combination occurs. 
+
+
+%----------------------------------------------------------------------------------------
+\chapter{Technical details}
+\label{chap:technical}
+
+
+%----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
 %----------------------------------------------------------------------------------------
+
+\section{Dataset description}
+
+Before delving into the intricate details of the algorithm implementations presented earlier, it is imperative to provide a comprehensive overview of the dataset on which these algorithms have been applied. The chosen dataset for this work is the \emph{Canary Island Educational dataset}, an invaluable resource that underpins the empirical exploration of bias mitigation strategies in the context of the educational system in the Canary Islands. 
+
+The Canary Island Educational dataset is a rich and expansive repository of information, meticulously compiled to capture various facets of the educational landscape within the Canary Islands. This dataset comprises the comprehensive census of students enrolled over four distinct academic years, offering a multifaceted glimpse into the educational ecosystem. 
+
+The dataset encompasses a diverse array of attributes and data points, encapsulating critical information such as student demographics, academic performance, socioeconomic factors, and other pertinent variables. These attributes collectively provide a holistic perspective on the educational landscape, enabling a nuanced analysis of the factors that influence student outcomes and experiences. 
+
+The temporal dimension of the dataset, spanning four academic years, further enriches the analytical potential. It allows for the investigation of temporal trends, shifts in educational policies, and the evolution of student characteristics over time. This temporal depth is particularly valuable when examining the efficacy of bias mitigation strategies, as it facilitates the assessment of their impact across different academic years. 
+
+The Canary Island Educational dataset is not merely a repository of numbers and statistics; it is a window into the educational opportunities and challenges faced by students in the Canary Islands. By harnessing the insights gleaned from this dataset, it becomes possible to proactively address biases and promote equity within the educational system, ultimately striving for a more inclusive and just educational landscape.
+
+\subsection{Pre-processing operations on Canary Island Educational dataset}
+A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
+\subsubsection{Protected attributes choice}
+After a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
+\begin{enumerate}
+    \item sex
+    \item capital island: if the student comes from the capital of the city
+    \item public\textunderscore private: if the school is public or private
+    \item inmigrant: if the student is either inmigrant or not
+    \item inmigrant second gen: if the student is either inmigrand of second gen or not
+    \item parent expectation
+    \item mothly houseold income
+    \item cconomic, social and cultural satus index
+\end{enumerate}
+\subsubsection{Attributes pre-processing}
+The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as follows.
+\begin{itemize}
+    \item Each categorical attribute has been replaced with an encoded value
+    \item For each protected attribute has been computed the following operation:
+    \begin{itemize}
+        \item If the protected attirbute is a binary one, assuming that the binary values may not be onlu 0 and 1, then the greatest value has been replaced with 1 and the other one with 0.
+        \item If the protected attribute is a categorical one then is performed a search of the most frequent value in the column. Then this value in the column is replaced with 1, otherwise with 0. With this policy is established that the fairness must be guaranteed between the most frequent value and the others.
+        \item if the protected attribute is a continuous one then is computed the the theshold resulting from the sum of minimum value and maximum value in the column divided by 2. Every value in the column above this threshold is replaced with 1, otherwise with 0. This means that the fairness must be guaranteed between the students that are above the threshold for a specific attribute and the other ones.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Goal of this work}
+The several output in this dataset are considered as protected attributes. More specifically the goal of this work is to predict the english level of a given student. Since the \emph{level\textunderscore ing} attribute is a categorical ones then the output states if a student has the same level of the majority of the students or if not. The goal is to make the predictor and the prediction fair, this means that the belonging of a student to a specific output, the match indeed, must no be influenced by any other factors rather than the predictor's mechanisms.
+
+
 Following the information reported into the \emph{Dataset} section the models presented in the following have been trained with the goal to predict wether the english level is above or behind the thershold. 
 
 For each grade have been applied the following approaches, in order to perform a proper comparaison:
@@ -1044,7 +1111,7 @@ For each grade have been applied the following approaches, in order to perform a
 For each of the previous approaches have been chosen 3 models to perform the prediction:
 \begin{enumerate}
     \item \text{RandomForest Classifier}: RandomForest Classifier is a popular machine learning algorithm that leverages an ensemble of decision trees to make predictions. It excels at tasks like classification and regression, offering robustness against overfitting and high accuracy by aggregating the predictions of multiple decision trees. It's a versatile tool used in various applications, from finance to healthcare and image analysis.
-    \item \textbf{XGBoost Classifier}: XGBoost, short for "Extreme Gradient Boosting," is a powerful and efficient machine learning algorithm known for its exceptional predictive performance. It's a gradient boosting technique that builds a strong predictive model by combining the predictions of multiple weak models, typically decision trees. XGBoost is widely used in data science and machine learning competitions due to its speed, accuracy, and flexibility. It can handle both regression and classification tasks and is prized for its ability to handle large datasets and complex relationships in the data.
+    \item \textbf{XGBoost Classifier}: XGBoost, short for Extreme Gradient Boosting, is a powerful and efficient machine learning algorithm known for its exceptional predictive performance. It's a gradient boosting technique that builds a strong predictive model by combining the predictions of multiple weak models, typically decision trees. XGBoost is widely used in data science and machine learning competitions due to its speed, accuracy, and flexibility. It can handle both regression and classification tasks and is prized for its ability to handle large datasets and complex relationships in the data.
     \item \textbf{DecisionTree Classifier}: DecisionTree Classifier is a specific type of machine learning algorithm primarily used for classification tasks. It constructs a tree-like model, where each internal node represents a decision based on a specific feature, and each leaf node denotes the predicted class label for the input data point.
 \end{enumerate}
 
