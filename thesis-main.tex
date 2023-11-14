@@ -799,11 +799,11 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
     \begin{algorithmic}[1]
         \Procedure{FairnessUnawarenessProxy}{$\text{dataset}$}
         \While{\textbf{not} $\text{dataset\_fair(dataset)}$ \textbf{or} $\text{protected\_attributes}$ \textbf{in} $\text{dataset}$}
-            \State $\text{proxies} \gets \text{proxy\_detection(dataset)}$\;
+            \State $\text{proxies} \gets \text{proxy\_detection(dataset)}$
             \If{\text{proxies is empty}}
-                \State $\text{dataset} \gets \text{protected\_attributes\_free\_dataset(dataset)}$\;
+                \State $\text{dataset} \gets \text{protected\_attributes\_free\_dataset(dataset)}$
             \Else
-                \State $\text{dataset} \gets \text{proxy\_free\_dataset(dataset)}$\;
+                \State $\text{dataset} \gets \text{proxy\_free\_dataset(dataset)}$
             \EndIf
         \EndWhile
         \State \textbf{return} $\text{dataset}$
