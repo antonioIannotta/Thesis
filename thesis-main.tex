@@ -774,41 +774,11 @@ Here it's possible to notice how, as previously said, the concepts of protected 
 
 There are two other fucnctions that needs to be defined in order to complete the algorithm.
 
-Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) and \( k \) as the number of identified proxy variables, the function \( \text{proxy\_free\_dataset} \) is defined as follows:
-
-\[
-\text{\textbf{proxy\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (m - k)}
-\]
-
-where \( j = m - k \) and \( \text{proxy\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times j} \) devoid of the proxy variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes. 
-
-Considering the dataset \( D \) belonging to \( \mathbb{R}^{n \times j} \) where j are the columns obtained after the proxy removals and \( k \) as the number of identified protected variables, the function \( \text{protected\_attributes\_free\_dataset} \) is defined as follows:
-
-\[
-\text{\textbf{protected\_attributes\_free\_dataset}}: D \times \mathbb{R}^{k \times 1} \rightarrow \mathbb{R}^{n \times (j - k)}
-\]
-
-where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) yields a dataset \( \mathbb{R}^{n \times p} \) devoid of the protected variables, ensuring the removal of any potential indirect indicators that may influence sensitive attributes.
+%%% NECESSARY TO CHANGE THE FUNCTIONS TO RETURN THE VARIABLES TO RETURN TE PROXY AND PROTECTED ATTRIBUTES
 
 \subsubsection{Pseudocode}
 
 In the following is presented the pseudocode for the algorithm, in its two different versions, presented above.
-
-\begin{algorithm}[H]
-    \caption{Fairness through unawareness with proxy detections}
-    \KwData{dataset}
-    \KwResult{fair dataset}
-    \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}{
-        proxies = \textit{proxy\_detection(dataset)}\;
-        \If{proxies \textbf{is empty}}{
-            dataset = \textit{protected\_attributes\_free\_dataset(dataset)}\;
-        }
-        \Else{
-            dataset = \textit{proxy\_free\_dataset(dataset)}\;
-        }
-    }
-    \KwRet{dataset}
-\end{algorithm}
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
