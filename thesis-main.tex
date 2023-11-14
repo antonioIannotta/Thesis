@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{listings}
+\usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{tabularx}
 \usepackage{graphics}
@@ -11,7 +12,7 @@
 \usepackage{notes}
 \usepackage{shortcuts}
 \usepackage{acronym}
-\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+%\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 
 
 \newcommand{\thesislang}{english} % commentare in caso di tesi in italiano
@@ -772,13 +773,42 @@ In other words, an antecedent \( A_i \) is considered a proxy if the fairness me
 
 Here it's possible to notice how, as previously said, the concepts of protected attributes and output provided as inputs for the fairness metric are dependent on the scenario. While the typical scenario involves the protected attribute as input together with the output of the dataset, in this one the protected attribute acts like the output while the actual protected attributes are inferred from the results of the metric.
 
-There are two other fucnctions that needs to be defined in order to complete the algorithm.
+Now, let $\text{proxy\_and\_protected\_attributes} \subseteq \{1, 2, \ldots, m\}$ represent the set of indices corresponding to both proxy and protected attributes.
 
-%%% NECESSARY TO CHANGE THE FUNCTIONS TO RETURN THE VARIABLES TO RETURN TE PROXY AND PROTECTED ATTRIBUTES
+The function $\text{\textbf{proxy\_and\_protected\_attributes\_avoiding}}: D \times \text{proxy\_and\_protected\_attributes} \rightarrow \mathbb{R}^{n \times m}$ is defined as follows:
+
+\[
+\text{\textbf{proxy\_and\_protected\_attributes\_avoiding}}(D, \text{proxy\_and\_protected\_attributes}) = D_{\text{avoiding}},
+\]
+
+where $D_{\text{avoiding}}$ is the dataset obtained by setting all values to 0 for indices in $\text{proxy\_and\_protected\_attributes}$.
+
 
 \subsubsection{Pseudocode}
 
 In the following is presented the pseudocode for the algorithm, in its two different versions, presented above.
+
+\begin{algorithm}[H]
+    \caption{Fairness through unawareness with proxy detection}
+    \label{alg:fairness_algorithm}
+    \begin{algorithmic}[1]
+        \Require{dataset}
+        \Ensure{fair dataset}
+        \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$ \Comment{Initialize the global variable}
+        \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}
+            \State proxies $\gets$ \textit{proxy\_detection(dataset)}\;
+            \If{proxies \textbf{is empty}}
+                \State dataset $\gets$ \textit{protected\_attributes\_free\_dataset(dataset)}\;
+                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{protected\_attributes}$ \Comment{Append protected attributes}
+            \Else
+                \State dataset $\gets$ \textit{proxy\_free\_dataset(dataset)}\;
+                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{proxies}$ \Comment{Append proxies}
+            \EndIf
+        \EndWhile
+        \State dataset $\gets$ \textit{proxy\_protected\_attributes\_avoiding(dataset, proxy\_protected\_attributes)} \Comment{Apply the avoidance function}
+        \State \textbf{return} dataset
+    \end{algorithmic}
+\end{algorithm}
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
