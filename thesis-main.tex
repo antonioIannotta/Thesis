@@ -842,9 +842,9 @@ It's relevant to provide an explaination of the algorithm above:
         \Require{dataset, protected\_attribute}
         \Ensure{Boolean value indicating fairness}
         \If{\textit{fairness\_evaluation(dataset, protected\_attribute)} \textbf{is empty}}
-            \KwRet{\textbf{True}}\;
+            \State \textbf{return} True
         \EndIf
-        \KwRet{\textbf{False}}
+        \State \textbf{return} False
     \end{algorithmic}
 \end{algorithm}
 
@@ -864,7 +864,7 @@ This algorithm assesses the fairness of a given dataset with respect to a specif
                 \State \textit{fairness\_evaluation\_list.append(attribute)}\;
             \EndIf
         \EndFor
-        \KwRet{fairness\_evaluation\_list}
+        \State \textbf{return} fairness\_evaluation\_list
     \end{algorithmic}
 \end{algorithm}
 
@@ -889,7 +889,7 @@ For each protected attribute, the algorithm computes a fairness metric using the
             \EndIf
         \EndFor
         
-        \KwRet{D}
+        \State \textbf{return} D
     \end{algorithmic}
 \end{algorithm}
 
@@ -913,7 +913,7 @@ The only goal of this algorithm is to avoid the effects of proxy and protected a
             \EndFor
         \EndFor
         
-        \KwRet{proxy\_list}
+        \State \textbf{return} proxy\_list
     \end{algorithmic}
 \end{algorithm}
 
