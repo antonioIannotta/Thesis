@@ -794,44 +794,21 @@ where \( p = j - k \) and \( \text{protected\_attributes\_free\_dataset}(D) \) y
 
 In the following is presented the pseudocode for the algorithm, in its two different versions, presented above.
 
-\begin{algorithm}
-    \caption{Fairness through Unawareness with Proxy Detection}
-    \begin{algorithmic}[1]
-        \Procedure{FairnessUnawarenessProxy}{\textit{dataset}}
-        \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}
-            \State \textit{proxies} $\gets$ \textit{proxy\_detection(dataset)}
-            \If{\textit{proxies} \textbf{is empty}}
-                \State \textit{dataset} $\gets$ \textit{protected\_attributes\_free\_dataset(dataset)}
-            \Else
-                \State \textit{dataset} $\gets$ \textit{proxy\_free\_dataset(dataset)}
-            \EndIf
-        \EndWhile
-        \State \textbf{return} \textit{dataset}
-        \EndProcedure
-    \end{algorithmic}
+\begin{algorithm}[H]
+    \caption{Fairness through unawareness with proxy detections}
+    \KwData{dataset}
+    \KwResult{fair dataset}
+    \While{\textbf{not} \textit{dataset\_fair(dataset)} \textbf{or} \textit{protected\_attributes} \textbf{in} \textit{dataset}}{
+        proxies = \textit{proxy\_detection(dataset)}\;
+        \If{proxies \textbf{is empty}}{
+            dataset = \textit{protected\_attributes\_free\_dataset(dataset)}\;
+        }
+        \Else{
+            dataset = \textit{proxy\_free\_dataset(dataset)}\;
+        }
+    }
+    \KwRet{dataset}
 \end{algorithm}
-
-\textbf{Explanation:}
-
-The algorithm aims to iteratively modify a given dataset until it satisfies fairness criteria. The key steps involve detecting proxy variables that might introduce bias and subsequently adjusting the dataset to enhance fairness.
-
-\begin{itemize}
-
-    \item \emph{Initialization:} The algorithm takes the input dataset and aims to produce a fair dataset as its result.
-
-    \item \emph{Iteration:} The main loop continues until either the dataset is fair or there are protected attributes present in the dataset. The fairness of the dataset is checked using the \textit{dataset\_fair} function.
-
-    \item \emph{Proxy Detection:} Within each iteration, the algorithm identifies potential proxy variables using the \textit{proxy\_detection} function.
-
-    \item \emph{Adjustment Based on Proxies:} If proxy variables are detected (\textit{proxies} is not empty), the algorithm modifies the dataset to be free of these proxy variables using the \textit{proxy\_free\_dataset} function. This step is essential to eliminate potential sources of bias.
-
-    \item \emph{Adjustment Based on Protected Attributes:} If no proxies are found, the algorithm modifies the dataset to be free of protected attributes using the \textit{protected\_attributes\_free\_dataset} function. This step is necessary to ensure fairness by removing direct sources of bias.
-
-    \item \emph{Conclusion:} The final fair dataset is returned once the loop terminates, indicating that the dataset either meets fairness criteria or no longer contains protected attributes.
-
-\end{itemize}
-
-
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
