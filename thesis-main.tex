@@ -653,6 +653,23 @@ Moreover, the algorithms showcased here are not developed in isolation. Instead,
 
 As we navigate through the nuances of each fairness pre-processing algorithm, the synthesis of design choices and workflow integration will become apparent. This section serves as a testament to the conscientious development of algorithms that not only rectify biases but do so in harmony with the overarching goal of fostering fairness and equity in the machine learning landscape. Join us on this exploration as we unravel the intricacies of algorithms shaped by design, ethics, and the guiding principles of the Fair-by-Design framework.
 
+\subsection{Fairness through unawareness with proxy detection}
+
+TThe algorithm elucidated in this section seamlessly integrates with the Fair-by-Design workflow, embodying the core concept of \emph{fairness through unawareness}. Rooted in the overarching goal of mitigating bias, this approach represents a significant stride in addressing fairness considerations within the machine learning pipeline.
+
+The design choices of this algorithm are inherently influenced by the protected attributes detected during the data acquisition step of the Fair-by-Design workflow. Recognizing that bias may emanate not only from explicit protected attributes but also from indirect influences, the algorithm extends its reach beyond the conventional scope.
+
+In alignment with the Fair-by-Design ethos, this algorithm advocates for the removal of both identified protected attributes and a set of strategically identified proxy variables. These proxy variables, akin to shadows of potential bias, are meticulously pinpointed and eliminated. The vigilance in detecting these proxies is inspired by the commitment to unravel and rectify any factors that might indirectly contribute to bias within the AI system.
+
+Drawing insights from the comprehensive analysis conducted during the data acquisition phase, the algorithm takes a holistic view of potential sources of bias. The removal of proxy variables, guided by this understanding, exemplifies a proactive stance in addressing bias from multiple dimensions.
+
+Citing Gupta et al.'s work on proxy variables in AI systems \cite{Gupta2018ProxyF}, the algorithm's incorporation of this innovative element underscores a commitment to not only meet accuracy standards but also to foster equity and fairness. The dynamic interplay between the algorithm's design choices and the Fair-by-Design workflow amplifies its effectiveness in creating AI systems that are not only precise but also inherently just, unbiased, and equitable.
+
+In essence, this algorithm serves as a testament to the continuous evolution and refinement within the Fair-by-Design framework, where each step is meticulously crafted to reinforce the principles of fairness and transparency.
+
+At this point it's necessary to begin with a formalization for the algorithm itself. It's important to consider that there are two versions of this algorithm: a version in which the proxy detection is performed exploiting the concepts embedded into the association rule mining theories, more specifically using the \emph{fp-growth} algorithm. In the other version the proxy attributes are inferenced from the variables only.
+
+
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
