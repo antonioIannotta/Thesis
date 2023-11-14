@@ -681,6 +681,12 @@ where:
 v\_i & : \text{ith attribute belonging to the protected variables}, Y & : \text{output column}.
 \end{align*}
 
+The fairness metric \( \lambda \) evaluates the relationship between a protected attribute \( v_i \) and the output \( Y \), producing a value that represents the level of fairness for that protected attribute. It's important to consider that the output used for the fairness metric is not strictly related to the output of the dataset but, as showed further in this section it may also be a protected attribute. This lead to the consideration that protected attributes and output variable, that are the inputs of the fairness metric, are dependent on the specific scenario in which the fairness metric is applied.
+
+\textit{dataset\_fair} is defined as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
+\[ 0.8  < v < 1.25 \] 
+
+
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects

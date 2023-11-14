@@ -5,40 +5,9 @@
 
 
 \section{Fairness through unawareness with proxy detection}
-The algorithm presented in this section is rooted in the fundamental concept of "Fairness through Unawareness." This approach is underpinned by the overarching goal of mitigating bias by removing certain attributes from the dataset. Notably, in this scenario, the removal extends beyond solely the protected attributes, introducing a novel perspective on addressing bias. 
 
-In the spirit of "Fairness through Unawareness," this approach advocates the removal of both the protected attributes and a set of proxy variables. These proxy variables serve as a distinctive feature of the algorithm, as they are strategically identified and eliminated alongside the protected attributes. The proxy variables are defined with a specific focus on aspects that could potentially introduce or perpetuate bias within the AI system. \cite{Gupta2018ProxyF}
-
-The identification and removal of these proxy variables align with the commitment to promoting fairness and equity. By addressing not only the protected attributes but also the factors that may indirectly influence bias, this algorithm adopts a comprehensive approach to bias mitigation. 
-
-The incorporation of proxy variables represents an innovative and proactive step within the workflow, enhancing the system's ability to address bias from multiple angles. This multifaceted approach contributes to the overarching mission of developing AI systems that are not only accurate but also equitable, just, and fair.
 
 \subsection{Algorithm description}
-In the following there is the description of the algorithm presented here in its two different versions: the one that comes out using the \textbf{apriori} algorithm and the one that comes out using \textbf{variables only} to perform proxy detection. 
-
-
-Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables. 
-
-
-\textit{fairness\_evaluation} is defined as follows:
-\[
-\text{fairness\_evaluation}(v_i, Y) = \lambda(v_i, Y) \quad \forall i \in [1, k]
-\]
-
-where:
-\begin{align*}
-v\_i & : \text{ith attribute belonging to the protected variables}, Y & : \text{output column}.
-\end{align*}
-
-The fairness function \( \lambda \) evaluates the relationship between a protected attribute \( v_i \) and the output \( Y \), producing a value that represents the level of fairness for that protected attribute. 
-
-
-\textit{dataset\_fair} is defined as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
-\[ 0.8  < v < 1.25 \] 
-
-
-Considering the relevance of proxy detection in this algorithm it's important to move on and define the two approaches to detect these variables. 
-
 
 \subsubsection{Proxy detection via attributes only}
 Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
