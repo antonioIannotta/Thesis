@@ -836,6 +836,7 @@ It's relevant to provide an explaination of the algorithm above:
 
 \begin{algorithm}[H]
     \caption{Fairness Evaluation}
+    \label{alg:fairness_evaluation}
     \begin{algorithmic}[2]
         \Require{dataset, output\_column, protected\_attributes}
         \Ensure{List of attributes failing fairness evaluation}
@@ -1013,7 +1014,7 @@ For each iteration:
 
         \State max\_frequency $\gets$ max(combination\_frequency)
 
-        \For{index $\gets$ 0 \To len(combination\_set)}
+        \For{index \textbf{in} (0, len(combination\_set) - 1)}
             \State combination $\gets$ combination\_set[index]
             \State frequency $\gets$ combination\_frequency[index]
             \State combination\_dataset $\gets$ dataset[dataset[combination] \eq combination\_set[index]]
