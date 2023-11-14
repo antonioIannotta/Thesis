@@ -607,11 +607,13 @@ The second sub-step of the data pre-processing phase in the Fair-by-Design workf
 The proposed algorithms are elucidated as follows:
 
 \begin{itemize}
+
     \item \emph{Fairness through Unawareness with Proxy Detection via Association Rules Mining:} This algorithm harnesses the principles of association rule mining to detect proxies within the dataset. Proxies, in this context, refer to factors that may act as intermediaries, influencing the model's predictions and potentially leading to biased outcomes. By identifying and mitigating the impact of both protected attributes and potential proxies, this algorithm aims to enhance fairness in the dataset. Detailed insights into the design, implementation, and specific fairness considerations addressed by this algorithm will be expounded upon in \cref{section:fairness}.
     
     \item \emph{Fairness through Unawareness with Proxy Detection via Variables Only:} Similar to the aforementioned approach, this algorithm focuses on averting the impact of protected attributes. However, it places specific emphasis on considering only the protected attributes during the proxy detection process. The distinctions between this approach and the association rules mining-based approach will be thoroughly delineated in \cref{section:fairness}.
     
     \item \emph{Fairness through Data Rebalancing:} In a departure from the first two approaches, which aim to mitigate the effects of specific attributes, this algorithm adopts a data rebalancing strategy. The primary goal is to render the dataset fair by proposing a novel fairness definition and redistributing the data distribution. This approach introduces a new dimension to fairness considerations, focusing on rebalancing the dataset to mitigate biases and ensure equitable representation. The intricacies of the design, implementation, and the novel fairness perspective proposed by this algorithm will be dissected in \cref{section:fairness}.
+
 \end{itemize}
 
 The forthcoming section (\cref{section:fairness}) will provide an in-depth exploration of each algorithm, offering a comprehensive understanding of their theoretical underpinnings, practical implementation, and the specific fairness considerations they target. This detailed examination aims to equip practitioners with the insights necessary to make informed decisions about algorithm selection within the Fair-by-Design workflow.
@@ -623,9 +625,11 @@ After the model has undergone the training process, the evaluation phase in the 
 In the realm of fairness assessment, two key metrics, namely \emph{Equalized Odds} and \emph{Demographic Parity}, play a pivotal role in quantifying and analyzing the fairness implications of the model's predictions:
 
 \begin{itemize}
+
     \item \emph{Equalized Odds:} This metric is designed to ensure parity in the true positive rate and false positive rate across different demographic groups. Mathematically, it involves minimizing the disparities in error rates between various subgroups. By focusing on achieving equity in both the benefits (true positives) and errors (false positives) of the model for diverse demographic groups, Equalized Odds offers a nuanced perspective on fairness. It provides a more granular understanding of how the model performs across different segments of the population, allowing practitioners to identify and rectify potential biases in prediction outcomes.
     
     \item \emph{Demographic Parity:} Demographic Parity is a fundamental fairness metric that mandates the proportion of positive outcomes to be the same for all demographic groups, irrespective of the protected attributes. This metric serves as a cornerstone for evaluating the overall fairness in the distribution of positive outcomes. It ensures that the model does not disproportionately favor or disadvantage specific demographic groups, contributing to a more unbiased and equitable evaluation of the model's performance. Demographic Parity provides valuable insights into the distributional aspects of the model's predictions and aids in uncovering any systemic disparities in positive outcome rates among different subgroups.
+
 \end{itemize}
 
 The integration of these advanced fairness metrics in the evaluation process enhances the transparency and ethical considerations of the Fair-by-Design workflow. Beyond traditional accuracy metrics, these fairness metrics offer a more nuanced understanding of how the model impacts different demographic groups, promoting a comprehensive evaluation of fairness implications. The upcoming sections will delve into a detailed analysis of the results obtained through the application of these metrics, providing deeper insights into the fairness considerations of the developed machine learning model.
@@ -634,7 +638,7 @@ Here's the graphical representation of the presented workflow:
 
 \begin{center}
 
-\includegraphics[width=.2\textwidth, height=0.6\textwidth]{fairness-workflow.png}
+\includegraphics[width=.5\textwidth, height=1.0\textwidth]{fairness-workflow.png}
 
 \end{center}
 
