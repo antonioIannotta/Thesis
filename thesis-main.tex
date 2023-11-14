@@ -669,6 +669,17 @@ In essence, this algorithm serves as a testament to the continuous evolution and
 
 At this point it's necessary to begin with a formalization for the algorithm itself. It's important to consider that there are two versions of this algorithm: a version in which the proxy detection is performed exploiting the concepts embedded into the association rule mining theories, more specifically using the \emph{fp-growth} algorithm. In the other version the proxy attributes are inferenced from the variables only.
 
+Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables.
+
+\textit{fairness\_evaluation} is defined as follows:
+\[
+\text{fairness\_evaluation}(v_i, Y) = \lambda(v_i, Y) \quad \forall i \in [1, k]
+\]
+
+where:
+\begin{align*}
+v\_i & : \text{ith attribute belonging to the protected variables}, Y & : \text{output column}.
+\end{align*}
 
 
 %----------------------------------------------------------------------------------------
