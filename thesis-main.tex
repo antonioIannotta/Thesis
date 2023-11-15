@@ -537,63 +537,95 @@ The journey will embark on a comprehensive exploration of the Fair-by-Design wor
 
 \section{Workflow description}
 
-The Fair-by-Design workflow is structured upon the conventional machine learning (ML) workflow, with notable modifications in data acquisition, data pre-processing, and performance evaluation. The modeling stage adheres to traditional ML practices, focusing on algorithm selection and training.
+he Fair-by-Design workflow is intricately woven into the fabric of the conventional machine learning (ML) workflow, infusing nuanced modifications in key stages such as data acquisition, data pre-processing, and performance evaluation. While the modeling stage upholds the established ML practices, focusing on algorithm selection and training, the distinctive features of the Fair-by-Design workflow emerge in the surrounding processes.
 
-This section delves into the specifics of these adaptations, illustrating how the Fair-by-Design workflow introduces a nuanced approach to data acquisition, redefines data pre-processing strategies, and enhances the performance evaluation process. By retaining the robust modeling methodologies of traditional ML, the Fair-by-Design workflow integrates established techniques with a heightened commitment to fairness, ensuring equitable outcomes in machine learning applications.
+This section meticulously explores these adaptations, shedding light on the intricate details that distinguish the Fair-by-Design workflow. It elucidates how this innovative approach introduces subtleties in data acquisition, redefines strategies in data pre-processing, and elevates the performance evaluation process. While grounding itself in the robust methodologies of traditional ML, the Fair-by-Design workflow goes beyond by integrating these methodologies with a steadfast commitment to fairness. This fusion ensures that the outcomes of machine learning applications are not only technically sound but also characterized by a heightened sense of equity.
 
 \subsection{Data Acquisition}
 
-In the Fair-by-Design workflow, the data acquisition process extends beyond the traditional scope by placing a heightened emphasis on the intricacies of the data, particularly underscoring the identification and understanding of sensitive attributes. While conventional data acquisition primarily concentrates on the collection of relevant datasets, the Fair-by-Design approach recognizes the imperative of delving into sensitive attributes, which proves pivotal in the evaluation of fairness.
+IIn the Fair-by-Design workflow, the data acquisition process transcends the conventional boundaries by placing a heightened emphasis on delving into the intricacies of the data, with a particular focus on the identification and understanding of sensitive attributes. Unlike traditional data acquisition, which predominantly revolves around the collection of relevant datasets, the Fair-by-Design approach acknowledges the imperative of probing into sensitive attributes. This emphasis proves pivotal in the evaluation of fairness within the machine learning model.
 
-The importance of understanding these sensitive attributes cannot be overstated, as they wield substantial influence over the fairness of the model's outcomes. This understanding is multifaceted, encompassing various dimensions such as legal considerations, ethical implications, and societal norms. Obtaining this knowledge is a nuanced process that often involves direct communication with stakeholders. In certain scenarios, sensitive attributes may be deliberate business choices, and engaging with stakeholders becomes crucial to discern the underlying motivations and expectations.
+The significance of comprehending these sensitive attributes cannot be overstated, given their substantial influence on the fairness of the model's outcomes. This understanding spans various dimensions, including legal considerations, ethical implications, and societal norms. Acquiring this knowledge is a nuanced process that often necessitates direct communication with stakeholders. In certain scenarios, sensitive attributes may be deliberate business choices, making engagement with stakeholders crucial for discerning the underlying motivations and expectations.
 
-Alternatively, common-sense reasoning is applied to identify potential sensitive attributes that might impact fairness. This involves a thoughtful and context-specific analysis of the data, taking into account historical and societal contexts. Common-sense reasoning acts as a supplementary approach, especially in cases where direct communication might be limited or where latent, non-obvious sensitive attributes could influence the model's outcomes.
+Alternatively, common-sense reasoning is applied to identify potential sensitive attributes that might impact fairness. This involves a thoughtful and context-specific analysis of the data, considering historical and societal contexts. Common-sense reasoning serves as a supplementary approach, particularly in cases where direct communication might be limited or where latent, non-obvious sensitive attributes could influence the model's outcomes.
 
-Once the data has been acquired, and a comprehensive understanding of sensitive attributes has been obtained, the Fair-by-Design workflow progresses to the next crucial step: fairness evaluation. This stage is fundamental as it sets the foundation for subsequent model development. The fairness evaluation is designed to rigorously assess the fairness of the dataset concerning the identified sensitive attributes. This involves quantitative analysis, statistical testing, and the application of fairness metrics, ensuring a systematic and objective evaluation of potential biases and disparities within the dataset.
+Once the data has been acquired, and a comprehensive understanding of sensitive attributes has been obtained, the Fair-by-Design workflow advances to the next crucial step: fairness evaluation. This stage is fundamental as it lays the groundwork for subsequent model development. The fairness evaluation is meticulously designed to assess the fairness of the dataset concerning the identified sensitive attributes. This process entails quantitative analysis, statistical testing, and the application of fairness metrics, ensuring a systematic and objective evaluation of potential biases and disparities within the dataset.
 
-By incorporating this nuanced and comprehensive approach to data acquisition and fairness evaluation, the Fair-by-Design workflow establishes a robust foundation for the development of machine learning models that not only meet technical performance criteria but also adhere to ethical and fairness considerations. The insights gained from this initial phase guide the subsequent stages of the workflow, contributing to the overall integrity and equity of the machine learning process.
+By incorporating this nuanced and comprehensive approach to data acquisition and fairness evaluation, the Fair-by-Design workflow establishes a robust foundation for the development of machine learning models. These models not only meet technical performance criteria but also adhere to ethical and fairness considerations. The insights garnered from this initial phase provide valuable guidance for the subsequent stages of the workflow, contributing to the overall integrity and equity of the machine learning process.
 
 \subsubsection{Fairness Assessment}
 
-The fairness assessment within the Fair-by-Design workflow represents a critical checkpoint, functioning as a meticulous examination to ascertain the absence of biases and the alignment of the dataset with ethical considerations. At this stage, the objective is to rigorously evaluate the fairness of the dataset, particularly in relation to the identified sensitive attributes. This process is pivotal in establishing the ethical foundation of the subsequent stages in the machine learning pipeline.
+The fairness assessment within the Fair-by-Design workflow serves as a critical checkpoint, functioning as a meticulous examination to ascertain the absence of biases and align the dataset with ethical considerations. At this stage, the objective is to rigorously evaluate the fairness of the dataset, particularly in relation to the identified sensitive attributes. This process plays a pivotal role in establishing the ethical foundation for the subsequent stages in the machine learning pipeline.
 
 To conduct this comprehensive evaluation, the Fair-by-Design workflow leverages Disparate Impact, a widely recognized and utilized fairness metric. Disparate Impact offers a quantitative measure of the differential treatment experienced by distinct groups within the dataset. Specifically, it assesses the ratio of favorable outcomes for various demographic groups, shedding light on potential biases and disparities that might be present.
 
-The implementation of Disparate Impact serves as a vital indicator during the data acquisition phase, allowing practitioners to make well-informed decisions pertaining to fairness considerations. By quantifying the differential impact on different demographic groups, Disparate Impact facilitates a nuanced understanding of potential imbalances within the dataset, empowering practitioners to address and rectify biases before proceeding with subsequent stages of the machine learning pipeline.
+The implementation of Disparate Impact serves as a vital indicator during the data acquisition phase, enabling practitioners to make well-informed decisions regarding fairness considerations. By quantifying the differential impact on different demographic groups, Disparate Impact facilitates a nuanced understanding of potential imbalances within the dataset, empowering practitioners to address and rectify biases before proceeding with subsequent stages of the machine learning pipeline.
 
-The strategic integration of Disparate Impact into the fairness assessment phase underscores the commitment of the Fair-by-Design workflow to a principled and thorough approach in ensuring fairness. This metric acts as a guiding compass, steering practitioners towards fair and equitable machine learning practices from the outset of the workflow.
+The strategic integration of Disparate Impact into the fairness assessment phase underscores the commitment of the Fair-by-Design workflow to a principled and thorough approach to ensuring fairness. This metric acts as a guiding compass, steering practitioners towards fair and equitable machine learning practices from the outset of the workflow. It plays a crucial role in fostering a robust ethical foundation and promoting fairness throughout the machine learning development process.
 
 \subsection{Data pre-processing}
 
-The data pre-processing step in the Fair-by-Design workflow is designed as a comprehensive process, integrating both traditional and fairness-oriented sub-steps. The workflow envisions two primary sub-steps to ensure the dataset's readiness for subsequent model development.
+The data pre-processing step within the Fair-by-Design workflow is meticulously designed as a comprehensive process that integrates both traditional and fairness-oriented sub-steps. This nuanced approach ensures the dataset's readiness for subsequent model development.
 
 \subsubsection{Usual Pre-processing Step}
 
-The first sub-step in data pre-processing addresses typical operations aimed at enhancing the overall quality of the dataset. Handling missing values is a crucial pre-processing task. In this workflow, NaN values are filled using the mean for continuous attributes and the median for discrete attributes. This conventional operation ensures a more complete and standardized dataset.
-
-However, the Fair-by-Design workflow goes beyond standard pre-processing by incorporating operations specific to protected attributes and the output variable. These operations set the stage for defining the learning prediction goal and establishing how the protected attributes should be treated.
+The first sub-step addresses typical operations to enhance the overall dataset quality. Handling missing values is a crucial pre-processing task, where NaN values are filled using the mean for continuous attributes and the median for discrete attributes. This standard operation ensures a more complete and standardized dataset. However, the Fair-by-Design workflow goes beyond standard pre-processing by incorporating operations specific to protected attributes and the output variable, setting the stage for defining the learning prediction goal and establishing how protected attributes should be treated.
 
 \begin{itemize}
     
     \item \textbf{Handling Protected Attributes:} 
     
-    Within the Fair-by-Design workflow, an intricate transformation process is applied to protected attributes, which are assumed to be categorical in nature. This transformative step is crucial for ensuring fairness in the subsequent stages of the machine learning pipeline. The goal is to mitigate potential biases associated with these protected attributes and to create a representation that fosters equitable treatment within the model.
+    Within the Fair-by-Design workflow, a meticulous transformation process is applied to protected attributes, assumed to be categorical in nature. This transformative step is pivotal for ensuring fairness in subsequent stages of the machine learning pipeline, aiming to mitigate potential biases associated with these attributes and foster equitable treatment within the model.
 
-    The process begins by identifying the most frequent value for each categorical protected attribute in the dataset. This meticulous calculation ensures a comprehensive understanding of the prevalent categories within these attributes. Subsequently, a binary encoding scheme is employed to represent the protected attributes in a format conducive to machine learning model interpretation.
+    The transformation process for categorical protected attributes involves the identification of the most frequent value and the subsequent application of a binary encoding scheme. This nuanced procedure plays a crucial role in aligning the dataset with the fairness objectives of the Fair-by-Design workflow.
 
-    In this encoding scheme, instances in the dataset where the protected attribute assumes the most frequent value are replaced with the binary representation 1, signifying a state of privilege concerning that specific attribute. Conversely, all other instances where the protected attribute takes on values different from the most frequent one are replaced with the binary representation 0. This binary encoding not only simplifies the representation of protected attributes but also facilitates the model's ability to distinguish instances based on their privilege or lack thereof concerning specific attributes.
+    et $P$ be the set of protected attributes, and $p_i$ represent a specific protected attribute within $P$. The most frequent value, denoted as $v_{\text{freq}}$, is determined for each categorical protected attribute $p_i$ in the dataset through the following formalism:
 
-    This nuanced encoding strategy is instrumental in transforming categorical protected attributes into a format that aligns with the fairness objectives of the Fair-by-Design workflow. The binary representation not only preserves the essential information about the protected attributes but also ensures that the subsequent machine learning model can effectively incorporate and act upon this information during training and prediction phases.
-
-    By employing this detailed transformation process, the Fair-by-Design workflow establishes a foundation for unbiased and fair treatment of instances within the model. This step is integral to addressing potential disparities associated with protected attributes, ultimately contributing to the development of a more equitable and ethically sound machine learning model.
+    \[
+    v_{\text{freq}} = \text{argmax}_v \left( \text{count}(p_i = v) \right)
+    \]
     
+    This calculation ensures a comprehensive understanding of the prevalent categories within these attributes.
+
+    The binary representation preserves the essential information about protected attributes, providing a condensed yet informative encoding that reflects the privilege or lack thereof concerning specific attributes.
+
+    During the training phase, the model learns to distinguish instances based on privilege or lack thereof concerning specific attributes, as represented by the binary encoding. This facilitates effective model incorporation and decision-making during training and prediction phases.
+
+    This nuanced encoding strategy serves as the foundation for unbiased and fair treatment of instances within the model. By transforming categorical protected attributes into a binary representation, the Fair-by-Design workflow ensures that subsequent machine learning models can effectively incorporate and act upon this information during training and prediction phases, contributing significantly to the development of a more equitable and ethically sound machine learning model.
+
     \item \textbf{Handling Output Variable:} 
     
     The handling of the output variable in the Fair-by-Design workflow is a nuanced process that adapts to the nature of the variable, whether categorical or continuous. This tailored treatment is essential for aligning the prediction task with the fairness objectives of the workflow, ensuring that the model's predictions are not only accurate but also ethically sound.
 
-    In cases where the output variable is categorical, the workflow initiates by determining the most frequent value within this category. This strategic calculation provides insights into the prevailing outcome within the dataset. Subsequently, instances where the output variable matches this most frequent value are replaced with the binary representation 1, while all other instances take on the binary representation 0. This transformation effectively redefines the prediction task, shifting the focus to discerning whether a given sample belongs to the most frequent outcome. This binary encoding approach not only simplifies the representation of categorical outcomes but also enables the model to make predictions in a manner that aligns with fairness considerations.
 
-    Conversely, when the output variable is continuous, the workflow employs a distinct strategy. Values of the continuous variable that surpass the mean are replaced with 1, while those falling below the mean assume the binary representation 0. This adjustment transforms the prediction task into establishing whether a sample's continuous output is above the mean. This approach ensures that the model is not only attentive to the central tendency of the continuous variable but also considers the distribution of values concerning the mean. By adopting this methodology, the Fair-by-Design workflow addresses potential biases associated with continuous outcomes, promoting fairness and transparency in the prediction process.
+    In cases where the output variable is categorical, the workflow initiates by determining the most frequent value within this category. Let $Y$ represent the output variable, and $y_i$ be a specific outcome within $Y$. The most frequent value, denoted as $y_{\text{freq}}$, is determined through the following formalism:
+
+    \[
+    y_{\text{freq}} = \text{argmax}_y \left( \text{count}(Y = y) \right)
+    \]
+
+    This strategic calculation provides insights into the prevailing outcome within the dataset. Subsequently, instances where the output variable matches $y_{\text{freq}}$ are replaced with the binary representation 1, while all other instances take on the binary representation 0. The binary encoding function is defined as follows:
+
+    \[
+    \text{Binary Encoding}(y_i) = \begin{cases} 
+    1 & \text{if } y_i = y_{\text{freq}} \\ 
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+
+    This transformation effectively redefines the prediction task, shifting the focus to discerning whether a given sample belongs to the most frequent outcome. The binary encoding approach not only simplifies the representation of categorical outcomes but also enables the model to make predictions in a manner that aligns with fairness considerations.
+
+
+    Conversely, when the output variable is continuous, the workflow employs a distinct strategy. Let $Z$ represent the continuous output variable, and $z_i$ be a specific value within $Z$. Values of the continuous variable that surpass the mean are replaced with 1, while those falling below the mean assume the binary representation 0. This adjustment transforms the prediction task into establishing whether a sample's continuous output is above the mean. The binary encoding function for continuous variables is defined as:
+
+    \[
+    \text{Binary Encoding}(z_i) = \begin{cases} 
+    1 & \text{if } z_i > \text{mean}(Z) \\ 
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+
+    This approach ensures that the model is not only attentive to the central tendency of the continuous variable but also considers the distribution of values concerning the mean.
 
     This tailored and meticulous treatment of the output variable underscores the commitment of the Fair-by-Design workflow to equitable and ethical machine learning practices. The workflow not only adapts to the inherent characteristics of the data but also ensures that the subsequent model operates with a heightened awareness of fairness considerations, contributing to the development of a more responsible and unbiased machine learning model.
 
