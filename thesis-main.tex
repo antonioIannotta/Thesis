@@ -1068,7 +1068,7 @@ A critical aspect of our Fair-by-Design workflow revolves around the selection a
 In the Fairness through Unawareness algorithms, particularly via Apriori and FP-growth, the Disparate Impact metric takes on a distinctive form. Here, each row in the FP-growth dataset undergoes a tailored treatment. The value of the antecedent is considered the privileged value for the attribute, while the value of the consequent is treated as the outcome. This nuanced interpretation aligns with the intricacies of our workflow, enhancing the relevance and effectiveness of the fairness assessment within the Unawareness paradigm.
 
 \lstinputlisting[
-	float,
+	%float,
 	language=Python,
 	caption={Customized Disparate Impact implementation for Association Rule Mining},
 	label={lst:di_custom},
@@ -1088,7 +1088,7 @@ Key elements of this code, before to report the probability computation that is 
 The format "attribute = value" has been imposed to make it easier to interpret the results of the association rule mining process. It simplifies the extraction of relevant information from the antecedent and consequent strings.
 
 \lstinputlisting[
-	float,
+	%float,
 	language=Python,
 	caption={Probability computation},
 	label={lst:prob_computation},
@@ -1101,7 +1101,7 @@ This code allows the probability computation considering, as specified above, as
 An essential facet of the Fairness through Rebalancing algorithm within our workflow lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
 
 \lstinputlisting[
-	float,
+	%float,
 	language=Python,
 	caption={Frequent values in the sub-dataset},
 	label={lst:frequent_value},
