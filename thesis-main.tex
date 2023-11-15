@@ -794,13 +794,13 @@ In the following is presented the pseudocode for the algorithm, in its two diffe
     \caption{Fairness through unawareness with proxy detection}
     \label{alg:fairness_algorithm}
     \begin{algorithmic}[1]
-        \Require{dataset}
+        \Require{dataset, protected\_attributes}
         \Ensure{fair dataset}
         \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$
         \While{\textbf{not} \textit{dataset\_fair(dataset)}}
             \State proxies $\gets$ \textit{proxy\_detection(dataset)}\;
             \If{proxies \textbf{is empty}}
-                \State dataset $\gets$ \textit{protected\_attributes\_free\_dataset(dataset)}\;
+                \State dataset $\gets$ \textit{protected\_attributes\_free\_dataset(dataset, protected\_attributes)}\;
                 \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{protected\_attributes}$ 
             \Else
                 \State dataset $\gets$ \textit{proxy\_free\_dataset(dataset)}\;
@@ -835,23 +835,23 @@ It's relevant to provide an explaination of the algorithm above:
 \end{enumerate}
 
 \begin{algorithm}[H]
-    \caption{Fairness Evaluation}
+    \caption{Dataset fairness Evaluation}
     \label{alg:fairness_evaluation}
     \begin{algorithmic}[1]
         \Require{dataset, output\_column, protected\_attributes}
         \Ensure{List of attributes failing fairness evaluation}
-        \State fairness\_evaluation\_list $\gets$ empty list\;
+        \State unfairness\_list $\gets$ empty list\;
         \State output $\gets$ dataset[output\_column]\;
         \For{attribute \textbf{in} protected\_attributes}
             \If{\textit{metric(attribute, output)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, output)} $\geq$ 1.25}
-                \State \textit{fairness\_evaluation\_list.append(attribute)}\;
+                \State \textit{unfairness\_list.append(attribute)}\;
             \EndIf
         \EndFor
-        \State \textbf{return} fairness\_evaluation\_list
+        \State \textbf{return} unfairness\_list is \textbf{empty}
     \end{algorithmic}
 \end{algorithm}
 
-For each protected attribute, the algorithm computes a fairness metric using the \textit{metric} function and compares it against predefined thresholds (0.8 and 1.25). If the metric indicates a failure in fairness, the attribute is added to the \textit{fairness\_evaluation\_list}. The algorithm returns a list of attributes that fail the fairness evaluation.
+For each protected attribute, the algorithm computes a fairness metric using the \textit{metric} function and compares it against predefined thresholds (0.8 and 1.25). If the metric indicates a failure in fairness, the attribute is added to the \textit{fairness\_evaluation\_list}. The algorithm returns if the unfairness list is either empty or not
 
 
 \begin{algorithm}[H]
@@ -1048,39 +1048,80 @@ This algorithm adds rows to the dataset until every combination have the same fr
 
 This chapter delves into the intricate technical details of the Fair-by-Design workflow, providing an in-depth exploration of the tools, methodologies, and algorithms employed to ensure fairness and equity in the development of machine learning models.
 
+\section{Software Design and Architectures}
+
+
 \section{Tools and Libraries}
 
 \subsection{Data Preparation and Algorithm Implementation}
 
-The foundation of our approach lies in the thoughtful selection of tools to develop algorithms and prepare data for modeling. The algorithms within the fairness pre-processing sub-step have been meticulously implemented using Python, harnessing the capabilities of renowned libraries such as \texttt{pandas} and \texttt{mlxtend}. \texttt{pandas} facilitates efficient data manipulation, enabling seamless preprocessing, while \texttt{mlxtend} plays a pivotal role in implementing algorithms like FP-growth, a key component of our Fairness through Unawareness workflow.
+The foundation of our Fair-by-Design approach lies in the thoughtful selection of tools to develop algorithms and prepare data for modeling. The algorithms within the fairness pre-processing sub-step have been meticulously implemented using Python, harnessing the capabilities of renowned libraries such as \emph{pandas} and \emph{mlxtend}. \emph{pandas} facilitates efficient data manipulation, enabling seamless preprocessing, while \emph{mlxtend} plays a pivotal role in implementing algorithms like FP-growth, a key component of the Fairness through Unawareness algorithm proposed in the workflow.
 
 \section{Disparate Impact Metric}
 
 \subsection{Metric Choice in Data Acquisition}
 
-A critical aspect of our work revolves around the selection and interpretation of fairness metrics. At the data acquisition step, the Disparate Impact metric emerges as a key player, acting as the chosen metric to evaluate the fairness degree of the dataset over protected attributes. In this context, the Disparate Impact metric adheres to its classical definition, ensuring a robust assessment of bias in the initial dataset.
+A critical aspect of our Fair-by-Design workflow revolves around the selection and interpretation of fairness metrics. At the data acquisition step, the Disparate Impact metric emerges as a key player, acting as the chosen metric to evaluate the fairness degree of the dataset over protected attributes. In this context, the Disparate Impact metric adheres to its classical definition, ensuring a robust assessment of bias in the initial dataset.
 
 \subsection{Customization in Fairness through Unawareness Algorithms}
 
 In the Fairness through Unawareness algorithms, particularly via Apriori and FP-growth, the Disparate Impact metric takes on a distinctive form. Here, each row in the FP-growth dataset undergoes a tailored treatment. The value of the antecedent is considered the privileged value for the attribute, while the value of the consequent is treated as the outcome. This nuanced interpretation aligns with the intricacies of our workflow, enhancing the relevance and effectiveness of the fairness assessment within the Unawareness paradigm.
 
+\lstinputlisting[
+	float,
+	language=Python,
+	caption={Customized Disparate Impact implementation for Association Rule Mining},
+	label={lst:di_custom},
+]{listings/customized_disparate_impact.py}
+
+Key elements of this code, before to report the probability computation that is the core of the Disparate Impact metric are the concepts of antecedent and consequent:
+
+\begin{itemize}
+
+    \item \emph{antecedent}: Represents the condition part of the association rule.
+    
+    \item \emph{consequent}: Represents the result or outcome part of the association rule.
+
+\end{itemize}
+
+The format "attribute = value" has been imposed to make it easier to interpret the results of the association rule mining process. It simplifies the extraction of relevant information from the antecedent and consequent strings.
+
+\lstinputlisting[
+	float,
+	language=Python,
+	caption={Probability computation},
+	label={lst:prob_computation},
+]{listings/probability_computation.py}
+
+This code allows the probability computation considering, as specified above, as privileged group the one having the value of the antecedent.
+
 \section{Data Generation in Fairness through Rebalancing}
 
-An essential facet of the Fairness through Rebalancing algorithm lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
+An essential facet of the Fairness through Rebalancing algorithm within our workflow lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
+
+\lstinputlisting[
+	float,
+	language=Python,
+	caption={Frequent values in the sub-dataset},
+	label={lst:frequent_value},
+]{listings/frequent_value.py}
 
 For each value outside the combination set, the algorithm discerns both the least frequent and most frequent occurrences. The next step involves randomly selecting a value for the new row to be added to the dataset. This random selection occurs within the range defined by the least frequent and most frequent values. The careful orchestration of this process ensures that the augmented dataset maintains statistical coherence while introducing the necessary variations to rebalance the fairness aspects within the model.
 
 This deliberate approach to data generation underscores the commitment to preserving the integrity of the dataset while mitigating potential biases, contributing to the overarching goal of developing fair and unbiased machine learning models.
 
+
 \section{Fairness Evaluation with fairlearn}
 
-The critical task of evaluating the fairness of the developed machine learning models was conducted using the fairlearn library. This powerful Python library provides a comprehensive set of tools for assessing and mitigating bias in machine learning models, aligning with the broader goals of promoting fairness and equity.
+The critical task of evaluating the fairness of the developed machine learning models within our Fair-by-Design workflow was conducted using the fairlearn library. This powerful Python library provides a comprehensive set of tools for assessing and mitigating bias in machine learning models, aligning with the broader goals of promoting fairness and equity.
 
-Two key fairness metrics, namely \textit{equalized\_odds\_ratio} and \textit{demographic\_parity\_ratio}, were employed to scrutinize the performance of the models. These metrics are integral to the fairlearn library, offering a quantitative means to measure disparities and imbalances across different demographic groups.
+Two key fairness metrics, namely \emph{equalized\_odds\_ratio} and \emph{demographic\_parity\_ratio}, were employed to scrutinize the performance of the models. These metrics are integral to the fairlearn library, offering a quantitative means to measure disparities and imbalances across different demographic groups.
 
-\textbf{Equalized Odds Ratio} ensures parity in both true positive and false positive rates across various demographic groups. This metric is crucial for achieving fairness by minimizing discrepancies in model predictions for different subpopulations.
+\emph{Equalized Odds Ratio} ensures parity in both true positive and false positive rates across various demographic groups. This metric is crucial for achieving fairness by minimizing discrepancies in model predictions for different subpopulations.
 
-\textbf{Demographic Parity Ratio} necessitates the equality of positive outcomes' proportions for all demographic groups, irrespective of their protected attributes. This metric facilitates a broader understanding of the model's impact on different groups, contributing to a more unbiased evaluation.
+\emph{Demographic Parity Ratio} necessitates the equality of positive outcomes' proportions for all demographic groups, irrespective of their protected attributes. This metric facilitates a broader understanding of the model's impact on different groups, contributing to a more unbiased evaluation.
+
+These technical details are seamlessly integrated into the overarching Fair-by-Design workflow, emphasizing the meticulous consideration given to each step to ensure fairness and equity in machine learning model development.
 
 Leveraging fairlearn not only enhances the precision of fairness evaluations but also aligns with contemporary best practices in fairness-aware machine learning, reinforcing the commitment to ethical AI development.
 %----------------------------------------------------------------------------------------
