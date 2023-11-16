@@ -528,6 +528,22 @@ AIF360 provides a selection of pre-processing, in-processing, and post-processin
 
 The toolkit offers a variety of fairness metrics that enable users to quantitatively evaluate the fairness of their models. These metrics cover disparate impact, equalized odds, and various other measures that help assess the impact of model predictions on different demographic groups.
 
+\newpage
+\section{Fairlearn Library}
+
+Fairlearn is a powerful and versatile open-source Python library developed to address fairness concerns in machine learning models. Recognizing the importance of mitigating biases and ensuring equitable outcomes, Fairlearn provides a comprehensive set of tools, algorithms, and metrics designed to facilitate fairness-aware model development and evaluation.
+
+\subsection{Key Features of Fairlearn}
+
+Fairlearn offers a range of key features that empower researchers and practitioners to assess and enhance the fairness of their machine learning models:
+
+\subsubsection{Fairness Metrics}
+
+The library includes a diverse set of fairness metrics that enable quantitative assessment of bias and disparity in model predictions. Metrics such as disparate impact, equalized odds, and demographic parity provide insights into the impact of model decisions on different demographic groups.
+
+\subsubsection{Algorithms}
+
+Fairlearn incorporates fairness algorithms tailored for pre-processing, in-processing, and post-processing stages of the machine learning pipeline. These algorithms aim to mitigate biases and promote fairness in model predictions, offering flexibility for users to choose and integrate the most suitable techniques for their specific applications.
 
 In conclusion, fairness in AI is not just an ethical necessity but a fundamental requirement for fostering trust and ensuring the responsible and equitable deployment of AI systems. Moving into the evolving landscape of AI, the collective efforts must prioritize fairness to harness the true potential of AI for the greater good.
 %Write background here.
@@ -1705,7 +1721,30 @@ In the post-processing phase, which occurs after the model has generated predict
 
 The Equalized Odds Post-Processing algorithm operates on the model's output, adjusting decision thresholds to ensure equalized odds across different demographic groups. By fine-tuning the decision boundaries based on protected attributes, this algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions.
 
-By strategically combining pre-processing, in-processing, and post-processing algorithms, the fair-by-design workflow endeavors to create a predictive model that not only maximizes accuracy in predicting English proficiency levels but also upholds the principles of fairness and equity, especially concerning protected attributes.
+\section{Model Training and Evaluation}
+
+The successful implementation of the fair-by-design workflow requires not only the training of an accurate predictive model but also a meticulous evaluation process that considers both predictive performance and fairness. In this section, we detail the steps involved in training the model, evaluating its accuracy over the test set, and assessing fairness using functions from the fairlearn library.
+
+\subsection{Model Training}
+
+The predictive model undergoes a rigorous training process using the pre-processed and fairness-enhanced dataset. Leveraging the fair-by-design algorithms, the model is trained to predict English proficiency levels for students in the Canary Islands. The learning process involves optimizing parameters, minimizing loss functions, and adapting the model to the intricacies of the dataset.
+
+\subsection{Model Evaluation}
+
+Following the training phase, the model's performance is assessed through rigorous evaluation over a dedicated test set. The accuracy of the model is a primary focus, providing insights into its ability to make precise predictions. The accuracy metric is calculated by comparing the model's predictions to the true English proficiency levels in the test set, quantifying the proportion of correct predictions.
+
+\subsection{Fairness Assessment}
+
+Beyond accuracy, the fair-by-design workflow places a significant emphasis on fairness considerations. To assess the fairness of the model, two functions from the fairlearn library are employed: "equalized_odds_ratio" and "demographic_parity_ratio."
+
+\subsubsection{Equalized Odds Ratio}
+
+The "equalized_odds_ratio" function measures the equality of odds for different demographic groups. It computes the ratio of true positive rates between groups, highlighting any disparities in the model's ability to make accurate positive predictions across protected attributes. A value close to 1 signifies equalized odds, indicating fair treatment across diverse student populations.
+
+\subsubsection{Demographic Parity Ratio}
+
+The "demographic_parity_ratio" function evaluates demographic parity, assessing whether the model's predictions are independent of protected attributes. It calculates the ratio of positive predictions for different demographic groups, emphasizing the need for equal representation in positive predictions. A demographic parity ratio close to 1 signals fairness in the distribution of positive predictions.
+
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
