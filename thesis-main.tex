@@ -803,7 +803,6 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
 Stakeholder identification is pivotal for ensuring the fair and inclusive development of a system. By involving stakeholders from diverse backgrounds and perspectives, the ethical considerations embedded in the objectives can more accurately reflect the values and expectations of the broader community.
 
-
 \section{Data Collection: Integration with Stakeholder Considerations}
 
 In the process of data collection, the integration of insights from stakeholders is crucial, particularly for the identification of protected attributes. Stakeholders bring valuable perspectives on societal norms, ethical considerations, and potential biases that may not be apparent solely from the dataset. Their input aids in defining and recognizing protected attributes, contributing to a more nuanced understanding of fairness in the context of the application.
@@ -826,40 +825,52 @@ Stakeholders may uncover implicit biases that are not explicitly represented in 
 
 \subsubsection{Stakeholder Workshops}
 
-\textbf{Objective:} Integrate stakeholder considerations into the identification of protected attributes.
+\emph{Objective:} Integrate stakeholder considerations into the identification of protected attributes.
 
-\textbf{Implementation:}
-
+\emph{Implementation:}
 \begin{itemize}
 
     \item Conduct stakeholder workshops specifically focused on discussing and identifying potential protected attributes.
-    
+
     \item Encourage open discussions to uncover implicit biases or attributes that may have societal implications.
-    
+
     \item Facilitate collaboration between data scientists and stakeholders to ensure a shared understanding of fairness goals.
 
 \end{itemize}
 
 \subsubsection{Documentation of Stakeholder Input}
 
-\textbf{Objective:} Document stakeholder input on protected attributes for transparency.
+\emph{Objective:} Document stakeholder input on protected attributes for transparency.
 
-\textbf{Implementation:}
+\emph{Implementation:}
 
 \begin{itemize}
 
     \item Record the insights shared by stakeholders regarding attributes they perceive as sensitive or requiring protection.
 
     \item Incorporate stakeholder considerations into the broader documentation of the data collection process.
- 
+
     \item Provide clear documentation of the integration process to maintain transparency and facilitate reproducibility.
 
 \end{itemize}
 
-\subsection{Significance}
+\subsection{Assessing Fairness: Disparate Impact Metric}
 
-Integrating stakeholder considerations into the data collection process enhances the identification of protected attributes, contributing to a more robust and culturally sensitive understanding of fairness. By aligning the dataset with societal values and ethical norms, the system is better equipped to mitigate biases and promote equitable outcomes.
+In order to assess the fairness of the dataset over the protected attributes identified with stakeholders, the disparate impact metric is commonly employed. The disparate impact metric quantifies the difference in outcomes between different groups, highlighting potential disparities in how the dataset represents protected attributes.
 
+\subsubsection{Application}
+
+\begin{itemize}
+    
+    \item Calculate the disparate impact for each identified protected attribute to evaluate the potential disparities in the dataset.
+    
+    \item Establish a baseline value for disparate impact, considering fairness thresholds and legal requirements.
+
+\end{itemize}
+
+\subsubsection{Significance}
+
+The disparate impact metric serves as a quantitative tool to gauge the fairness of the dataset over identified protected attributes. Its application allows data scientists to identify and address potential biases in the data collection process, contributing to a more equitable foundation for subsequent stages in the fair-by-design workflow.
 
 %----------------------------------------------------------------------------------------
 \chapter{Technical details}
