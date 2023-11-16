@@ -5,6 +5,7 @@ on:
       - main
       - master
       - workflow-version
+      - workflow-right
 env:
   LATEX_ROOT: thesis-main
 jobs:
