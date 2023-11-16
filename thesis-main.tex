@@ -549,6 +549,8 @@ In recent years, the ethical implications of artificial intelligence and machine
 
     \item \emph{Data Collection and Assessment:} Determine the types of data needed for the application, establish ethical data collection protocols, and conduct a fairness impact assessment.
 
+    \item \emph{Data pre-processing:} Prepare the data for the fairness algorithm, through data cleaning and featyre engineering
+    
     \item \emph{Algorithmic Design and Definitions:} Define and implement fairness-enhancing algorithms across pre-processing, in-processing, and post-processing stages. Provide detailed definitions and explanations for each algorithm.
 
     \item \emph{User Feedback Loop:} Establish a continuous feedback loop with stakeholders to gather insights on user experiences, potential biases, and fairness concerns.
@@ -871,6 +873,75 @@ In order to assess the fairness of the dataset over the protected attributes ide
 \subsubsection{Significance}
 
 The disparate impact metric serves as a quantitative tool to gauge the fairness of the dataset over identified protected attributes. Its application allows data scientists to identify and address potential biases in the data collection process, contributing to a more equitable foundation for subsequent stages in the fair-by-design workflow.
+
+\section{Data Pre-processing}
+
+After the data collection and integration of stakeholder considerations, the next crucial stage is data pre-processing. This stage focuses on preparing and cleaning the dataset to address biases, imbalances, and ensure fairness in subsequent stages of the fair-by-design workflow.
+
+\subsection{Key Considerations}
+
+\begin{enumerate}
+
+    \item \emph{Handling Protected Attributes:} 
+    
+    Within the Fair-by-Design workflow, a meticulous transformation process is applied to protected attributes, assumed to be categorical in nature. This transformative step is pivotal for ensuring fairness in subsequent stages of the machine learning pipeline, aiming to mitigate potential biases associated with these attributes and foster equitable treatment within the model.
+
+    The transformation process for categorical protected attributes involves the identification of the most frequent value and the subsequent application of a binary encoding scheme. This nuanced procedure plays a crucial role in aligning the dataset with the fairness objectives of the Fair-by-Design workflow.
+
+    Let $P$ be the set of protected attributes, and $p_i$ represent a specific protected attribute within $P$. The most frequent value, denoted as $v_{\text{freq}}$, is determined for each categorical protected attribute $p_i$ in the dataset through the following formalism:
+
+    \[
+    v_{\text{freq}} = \text{argmax}_v \left( \text{count}(p_i = v) \right)
+    \]
+    
+    This calculation ensures a comprehensive understanding of the prevalent categories within these attributes.
+
+    The binary representation preserves the essential information about protected attributes, providing a condensed yet informative encoding that reflects the privilege or lack thereof concerning specific attributes.
+
+    During the training phase, the model learns to distinguish instances based on privilege or lack thereof concerning specific attributes, as represented by the binary encoding. This facilitates effective model incorporation and decision-making during training and prediction phases.
+
+    This nuanced encoding strategy serves as the foundation for unbiased and fair treatment of instances within the model. By transforming categorical protected attributes into a binary representation, the Fair-by-Design workflow ensures that subsequent machine learning models can effectively incorporate and act upon this information during training and prediction phases, contributing significantly to the development of a more equitable and ethically sound machine learning model.
+
+    \item \emph{Handling Output Variable:} 
+    
+    The handling of the output variable in the Fair-by-Design workflow is a nuanced process that adapts to the nature of the variable, whether categorical or continuous. This tailored treatment is essential for aligning the prediction task with the fairness objectives of the workflow, ensuring that the model's predictions are not only accurate but also ethically sound.
+
+
+    In cases where the output variable is categorical, the workflow initiates by determining the most frequent value within this category. Let $Y$ represent the output variable, and $y_i$ be a specific outcome within $Y$. The most frequent value, denoted as $y_{\text{freq}}$, is determined through the following formalism:
+
+    \[
+    y_{\text{freq}} = \text{argmax}_y \left( \text{count}(Y = y) \right)
+    \]
+
+    This strategic calculation provides insights into the prevailing outcome within the dataset. Subsequently, instances where the output variable matches $y_{\text{freq}}$ are replaced with the binary representation 1, while all other instances take on the binary representation 0. The binary encoding function is defined as follows:
+
+    \[
+    \text{Binary Encoding}(y_i) = \begin{cases} 
+    1 & \text{if } y_i = y_{\text{freq}} \\ 
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+
+    This transformation effectively redefines the prediction task, shifting the focus to discerning whether a given sample belongs to the most frequent outcome. The binary encoding approach not only simplifies the representation of categorical outcomes but also enables the model to make predictions in a manner that aligns with fairness considerations.
+
+
+    Conversely, when the output variable is continuous, the workflow employs a distinct strategy. Let $Z$ represent the continuous output variable, and $z_i$ be a specific value within $Z$. Values of the continuous variable that surpass the mean are replaced with 1, while those falling below the mean assume the binary representation 0. This adjustment transforms the prediction task into establishing whether a sample's continuous output is above the mean. The binary encoding function for continuous variables is defined as:
+
+    \[
+    \text{Binary Encoding}(z_i) = \begin{cases} 
+    1 & \text{if } z_i > \text{mean}(Z) \\ 
+    0 & \text{otherwise}
+    \end{cases}
+    \]
+
+    This approach ensures that the model is not only attentive to the central tendency of the continuous variable but also considers the distribution of values concerning the mean.
+
+    This tailored and meticulous treatment of the output variable underscores the commitment of the Fair-by-Design workflow to equitable and ethical machine learning practices. The workflow not only adapts to the inherent characteristics of the data but also ensures that the subsequent model operates with a heightened awareness of fairness considerations, contributing to the development of a more responsible and unbiased machine learning model.
+
+\end{enumerate}
+
+This nuanced pre-processing step sets the groundwork for a fair and unbiased learning prediction, aligning the dataset with the ethical considerations embedded in the Fair-by-Design workflow.
+
 
 %----------------------------------------------------------------------------------------
 \chapter{Technical details}
