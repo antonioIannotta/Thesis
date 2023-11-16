@@ -553,15 +553,7 @@ In recent years, the ethical implications of artificial intelligence and machine
     
     \item \emph{Algorithmic Design and Definitions:} Define and implement fairness-enhancing algorithms across pre-processing, in-processing, and post-processing stages. Provide detailed definitions and explanations for each algorithm.
 
-    \item \emph{User Feedback Loop:} Establish a continuous feedback loop with stakeholders to gather insights on user experiences, potential biases, and fairness concerns.
-
-    \item \emph{Continuous Monitoring:} Implement mechanisms for continuous monitoring of the system or process, regularly assessing and addressing any emerging fairness concerns.
-
-    \item \emph{Documentation and Transparency:} Document the entire design process, emphasizing fairness considerations at each step. Provide clear and transparent documentation on decision-making processes.
-
-    \item \emph{Implementation:} Implement the finalized design, ensuring that all fairness-enhancing measures are in place.
-
-    \item \emph{Post-Implementation Evaluation:} Conduct a post-implementation evaluation to assess the actual impact of the design on fairness. Analyze real-world performance data and make adjustments as necessary.
+    \item \emph{Model training and evaluation:} Define the training step, performs the training tuning certain parameters and provides an evaluation of the performances of the models based on accuracy and fairness metrics.
 
 \end{enumerate}
 
@@ -1425,6 +1417,88 @@ this algorithm adds rows to the dataset until every combination have the same fr
 
 The Algorithm Design stage is pivotal in shaping the ethical and fair behavior of machine learning models within the fair-by-design framework. By carefully selecting, customizing, and integrating fairness-aware models, and incorporating transparency and human-in-the-loop approaches, this stage ensures that the resulting models align with ethical considerations and promote equitable outcomes.
 
+\section{Model Training and Evaluation}
+
+\subsection{Introduction}
+
+This section provides a comprehensive account of the model training and evaluation process within the Fair-by-Design framework. Following the meticulous application of the selected pre-processing, in-processing, or post-processing algorithm, the training phase becomes pivotal for crafting a machine learning model that aligns not only with accuracy objectives but also with the ethical considerations of fairness.
+
+\subsection{Training Process}
+
+\subsubsection{Data Splitting}
+
+The dataset undergoes a thoughtful split into training, validation, and test sets. This division serves a strategic purpose: the training set propels the model's learning, the validation set aids in hyperparameter tuning to enhance generalization, and the test set evaluates the final model's performance, providing a reliable measure of its predictive capabilities.
+
+\subsubsection{Model Architecture}
+
+The architecture of the chosen model is crafted with a delicate balance between accuracy and fairness considerations. Architectures may include innovative components, such as adversarial layers or customized modules designed to enforce fairness constraints. The emphasis is on creating a model that is not only proficient in capturing complex patterns but also interpretable and transparent in its decision-making.
+
+\subsubsection{Training Parameters}
+
+Key training parameters, including the learning rate, batch size, and convergence criteria, are meticulously tuned. The learning rate dictates the step size in the optimization process, influencing the rate of model parameter updates. The batch size determines the number of samples processed in each iteration, impacting the efficiency and resource utilization. Convergence criteria ensure that the training process halts when the model reaches optimal performance, preventing overfitting.
+
+\subsubsection{Fairness Constraints (if applicable)}
+
+In scenarios where fairness constraints are integrated into the training process, they are defined and enforced. This may involve the introduction of regularization terms designed to penalize disparate treatment of different demographic groups. Adversarial training components might also be employed to mitigate bias and promote equitable outcomes.
+
+\subsubsection{Model Training}
+
+The model undergoes training for a predetermined number of epochs. Leveraging the training set, the model iteratively updates its parameters to minimize the loss function. This iterative process aims at achieving a balance between accuracy and fairness, contributing to the development of a machine learning model that is not only adept at capturing underlying patterns but also conscious of potential biases.
+
+\subsection{Evaluation Metrics}
+
+\subsubsection{Accuracy Metrics}
+
+A suite of accuracy metrics is employed to holistically assess the model's overall performance:
+
+\begin{itemize}
+    \item \emph{Accuracy:} The ratio of correctly predicted instances to the total instances.
+    
+    \item \emph{Precision:} The proportion of true positive predictions among instances predicted as positive.
+    
+    \item \emph{Recall:} The proportion of true positive predictions among actual positive instances.
+    
+    \item \emph{F1-score:} The harmonic mean of precision and recall, providing a balanced measure of accuracy.
+\end{itemize}
+
+\subsubsection{Fairness Metrics}
+
+Fairness metrics are instrumental in evaluating the model's behavior across different demographic groups:
+
+\begin{itemize}
+    
+    \item \emph{Equalized Odds:} Evaluates whether the model provides similar false positive and false negative rates across different demographic groups.
+    
+    \item \emph{Statistical Parity:} Examines the proportion of positive outcomes for each demographic group to identify disparities.
+\end{itemize}
+
+\subsection{Results and Analysis}
+
+\subsubsection{Accuracy Results}
+
+A meticulous analysis of accuracy results provides valuable insights into how well the model predicts the target variable. Precision, recall, and F1-score metrics offer a nuanced understanding of the trade-offs between true positives, false positives, and false negatives. The goal is not just accuracy but a balanced and informed prediction capability.
+
+\subsubsection{Fairness Results}
+
+Fairness metrics serve as a critical lens to identify and address biases within the model. Disparate impact, equalized odds, and statistical parity results are analyzed to assess whether the model exhibits disparate treatment of different demographic groups. The focus is on identifying and mitigating disparities, fostering a model that is fair and equitable.
+
+\subsubsection{Trade-offs}
+
+Understanding the trade-offs between accuracy and fairness is vital. In pursuit of a balanced model, adjustments may be necessary. Techniques such as re-weighting, re-sampling, or customized loss functions may be employed to address specific fairness concerns. Striking the right balance becomes a central theme in refining the model for optimal performance.
+
+\subsection{Discussion}
+
+\subsubsection{Interpretability}
+
+The interpretability of the model's decisions is paramount. Techniques such as SHAP (SHapley Additive exPlanations) values or LIME (Local Interpretable Model-agnostic Explanations) are explored to enhance transparency in the decision-making process. Understanding how the model arrives at its predictions contributes to the model's trustworthiness.
+
+\subsubsection{Ethical Considerations}
+
+The discussion extends to ethical considerations arising from the model's behavior. Attention is given to potential biases, unintended consequences, and the impact on different demographic groups. Strategies for addressing ethical concerns are proposed, underscoring the commitment to responsible and ethical AI practices.
+
+\subsubsection{Further Refinement}
+
+Based on the observed results, proposals for further refinement are put forth. This may involve adjusting fairness constraints, fine-tuning hyperparameters, or exploring alternative algorithms to enhance both accuracy and fairness in model predictions. The iterative nature of this refinement process reflects the commitment to continuous improvement and the pursuit of fair
 %----------------------------------------------------------------------------------------
 \chapter{Technical details}
 \label{chap:technical}
