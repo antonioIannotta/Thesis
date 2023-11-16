@@ -1581,6 +1581,41 @@ In proposing future directions, emphasize the importance of refining model deplo
 \chapter{Technical details}
 \label{chap:technicals}
 
+It's important to provide technical details about the implementation of the two algorithms proposed above.
+
+\section{Fairness through unawareness with proxy detection via variables only}
+
+About this algorithm it's important to inspect the way in which the fairness metric value is computed assuming as protected attribute each no-protected attribute and as output the protected attribute.
+
+Since the environment on which this algorithm is executed is the workflow here presented the protected attribute values are only 0 and 1. A deeper consideration is needed for the no-sensitive attributes that, in this scenario, must be treated like the protected ones.
+
+With this assumptions it becomes clear that it's necessary to detect a privileged group for both discrete no-sensitive attributes and continuous.
+
+Even if for both categories the rule is to mark as privileged group the most frequent value, what changes is a preliminary transofrmation needed for the continuous attribute. In fact first of all each of these attributes is converted into a discrete attribute, then treated like that.
+
+\lstinputlisting[
+	%float,
+	language=Python,
+	caption={Attribute fixing for disparate impact custom computation},
+	label={lst:ftu_vo},
+]{listings/ftu_vo.py}
+
+\section{Fairness through data rebalancing}
+
+An essential facet of the Fairness through Rebalancing algorithm within our workflow lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
+
+\lstinputlisting[
+	%float,
+	language=Python,
+	caption={Frequent values in the sub-dataset},
+	label={lst:frequent_value},
+]{listings/frequent_value.py}
+
+For each value outside the combination set, the algorithm discerns both the least frequent and most frequent occurrences. The next step involves randomly selecting a value for the new row to be added to the dataset. This random selection occurs within the range defined by the least frequent and most frequent values. The careful orchestration of this process ensures that the augmented dataset maintains statistical coherence while introducing the necessary variations to rebalance the fairness aspects within the model.
+
+This deliberate approach to data generation underscores the commitment to preserving the integrity of the dataset while mitigating potential biases, contributing to the overarching goal of developing fair and unbiased machine learning models.
+
+
 %----------------------------------------------------------------------------------------
 \chapter{Implementation of Fair-by-Design Workfow in Canary Island Educational Performance Prediction}
 \label{chap:real-world-scenario}
@@ -1739,11 +1774,11 @@ Beyond accuracy, the fair-by-design workflow places a significant emphasis on fa
 
 \subsubsection{Equalized Odds Ratio}
 
-The "equalized_odds_ratio" function measures the equality of odds for different demographic groups. It computes the ratio of true positive rates between groups, highlighting any disparities in the model's ability to make accurate positive predictions across protected attributes. A value close to 1 signifies equalized odds, indicating fair treatment across diverse student populations.
+This function measures the equality of odds for different demographic groups. It computes the ratio of true positive rates between groups, highlighting any disparities in the model's ability to make accurate positive predictions across protected attributes. A value close to 1 signifies equalized odds, indicating fair treatment across diverse student populations.
 
 \subsubsection{Demographic Parity Ratio}
 
-The "demographic_parity_ratio" function evaluates demographic parity, assessing whether the model's predictions are independent of protected attributes. It calculates the ratio of positive predictions for different demographic groups, emphasizing the need for equal representation in positive predictions. A demographic parity ratio close to 1 signals fairness in the distribution of positive predictions.
+This demographic_parity_ratio function evaluates demographic parity, assessing whether the model's predictions are independent of protected attributes. It calculates the ratio of positive predictions for different demographic groups, emphasizing the need for equal representation in positive predictions. A demographic parity ratio close to 1 signals fairness in the distribution of positive predictions.
 
 \section{Model deployment}
 After the evaluation step in which is assessed whether the model perform its predcition task with a reasonable trade-off between the accuracy and the fairness the model can be deployed and be used to prediction.
