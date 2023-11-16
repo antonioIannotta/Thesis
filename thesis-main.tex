@@ -511,6 +511,23 @@ Demographic parity requires that the proportion of positive outcomes is the same
 
 A value close to 0 indicates fairness, suggesting that the model's predictions are not influenced by the sensitive attribute.
 
+\newpage
+\section{AIF360}
+
+AI Fairness 360 (AIF360) is a comprehensive open-source toolkit developed by IBM to facilitate fairness-aware machine learning and promote responsible AI practices. Designed to address the challenges of bias and fairness in algorithmic decision-making, AIF360 offers a suite of algorithms, metrics, and functionalities that enable researchers and practitioners to assess, mitigate, and monitor bias in machine learning models.
+
+\subsection{Key Components}
+
+AIF360 encompasses a range of key components, each tailored to address specific aspects of fairness in the machine learning lifecycle:
+
+\subsubsection{Algorithms}
+
+AIF360 provides a selection of pre-processing, in-processing, and post-processing fairness algorithms. These algorithms are designed to mitigate biases at different stages of the machine learning pipeline. Notable examples include Learning Fair Representations, Adversarial Debiasing, and Equalized Odds Post-Processing.
+
+\subsubsection{Metrics}
+
+The toolkit offers a variety of fairness metrics that enable users to quantitatively evaluate the fairness of their models. These metrics cover disparate impact, equalized odds, and various other measures that help assess the impact of model predictions on different demographic groups.
+
 
 In conclusion, fairness in AI is not just an ethical necessity but a fundamental requirement for fostering trust and ensuring the responsible and equitable deployment of AI systems. Moving into the evolving landscape of AI, the collective efforts must prioritize fairness to harness the true potential of AI for the greater good.
 %Write background here.
@@ -1644,9 +1661,51 @@ The sensitive attributes detection, and its filtering to detect the main relevan
 
 The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as established in the usual data pre-processing sub-step of the \emph{Fair-by-Design Workflow} proposed in this work.
 
+\subsection{Fairness Assessment}
+
+Having detected the sensitive attributes within the dataset, a crucial step in the fair-by-design workflow involves a comprehensive fairness assessment. This assessment aims to quantify and evaluate any potential biases that may exist in the model predictions, focusing on the disparate impact over the identified protected attributes.
+
 \section{Data pre-processing}
 
 The protected attributes and the output have been pre-processed according to the workflow's rule described in \cref{section:pre-proc}
+
+\section{Algorithm Design}
+
+The success of the fair-by-design workflow in predicting English proficiency levels for students in the Canary Islands hinges on the thoughtful selection and implementation of fairness algorithms across three key categories: pre-processing, in-processing, and post-processing. Each category plays a distinctive role in mitigating biases and ensuring equitable predictions.
+
+\subsection{Pre-processing Algorithms}
+
+In the realm of pre-processing, where the focus is on transforming the input data before it reaches the core machine learning model, two novel fairness algorithms have been proposed and integrated into the fair-by-design workflow.
+
+\subsubsection{Fairness Through Unawareness with Proxy Detection via Variables Only}
+
+The first pre-processing algorithm adopts the principle of fairness through unawareness with proxy detection via variables only. This approach acknowledges the potential biases introduced by sensitive attributes and seeks to mitigate them by obscuring the direct influence of such attributes in the input features. By identifying proxy variables that may inadvertently convey information about protected attributes, the algorithm ensures a more impartial representation of the data.
+
+\subsubsection{Fairness Through Data Rebalancing}
+
+The second pre-processing algorithm, fairness through data rebalancing, addresses imbalances in the distribution of protected attributes. Recognizing that an uneven representation of different demographic groups can lead to biased predictions, this algorithm employs strategic rebalancing techniques. By adjusting the weights assigned to instances based on their protected attributes, the algorithm promotes a more equitable learning process, fostering fair treatment across diverse student populations.
+
+\subsection{In-Processing Algorithms}
+
+Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, two established algorithms from the IBM's \emph{AI Fairness 360} (AIF360) library have been employed.
+
+\subsubsection{Learning Fair Representation}
+
+The first in-processing algorithm, Learning Fair Representation, focuses on enhancing the fairness of the model's internal representation. By learning features that are more invariant to protected attributes, this algorithm facilitates the creation of a fairer and more unbiased model. The objective is to ensure that the model's decision-making process is less influenced by demographic factors, leading to predictions that are more equitable across different student groups.
+
+\subsubsection{Adversarial Debiasing}
+
+The second in-processing algorithm, Adversarial Debiasing, introduces an adversarial training approach to reduce bias in the model's predictions. This algorithm simultaneously trains a predictor network to make accurate predictions and an adversary network to minimize the correlation between predictions and protected attributes. The adversarial nature of the training encourages the model to disregard sensitive attributes, resulting in fairer predictions.
+
+\subsection{Post-Processing Algorithm}
+
+In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the AIF360 library has been selected to further refine fairness.
+
+\subsubsection{Equalized Odds Post-Processing}
+
+The Equalized Odds Post-Processing algorithm operates on the model's output, adjusting decision thresholds to ensure equalized odds across different demographic groups. By fine-tuning the decision boundaries based on protected attributes, this algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions.
+
+By strategically combining pre-processing, in-processing, and post-processing algorithms, the fair-by-design workflow endeavors to create a predictive model that not only maximizes accuracy in predicting English proficiency levels but also upholds the principles of fairness and equity, especially concerning protected attributes.
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
