@@ -869,6 +869,7 @@ In order to assess the fairness of the dataset over the protected attributes ide
 The disparate impact metric serves as a quantitative tool to gauge the fairness of the dataset over identified protected attributes. Its application allows data scientists to identify and address potential biases in the data collection process, contributing to a more equitable foundation for subsequent stages in the fair-by-design workflow.
 
 \section{Data Pre-processing}
+\label{section:pre-proc}
 
 After the data collection and integration of stakeholder considerations, the next crucial stage is data pre-processing. This stage focuses on preparing and cleaning the dataset to address biases, imbalances, and ensure fairness in subsequent stages of the fair-by-design workflow.
 
@@ -1544,17 +1545,64 @@ User feedback plays a pivotal role in assessing the fairness of the deployed mod
 
 In proposing future directions, emphasize the importance of refining model deployment strategies based on fairness implications and user feedback. Consider how emerging technologies, evolving ethical standards, and advancements in AI research can be leveraged to enhance the fairness and ethical considerations of the deployed model. Outline potential research avenues that focus on user-centric fairness in real-world applications.
 
+\chapter{Technical details}
+\label{chap:technicals}
 
 %----------------------------------------------------------------------------------------
 \chapter{Implementation of Fair-by-Design Workfow in Canary Island Educational Performance Prediction}
-\label{chap:technical}
+\label{chap:real-world-scenario}
 
+\section{Introduction}
 
-%----------------------------------------------------------------------------------------
-\chapter{Validation} % possible chapter for Projects
-\label{chap:validation}
-%----------------------------------------------------------------------------------------
-\section{Dataset description}
+The implementation of machine learning models in real-world contexts demands a careful consideration of ethical and fairness implications, especially in domains with significant societal impact, such as education. In this chapter, we delve into the application of the fair-by-design workflow to the specific context of predicting educational performance in the Canary Islands. The objective is not merely to develop an accurate predictive model but to ensure that the predictions align with fairness principles, fostering equitable opportunities for all students.
+
+The educational landscape presents a complex interplay of factors, including socio-economic backgrounds, cultural diversity, and historical disparities. Traditional machine learning models may inadvertently perpetuate biases, leading to unequal treatment and outcomes for different student groups. The fair-by-design workflow offers a systematic approach to address these challenges, providing a framework where fairness is ingrained from data preprocessing to model deployment.
+
+In the following sections, we navigate through the key stages of the fair-by-design workflow as applied to the educational performance prediction scenario in the Canary Islands. This journey encompasses stakeholder identification, meticulous data collection, thoughtful consideration of protected attributes, and the design and evaluation of machine learning algorithms. The chapter concludes with reflections on the deployment of the fair machine learning model, emphasizing the iterative refinement process guided by user feedback and ongoing monitoring.
+
+\section{Objective Definition}
+
+The primary objective of this study is to predict the English proficiency level for individual students in the educational landscape of the Canary Islands. The predictive model aims to provide accurate assessments, contributing to a better understanding of students' language capabilities. However, beyond accuracy alone, a crucial emphasis is placed on the integration of fairness considerations throughout the prediction process.
+
+\subsection{Performance Evaluation Metrics}
+
+The performance of the predictive model will be assessed using two key metrics: accuracy and fairness. Accuracy, representing the model's ability to precisely predict English proficiency levels, is paramount for ensuring the practical utility of the system. A highly accurate model contributes to effective decision-making, offering valuable insights into students' language skills.
+
+Simultaneously, the fairness of predictions across different demographic groups is of utmost importance. Protected attributes, such as gender, socio-economic background, or ethnic origin, often play a role in educational disparities. To address potential biases, the model will be evaluated based on fairness metrics, ensuring that predictions do not disproportionately favor or disfavor specific subpopulations.
+
+\subsection{Fairness as a Core Principle}
+
+Fairness is not an ancillary consideration in this study but a core principle embedded in the entire predictive workflow. The goal is to develop a machine learning model that not only excels in accuracy but also demonstrates equitable treatment across diverse student groups. By explicitly considering protected attributes, the model aims to mitigate potential biases that could adversely impact historically marginalized or disadvantaged populations.
+
+\subsection{Protected Attributes and Ethical Considerations}
+
+The identification of protected attributes, such as gender, socio-economic background, and ethnicity, is crucial for the fair-by-design approach. Understanding the potential impact of these attributes on predictions allows for targeted interventions to ensure fairness. Ethical considerations guide the responsible handling of sensitive information, emphasizing the importance of transparency and accountability in the entire predictive process.
+
+\subsection{Balancing Accuracy and Fairness}
+
+The challenge lies in striking a balance between maximizing accuracy and ensuring fairness. While accuracy is pivotal for providing valuable insights, fairness guarantees that the benefits of accurate predictions are distributed equitably across diverse student populations. The fair-by-design workflow incorporates algorithmic strategies and preprocessing techniques to achieve this delicate equilibrium.
+
+In summary, the objective of this study is two-fold: to predict the English proficiency level for individual students with a high degree of accuracy and to ensure the fairness of these predictions across protected attributes. This dual commitment reflects a dedication to not only advancing the state-of-the-art in educational performance prediction but also contributing to a more equitable and ethical application of machine learning in education.
+
+\section{Stakeholder Identification}
+
+In any data-driven research endeavor, identifying and understanding the key stakeholders is paramount to the success and ethical conduct of the study. In the context of predicting English proficiency levels for students in the Canary Islands, one of the primary stakeholders playing a pivotal role is the University of La Laguna (ULL).
+
+\subsection{Primary Stakeholder: University of La Laguna (ULL)}
+
+The University of La Laguna serves as a central figure in this study, functioning as the primary data provider. ULL's comprehensive database encompasses a wealth of information, including student demographics, academic performance records, and English proficiency assessments. The institution's commitment to academic excellence and research makes it a key stakeholder in shaping the trajectory and outcomes of this study.
+
+As the custodian of the data used for predictive modeling, ULL's engagement is critical for ensuring the accuracy, relevance, and ethical use of the information. The university's active involvement in the study is not merely as a data source but as a collaborator in the pursuit of equitable and insightful predictions regarding students' English proficiency levels.
+
+\subsection{Additional Stakeholders}
+
+While ULL holds a central role, other stakeholders contribute to the broader context of this study. These may include educational policymakers, English language instructors, students, and parents, each with unique perspectives and interests in the outcomes of the predictive model. Identifying and engaging with these stakeholders enriches the study by incorporating diverse viewpoints and fostering a more comprehensive understanding of the implications of the research.
+
+\section{Data collection}
+
+It's important, once having presented the main stakeholder, present the data collected.
+
+\subsection{Dataset description}
 
 Before delving into the intricate details of the algorithm implementations presented earlier, it is imperative to provide a comprehensive overview of the dataset on which these algorithms have been applied. The chosen dataset for this work is the \emph{Canary Island Educational dataset}, an invaluable resource that underpins the empirical exploration of bias mitigation strategies in the context of the educational system in the Canary Islands. 
 
@@ -1566,11 +1614,9 @@ The temporal dimension of the dataset, spanning four academic years, further enr
 
 The Canary Island Educational dataset is not merely a repository of numbers and statistics; it is a window into the educational opportunities and challenges faced by students in the Canary Islands. By harnessing the insights gleaned from this dataset, it becomes possible to proactively address biases and promote equity within the educational system, ultimately striving for a more inclusive and just educational landscape.
 
-\subsection{Pre-processing operations on Canary Island Educational dataset}
+\subsubsection{Pre-processing operations on Canary Island Educational dataset}
 
 A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
-
-\subsubsection{Protected attributes choice}
 
 After a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
 
@@ -1594,16 +1640,17 @@ After a proper domain analysis the protected attributes selected to be passed to
 
 \end{enumerate}
 
-\subsubsection{Attributes pre-processing}
+The sensitive attributes detection, and its filtering to detect the main relevant avoiding semantic duplicates, has been possible only through the information provided by the ULL about the dataset. As specified in the general workflow the interation between the technical figuers and the stakeholder is even more fundamental when the sensitive attributes are taken into account in the AI system design.
 
 The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as established in the usual data pre-processing sub-step of the \emph{Fair-by-Design Workflow} proposed in this work.
 
+\section{Data pre-processing}
 
-\subsection{Goal of this work}
-
-The several output in this dataset are considered as protected attributes. More specifically the goal of this work is to predict the english level of a given student. Since the \emph{level\textunderscore ing} attribute is a categorical ones then the output states if a student has the same level of the majority of the students or if not. The goal is to make the predictor and the prediction fair, this means that the belonging of a student to a specific output, the match indeed, must no be influenced by any other factors rather than the predictor's mechanisms.
-
-In order to have a comprehensive evaluation of the performance of the workflow proposed here have been executed 3 separated experiments. These differntiate from each other only for the fairness pre-processing algorithm in the second sub-step of \emph{Data pre-processing} in the workflow.
+The protected attributes and the output have been pre-processed according to the workflow's rule described in \cref{section:pre-proc}
+%----------------------------------------------------------------------------------------
+\chapter{Validation} % possible chapter for Projects
+\label{chap:validation}
+%----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion}
