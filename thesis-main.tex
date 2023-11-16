@@ -1593,6 +1593,7 @@ With this assumptions it becomes clear that it's necessary to detect a privilege
 
 Even if for both categories the rule is to mark as privileged group the most frequent value, what changes is a preliminary transofrmation needed for the continuous attribute. In fact first of all each of these attributes is converted into a discrete attribute, then treated like that.
 
+
 \lstinputlisting[
 	%float,
 	language=Python,
@@ -1601,6 +1602,7 @@ Even if for both categories the rule is to mark as privileged group the most fre
 ]{listings/ftu_vo.py}
 
 \section{Fairness through data rebalancing}
+
 
 An essential facet of the Fairness through Rebalancing algorithm within our workflow lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
 
