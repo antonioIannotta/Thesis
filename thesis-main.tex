@@ -1134,7 +1134,7 @@ Citing Gupta et al.'s work on proxy variables in AI systems \cite{Gupta2018Proxy
 
 In essence, this algorithm serves as a testament to the continuous evolution and refinement within the Fair-by-Design framework, where each step is meticulously crafted to reinforce the principles of fairness and transparency.
 
-At this point it's necessary to begin with a formalization for the algorithm itself. It's important to consider that there are two versions of this algorithm: a version in which the proxy detection is performed exploiting the concepts embedded into the association rule mining theories, more specifically using the \emph{fp-growth} algorithm. In the other version the proxy attributes are inferenced from the variables only.
+At this point it's necessary to begin with a formalization for the algorithm itself. It's important to consider that there are two versions of this algorithm.
 
 Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables.
 
@@ -1296,24 +1296,6 @@ The only goal of this algorithm is to avoid the effects of proxy and protected a
 \end{algorithm}
 
 This algorithm returns the proxy list obtained the fairness metric choice as established in the proposed workflow for each non-sensitive attribute and each protected attribute.
-
-\begin{algorithm}[H]
-    \caption{Proxy Detection via FP-growth}
-    \label{alg:proxy_detection_fp_growth}
-    \begin{algorithmic}[1]
-        \Require{fp\_growth\_dataset}
-        \Ensure{List of proxies}
-        \State $\text{proxy\_list} \gets \{\}$ \Comment{Initialize an empty list to store detected proxies}
-        \For{\text{consequent} \textbf{in} fp\_growth\_dataset}
-            \For{\text{antecedent} \textbf{in} fp\_growth\_dataset}
-                \If{\textit{metric(antecedent, consequent)} $\leq$ 0.8 \textbf{or} \textit{metric(antecedent, consequent)} $\geq$ 1.25}
-                    \State \textit{proxy\_list.append(antecedent)}
-                \EndIf
-            \EndFor
-        \EndFor
-        \State \textbf{return} \text{proxy\_list}
-    \end{algorithmic}
-\end{algorithm}
 
 \subsubsection{Fairness through data rebalancing}
 \label{subsec:ftdr}
