@@ -598,6 +598,13 @@ In recent years, the ethical implications of artificial intelligence and machine
 
 \end{enumerate}
 
+It's important to clarify the workflow concept with a graph illustrating the presented workflow:
+
+\begin{center}
+    \includegraphics[width=.5,height=1]{final.png}
+    \caption{Fair-by-Design Workflow}
+\end{center}
+
 In the subsequent sections, each of these steps will be comprehensively explored to provide a detailed understanding of the fair-by-design workflow and its ethical underpinnings.
 
 \section{Objective Definition}
@@ -1537,7 +1544,7 @@ User education extends to explaining the model's predictions, the factors influe
 
 Model deployment marks a milestone, but it is not the endpoint in the fair-by-design workflow. An iterative refinement process is integral to addressing emerging fairness challenges. User feedback, monitoring results, and ethical considerations inform ongoing refinements to the model. The iterative nature of this approach ensures that the fair machine learning model remains adaptive and responsive to evolving fairness concerns.
 
-Refinements may include adjustments to the model's algorithms, re-evaluations of fairness metrics, and enhancements to the user interface for better interpretability. The iterative refinement process embodies a commitment to continuous improvement, reinforcing the ethical foundation of the fair-by-design framework.
+Refinements may include adjustments to the model's algorithms, re-evaluations of fairness metrics, and enhancements to the user interface for better interpretability. The iterative refinement process embodies a commitment to continuous improvement, reinforcing the ethical foundation of the fair-by-design framework and this iterative approach must always involve the objective definition, to detect if any of the previous ones are changed or not and have an adaptive behavior about that.
 
 \subsection{Discussion}
 
@@ -1557,9 +1564,11 @@ In proposing future directions, emphasize the importance of refining model deplo
 \chapter{Technical details}
 \label{chap:technicals}
 
+\section{Proposed algorithms}
+
 It's important to provide technical details about the implementation of the two algorithms proposed above.
 
-\section{Fairness through unawareness with proxy detection via variables only}
+\subsection{Fairness through unawareness with proxy detection via variables only}
 
 About this algorithm it's important to inspect the way in which the fairness metric value is computed assuming as protected attribute each no-protected attribute and as output the protected attribute.
 
@@ -1576,7 +1585,7 @@ Even if for both categories the rule is to mark as privileged group the most fre
 	label={lst:ftu_vo},
 ]{listings/ftu_vo.py}
 
-\section{Fairness through data rebalancing}
+\subsection{Fairness through data rebalancing}
 
 An essential facet of the Fairness through Rebalancing algorithm within our workflow lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
 
@@ -1590,6 +1599,18 @@ An essential facet of the Fairness through Rebalancing algorithm within our work
 For each value outside the combination set, the algorithm discerns both the least frequent and most frequent occurrences. The next step involves randomly selecting a value for the new row to be added to the dataset. This random selection occurs within the range defined by the least frequent and most frequent values. The careful orchestration of this process ensures that the augmented dataset maintains statistical coherence while introducing the necessary variations to rebalance the fairness aspects within the model.
 
 This deliberate approach to data generation underscores the commitment to preserving the integrity of the dataset while mitigating potential biases, contributing to the overarching goal of developing fair and unbiased machine learning models.
+
+\section{Workflow impact on Software Architecture}
+
+The proposed workflow, encompassing objective definition, stakeholder identification, data collection, data pre-processing, algorithms design, model training, and performance evaluation, presents a unique challenge and opportunity for integration within the software architecture. While the first two steps, objective definition and stakeholder identification, are inherently external to the software architecture, focusing on the overarching goals and involved parties, the subsequent steps demand a meticulous organizational structure within the software development process.
+
+To ensure a modular and well-organized architecture, each step from data collection to performance evaluation can be encapsulated into distinct packages. This modularization enhances maintainability, scalability, and the overall robustness of the system. Importantly, this encapsulation promotes the concept of isolation, allowing each step of the algorithm to function independently with information exchange occurring exclusively through well-defined interfaces.
+
+However, the introduction of fairness metrics adds a layer of complexity to this organizational structure. Since fairness considerations permeate multiple steps of the workflow, creating a dedicated package for fairness metrics becomes crucial. This separation is vital to ensure the decoupling of fairness concepts from the intricacies of individual steps such as data pre-processing or algorithm design.
+
+In this approach, fairness is not treated as a step-specific concern but as a cross-cutting and orthogonal concept. By encapsulating fairness metrics within a dedicated package, the software architecture acknowledges the overarching nature of fairness in the workflow. This design choice facilitates the systematic integration of fairness considerations, allowing for a unified approach that transcends individual steps and aligns with the holistic perspective embedded in the fair-by-design methodology.
+
+In summary, the proposed workflow aligns with common software development practices by organizing each step into separate packages, fostering modularity and encapsulation. The introduction of a dedicated fairness metrics package further emphasizes the universal and pervasive nature of fairness throughout the workflow, ensuring a cohesive and well-structured software architecture that reflects the core principles of the fair-by-design approach.
 
 %----------------------------------------------------------------------------------------
 \chapter{Implementation of Fair-by-Design Workfow in Canary Island Educational Performance Prediction}
