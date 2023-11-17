@@ -1686,6 +1686,8 @@ The Canary Island Educational dataset is not merely a repository of numbers and 
 
 \subsubsection{Pre-processing operations on Canary Island Educational dataset}
 
+The first operation required to choose the subset on which implement the chosen algorithm. It has been choice the subset of the students enrolled in the 3rd grade due its amount of data, greater than the other subsets, and then more suitable to fit a real world scenario.
+
 A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
 
 After a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
@@ -1738,25 +1740,25 @@ The first pre-processing algorithm adopts the principle of fairness through unaw
 
 The second pre-processing algorithm, fairness through data rebalancing, addresses imbalances in the distribution of protected attributes. Recognizing that an uneven representation of different demographic groups can lead to biased predictions, this algorithm employs strategic rebalancing techniques. By adjusting the weights assigned to instances based on their protected attributes, the algorithm promotes a more equitable learning process, fostering fair treatment across diverse student populations.
 
-\subsection{In-Processing Algorithms}
+\subsection{In-Processing Algorithm}
 
-Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, two established algorithms from the IBM's \emph{AI Fairness 360} (AIF360) library have been employed.
+Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, a state-of-the-art algorithm from the IBM's \emph{AI Fairness 360} (AIF360) library has been employed.
 
-\subsubsection{Learning Fair Representation}
+\subsubsection{GridSearch Reduction}
 
-The first in-processing algorithm, Learning Fair Representation, focuses on enhancing the fairness of the model's internal representation. By learning features that are more invariant to protected attributes, this algorithm facilitates the creation of a fairer and more unbiased model. The objective is to ensure that the model's decision-making process is less influenced by demographic factors, leading to predictions that are more equitable across different student groups.
+The in-processing algorithm chosen for fairness enhancement is GridSearch Reduction from the AIF360 library. GridSearch Reduction is a powerful technique that systematically explores a grid of hyperparameters to find the optimal combination that minimizes bias in model predictions. It employs a reduction-based approach, optimizing the trade-off between accuracy and fairness by iteratively adjusting model parameters.
 
-\subsubsection{Adversarial Debiasing}
-
-The second in-processing algorithm, Adversarial Debiasing, introduces an adversarial training approach to reduce bias in the model's predictions. This algorithm simultaneously trains a predictor network to make accurate predictions and an adversary network to minimize the correlation between predictions and protected attributes. The adversarial nature of the training encourages the model to disregard sensitive attributes, resulting in fairer predictions.
+GridSearch Reduction operates by conducting a grid search over specified hyperparameter values, considering fairness metrics along with accuracy. This approach allows for the identification of an optimal set of hyperparameters that achieves a balance between predictive performance and fairness objectives. The algorithm aims to discover the most suitable configuration that mitigates bias in the model's decision-making process, ensuring equitable outcomes for diverse student groups.
 
 \subsection{Post-Processing Algorithm}
 
-In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the AIF360 library has been selected to further refine fairness.
+In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the Fairlearn library has been selected to further refine fairness.
 
-\subsubsection{Equalized Odds Post-Processing}
+\subsubsection{Equalized Odds Post-Processing with Threshold Optimizer}
 
-The Equalized Odds Post-Processing algorithm operates on the model's output, adjusting decision thresholds to ensure equalized odds across different demographic groups. By fine-tuning the decision boundaries based on protected attributes, this algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions.
+The chosen post-processing algorithm is Equalized Odds Post-Processing with Threshold Optimizer from Fairlearn. This algorithm focuses on adjusting decision thresholds to ensure equalized odds across different demographic groups. By optimizing the threshold values based on protected attributes, the algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions.
+
+Equalized Odds Post-Processing with Threshold Optimizer involves fine-tuning the decision boundaries to align with fairness considerations. The threshold optimizer dynamically adjusts thresholds for different groups, aiming to achieve equalized odds without compromising predictive accuracy. This meticulous post-processing step contributes to the overall fairness of the model's predictions, promoting equity and mitigating bias in decision outcomes.
 
 \section{Model Training and Evaluation}
 
@@ -1788,6 +1790,88 @@ After the evaluation step in which is assessed whether the model perform its pre
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
 %----------------------------------------------------------------------------------------
+
+Since every algorithm choice in the algorithm design step of the workflow required pre-trained estimator, 3 estimators have been choice to have a comprehensive evaluation of the performance of the workflow proposed here.
+
+\section{Experiment setup}
+
+For each of the previous approaches have been chosen 3 models to perform the prediction:
+
+\begin{enumerate}
+
+    \item \text{RandomForest Classifier}: RandomForest Classifier is a popular machine learning algorithm that leverages an ensemble of decision trees to make predictions. It excels at tasks like classification and regression, offering robustness against overfitting and high accuracy by aggregating the predictions of multiple decision trees. It's a versatile tool used in various applications, from finance to healthcare and image analysis.
+    
+    \item \textbf{XGBoost Classifier}: XGBoost, short for Extreme Gradient Boosting, is a powerful and efficient machine learning algorithm known for its exceptional predictive performance. It's a gradient boosting technique that builds a strong predictive model by combining the predictions of multiple weak models, typically decision trees. XGBoost is widely used in data science and machine learning competitions due to its speed, accuracy, and flexibility. It can handle both regression and classification tasks and is prized for its ability to handle large datasets and complex relationships in the data.
+    
+    \item \textbf{DecisionTree Classifier}: DecisionTree Classifier is a specific type of machine learning algorithm primarily used for classification tasks. It constructs a tree-like model, where each internal node represents a decision based on a specific feature, and each leaf node denotes the predicted class label for the input data point.
+
+\end{enumerate}
+
+On the previous models is applied the GridSearch with a \emph{cv} of 10 in order to select the best parameters combination for each one. In the following are reported the specific parameters for each model:
+
+\begin{enumerate}
+    
+    \item RandomForest Classifier:
+    
+    \begin{enumerate}
+       
+        \item \emph{n\textunderscore estimators}: [10, 100, 10]
+       
+        \item \emph{criterion}: [gini, entropy, log\textunderscore loss]
+       
+        \item \emph{max\textunderscore depth}: [10, 50, 10]
+       
+        \item \emph{max\textunderscore leaf\textunderscore nodes}: [10, 50, 10]
+    
+    \end{enumerate}
+    
+    \item XGBoost Classifier:
+    
+    \begin{enumerate}
+    
+        \item \emph{min\textunderscore child\textunderscore weight}: [1, 5, 10]
+    
+        \item \emph{gamma}: [0.5, 1, 1.5, 2.5]
+    
+        \item \emph{subsample}: [0.6, 0.8, 1.0]
+    
+        \item \emph{colsample\textunderscore bytree}: [0.6, 0.6, 1.0]
+    
+        \item \emph{max\textunderscore depth}: [3, 4, 5]
+    
+    \end{enumerate}
+    
+    \item DecisionTree Classifier:
+    
+    \begin{enumerate}
+    
+        \item \emph{criterion}: [gini, entropy, log\textunderscore loss]
+    
+        \item \emph{max\textunderscore depth}: [10, 50, 10]
+    
+        \item \emph{max\textunderscore leaf\textunderscore nodes}: [10, 50, 10]
+    
+    
+    \end{enumerate}
+
+\end{enumerate}
+
+
+Each machine learning model in our study is trained using a training dataset comprising 67\% of the original data, with the remaining 33\% reserved for testing purposes. To provide a more granular analysis, we've segmented the data based on the students' grade levels. Let \( G3 \) represent the subset of the original dataset filtered to include only students enrolled in grade 3.
+
+For the grade 3 dataset (\( G3 \)), the outcomes for every model are presented. Specifically, are highlighted the best-performing model identified during our evaluation process and report its accuracy on the corresponding test set.
+
+This focused analysis on grade 3 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
+
+\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through unawareness with priori detection algorithm}
+
+\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
+
+\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through Equalized-Odds Post-Processing with Threshold Optimizer}
+
+\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through GridSearch Reduction algorithm}
+
+\subsection{Results comparaison}
 
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion}
