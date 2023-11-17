@@ -1119,184 +1119,6 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
 
 \subsection{Pre-processing Algorithms Proposed}
 
-\subsubsection{Fairness through unawareness with proxy detection via variables only}
-\label{subsec:ftu}
-
-The algorithm elucidated in this section seamlessly integrates with the Fair-by-Design workflow, embodying the core concept of \emph{fairness through unawareness}. Rooted in the overarching goal of mitigating bias, this approach represents a significant stride in addressing fairness considerations within the machine learning pipeline.
-
-The design choices of this algorithm are inherently influenced by the protected attributes detected during the data acquisition step of the Fair-by-Design workflow. Recognizing that bias may emanate not only from explicit protected attributes but also from indirect influences, the algorithm extends its reach beyond the conventional scope.
-
-In alignment with the Fair-by-Design ethos, this algorithm advocates for the removal of both identified protected attributes and a set of strategically identified proxy variables. These proxy variables, akin to shadows of potential bias, are meticulously pinpointed and eliminated. The vigilance in detecting these proxies is inspired by the commitment to unravel and rectify any factors that might indirectly contribute to bias within the AI system.
-
-Drawing insights from the comprehensive analysis conducted during the data acquisition phase, the algorithm takes a holistic view of potential sources of bias. The removal of proxy variables, guided by this understanding, exemplifies a proactive stance in addressing bias from multiple dimensions.
-
-Citing Gupta et al.'s work on proxy variables in AI systems \cite{Gupta2018ProxyF}, the algorithm's incorporation of this innovative element underscores a commitment to not only meet accuracy standards but also to foster equity and fairness. The dynamic interplay between the algorithm's design choices and the Fair-by-Design workflow amplifies its effectiveness in creating AI systems that are not only precise but also inherently just, unbiased, and equitable.
-
-In essence, this algorithm serves as a testament to the continuous evolution and refinement within the Fair-by-Design framework, where each step is meticulously crafted to reinforce the principles of fairness and transparency.
-
-At this point it's necessary to begin with a formalization for the algorithm itself. It's important to consider that there are two versions of this algorithm.
-
-Let's consider a dataset \( D \) belonging to \( \mathbb{R}^{n \times m} \) with \( k \) protected variables.
-
-\textit{fairness\_evaluation} is defined as follows:
-\[
-\text{fairness\_evaluation}(v_i, Y) = \lambda(v_i, Y) \quad \forall i \in [1, k]
-\]
-
-where:
-\begin{align*}
-v\_i & : \text{ith attribute belonging to the protected variables}, Y & : \text{output column}.
-\end{align*}
-
-The fairness metric \( \lambda \) evaluates the relationship between a protected attribute \( v_i \) and the output \( Y \), producing a value that represents the level of fairness for that protected attribute. It's important to consider that the output used for the fairness metric is not strictly related to the output of the dataset but, as showed further in this section it may also be a protected attribute. This lead to the consideration that protected attributes and output variable, that are the inputs of the fairness metric, are dependent on the specific scenario in which the fairness metric is applied.
-
-\textit{dataset\_fair} is defined as follows: a dataset \( D \) is considered fair if for every value \( v \) belonging to \textit{fairness\_evaluation}, the following condition holds:
-\[ 0.8  < v < 1.25 \].
-
-Let's consider the set \( A \), represented as the set of all variables in the dataset excluding the protected variables, and the set \( B \), representing the protected variables.
-
-\textit{proxy\_detection} is defined as follows: for every variable \( \text{var} \) belonging to \( A \) and for every protected variable \( \text{var\_protected} \) belonging to \( B \), the variable is a proxy if the fairness metric \( \lambda(\text{var}, \text{var\_protected}) \) satisfies the condition:
-
-\[
-\lambda(\text{var}, \text{var\_protected}) <= 0.8 \quad \text{or} \quad \lambda(\text{var}, \text{var\_protected}) => 1.25
-\]
-
-In other words, a variable \( \text{var} \) is considered a proxy if the fairness measure \( \lambda \) between \( \text{var} \) and a protected variable \( \text{var\_protected} \) falls outside the acceptable range ]0.8, 1.25[.
-
-After having introduced the necessary theoretical concepts here's presented the approach to detect the proxy attributes for the protected attributes previously established.
-
-\textit{proxy\_detection} is defined as follows: for each antecedent \( A_i \) belonging to the antecedent list \( \mathcal{A} \), for each consequent \( C_j \) belonging to the consequent list \( \mathcal{C} \), and for each protected variable \( V_k \) belonging to the protected variable list \( \mathcal{V} \), \( A_i \) is a proxy if the fairness metric \( \lambda(A_i, C_j) \) is such that:
-
-\[\lambda(A_i, C_j) <= 0.8 \quad \text{or} \quad \lambda(A_i, C_j) >= 1.25\]
-
-In other words, an antecedent \( A_i \) is considered a proxy if the fairness measure \( \lambda \) between \( A_i \) and a consequent \( C_j \) is outside the acceptable range ]0.8, 1.25[.
-
-Here it's possible to notice how, as previously said, the concepts of protected attributes and output provided as inputs for the fairness metric are dependent on the scenario. While the typical scenario involves the protected attribute as input together with the output of the dataset, in this one the protected attribute acts like the output while the actual protected attributes are inferred from the results of the metric.
-
-Now, let $\text{proxy\_and\_protected\_attributes} \subseteq \{1, 2, \ldots, m\}$ represent the set of indices corresponding to both proxy and protected attributes.
-
-The function $\text{\textbf{proxy\_and\_protected\_attributes\_avoiding}}: D \times \text{proxy\_and\_protected\_attributes} \rightarrow \mathbb{R}^{n \times m}$ is defined as follows:
-
-\[
-\text{\textbf{proxy\_and\_protected\_attributes\_avoiding}}(D, \text{proxy\_and\_protected\_attributes}) = D_{\text{avoiding}},
-\]
-
-where $D_{\text{avoiding}}$ is the dataset obtained by setting all values to 0 for indices in $\text{proxy\_and\_protected\_attributes}$.
-
-In the following is presented the pseudocode for the algorithm, in its two different versions, presented above.
-
-\begin{algorithm}[H]
-    \caption{Fairness through unawareness with proxy detection}
-    \label{alg:fairness_algorithm}
-    \begin{algorithmic}[1]
-        \Require{dataset, protected\_attributes}
-        \Ensure{fair dataset}
-        \State $\text{global } \text{proxy\_protected\_attributes} \gets \{\}$
-        \While{\textbf{not} \textit{dataset\_fair(dataset)}}
-            \State proxies $\gets$ \textit{proxy\_detection(dataset)}\;
-            \If{proxies \textbf{is empty}}
-                \State dataset $\gets$ \textit{protected\_attributes\_free\_dataset(dataset, protected\_attributes)}\;
-                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{protected\_attributes}$ 
-            \Else
-                \State dataset $\gets$ \textit{proxy\_free\_dataset(dataset)}\;
-                \State $\text{global } \text{proxy\_protected\_attributes} \gets \text{proxy\_protected\_attributes} \cup \text{proxies}$
-            \EndIf
-        \EndWhile
-        \State dataset $\gets$ \textit{proxy\_protected\_attributes\_avoiding(dataset, proxy\_protected\_attributes)}
-        \State \textbf{return} dataset
-    \end{algorithmic}
-\end{algorithm}
-
-It's relevant to provide an explaination of the algorithm above:
-
-\begin{enumerate}
-
-    \item \emph{Initialization}: Initialize the global variable \textit{proxy\_protected\_attributes} as an empty set.
-
-    \item \emph{Main Loop}:
-
-        \begin{itemize}
-
-            \item Continue iterating until the dataset is fair or no protected attributes are present.
-
-            \item Inside the loop, detect proxies and decide whether to remove proxies or protected attributes.
-
-        \end{itemize}
-
-    \item \emph{Avoidance Step}: After the loop, apply the \textit{proxy\_protected\_attributes\_avoiding} function to mitigate the impact of proxies and protected attributes.
-    
-    \item \emph{Output}: Return the resulting fair dataset.
-
-\end{enumerate}
-
-\begin{algorithm}[H]
-    \caption{Dataset fairness Evaluation}
-    \label{alg:fairness_evaluation}
-    \begin{algorithmic}[1]
-        \Require{dataset, output\_column, protected\_attributes}
-        \Ensure{List of attributes failing fairness evaluation}
-        \State unfairness\_list $\gets$ empty list\;
-        \State output $\gets$ dataset[output\_column]\;
-        \For{attribute \textbf{in} protected\_attributes}
-            \If{\textit{metric(attribute, output)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, output)} $\geq$ 1.25}
-                \State \textit{unfairness\_list.append(attribute)}\;
-            \EndIf
-        \EndFor
-        \State \textbf{return} unfairness\_list is \textbf{empty}
-    \end{algorithmic}
-\end{algorithm}
-
-For each protected attribute, the algorithm computes a fairness metric using the \textit{metric} function and compares it against predefined thresholds (0.8 and 1.25). If the metric indicates a failure in fairness, the attribute is added to the \textit{fairness\_evaluation\_list}. The algorithm returns if the unfairness list is either empty or not
-
-
-\begin{algorithm}[H]
-    \caption{Proxy and Protected Attributes Avoiding}
-    \label{alg:proxy_protected_attributes_avoiding}
-    \begin{algorithmic}[1]
-        \Require{dataset, proxy\_protected\_attributes}
-        \Ensure{Processed dataset avoiding proxy and protected attributes}
-        
-        \State $D \gets \text{copy}(dataset)$
-        
-        \For{attribute \textbf{in} proxy\_protected\_attributes}
-            \If{\textit{is\_protected\_attribute}(attribute)}
-                \State $D[\text{attribute}] \gets 0$ 
-            \EndIf
-            \If{\textit{is\_proxy\_attribute}(attribute)}
-                \State $D[\text{attribute}] \gets 0$
-            \EndIf
-        \EndFor
-        
-        \State \textbf{return} D
-    \end{algorithmic}
-\end{algorithm}
-
-The only goal of this algorithm is to avoid the effects of proxy and protected attributes on the training. This way the fairness evaluation in the \emph{Performance evaluation} step of the workflow will be accurate.
-
-
-\begin{algorithm}[H]
-    \caption{Proxy Detection via Variables Only}
-    \label{alg:proxy_detection_variables_only}
-    \begin{algorithmic}[1]
-        \Require{protected\_attributes\_list, attributes}
-        \Ensure{List of proxies}
-        
-        \State $\text{proxy\_list} \gets$ empty list\;
-        
-        \For{$\text{protected\_attribute}$ \textbf{in} $\text{protected\_attributes\_list}$}
-            \For{$\text{attribute}$ \textbf{in} $\text{attributes}$ \textbf{and not in} $\text{protected\_attributes\_list}$ \textbf{and not in} $\text{proxy\_list}$}
-                \If{\textit{metric(attribute, protected\_attribute)} $\leq$ 0.8 \textbf{or} \textit{metric(attribute, protected\_attribute)} $\geq$ 1.25}
-                    \State $\text{proxy\_list.append(attribute)}$
-                \EndIf
-            \EndFor
-        \EndFor
-        
-        \State \textbf{return} proxy\_list
-    \end{algorithmic}
-\end{algorithm}
-
-This algorithm returns the proxy list obtained the fairness metric choice as established in the proposed workflow for each non-sensitive attribute and each protected attribute.
-
 \subsubsection{Fairness through data rebalancing}
 \label{subsec:ftdr}
 
@@ -1547,26 +1369,9 @@ In proposing future directions, emphasize the importance of refining model deplo
 \chapter{Technical details}
 \label{chap:technicals}
 
-\section{Proposed algorithms}
+\section{Proposed algorithm}
 
 It's important to provide technical details about the implementation of the two algorithms proposed above.
-
-\subsection{Fairness through unawareness with proxy detection via variables only}
-
-About this algorithm it's important to inspect the way in which the fairness metric value is computed assuming as protected attribute each no-protected attribute and as output the protected attribute.
-
-Since the environment on which this algorithm is executed is the workflow here presented the protected attribute values are only 0 and 1. A deeper consideration is needed for the no-sensitive attributes that, in this scenario, must be treated like the protected ones.
-
-With this assumptions it becomes clear that it's necessary to detect a privileged group for both discrete no-sensitive attributes and continuous.
-
-Even if for both categories the rule is to mark as privileged group the most frequent value, what changes is a preliminary transofrmation needed for the continuous attribute. In fact first of all each of these attributes is converted into a discrete attribute, then treated like that.
-
-\lstinputlisting[
-	%float,
-	language=Python,
-	caption={Attribute fixing for disparate impact custom computation},
-	label={lst:ftu_vo},
-]{listings/ftu_vo.py}
 
 \subsection{Fairness through data rebalancing}
 
@@ -1707,11 +1512,7 @@ The success of the fair-by-design workflow in predicting English proficiency lev
 
 \subsection{Pre-processing Algorithms}
 
-In the realm of pre-processing, where the focus is on transforming the input data before it reaches the core machine learning model, two novel fairness algorithms have been proposed and integrated into the fair-by-design workflow.
-
-\subsubsection{Fairness Through Unawareness with Proxy Detection via Variables Only}
-
-The first pre-processing algorithm adopts the principle of fairness through unawareness with proxy detection via variables only. This approach acknowledges the potential biases introduced by sensitive attributes and seeks to mitigate them by obscuring the direct influence of such attributes in the input features. By identifying proxy variables that may inadvertently convey information about protected attributes, the algorithm ensures a more impartial representation of the data.
+In the realm of pre-processing, where the focus is on transforming the input data before it reaches the core machine learning model, the novel fairness algorithm have been proposed and integrated into the fair-by-design workflow.
 
 \subsubsection{Fairness Through Data Rebalancing}
 
@@ -1848,56 +1649,11 @@ On the previous models is applied the GridSearch with a \emph{cv} of 10 in order
 
 \end{enumerate}
 
-
 Each machine learning model in our study is trained using a training dataset comprising 67\% of the original data, with the remaining 33\% reserved for testing purposes. To provide a more granular analysis, we've segmented the data based on the students' grade levels. Let \( G3 \) represent the subset of the original dataset filtered to include only students enrolled in grade 3.
 
 For the grade 3 dataset (\( G3 \)), the outcomes for every model are presented. Specifically, are highlighted the best-performing model identified during our evaluation process and report its accuracy on the corresponding test set.
 
 This focused analysis on grade 3 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
-
-\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through unawareness with priori detection algorithm}
-
-\subsubsection{Best models}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier & \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\ 
-    \hline
-    RandomForest Classifier  &  \\
-    \hline
-    XGBoost Classifier & \\
-    \hline
-    DecisionTree Classifier & \\ 
-    \hline
-\end{tabular}
-
-\subsection{Fairness evaluation}
-
-\begin{tabular}{|c|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Demographic parity ratio} & \textbf{Equalized odds ratio} \\
-    \hline
-    RandomForest Classifier & & \\
-    \hline
-    XGBoost Classifier & & \\
-    \hline
-    DecisionTree Classifier & & \\
-    \hline
-\end{tabular}
 
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
 
