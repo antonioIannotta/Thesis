@@ -453,6 +453,7 @@ The ultimate goal of fair-by-design methods is to create AI systems that, from t
 
 \newpage
 \section{Fairness metrics}
+\label{section:metrics}
 
 Fairness metrics play a crucial role in evaluating the performance of AI systems and ensuring equitable outcomes for diverse groups. These metrics provide quantitative measures to assess and mitigate bias within machine learning models. In this section, we will explore the general concept of fairness metrics and delve into three specific metrics: disparate impact, equalized odds, and demographic parity.
 
@@ -513,6 +514,7 @@ A value close to 0 indicates fairness, suggesting that the model's predictions a
 
 \newpage
 \section{AIF360}
+\label{section:aif350}
 
 AI Fairness 360 (AIF360) is a comprehensive open-source toolkit developed by IBM to facilitate fairness-aware machine learning and promote responsible AI practices. Designed to address the challenges of bias and fairness in algorithmic decision-making, AIF360 offers a suite of algorithms, metrics, and functionalities that enable researchers and practitioners to assess, mitigate, and monitor bias in machine learning models.
 
@@ -530,6 +532,7 @@ The toolkit offers a variety of fairness metrics that enable users to quantitati
 
 \newpage
 \section{Fairlearn Library}
+\label{section:fairlearn}
 
 Fairlearn is a powerful and versatile open-source Python library developed to address fairness concerns in machine learning models. Recognizing the importance of mitigating biases and ensuring equitable outcomes, Fairlearn provides a comprehensive set of tools, algorithms, and metrics designed to facilitate fairness-aware model development and evaluation.
 
@@ -553,6 +556,7 @@ In conclusion, fairness in AI is not just an ethical necessity but a fundamental
 %For instance in \cite{AnzengruberSocInfo2013} the authors propose a novel means for tackling with the problem of preventing bad things from happening.
 
 %----------------------------------------------------------------------------------------
+
 \chapter{Contribution} % possible chapter for Projects
 \label{chap:contribution}
 
@@ -563,13 +567,15 @@ In recent years, the ethical implications of artificial intelligence and machine
 \subsection{Principles of Fair-by-Design Workflow}
 
 \begin{enumerate}
-    \item \emph{Proactive Fairness Integration:} Fairness considerations are integrated from the initial stages of the design process, rather than being retroactively addressed after system implementation.
 
-    \item \emph{Transparency and Explainability:} The design decisions and algorithmic choices made throughout the workflow are transparently documented to enhance accountability and foster trust among stakeholders.
+    \item \emph{Proactive Fairness Integration:} Embedding fairness considerations at the inception of the design process is a pivotal facet of the Fair-by-Design workflow, diverging from the conventional practice of addressing fairness as an afterthought post-system implementation. This proactive approach signifies a fundamental shift in the paradigm of algorithmic development, emphasizing the ethical imperative of anticipating and mitigating biases from the outset. By seamlessly integrating fairness into the initial design stages, the workflow aims to preclude the emergence of discriminatory outcomes, thereby establishing a foundation built on equitable principles. This not only aligns with ethical standards but also streamlines the development trajectory, fostering a more responsible and inclusive machine learning environment.
 
-    \item \emph{User-Centered Approach:} The perspectives of end-users and relevant stakeholders are actively sought and incorporated into the design process, ensuring that the system is aligned with the diverse needs of its users.
+    \item \emph{Transparency and Explainability:} Transparent documentation of design decisions and algorithmic choices stands as a cornerstone within the Fair-by-Design workflow. This meticulous documentation is not merely a procedural formality but a deliberate strategy to elevate accountability and cultivate trust among stakeholders. Each decision, from the selection of specific algorithms to the fine-tuning of parameters, is comprehensively detailed, providing a clear and accessible record of the workflow's development trajectory. This commitment to transparency is rooted in the belief that open communication of design rationales and choices engenders a sense of reliability and confidence among stakeholders, including developers, end-users, and regulatory entities. By fostering this transparency, the Fair-by-Design workflow actively contributes to a trustworthy and ethically grounded landscape for the deployment of machine learning systems.
 
-    \item \emph{Continuous Monitoring and Iterative Development:} The system is subject to continuous monitoring post-implementation, allowing for the identification and correction of emerging fairness issues. The workflow is iterative, enabling ongoing improvements.
+    \item \emph{User-Centered Approach:} In the Fair-by-Design workflow, the integration of diverse perspectives is not just a passive consideration but a proactive and integral aspect of the design process. The voices and perspectives of end-users and relevant stakeholders are actively sought and thoughtfully incorporated from the early stages of system design. This inclusive approach aims to ensure that the developed system is finely tuned to the diverse needs, expectations, and concerns of its user base. Stakeholder engagement takes various forms, including surveys, interviews, and collaborative workshops, allowing for a comprehensive understanding of the social, cultural, and ethical dimensions that may influence system usage. By actively involving end-users and stakeholders, the Fair-by-Design workflow not only promotes inclusivity but also enhances the likelihood of developing a system that genuinely serves and respects the interests of its users.
+
+    \item \emph{Continuous Monitoring and Iterative Development:} Post-implementation, the Fair-by-Design system undergoes vigilant and continuous monitoring, forming a crucial component of its iterative workflow. This monitoring process is meticulously designed to detect and address any emerging fairness issues that may arise during system operation. By employing advanced monitoring tools and techniques, the workflow ensures that the system's performance is regularly assessed in real-world scenarios. This proactive approach enables the timely identification of potential biases or disparities, facilitating prompt corrective measures. The iterative nature of the workflow allows for ongoing refinements, ensuring that the system evolves in response to changing dynamics and user experiences. This commitment to continuous monitoring and improvement underscores the Fair-by-Design philosophy of not just achieving fairness at a single point in time but actively maintaining and enhancing fairness throughout the system's lifecycle.
+
 \end{enumerate}
 
 \subsection{Steps to Implement a Fair-by-Design Workflow}
@@ -595,6 +601,7 @@ In recent years, the ethical implications of artificial intelligence and machine
 In the subsequent sections, each of these steps will be comprehensively explored to provide a detailed understanding of the fair-by-design workflow and its ethical underpinnings.
 
 \section{Objective Definition}
+\label{section:objective-definition}
 
 The initial step in a fair-by-design workflow involves the precise definition of the system's objectives. Clarity in articulating these objectives is crucial for guiding subsequent design decisions. In the context of fairness, it is essential to explicitly incorporate fairness considerations into the defined objectives.
 
@@ -606,9 +613,11 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
         \begin{itemize}
 
-            \item Define the specific objectives of the system or process with clarity and precision.
+            \item 
+            The specific objectives of the system or process should be defined with clarity and precision to ensure a focused and effective approach. This involves articulating clear and measurable goals that align with the overall purpose of the system. Objectives should avoid ambiguity and provide a concrete understanding of what the system aims to achieve. Clarity in objectives not only guides the development and implementation processes but also facilitates accurate evaluation of the system's success in meeting its intended goals.
             
-            \item Clearly articulate the intended functionalities, goals, and expected outcomes.
+            \item 
+            Clearly articulating the intended functionalities, goals, and expected outcomes is essential for providing a comprehensive understanding of the system or process. Functionalities should be described in detail, outlining the specific tasks or operations the system is designed to perform. Goals should be stated with precision, highlighting the overarching aims that the system seeks to accomplish. Additionally, expected outcomes need to be clearly defined, specifying the anticipated results or benefits that stakeholders can expect from the successful implementation of the system. This clarity ensures alignment between development efforts and the envisioned impact, facilitating effective communication and collaboration among all involved parties.
         
         \end{itemize}
     
@@ -616,9 +625,9 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
         \begin{itemize}
             
-            \item Explicitly state the importance of fairness in achieving the defined objectives.
+            \item Explicitly stating the importance of fairness in achieving the defined objectives is paramount. Fairness serves as a foundational principle that underpins the ethical and equitable functioning of the system. By ensuring fair treatment of all individuals or groups affected by the system, it enhances trust, mitigates potential biases, and promotes inclusivity. The acknowledgment of fairness as a crucial element in the pursuit of objectives reflects a commitment to ethical practices and responsible deployment. Moreover, it aligns the system with societal values, legal standards, and stakeholder expectations, fostering a positive impact on both the system's performance and its broader social implications.
             
-            \item Consider how fairness aligns with and enhances the overall purpose of the system.
+            \item The alignment of fairness with the overall purpose of the system is integral to its effectiveness and societal impact. Fairness ensures that the system operates in a manner that is just, unbiased, and considerate of diverse perspectives. In alignment with the system's purpose, fairness enhances the legitimacy of outcomes, promotes equal opportunities, and guards against discriminatory practices. By incorporating fairness as a core element, the system not only achieves its defined objectives more ethically but also contributes to a more inclusive and equitable societal framework. Fairness becomes a driving force that strengthens the system's purpose, fostering trust and positive engagement among users and stakeholders while minimizing negative consequences and disparities.
         
         \end{itemize}
     
@@ -626,9 +635,9 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
         \begin{itemize}
             
-            \item Strike a balance between various objectives, ensuring that fairness is not compromised in pursuit of other goals.
+            \item Striking a delicate balance among various objectives is paramount, and it necessitates meticulous consideration to prevent the compromise of fairness in the pursuit of other goals. While the system may have multifaceted objectives such as efficiency, accuracy, and speed, the commitment to fairness should remain unwavering. This balance entails optimizing the system to meet its diverse goals without perpetuating biases or causing harm to specific groups. It requires a nuanced approach, where trade-offs are carefully evaluated to ensure that fairness is not sacrificed for the sake of expediency or efficiency. By upholding fairness as a foundational principle, the system can achieve a harmonious equilibrium, fostering an environment where diverse objectives are met without undermining the ethical considerations embedded in the pursuit of those objectives.
             
-            \item Identify potential conflicts and establish priorities among competing objectives.
+            \item Identifying potential conflicts and establishing priorities among competing objectives is a crucial aspect of navigating the complex landscape of system development. Fairness, while paramount, may sometimes appear to conflict with other objectives such as efficiency or cost-effectiveness. In such scenarios, it becomes imperative to conduct a thorough analysis to discern the nature and extent of these conflicts. Establishing clear priorities involves assessing the relative importance of each objective and determining where compromises can be made without compromising the ethical principles underpinning fairness. This process demands a careful weighing of trade-offs, with the ultimate goal of aligning competing objectives in a manner that upholds fairness as a non-negotiable priority while still achieving overall system efficiency and effectiveness.
         
         \end{itemize}
 
@@ -640,7 +649,7 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
 \begin{itemize}
 
-    \item \emph{Objective:} Engage key stakeholders, including end-users, developers, and decision-makers, in defining the objectives.
+    \item \emph{Objective:} Engaging key stakeholders, including end-users, developers, and decision-makers, in the definition of objectives is a fundamental step towards fostering a collaborative and inclusive approach to system development. By involving these stakeholders from the outset, their diverse perspectives and insights can be incorporated into the objective-setting process. End-users provide valuable input based on their real-world needs, developers offer technical expertise, and decision-makers contribute strategic considerations. This collective engagement not only ensures a comprehensive understanding of the system's purpose but also enhances the likelihood of creating a solution that aligns with the varied requirements and expectations of all involved parties. It establishes a collaborative foundation that is essential for achieving consensus on objectives and, consequently, for the successful development and implementation of a fair and effective system.
 
     \item \emph{Implementation:}
 
@@ -660,7 +669,7 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
 \begin{itemize}
 
-    \item \emph{Objective:} Specify the metrics that will be used to measure the success of the system.
+    \item \emph{Objective:} Specify the metrics that will be used to measure the success of the system, ensuring a well-defined and quantitative framework for evaluation. These metrics should be carefully selected to align with the established objectives, encompassing both technical performance and fairness considerations. For technical aspects, metrics like accuracy, precision, recall, and F1 score may be relevant, providing insights into the system's overall effectiveness. Simultaneously, metrics such as disparate impact, equalized odds, and overall fairness indices should be included to gauge the system's fairness. The chosen metrics must accurately reflect the intended outcomes and contribute to a comprehensive assessment, enabling a nuanced understanding of the system's success while upholding fairness as a paramount criterion.
     
     \item \emph{Implementation:}
         
@@ -680,7 +689,7 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
 \begin{itemize}
 
-    \item \emph{Objective:} Consider the ethical implications associated with the defined objectives.
+    \item \emph{Objective:} Delve into the ethical implications associated with the defined objectives, conducting a thorough examination to anticipate and address potential ethical challenges. This involves an exploration of how the system's goals and functionalities may intersect with broader ethical considerations, including privacy, security, and societal impact. Consider the implications for different stakeholder groups, ensuring that the system's objectives align with ethical standards and societal values. Articulate clear guidelines and safeguards to mitigate ethical concerns, promoting transparency and accountability throughout the development and implementation phases. By proactively addressing ethical implications, the system can navigate complex ethical landscapes responsibly and contribute to a technology-driven environment that prioritizes ethical considerations alongside technical functionalities.
 
     \item \emph{Implementation:}
 
@@ -700,7 +709,7 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
 \begin{itemize}
 
-    \item \emph{Objective:} Document the defined objectives clearly and comprehensively.
+    \item \emph{Objective:} Thoroughly document the defined objectives in a clear and comprehensive manner, ensuring that each objective is articulated with precision and detail. Provide a detailed overview of the intended functionalities, goals, and expected outcomes, leaving no room for ambiguity. Use concise and unambiguous language to capture the essence of each objective, outlining the specific tasks or functionalities the system aims to achieve. Include any relevant context or background information that enhances the understanding of each objective. This documentation serves as a foundational reference for all stakeholders involved in the development and implementation of the system, fostering a shared understanding of the project's overarching goals and guiding principles. Clarity and comprehensiveness in objective documentation are essential for effective communication and collaboration among team members, end-users, and decision-makers throughout the system's lifecycle.
 
     \item \emph{Implementation:}
 
@@ -718,11 +727,12 @@ The initial step in a fair-by-design workflow involves the precise definition of
 
 \subsection{Significance}
 
-Defining objectives with precision, incorporating fairness considerations, and establishing a set of well-defined performance metrics are foundational to a fair-by-design approach. These steps provide a robust framework for subsequent design decisions, ensuring that the system's purpose aligns with ethical principles and stakeholder expectations.
+Absolutely, defining objectives with precision, incorporating fairness considerations, and establishing clear performance metrics form the foundational pillars of a fair-by-design approach. Precision in objective definition is crucial to avoid ambiguity and guide the development process effectively. Integrating fairness considerations from the outset ensures that ethical principles are not an afterthought but integral to the system's purpose. Clear performance metrics enable the systematic evaluation of the system's success and adherence to fairness goals. Together, these steps create a comprehensive framework that not only aligns the system with ethical standards but also meets stakeholder expectations, fostering trust and accountability throughout the development lifecycle.
 
 \section{Stakeholder Identification}
+\label{section:stakeholder-identification}
 
-Engaging key stakeholders is a fundamental step in shaping the objectives of a fair-by-design workflow. Stakeholders, representing various perspectives and interests, play a crucial role in defining the system's purpose and ensuring its alignment with societal values. Identifying and involving the right stakeholders is essential for a comprehensive understanding of the ethical implications and expectations associated with the system.
+Engaging key stakeholders is a foundational step in shaping the objectives of a fair-by-design workflow. Stakeholders, representing diverse perspectives and interests, bring invaluable insights that contribute to defining the system's purpose. Involving a range of stakeholders ensures a comprehensive understanding of ethical implications and societal expectations. This inclusive approach not only fosters a sense of collective responsibility but also helps in addressing potential biases and concerns early in the design process. By incorporating various viewpoints, the fair-by-design workflow becomes more attuned to the needs of different communities and stakeholders, enhancing the overall fairness and effectiveness of the system.
 
 \subsection{Key Considerations}
 
@@ -732,7 +742,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
         \begin{itemize}
 
-            \item Ensure the inclusion of stakeholders who represent a diverse range of perspectives, including end-users, developers, decision-makers, and affected communities.
+            \item Ensuring the inclusion of stakeholders who represent a diverse range of perspectives is paramount in the fair-by-design approach. This encompasses stakeholders such as end-users, developers, decision-makers, and members of affected communities. Each stakeholder group contributes unique insights and experiences that are crucial for shaping a system that is equitable and aligned with ethical principles. End-users provide practical insights into how the system will be experienced, developers offer technical expertise, decision-makers provide strategic guidance, and affected communities bring perspectives on potential societal impacts. By actively involving this diverse set of stakeholders, the fair-by-design workflow gains a more holistic understanding of potential biases, ethical considerations, and the broader societal context, ultimately leading to a more inclusive and equitable outcome.
         
         \end{itemize}
     
@@ -740,7 +750,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
         
     \begin{itemize}
     
-        \item Foster an inclusive environment where stakeholders actively participate in decision-making processes related to the system's objectives.
+        \item Fostering an inclusive environment is integral to the fair-by-design approach, ensuring that stakeholders actively participate in decision-making processes related to the system's objectives. This inclusivity encourages diverse perspectives, fostering a collaborative atmosphere where each stakeholder's input is valued. Establishing open channels of communication and providing opportunities for meaningful engagement empowers stakeholders to contribute their insights effectively. By creating an inclusive space, the fair-by-design workflow not only captures a broader range of perspectives but also cultivates a sense of ownership among stakeholders. This collaborative decision-making process enhances transparency, builds trust, and ultimately results in a system that is more responsive to the needs and values of the varied stakeholders involved.
     
     \end{itemize}
     
@@ -748,7 +758,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
     
     \begin{itemize}
     
-        \item Maintain transparent communication channels to keep stakeholders informed about the development process and to gather their input effectively.
+        \item Maintaining transparent communication channels is crucial in the fair-by-design approach to keep stakeholders informed about the development process and gather their input effectively. Transparent communication fosters trust and ensures that stakeholders are aware of the system's progress, objectives, and any potential implications. Regular updates, clear documentation, and accessible information contribute to an open dialogue, allowing stakeholders to stay engaged and provide valuable feedback. This proactive approach to communication not only enhances the collaborative decision-making process but also promotes a shared understanding of the ethical considerations embedded in the system. Transparent communication channels are a cornerstone of the fair-by-design workflow, fostering a sense of inclusivity and shared responsibility among all stakeholders involved.
     
     \end{itemize}
 
@@ -760,7 +770,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
 \begin{itemize}
     
-    \item \emph{Objective:} Identify and map key stakeholders who have a vested interest in the system's development.
+    \item \emph{Objective:} Identifying and mapping key stakeholders is a crucial step in the fair-by-design approach to understand and incorporate diverse perspectives in the system's development. Key stakeholders include end-users, developers, decision-makers, and affected communities, each bringing unique insights and interests to the table. End-users provide valuable feedback based on their experiences and expectations, guiding user-centric design. Developers contribute technical expertise, ensuring the feasibility and efficiency of the system. Decision-makers offer strategic input aligning the system with broader organizational goals. Affected communities bring a contextual understanding of societal impacts, helping navigate ethical considerations. By mapping these stakeholders, the fair-by-design workflow ensures a holistic and inclusive approach, considering the varied interests and perspectives that shape the system's objectives and ethical considerations.
     
     \item \emph{Implementation:}
     
@@ -778,7 +788,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
 \begin{itemize}
 
-    \item \emph{Objective:} Develop strategies for effectively engaging stakeholders in the objective-setting process.
+    \item \emph{Objective:} Developing effective strategies for stakeholder engagement in the objective-setting process is pivotal for a fair-by-design workflow. Begin by conducting stakeholder analysis to identify key individuals and groups. Establish clear communication channels to disseminate information and gather feedback. Organize workshops, focus groups, or collaborative sessions to facilitate active participation. Tailor engagement methods to suit diverse stakeholders, ensuring inclusivity. Provide accessible documentation outlining the proposed objectives and ethical considerations. Emphasize the value of each stakeholder's input and foster an open dialogue to address concerns. Regularly update stakeholders on the progress, incorporating their feedback iteratively. By employing these strategies, a fair-by-design workflow ensures comprehensive engagement, enriching the objective-setting process with diverse perspectives and reinforcing ethical considerations.
 
     \item \emph{Implementation:}
 
@@ -796,7 +806,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
 \begin{itemize}
 
-    \item \emph{Objective:} Facilitate inclusive workshops or meetings where stakeholders can actively contribute to defining objectives.
+    \item \emph{Objective:} In fostering an inclusive fair-by-design approach, organizing workshops or meetings is instrumental for stakeholder engagement in defining objectives. These sessions provide a platform for active participation, allowing diverse stakeholders, including end-users, developers, decision-makers, and affected communities, to contribute insights. The workshops should be designed to encourage open dialogue, ensuring that each perspective is heard and considered. Employ facilitation techniques that promote inclusivity, such as structured discussions, brainstorming sessions, or collaborative activities. By facilitating these inclusive workshops, the fair-by-design workflow embraces diverse viewpoints, enriching the objective-setting process and reinforcing its commitment to ethical considerations.
 
     \item \emph{Implementation:}
 
@@ -814,7 +824,7 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
 \begin{itemize}
 
-    \item \emph{Objective:} Gather feedback from stakeholders on proposed objectives and ethical considerations.
+    \item \emph{Objective:} After defining initial objectives and ethical considerations in the fair-by-design workflow, it is crucial to gather feedback from stakeholders. Establish a feedback loop through surveys, interviews, or focus group discussions to ensure that the proposed objectives resonate with the diverse perspectives of stakeholders. This iterative process allows for refinements and adjustments based on the input received. Actively seeking feedback fosters collaboration and ensures that the fair-by-design approach remains responsive to the evolving needs and expectations of stakeholders throughout the system's development.
 
     \item \emph{Implementation:}
 
@@ -830,9 +840,10 @@ Engaging key stakeholders is a fundamental step in shaping the objectives of a f
 
 \subsection{Significance}
 
-Stakeholder identification is pivotal for ensuring the fair and inclusive development of a system. By involving stakeholders from diverse backgrounds and perspectives, the ethical considerations embedded in the objectives can more accurately reflect the values and expectations of the broader community.
+Stakeholder identification is a pivotal aspect of ensuring the fair and inclusive development of a system. Involving stakeholders from diverse backgrounds and perspectives allows the ethical considerations embedded in the objectives to more accurately reflect the values and expectations of the broader community. By recognizing and engaging with a variety of stakeholders, including end-users, developers, decision-makers, and representatives from affected communities, the fair-by-design approach becomes more comprehensive and responsive to the multifaceted needs and concerns of the people who will interact with or be impacted by the system. This inclusive process contributes to the development of a system that is not only technically sound but also ethically grounded and considerate of various societal perspectives.
 
 \section{Data Collection: Integration with Stakeholder Considerations}
+\label{section:data-collection}
 
 In the process of data collection, the integration of insights from stakeholders is crucial, particularly for the identification of protected attributes. Stakeholders bring valuable perspectives on societal norms, ethical considerations, and potential biases that may not be apparent solely from the dataset. Their input aids in defining and recognizing protected attributes, contributing to a more nuanced understanding of fairness in the context of the application.
 
@@ -840,15 +851,17 @@ In the process of data collection, the integration of insights from stakeholders
 
 \subsubsection{Cultural Sensitivity}
 
-Stakeholders, representing diverse backgrounds, contribute to a nuanced understanding of cultural norms and sensitivities. This is crucial in recognizing attributes that may be culturally significant and warrant protection. For example, certain cultural or religious practices may involve sensitive information that should be identified as a protected attribute to ensure respectful and unbiased treatment.
+
+Stakeholders, representing diverse backgrounds, contribute significantly to a nuanced understanding of cultural norms and sensitivities within the fair-by-design approach. This diversity is crucial in recognizing attributes that may be culturally significant and warrant protection. For instance, certain cultural or religious practices may involve sensitive information that should be identified as a protected attribute to ensure respectful and unbiased treatment. By actively involving stakeholders who bring a range of cultural perspectives, the objective-setting process can identify and address potential biases associated with cultural attributes, fostering a system that respects and reflects the rich diversity of its user base. This approach not only enhances fairness but also promotes cultural sensitivity and inclusivity in the design and implementation of the system.
 
 \subsubsection{Contextual Relevance}
 
-Stakeholders provide contextual insights that may not be evident in the dataset alone. Their considerations can guide the identification of attributes relevant to the specific application and its ethical implications. For instance, in an educational context, stakeholders might highlight attributes related to socio-economic status or learning styles that could impact fairness considerations in student evaluations.
+
+Stakeholders play a crucial role in providing contextual insights that may not be evident in the dataset alone within the fair-by-design approach. Their considerations can guide the identification of attributes relevant to the specific application and its ethical implications. For instance, in an educational context, stakeholders might highlight attributes related to socio-economic status or learning styles that could impact fairness considerations in student evaluations. By actively involving stakeholders, the objective-setting process gains valuable perspectives that enrich the ethical framework of the system. This collaborative approach ensures that the identified objectives not only align with technical requirements but also address real-world considerations, promoting a more holistic and socially responsible system.
 
 \subsubsection{Uncovering Implicit Biases}
 
-Stakeholders may uncover implicit biases that are not explicitly represented in the dataset. By incorporating their perspectives, the identification of protected attributes becomes more comprehensive and reflective of potential sources of bias. This is particularly important in domains where historical biases or societal prejudices might influence decision-making processes. Stakeholders can provide valuable input to address and mitigate these implicit biases.
+Stakeholders play a crucial role in uncovering implicit biases that may not be explicitly represented in the dataset within the fair-by-design approach. By incorporating their perspectives, the identification of protected attributes becomes more comprehensive and reflective of potential sources of bias. This is particularly important in domains where historical biases or societal prejudices might influence decision-making processes. Stakeholders can provide valuable input to address and mitigate these implicit biases, contributing to the development of a more equitable and unbiased system. Their involvement ensures a thorough examination of potential biases, fostering transparency and fairness in the system's design and objectives.
 
 \subsection{Implementation Steps}
 
@@ -857,6 +870,7 @@ Stakeholders may uncover implicit biases that are not explicitly represented in 
 \emph{Objective:} Integrate stakeholder considerations into the identification of protected attributes.
 
 \emph{Implementation:}
+
 \begin{itemize}
 
     \item Conduct stakeholder workshops specifically focused on discussing and identifying potential protected attributes.
@@ -909,6 +923,10 @@ After the data collection and integration of stakeholder considerations, the nex
 \subsection{Key Considerations}
 
 \begin{enumerate}
+
+    \item \emph{Data cleaning:} 
+
+    This process involves identifying and rectifying errors, inconsistencies, and inaccuracies in the raw dataset to ensure its reliability and quality. Common tasks in data cleaning include handling missing values, correcting data format issues, removing duplicates, and addressing outliers. The goal is to create a clean, standardized dataset that forms a solid foundation for subsequent analysis and model development. Rigorous data cleaning is essential for mitigating the risk of biased or inaccurate model outcomes, as machine learning models heavily depend on the quality of the input data. This meticulous attention to data quality sets the stage for effective feature engineering, model training, and, ultimately, the generation of reliable and fair predictions.
 
     \item \emph{Handling Protected Attributes:} 
     
@@ -971,19 +989,17 @@ After the data collection and integration of stakeholder considerations, the nex
 This nuanced pre-processing step sets the groundwork for a fair and unbiased learning prediction, aligning the dataset with the ethical considerations embedded in the Fair-by-Design workflow.
 
 \section{Algorithm Design}
+\label{section: algorithm-design}
 
 The Algorithm Design stage in the fair-by-design workflow is a critical phase where machine learning models are chosen, adapted, or developed to align with the defined objectives and fairness considerations. The overarching goal is to design models that not only achieve high accuracy but also adhere to ethical and fair principles. This section provides a detailed exploration of the key considerations, strategies, and implementation steps involved in Algorithm Design.
 
 \subsection{Key Considerations}
 
 \begin{enumerate}
+
     \item \emph{Fairness-Aware Model Selection:} 
     
     The choice of machine learning models plays a pivotal role in achieving fairness objectives. Fairness-aware model selection involves considering models that have built-in mechanisms to address biases and promote equitable outcomes. Models such as adversarial networks, fairness-aware classifiers, and re-weighted learning algorithms are commonly explored.
-
-    \item \emph{Explainability and Interpretability:} 
-    
-    Ensuring transparency in model decision-making is crucial for understanding and addressing biases. Models with high explainability and interpretability, such as decision trees or rule-based models, are preferred to enhance the visibility into how the model utilizes features and attributes in its predictions.
 
     \item \emph{Regularization Techniques:} 
     
@@ -992,10 +1008,6 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
     \item \emph{Bias Detection and Mitigation:} 
     
     Embedding mechanisms for detecting and mitigating biases within the algorithm is essential. This involves continuous monitoring of the model's predictions for disparate impact and implementing corrective measures to mitigate biases as they emerge.
-
-    \item \emph{Human-in-the-Loop Approaches:} 
-    
-    Incorporating human-in-the-loop approaches involves actively involving domain experts and stakeholders in the algorithmic decision-making process. This ensures that human expertise is leveraged to validate and correct model predictions, particularly in cases where fairness considerations are nuanced and context-dependent.
 
     \item \emph{Pre-processing, In-processing, or Post-processing Algorithms:} 
     
@@ -1015,9 +1027,9 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
      
     \begin{itemize}
     
-        \item Survey and evaluate existing fairness-aware models suitable for the specific application domain.
+        \item In the pursuit of developing a fair-by-design machine learning model, a crucial step involves conducting a comprehensive survey and evaluation of existing fairness-aware models that are tailored to the specific application domain. This process entails a thorough examination of the literature and available models, considering their performance, interpretability, and fairness considerations. By evaluating existing models, practitioners gain valuable insights into the strengths and limitations of different approaches, allowing them to make informed decisions about the most suitable model for their specific use case. This diligent survey and evaluation contribute to the foundation of a fair-by-design workflow, ensuring that the chosen model aligns with both technical requirements and ethical considerations inherent to the application domain.
     
-        \item Consider models that explicitly address bias, such as adversarial networks or models with built-in fairness constraints.
+        \item When exploring fairness-aware models for a specific application domain, it is prudent to consider models that explicitly address bias. This includes but is not limited to adversarial networks or models with built-in fairness constraints. Adversarial networks are designed to mitigate bias by introducing a secondary network that works to identify and counteract any discriminatory patterns in the primary model. On the other hand, models with built-in fairness constraints incorporate predefined fairness metrics into the optimization process, ensuring that the model adheres to fairness criteria during training. Evaluating these specialized models provides a nuanced understanding of their efficacy in handling bias, offering practitioners valuable insights into the most suitable approach for mitigating bias within their specific context. This consideration reinforces the fair-by-design approach, emphasizing the importance of selecting models that actively address and rectify biases to promote equitable outcomes in machine learning applications.
     
     \end{itemize}
     
@@ -1025,9 +1037,9 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
     
     \begin{itemize}
     
-        \item Implement the selected fairness-aware model in the chosen machine learning framework.
+        \item Once a fairness-aware model is chosen for the specific application domain, the next step is to implement it in the selected machine learning framework. This involves translating the model specifications and architecture into code, configuring the necessary parameters, and integrating it seamlessly into the overall machine learning pipeline. The implementation process should adhere to best practices and guidelines provided by the chosen framework, ensuring optimal performance and compatibility. Additionally, developers need to consider the interpretability of the model, as transparency is crucial in understanding how fairness considerations are embedded within the system. The successful implementation of the fairness-aware model marks a pivotal stage in the fair-by-design workflow, laying the foundation for subsequent training, evaluation, and deployment phases with a heightened commitment to equitable and unbiased machine learning outcomes.
     
-        \item Customize the model to align with the unique characteristics of the dataset and fairness objectives.
+        \item After implementing the selected fairness-aware model, it's crucial to customize the model to align with the unique characteristics of the dataset and the specific fairness objectives defined earlier in the workflow. This customization involves fine-tuning model parameters, adjusting hyperparameters, and incorporating features that account for the nuances present in the dataset. Additionally, developers may need to introduce specific fairness-oriented adjustments to the model architecture, ensuring that it can effectively handle and mitigate biases associated with protected attributes. This tailored customization is essential for maximizing the model's performance within the context of the fair-by-design approach, where the goal is not only technical excellence but also ethical and unbiased machine learning outcomes.
     
     \end{itemize}
 
@@ -1041,20 +1053,9 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
 
     \begin{itemize}
 
-        \item Choose models known for their high explainability and interpretability, such as decision trees or rule-based models.
+        \item In the fair-by-design workflow, selecting models known for their high explainability and interpretability is a strategic choice. Decision trees and rule-based models, renowned for their transparency, are preferred in this context. The rationale behind this selection is rooted in the commitment to transparency and accountability. Models that are easily interpretable enable stakeholders, including end-users and decision-makers, to understand the decision-making process. This transparency not only fosters trust but also allows for the identification and mitigation of any potential biases or fairness concerns. By opting for models with high explainability, the fair-by-design workflow aligns with its overarching goal of developing machine learning systems that are not only technically robust but also ethically sound and easily understandable by a diverse range of stakeholders.
 
-        \item Consider trade-offs between model complexity and interpretability based on the specific application requirements.
-
-    \end{itemize}
-    
-
-    \item \emph{Feature Importance Analysis:}
-
-    \begin{itemize}
-
-        \item Conduct feature importance analysis to understand the impact of different features on model predictions.
-
-        \item Utilize visualization techniques to communicate the model's decision-making process to stakeholders.
+        \item When integrating fairness considerations into model selection within the fair-by-design workflow, it's crucial to carefully weigh the trade-offs between model complexity and interpretability. The specific application requirements play a pivotal role in determining the optimal balance. While highly complex models might offer superior predictive performance, they often sacrifice interpretability. On the other hand, interpretable models, such as decision trees or rule-based models, may have limitations in capturing intricate patterns present in the data. Striking the right balance is essential; the fair-by-design approach aims to ensure not only fairness but also transparency. Therefore, selecting models that align with the interpretability needs of stakeholders while still meeting the performance requirements is a key consideration in the design process. This conscious decision-making contributes to the development of fair, understandable, and accountable machine learning models.
 
     \end{itemize}
 
@@ -1068,19 +1069,9 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
 
     \begin{itemize}
 
-        \item Incorporate fairness constraints into the model training process.
+        \item The integration of fairness constraints requires a nuanced understanding of the specific fairness goals and metrics relevant to the application domain. The fair-by-design approach emphasizes a principled and systematic incorporation of these constraints to mitigate biases and promote equitable outcomes. By embedding fairness into the training process, the workflow aims to foster models that not only deliver accurate predictions but also adhere to ethical and fairness considerations, contributing to responsible and unbiased machine learning practices
 
-        \item Experiment with different regularization techniques, such as demographic parity constraints or equalized odds constraints.
-
-    \end{itemize}
-
-    \item \emph{Parameter Tuning for Fairness:}
-
-    \begin{itemize}
-
-    \item Fine-tune model parameters to achieve a balance between fairness and accuracy.
-
-    \item Explore the impact of regularization strength on the model's ability to mitigate biases.
+        \item Experimenting with different regularization techniques is a crucial aspect of the fair-by-design approach to machine learning. Regularization methods, such as demographic parity constraints or equalized odds constraints, play a significant role in mitigating biases and promoting fairness within models. These techniques are tailored to address specific fairness considerations related to protected attributes, ensuring that the model's predictions are not unduly influenced by factors like gender, race, or other sensitive attributes.
 
     \end{itemize}
 
@@ -1089,24 +1080,14 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
 \subsubsection{Bias Detection and Mitigation}
 
 \begin{itemize}
-
-    \item \emph{Continuous Monitoring:}
-
-    \begin{itemize}
-
-        \item Implement mechanisms for continuous monitoring of model predictions for biases.
-
-        \item Set up alerts or triggers to detect and address biases in real-time.
-
-    \end{itemize}
     
     \item \emph{Dynamic Bias Mitigation:}
     
     \begin{itemize}
     
-        \item Develop adaptive algorithms that dynamically adjust to emerging biases in the data.
+        \item Developing adaptive algorithms that dynamically adjust to emerging biases in the data is a proactive strategy within the fair-by-design framework. These algorithms are designed to continuously monitor and evaluate the model's performance, identifying any potential biases that may arise during operation. The adaptive nature of these algorithms allows them to dynamically adjust their parameters or decision boundaries to mitigate the impact of emerging biases, ensuring ongoing fairness in real-world applications.
     
-        \item Implement corrective measures, such as re-weighting or re-sampling, to mitigate biases as they are detected.
+        \item Implementing corrective measures, such as re-weighting or re-sampling, is a pivotal step in the fair-by-design workflow to actively mitigate biases as they are detected. When biases are identified through ongoing monitoring, these corrective measures are strategically applied to address the imbalances and promote fairness in the model's predictions.
     
     \end{itemize}
 
@@ -1125,22 +1106,13 @@ The Algorithm Design stage in the fair-by-design workflow is a critical phase wh
         \item Involve stakeholders in model validation and decision-making processes.
     
     \end{itemize}
-    
-    \item \emph{Interactive Model Interface:}
-    
-    \begin{itemize}
-    
-        \item Develop an interactive interface that allows stakeholders to provide feedback on model predictions.
-    
-        \item Enable a feedback loop where human insights guide model adjustments.
-    
-    \end{itemize}
 
 \end{itemize}
 
 \subsection{Pre-processing Algorithms Proposed}
 
 \subsubsection{Fairness through unawareness with proxy detection via variables only}
+\label{subsec:ftu}
 
 The algorithm elucidated in this section seamlessly integrates with the Fair-by-Design workflow, embodying the core concept of \emph{fairness through unawareness}. Rooted in the overarching goal of mitigating bias, this approach represents a significant stride in addressing fairness considerations within the machine learning pipeline.
 
@@ -1336,6 +1308,7 @@ This algorithm returns the proxy list obtained the fairness metric choice as est
 \end{algorithm}
 
 \subsubsection{Fairness through data rebalancing}
+\label{subsec:ftdr}
 
 In this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
 
@@ -1454,6 +1427,7 @@ this algorithm adds rows to the dataset until every combination have the same fr
 The Algorithm Design stage is pivotal in shaping the ethical and fair behavior of machine learning models within the fair-by-design framework. By carefully selecting, customizing, and integrating fairness-aware models, and incorporating transparency and human-in-the-loop approaches, this stage ensures that the resulting models align with ethical considerations and promote equitable outcomes.
 
 \section{Model Training and Evaluation}
+\label{section:model-training}
 
 \subsection{Introduction}
 
@@ -1537,6 +1511,7 @@ The discussion extends to ethical considerations arising from the model's behavi
 Based on the observed results, proposals for further refinement are put forth. This may involve adjusting fairness constraints, fine-tuning hyperparameters, or exploring alternative algorithms to enhance both accuracy and fairness in model predictions. The iterative nature of this refinement process reflects the commitment to continuous improvement and the pursuit of fair
 
 \section{Model Deployment}
+\label{section:model-deployment}
 
 \subsection{Introduction}
 
@@ -1578,6 +1553,8 @@ User feedback plays a pivotal role in assessing the fairness of the deployed mod
 
 In proposing future directions, emphasize the importance of refining model deployment strategies based on fairness implications and user feedback. Consider how emerging technologies, evolving ethical standards, and advancements in AI research can be leveraged to enhance the fairness and ethical considerations of the deployed model. Outline potential research avenues that focus on user-centric fairness in real-world applications.
 
+%----------------------------------------------------------------------------------------
+
 \chapter{Technical details}
 \label{chap:technicals}
 
@@ -1617,7 +1594,6 @@ For each value outside the combination set, the algorithm discerns both the leas
 
 This deliberate approach to data generation underscores the commitment to preserving the integrity of the dataset while mitigating potential biases, contributing to the overarching goal of developing fair and unbiased machine learning models.
 
-
 %----------------------------------------------------------------------------------------
 \chapter{Implementation of Fair-by-Design Workfow in Canary Island Educational Performance Prediction}
 \label{chap:real-world-scenario}
@@ -1632,17 +1608,17 @@ In the following sections, we navigate through the key stages of the fair-by-des
 
 \section{Objective Definition}
 
-The primary objective of this study is to predict the English proficiency level for individual students in the educational landscape of the Canary Islands. The predictive model aims to provide accurate assessments, contributing to a better understanding of students' language capabilities. However, beyond accuracy alone, a crucial emphasis is placed on the integration of fairness considerations throughout the prediction process.
+The primary objective of this study is to predict the English proficiency level for individual students in the educational landscape of the Canary Islands. The predictive model aims to provide accurate assessments, contributing to a better understanding of students' language capabilities. However, beyond accuracy alone, a crucial emphasis is placed on the integration of fairness considerations throughout the prediction process. This entails a meticulous examination of potential biases and disparities related to sensitive attributes, ensuring that the model's predictions are not only precise but also ethically sound and equitable for all student groups. The fair-by-design approach is woven into the fabric of the study to uphold the principles of fairness and inclusivity, fostering a predictive model that aligns with both technical excellence and ethical considerations.
 
 \subsection{Performance Evaluation Metrics}
 
 The performance of the predictive model will be assessed using two key metrics: accuracy and fairness. Accuracy, representing the model's ability to precisely predict English proficiency levels, is paramount for ensuring the practical utility of the system. A highly accurate model contributes to effective decision-making, offering valuable insights into students' language skills.
 
-Simultaneously, the fairness of predictions across different demographic groups is of utmost importance. Protected attributes, such as gender, socio-economic background, or ethnic origin, often play a role in educational disparities. To address potential biases, the model will be evaluated based on fairness metrics, ensuring that predictions do not disproportionately favor or disfavor specific subpopulations.
+Simultaneously, the fairness of predictions across different demographic groups is of utmost importance. Protected attributes, such as gender, socio-economic background, or ethnic origin, often play a role in educational disparities. To address potential biases, the model will be evaluated based on fairness metrics, ensuring that predictions do not disproportionately favor or disfavor specific subpopulations. This dual evaluation approach aligns with the fair-by-design framework, aiming to create a predictive model that excels both in accuracy and equity.
 
 \subsection{Fairness as a Core Principle}
 
-Fairness is not an ancillary consideration in this study but a core principle embedded in the entire predictive workflow. The goal is to develop a machine learning model that not only excels in accuracy but also demonstrates equitable treatment across diverse student groups. By explicitly considering protected attributes, the model aims to mitigate potential biases that could adversely impact historically marginalized or disadvantaged populations.
+Fairness is not an ancillary consideration in this study but a core principle embedded in the entire predictive workflow. The goal is to develop a machine learning model that not only excels in accuracy but also demonstrates equitable treatment across diverse student groups. By explicitly considering protected attributes, such as gender, socio-economic background, or ethnic origin, the model aims to mitigate potential biases that could adversely impact historically marginalized or disadvantaged populations. This approach reflects a commitment to fairness from the outset, ensuring that the model's predictions contribute to educational insights without perpetuating or exacerbating existing disparities.
 
 \subsection{Protected Attributes and Ethical Considerations}
 
@@ -1718,7 +1694,7 @@ The dataset documentation provided the information related to the type of each a
 
 \subsection{Fairness Assessment}
 
-Having detected the sensitive attributes within the dataset, a crucial step in the fair-by-design workflow involves a comprehensive fairness assessment. This assessment aims to quantify and evaluate any potential biases that may exist in the model predictions, focusing on the disparate impact over the identified protected attributes.
+Having detected the sensitive attributes within the dataset, a crucial step in the fair-by-design workflow involves a comprehensive fairness assessment. This assessment aims to quantify and evaluate any potential biases that may exist in the model predictions, focusing on the disparate impact over the identified protected attributes. The fairness assessment is not merely a formality but a meticulous examination designed to ensure the model's equitable treatment across different demographic groups. By leveraging appropriate fairness metrics, statistical analyses, and quantitative evaluations, this assessment plays a pivotal role in upholding the ethical foundation of the machine learning model and guiding further refinements in pursuit of fairness and unbiased outcomes.
 
 \section{Data pre-processing}
 
@@ -1746,19 +1722,19 @@ Moving to the in-processing stage, where fairness considerations are incorporate
 
 \subsubsection{GridSearch Reduction}
 
-The in-processing algorithm chosen for fairness enhancement is GridSearch Reduction from the AIF360 library. GridSearch Reduction is a powerful technique that systematically explores a grid of hyperparameters to find the optimal combination that minimizes bias in model predictions. It employs a reduction-based approach, optimizing the trade-off between accuracy and fairness by iteratively adjusting model parameters.
+The in-processing algorithm chosen for fairness enhancement is GridSearch Reduction from the \emph{AIF360} library. GridSearch Reduction is a powerful technique that systematically explores a grid of hyperparameters to find the optimal combination that minimizes bias in model predictions. It employs a reduction-based approach, optimizing the trade-off between accuracy and fairness by iteratively adjusting model parameters.
 
-GridSearch Reduction operates by conducting a grid search over specified hyperparameter values, considering fairness metrics along with accuracy. This approach allows for the identification of an optimal set of hyperparameters that achieves a balance between predictive performance and fairness objectives. The algorithm aims to discover the most suitable configuration that mitigates bias in the model's decision-making process, ensuring equitable outcomes for diverse student groups.
+GridSearch Reduction operates by conducting a grid search over specified hyperparameter values, considering fairness metrics along with accuracy. This approach allows for the identification of an optimal set of hyperparameters that achieves a balance between predictive performance and fairness objectives. The algorithm aims to discover the most suitable configuration that mitigates bias in the model's decision-making process, ensuring equitable outcomes for diverse student groups. \cite{agarwal2018reductions}
 
 \subsection{Post-Processing Algorithm}
 
-In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the Fairlearn library has been selected to further refine fairness.
+In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the \emph{Fairlearn} library has been selected to further refine fairness.
 
 \subsubsection{Equalized Odds Post-Processing with Threshold Optimizer}
 
-The chosen post-processing algorithm is Equalized Odds Post-Processing with Threshold Optimizer from Fairlearn. This algorithm focuses on adjusting decision thresholds to ensure equalized odds across different demographic groups. By optimizing the threshold values based on protected attributes, the algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions.
+The chosen post-processing algorithm is Equalized Odds Post-Processing with Threshold Optimizer from Fairlearn. This algorithm focuses on adjusting decision thresholds to ensure equalized odds across different demographic groups. By optimizing the threshold values based on protected attributes, the algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions. \cite{10.5555/3157382.3157469}
 
-Equalized Odds Post-Processing with Threshold Optimizer involves fine-tuning the decision boundaries to align with fairness considerations. The threshold optimizer dynamically adjusts thresholds for different groups, aiming to achieve equalized odds without compromising predictive accuracy. This meticulous post-processing step contributes to the overall fairness of the model's predictions, promoting equity and mitigating bias in decision outcomes.
+Equalized Odds Post-Processing with Threshold Optimizer involves fine-tuning the decision boundaries to align with fairness considerations. The threshold optimizer dynamically adjusts thresholds for different groups, aiming to achieve equalized odds without compromising predictive accuracy. This meticulous post-processing step contributes to the overall fairness of the model's predictions, promoting equity and mitigating bias in decision outcomes. 
 
 \subsection{Technology-Agnostic Workflow}
 
@@ -1797,7 +1773,10 @@ This function measures the equality of odds for different demographic groups. It
 This function evaluates demographic parity, assessing whether the model's predictions are independent of protected attributes. It calculates the ratio of positive predictions for different demographic groups, emphasizing the need for equal representation in positive predictions. A demographic parity ratio close to 1 signals fairness in the distribution of positive predictions.
 
 \section{Model deployment}
+\label{section:model-deployment}
+
 After the evaluation step in which is assessed whether the model perform its predcition task with a reasonable trade-off between the accuracy and the fairness the model can be deployed and be used to prediction.
+
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
 \label{chap:validation}
