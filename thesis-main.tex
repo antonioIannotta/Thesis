@@ -1590,7 +1590,7 @@ For each of the previous approaches have been chosen 3 models to perform the pre
 
     \item \text{RandomForest Classifier}: RandomForest Classifier is a popular machine learning algorithm that leverages an ensemble of decision trees to make predictions. It excels at tasks like classification and regression, offering robustness against overfitting and high accuracy by aggregating the predictions of multiple decision trees. It's a versatile tool used in various applications, from finance to healthcare and image analysis.
     
-    \item \textbf{XGBoost Classifier}: XGBoost, short for Extreme Gradient Boosting, is a powerful and efficient machine learning algorithm known for its exceptional predictive performance. It's a gradient boosting technique that builds a strong predictive model by combining the predictions of multiple weak models, typically decision trees. XGBoost is widely used in data science and machine learning competitions due to its speed, accuracy, and flexibility. It can handle both regression and classification tasks and is prized for its ability to handle large datasets and complex relationships in the data.
+    \item \textbf{SVM Classifier}: Support Vector Machine (SVM) is a supervised machine learning algorithm that can be used for both classification and regression tasks. The primary objective of SVM is to find a hyperplane in an N-dimensional space (where N is the number of features) that best separates the data points of one class from another. This hyperplane is chosen to maximize the margin between the classes.
     
     \item \textbf{DecisionTree Classifier}: DecisionTree Classifier is a specific type of machine learning algorithm primarily used for classification tasks. It constructs a tree-like model, where each internal node represents a decision based on a specific feature, and each leaf node denotes the predicted class label for the input data point.
 
@@ -1614,20 +1614,16 @@ On the previous models is applied the GridSearch with a \emph{cv} of 10 in order
     
     \end{enumerate}
     
-    \item XGBoost Classifier:
+    \item SVM Classifier:
     
     \begin{enumerate}
-    
-        \item \emph{min\textunderscore child\textunderscore weight}: [1, 5, 10]
-    
+
+        \item \emph{C}: [0.1, 1, 10]
+
+        \item \emph{kernel}: ['linear', 'rbf', 'poly']
+
         \item \emph{gamma}: [0.5, 1, 1.5, 2.5]
-    
-        \item \emph{subsample}: [0.6, 0.8, 1.0]
-    
-        \item \emph{colsample\textunderscore bytree}: [0.6, 0.6, 1.0]
-    
-        \item \emph{max\textunderscore depth}: [3, 4, 5]
-    
+
     \end{enumerate}
     
     \item DecisionTree Classifier:
@@ -1661,7 +1657,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier  &  \\
     \hline
-    XGBoost Classifier & \\
+    SVM Classifier & \\
     \hline
     DecisionTree Classifier & \\
     \hline
@@ -1675,7 +1671,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier  &  \\
     \hline
-    XGBoost Classifier & \\
+    SVM Classifier & \\
     \hline
     DecisionTree Classifier & \\ 
     \hline
@@ -1689,7 +1685,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier & & \\
     \hline
-    XGBoost Classifier & & \\
+    SVM Classifier & & \\
     \hline
     DecisionTree Classifier & & \\
     \hline
@@ -1705,7 +1701,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier  &  \\
     \hline
-    XGBoost Classifier & \\
+    SVM Classifier & \\
     \hline
     DecisionTree Classifier & \\
     \hline
@@ -1719,7 +1715,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier  &  \\
     \hline
-    XGBoost Classifier & \\
+    SVM Classifier & \\
     \hline
     DecisionTree Classifier & \\ 
     \hline
@@ -1733,7 +1729,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier & & \\
     \hline
-    XGBoost Classifier & & \\
+    SVM Classifier & & \\
     \hline
     DecisionTree Classifier & & \\
     \hline
@@ -1749,7 +1745,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier  &  \\
     \hline
-    XGBoost Classifier & \\
+    SVM Classifier & \\
     \hline
     DecisionTree Classifier & \\
     \hline
@@ -1763,7 +1759,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier  &  \\
     \hline
-    XGBoost Classifier & \\
+    SVM Classifier & \\
     \hline
     DecisionTree Classifier & \\ 
     \hline
@@ -1777,7 +1773,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
     \hline
     RandomForest Classifier & & \\
     \hline
-    XGBoost Classifier & & \\
+    SVM Classifier & & \\
     \hline
     DecisionTree Classifier & & \\
     \hline
