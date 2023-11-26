@@ -1343,6 +1343,259 @@ this algorithm adds rows to the dataset until every combination have the same fr
 
 The Algorithm Design stage is pivotal in shaping the ethical and fair behavior of machine learning models within the fair-by-design framework. By carefully selecting, customizing, and integrating fairness-aware models, and incorporating transparency and human-in-the-loop approaches, this stage ensures that the resulting models align with ethical considerations and promote equitable outcomes.
 
+\section{Model Training and Evaluation}
+\label{section:model-training}
+
+\subsection{Introduction}
+
+This section delivers a thorough overview of the model training and evaluation process within the Fair-by-Design framework. After the careful application of the chosen pre-processing, in-processing, or post-processing algorithm, the training phase assumes a pivotal role in shaping a machine learning model. The emphasis extends beyond mere accuracy objectives to incorporate the ethical considerations of fairness. This holistic approach underscores the commitment to developing models that excel not only in predictive performance but also adhere to principles of equity and justice, thereby embodying the ethos of the Fair-by-Design framework.
+
+\subsection{Training Process}
+
+\subsubsection{Data Splitting}
+
+The dataset undergoes a deliberate split into training, validation, and test sets, each serving a distinct strategic purpose. The training set acts as the foundation for the model's learning process, enabling it to grasp patterns and relationships within the data. The validation set plays a crucial role in hyperparameter tuning, fine-tuning the model to enhance its generalization capabilities. Finally, the test set serves as the litmus test for the final model's performance, offering a reliable measure of its predictive capabilities. This meticulous division ensures a comprehensive and robust evaluation of the model's effectiveness and generalizability within the Fair-by-Design framework.
+
+\subsubsection{Model Architecture}
+
+The architecture of the selected model is meticulously crafted to strike a delicate balance between accuracy and fairness considerations within the Fair-by-Design framework. Architectures may incorporate innovative components, such as adversarial layers or customized modules specifically designed to enforce fairness constraints. The focal point is to develop a model that excels not only in capturing intricate patterns but is also interpretable and transparent in its decision-making process. This intentional design reflects the commitment to fostering models that go beyond predictive prowess, embodying principles of interpretability and transparency while addressing fairness concerns.
+
+\subsubsection{Training Parameters}
+
+Critical training parameters, spanning the learning rate, batch size, and convergence criteria, undergo meticulous tuning in the Fair-by-Design framework. The learning rate assumes significance as it dictates the step size in the optimization process, thereby influencing the pace of updates to model parameters. This parameter is pivotal in determining the balance between the model's adaptability and stability during training.
+
+The batch size, another key parameter, determines the number of samples processed in each iteration. This factor significantly impacts the overall efficiency of the training process, influencing resource utilization and the model's ability to generalize well to diverse datasets.
+
+Convergence criteria hold a crucial role by ensuring that the training process halts when the model achieves optimal performance. These criteria are indispensable in preventing overfitting, safeguarding against the model becoming excessively tailored to the training data to the detriment of its ability to generalize to new, unseen data.
+
+This comprehensive tuning process, applicable beyond deep models, reflects a nuanced approach in optimizing key parameters to foster models that not only exhibit accuracy but also align with fairness considerations in the Fair-by-Design paradigm.
+
+\subsubsection{Fairness Constraints}
+
+In scenarios where fairness constraints are seamlessly integrated into the training process within the Fair-by-Design framework, a deliberate and systematic approach is adopted. These constraints are explicitly defined and enforced, often involving the introduction of regularization terms designed to penalize disparate treatment of different demographic groups. This strategic incorporation aims to instill fairness by discouraging the model from exhibiting biased behavior towards specific groups.
+
+Adversarial training components might also be leveraged in this process. These components act as a countermeasure to mitigate bias, introducing a dynamic element that works to identify and neutralize any discriminatory patterns that may emerge during training. The overall objective is to foster models that not only deliver accurate predictions but also adhere to ethical principles of fairness and equity. This intentional integration of fairness constraints reinforces the commitment to cultivating machine learning models that contribute to just and unbiased outcomes.
+
+\subsubsection{Model Training}
+
+The model undergoes training for a specified number of iterations, leveraging the training set to iteratively update its parameters and increase accuracy. This iterative training process is not limited to deep learning models and is applicable across various model categories. The overarching goal remains to strike a balance between accuracy and fairness, contributing to the development of a machine learning model proficient in capturing underlying patterns while being conscious of potential biases.
+
+Through successive iterations on the training set, the model refines its understanding of the data, aiming to optimize its performance with due consideration to fairness. This approach aligns with the principles of the Fair-by-Design framework, ensuring that the trained model is both technically robust and ethically sound in its decision-making, irrespective of the specific model category employed.
+
+\subsection{Evaluation Metrics}
+
+\subsubsection{Accuracy Metrics}
+
+A suite of accuracy metrics is employed to holistically assess the model's overall performance:
+
+\begin{itemize}
+    \item \emph{Accuracy:} The ratio of correctly predicted instances to the total instances.
+    
+    \item \emph{Precision:} The proportion of true positive predictions among instances predicted as positive.
+    
+    \item \emph{Recall:} The proportion of true positive predictions among actual positive instances.
+    
+    \item \emph{F1-score:} The harmonic mean of precision and recall, providing a balanced measure of accuracy.
+\end{itemize}
+
+\subsubsection{Fairness Metrics}
+
+Fairness metrics are instrumental in evaluating the model's behavior across different demographic groups:
+
+\begin{itemize}
+    
+    \item \emph{Equalized Odds Evaluation Metric}: The Equalized Odds metric serves as a critical assessment tool for gauging the model's performance concerning fairness. This evaluation metric specifically investigates whether the model exhibits comparable false positive and false negative rates across distinct demographic groups. By scrutinizing disparities in these rates, the Equalized Odds metric offers insights into the model's capacity to provide equitable outcomes for diverse segments of the population, contributing to a comprehensive understanding of its fairness considerations, as reported in \cref{section:metrics}
+    
+    \item \emph{Statistical Parity:} The Statistical Parity metric is a meticulous examination of the distribution of positive outcomes within each demographic group. This evaluation metric meticulously analyzes the proportion of positive results for each group, aiming to identify and quantify any disparities that may exist. By shedding light on these disparities, the Statistical Parity metric offers a nuanced perspective on how the model's predictions align with different demographic segments. This in-depth analysis contributes to a comprehensive assessment of fairness, facilitating a more detailed understanding of potential imbalances in positive outcomes across diverse groups, as reported in \cref{section:metrics}
+
+\end{itemize}
+
+\subsection{Results and Analysis}
+
+\subsubsection{Accuracy Results}
+
+A meticulous analysis of accuracy results stands as a cornerstone in gaining valuable insights into the model's predictive prowess concerning the target variable. Precision, recall, and F1-score metrics play a pivotal role in offering a nuanced understanding of the intricate trade-offs between true positives, false positives, and false negatives.
+
+Precision provides insights into the accuracy of positive predictions, recall assesses the model's ability to capture all positive instances, and the F1-score encapsulates a harmonized view, considering both precision and recall. The overarching goal transcends mere accuracy; it extends to cultivating a balanced and informed prediction capability. This multifaceted evaluation approach ensures a comprehensive grasp of the model's performance, allowing for a nuanced interpretation of its predictive accuracy while considering the intricate interplay between different performance metrics.
+
+\subsubsection{Fairness Results}
+
+Fairness metrics serve as a crucial lens through which biases within the model are identified and addressed. Disparate impact, equalized odds, and statistical parity results undergo thorough analysis to evaluate whether the model demonstrates disparate treatment among various demographic groups. The emphasis is not only on recognizing but also on actively mitigating disparities, fostering the development of a model that upholds principles of fairness and equity. By leveraging these metrics, the evaluation process goes beyond traditional performance measures, ensuring a diligent scrutiny of how the model's predictions may impact different demographic segments and actively working towards an unbiased and equitable predictive system.
+
+\subsubsection{Trade-offs}
+
+Comprehending the nuanced trade-offs between accuracy and fairness is pivotal in the pursuit of a balanced model. Achieving this equilibrium may necessitate adjustments to the model. Techniques such as re-weighting, re-sampling, or the introduction of customized loss functions can be employed to specifically address fairness concerns that arise during evaluation. The central theme becomes striking the right balance—ensuring optimal performance of the model while actively addressing and mitigating fairness considerations. This delicate calibration process is intrinsic to refining the model, aligning it not only with accuracy goals but also with the ethical imperative of fostering fairness and equity in its predictions.
+
+\subsection{Discussion}
+
+\subsubsection{Interpretability}
+
+The interpretability of the model's decisions holds paramount importance. Techniques such as SHAP (SHapley Additive exPlanations) values or LIME (Local Interpretable Model-agnostic Explanations) are thoroughly explored to enhance transparency in the decision-making process. The focus is on understanding and elucidating how the model arrives at its predictions. This commitment to interpretability contributes significantly to the model's trustworthiness, providing stakeholders with clear insights into the factors influencing predictions. By adopting these interpretability techniques, the model not only meets technical excellence standards but also aligns with the broader goal of fostering trust and confidence in its decision-making capabilities.
+
+\subsubsection{Ethical Considerations}
+
+The discussion extends beyond technical aspects to encompass ethical considerations arising from the model's behavior. Rigorous attention is dedicated to uncovering potential biases, identifying unintended consequences, and evaluating the impact on different demographic groups. Strategies for addressing ethical concerns are thoughtfully proposed, emphasizing a steadfast commitment to responsible and ethical AI practices. This holistic examination ensures that the model's deployment aligns not only with technical efficacy but also with a profound awareness of its societal implications, fostering a responsible and ethical approach to artificial intelligence.
+
+\subsubsection{Further Refinement}
+
+Derived from the observed results, proposals for further refinement are thoughtfully put forth. This iterative process may encompass adjusting fairness constraints, fine-tuning hyperparameters, or exploring alternative algorithms, all aimed at enhancing both accuracy and fairness in model predictions. The iterative nature of this refinement process underscores a steadfast commitment to continuous improvement and the unwavering pursuit of fairness. This dynamic approach ensures that the model evolves in response to insights gained from its performance, fostering a resilient and adaptive system that continually strives to achieve the highest standards of accuracy and fairness.
+
+\section{Model Deployment}
+\label{section:model-deployment}
+
+\subsection{Introduction}
+
+Model deployment is a critical phase in the fair-by-design framework, where the fair machine learning model transitions from development to practical application in real-world decision-making processes. This phase emphasizes the integration of the model into decision systems, ongoing monitoring to ensure fairness, user education, and iterative refinement based on feedback.
+
+\subsection{Integration with Decision Systems}
+
+The seamless integration of the fair machine learning model into decision systems is meticulously guided by the principles of fairness and ethical AI practices. Particular attention is devoted to ensuring the alignment of the model with existing infrastructure, emphasizing that its predictions contribute meaningfully to decision-making processes. This integration process involves a conscientious consideration of potential biases and fairness implications at every stage of the decision-making pipeline. By adhering to these principles, the model becomes an integral and responsible component of the broader decision system, promoting equitable outcomes and ethical decision-making practices.
+
+\subsection{Monitoring and Feedback Loops}
+
+A robust monitoring system is meticulously established to continuously evaluate the model's performance in real-world scenarios. This monitoring process goes beyond traditional accuracy metrics, placing a specific focus on fairness indicators. Feedback loops are strategically implemented to capture any deviations from fairness objectives, changes in the data distribution, or emerging ethical considerations.
+
+User feedback emerges as a crucial component within this monitoring process. Users interacting with the model play an active role in contributing valuable insights into its real-world impact. The feedback loops serve as a dynamic mechanism for users to report any perceived biases, disparities, or unintended consequences in the model's predictions. This user-centric approach ensures that the model's deployment remains highly responsive to the evolving needs and concerns of the diverse stakeholders involved.
+
+\subsection{User Education and Awareness}
+
+Stakeholders engaging with the fair machine learning model undergo comprehensive education about the underlying fairness considerations. Tailored awareness programs are designed to foster a nuanced understanding of the ethical use of the model, potential biases that may arise, and the significance of interpreting predictions within the context of fairness objectives. The overarching goal is to empower users to make informed decisions while judiciously considering the model's capabilities and limitations.
+
+User education extends beyond general awareness to encompass a detailed explanation of the model's predictions, the factors influencing its decisions, and the steps taken to ensure fairness. Transparent communication becomes a linchpin in building trust among users, encouraging responsible and ethical use of the model in diverse decision-making scenarios. This educational initiative ensures that stakeholders are equipped with the knowledge necessary to engage with the model ethically and make well-informed decisions in alignment with fairness principles.
+
+\subsection{Iterative Refinement}
+
+MModel deployment marks a significant milestone, yet it is not the endpoint in the fair-by-design workflow. An iterative refinement process is integral to proactively addressing emerging fairness challenges. Insights from user feedback, monitoring results, and ethical considerations collectively guide ongoing refinements to the model. The iterative nature of this approach ensures that the fair machine learning model remains adaptive and responsive to evolving fairness concerns.
+
+Refinements may encompass dynamic adjustments to the model's algorithms, periodic re-evaluations of fairness metrics, and continuous enhancements to the user interface for improved interpretability. This iterative refinement process not only embodies a commitment to continuous improvement but also reinforces the ethical foundation of the fair-by-design framework. Crucially, this iterative approach is designed to incorporate adaptive behavior, ensuring that the model stays aligned with its defined objectives and can dynamically respond to any changes or emerging considerations in the fairness landscape.
+
+\subsection{Discussion}
+
+\subsubsection{Reflection on Model Deployment}
+
+The post-deployment phase entails a comprehensive reflection on the fairness implications observed in real-world applications. This introspective process involves a meticulous examination of various considerations, including the effectiveness of fairness measures employed, the discernible impact on decision-making outcomes, and any unforeseen challenges that emerged during deployment. This reflective analysis yields valuable insights into the model's practical performance and its alignment with predefined fairness objectives.
+
+By delving into the real-world impact, stakeholders gain a nuanced understanding of how the fair machine learning model interacts with the operational environment. This reflective phase serves as a crucial feedback loop, informing future iterations and contributing to an ongoing commitment to refining the model's fairness and ethical considerations. The insights gleaned from this reflective process guide continuous improvements, ensuring that the model remains not only technically robust but also attuned to the evolving dynamics of real-world fairness challenges.
+
+\subsubsection{User Feedback and Fairness}
+
+User feedback emerges as a pivotal element in the ongoing assessment of the fairness of the deployed model. Specific instances where user feedback has contributed to the identification and mitigation of biases provide valuable insights into the model's real-world impact.
+
+Mechanisms are carefully established to facilitate user feedback, ensuring an accessible avenue for stakeholders to report concerns, perceived biases, or unintended consequences. The responsiveness of the system to reported concerns becomes a critical aspect, delineating the model's adaptability to user insights.
+
+The overall impact on fairness in decision-making is closely scrutinized, with each reported concern serving as a catalyst for refinement. This iterative feedback loop fosters a user-centric approach, where the model actively responds to the diverse perspectives of stakeholders, thereby enhancing its fairness and ethical considerations in decision-making scenarios.
+
+\subsubsection{Future Directions}
+
+In proposing future directions, emphasize the importance of refining model deployment strategies based on fairness implications and user feedback. Consider how emerging technologies, evolving ethical standards, and advancements in AI research can be leveraged to enhance the fairness and ethical considerations of the deployed model. Outline potential research avenues that focus on user-centric fairness in real-world applications.
+
+%----------------------------------------------------------------------------------------
+\chapter{Technical details}
+\label{chap:technicals}
+
+\section{Proposed algorithm}
+
+It's important to provide technical details about the implementation of the two algorithms proposed above.
+
+\subsection{Fairness through data rebalancing}
+
+An essential facet of the Fairness through Rebalancing algorithm within our workflow lies in the nuanced process of generating data to augment the dataset. At each iteration of the algorithm, the combination value is selected, pinpointing the subset of the dataframe where that specific combination occurs. Within this subset, a meticulous computation unfolds.
+
+\lstinputlisting[
+	%float,
+	language=Python,
+	caption={Frequent values in the sub-dataset},
+	label={lst:frequent_value},
+]{listings/frequent_value.py}
+
+For each value outside the combination set, the algorithm discerns both the least frequent and most frequent occurrences. The next step involves randomly selecting a value for the new row to be added to the dataset. This random selection occurs within the range defined by the least frequent and most frequent values. The careful orchestration of this process ensures that the augmented dataset maintains statistical coherence while introducing the necessary variations to rebalance the fairness aspects within the model.
+
+This deliberate approach to data generation underscores the commitment to preserving the integrity of the dataset while mitigating potential biases, contributing to the overarching goal of developing fair and unbiased machine learning models.
+
+\section{Workflow impact on Software Architecture}
+
+The proposed fair-by-design workflow, spanning objective definition, stakeholder identification, data collection, data pre-processing, algorithms design, model training, and performance evaluation, presents a distinctive challenge and an opportunity for seamless integration within the software architecture.
+
+\subsection{Modular and Well-Organized Architecture}
+
+To achieve a modular and well-organized architecture, each workflow step, from data collection to performance evaluation, can be encapsulated into distinct packages. This modularization enhances the system's maintainability, scalability, and overall robustness. Each encapsulated step operates independently, fostering information exchange through well-defined interfaces.
+
+\subsection{Introduction of Fairness Metrics Package}
+
+The introduction of fairness metrics introduces a layer of complexity. To address this, creating a dedicated package for fairness metrics becomes essential. This separation is crucial to decouple fairness concepts from the intricacies of specific steps like data pre-processing or algorithm design.
+
+\subsection{Fairness as a Cross-Cutting Concept}
+
+Treating fairness as a cross-cutting and orthogonal concept is pivotal. By encapsulating fairness metrics within a dedicated package, the software architecture acknowledges the overarching nature of fairness in the workflow. This design choice facilitates the systematic integration of fairness considerations, offering a unified approach that transcends individual steps and aligns with the holistic perspective embedded in the fair-by-design methodology.
+
+\subsection{Holistic Perspective in Fair-by-Design}
+
+In summary, the proposed workflow aligns with established software development practices by organizing each step into separate packages, fostering modularity and encapsulation. The introduction of a dedicated fairness metrics package underscores the universal and pervasive nature of fairness throughout the workflow. This ensures a cohesive and well-structured software architecture that reflects the core principles of the fair-by-design approach.
+
+%----------------------------------------------------------------------------------------
+
+\chapter{Implementation of Fair-by-Design Workfow in Canary Island Educational Performance Prediction}
+\label{chap:real-world-scenario}
+
+\section{Introduction}
+
+The implementation of machine learning models in real-world contexts demands a careful consideration of ethical and fairness implications, especially in domains with significant societal impact, such as education. In this chapter, we delve into the application of the fair-by-design workflow to the specific context of predicting educational performance in the Canary Islands. The objective is not merely to develop an accurate predictive model but to ensure that the predictions align with fairness principles, fostering equitable opportunities for all students.
+
+The educational landscape presents a complex interplay of factors, including socio-economic backgrounds, cultural diversity, and historical disparities. Traditional machine learning models may inadvertently perpetuate biases, leading to unequal treatment and outcomes for different student groups. The fair-by-design workflow offers a systematic approach to address these challenges, providing a framework where fairness is ingrained from data preprocessing to model deployment.
+
+\section{Objective Definition}
+
+The primary objective of this study is to predict the English proficiency level for individual students in the educational landscape of the Canary Islands. The predictive model aims to provide accurate assessments, contributing to a better understanding of students' language capabilities. However, beyond accuracy alone, a crucial emphasis is placed on the integration of fairness considerations throughout the prediction process.
+
+In this context, fairness goes beyond raw predictions and addresses potential biases and disparities related to sensitive attributes. The study recognizes the ethical responsibility associated with predicting students' English proficiency levels and strives for predictions that are not only technically robust but also ethically sound.
+
+The fair-by-design approach is woven into the fabric of the study, guiding the entire predictive modeling process. This involves a meticulous examination of potential biases in the data or model and strategies to mitigate these biases. The study aims to create a predictive model that is accurate and equitable across different student groups, considering sensitive attributes that may influence predictions.
+
+The overarching goal is to foster a predictive model that aligns with principles of fairness, inclusivity, and equity. By embracing the fair-by-design approach, the study seeks to contribute to a more equitable educational environment where language proficiency assessments consider the diverse backgrounds and characteristics of students.
+
+In conclusion, this study emphasizes that technical excellence in predicting English proficiency must go hand in hand with ethical considerations and fairness. The integration of the fair-by-design approach serves as a foundation for building a model that upholds the principles of fairness and inclusivity, contributing to a more equitable educational landscape in the Canary Islands and beyond.
+
+\subsection{Performance Evaluation Metrics}
+
+The performance of the predictive model in this study will be assessed using two key metrics: accuracy and fairness. Accuracy is a fundamental measure representing the model's ability to precisely predict English proficiency levels. A highly accurate model is crucial for ensuring the practical utility of the system, contributing to effective decision-making and providing valuable insights into students' language skills.
+
+Simultaneously, fairness in predictions across different demographic groups is given utmost importance. Protected attributes, such as gender, socio-economic background, or ethnic origin, often play a role in educational disparities. To address potential biases and ensure equitable outcomes, the model will be evaluated based on fairness metrics. This evaluation approach ensures that predictions do not disproportionately favor or disfavor specific subpopulations, aligning with the fair-by-design framework. The goal is to create a predictive model that excels not only in accuracy but also in equity, contributing to a more inclusive and unbiased assessment of English proficiency in the educational context.
+
+\subsection{Fairness as a Core Principle}
+
+In this study, fairness is not merely an ancillary consideration but a core principle embedded throughout the entire predictive workflow. The primary objective is to develop a machine learning model that not only excels in accuracy but also consistently demonstrates equitable treatment across diverse student groups. By explicitly considering protected attributes such as gender, socio-economic background, or ethnic origin, the model aims to proactively mitigate potential biases that could adversely impact historically marginalized or disadvantaged populations.
+
+This approach reflects a commitment to fairness from the outset of the predictive modeling process. The goal is to ensure that the model's predictions contribute to educational insights without perpetuating or exacerbating existing disparities. By acknowledging the historical and contextual factors that can influence educational outcomes, the study strives to create a predictive model that fosters inclusivity, actively working to eliminate, rather than reinforce, systemic inequalities. Through this conscientious approach, the study aims to contribute to a more equitable and just educational landscape in the context of English proficiency prediction.
+
+\subsection{Protected Attributes and Ethical Considerations}
+
+The identification of protected attributes, including gender, socio-economic background, and ethnicity, plays a crucial role in the fair-by-design approach. Recognizing the potential impact of these attributes on predictions is fundamental for implementing targeted interventions to ensure fairness in the predictive model. This proactive stance allows for a more nuanced understanding of how certain demographic factors may influence outcomes, paving the way for informed and equitable model development.
+
+Ethical considerations guide the responsible handling of sensitive information, emphasizing transparency and accountability throughout the entire predictive process. The awareness of potential biases associated with protected attributes ensures a conscientious and ethical approach to data collection, preprocessing, and model design. By integrating ethical principles into the fair-by-design workflow, the study aims to not only enhance the accuracy of predictions but also uphold a commitment to fairness, transparency, and equitable treatment across diverse student groups. This approach aligns with the broader goal of creating a predictive model that contributes positively to educational insights without perpetuating or reinforcing existing disparities.
+
+\subsection{Balancing Accuracy and Fairness}
+
+The challenge in this study lies in striking a balance between maximizing accuracy and ensuring fairness. While accuracy is pivotal for providing valuable insights, fairness guarantees that the benefits of accurate predictions are distributed equitably across diverse student populations. The fair-by-design workflow incorporates algorithmic strategies and preprocessing techniques to achieve this delicate equilibrium, recognizing that an undue focus on accuracy alone may lead to disparities in outcomes.
+
+In summary, the objective of this study is two-fold: to predict the English proficiency level for individual students with a high degree of accuracy and to ensure the fairness of these predictions across protected attributes. This dual commitment reflects a dedication to not only advancing the state-of-the-art in educational performance prediction but also contributing to a more equitable and ethical application of machine learning in education. By navigating the nuanced interplay between accuracy and fairness, the study aspires to set a standard for responsible and inclusive predictive modeling in the realm of English proficiency assessment.
+
+\section{Stakeholder Identification}
+
+In any data-driven research endeavor, identifying and understanding the key stakeholders is paramount to the success and ethical conduct of the study. In the context of predicting English proficiency levels for students in the Canary Islands, one of the primary stakeholders playing a pivotal role is the University of La Laguna (ULL).
+
+\subsection{Primary Stakeholder: University of La Laguna (ULL)}
+
+The University of La Laguna serves as a central figure in this study, functioning as the primary data provider. ULL's comprehensive database encompasses a wealth of information, including student demographics, academic performance records, and English proficiency assessments. The institution's commitment to academic excellence and research makes it a key stakeholder in shaping the trajectory and outcomes of this study.
+
+As the custodian of the data used for predictive modeling, ULL's engagement is critical for ensuring the accuracy, relevance, and ethical use of the information. The university's active involvement in the study is not merely as a data source but as a collaborator in the pursuit of equitable and insightful predictions regarding students' English proficiency levels.
+
+\subsection{Additional Stakeholders}
+
+While the University of La Laguna (ULL) holds a central role in this study, it's important to recognize that other stakeholders contribute significantly to the broader context of the research. These stakeholders may include educational policymakers, English language instructors, students, and parents, each bringing unique perspectives and interests in the outcomes of the predictive model.
+
+Identifying and actively engaging with these diverse stakeholders enriches the study by incorporating a range of viewpoints and experiences. Educational policymakers may be interested in how the model aligns with broader educational goals, while English language instructors could provide valuable insights into the practical implications of the predictions within the classroom. Students and parents, on the other hand, may offer perspectives on the perceived impact of the model on individual educational journeys.
+
+This multi-stakeholder approach fosters a more comprehensive understanding of the implications of the research. It ensures that the predictive model not only meets the academic and technical standards set by ULL but is also aligned with the broader needs and expectations of the educational community. The collaborative input from diverse stakeholders enhances the study's 
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
