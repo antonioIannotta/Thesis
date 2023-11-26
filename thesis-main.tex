@@ -1222,7 +1222,7 @@ The stage of Algorithm Design within the fair-by-design workflow stands as a piv
 
 \end{itemize}
 
-\subsection{Pre-processing Algorithms Proposed}
+\subsection{Pre-processing Algorithm Proposed}
 
 \subsubsection{Fairness through data rebalancing}
 \label{subsec:ftdr}
@@ -1596,6 +1596,119 @@ While the University of La Laguna (ULL) holds a central role in this study, it's
 Identifying and actively engaging with these diverse stakeholders enriches the study by incorporating a range of viewpoints and experiences. Educational policymakers may be interested in how the model aligns with broader educational goals, while English language instructors could provide valuable insights into the practical implications of the predictions within the classroom. Students and parents, on the other hand, may offer perspectives on the perceived impact of the model on individual educational journeys.
 
 This multi-stakeholder approach fosters a more comprehensive understanding of the implications of the research. It ensures that the predictive model not only meets the academic and technical standards set by ULL but is also aligned with the broader needs and expectations of the educational community. The collaborative input from diverse stakeholders enhances the study's 
+
+\section{Data collection}
+
+It's important, once having presented the main stakeholder, present the data collected.
+
+\subsection{Dataset description}
+
+BBefore delving into the intricate details of the algorithm implementations presented earlier, it is imperative to provide a comprehensive overview of the dataset on which these algorithms have been applied. The chosen dataset for this work is the \emph{Canary Island Educational dataset}, an invaluable resource that underpins the empirical exploration of bias mitigation strategies in the context of the educational system in the Canary Islands.
+
+The Canary Island Educational dataset is a rich and expansive repository of information, meticulously compiled to capture various facets of the educational landscape within the Canary Islands. This dataset comprises the comprehensive census of students enrolled over four distinct academic years, offering a multifaceted glimpse into the educational ecosystem.
+
+The dataset encompasses a diverse array of attributes and data points, encapsulating critical information such as student demographics, academic performance, socioeconomic factors, and other pertinent variables. These attributes collectively provide a holistic perspective on the educational landscape, enabling a nuanced analysis of the factors that influence student outcomes and experiences.
+
+The temporal dimension of the dataset, spanning four academic years, further enriches the analytical potential. It allows for the investigation of temporal trends, shifts in educational policies, and the evolution of student characteristics over time. This temporal depth is particularly valuable when examining the efficacy of bias mitigation strategies, as it facilitates the assessment of their impact across different academic years.
+
+The Canary Island Educational dataset is not merely a repository of numbers and statistics; it is a window into the educational opportunities and challenges faced by students in the Canary Islands. By harnessing the insights gleaned from this dataset, it becomes possible to proactively address biases and promote equity within the educational system, ultimately striving for a more inclusive and just educational landscape. The dataset serves as a foundation for evidence-based decision-making, ensuring that algorithmic approaches are not only technically sound but also deeply rooted in the realities of the educational context they seek to improve.
+
+\subsubsection{Preliminary analysis on Canary Island Educational dataset}
+
+The first operation required to choose the subset on which implement the chosen algorithm. It has been choice the subset of the students enrolled in the 3rd grade due its amount of data, greater than the other subsets, and then more suitable to fit a real world scenario.
+
+A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
+
+After a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
+
+\begin{enumerate}
+
+    \item sex
+
+    \item capital island: if the student comes from the capital of the city
+
+    \item public\textunderscore private: if the school is public or private
+
+    \item parent expectation
+    
+    \item mothly houseold income
+
+    \item economic, social and cultural satus index
+
+\end{enumerate}
+
+The sensitive attributes detection, and its filtering to detect the main relevant avoiding semantic duplicates, has been possible only through the information provided by the ULL about the dataset. As specified in the general workflow the interation between the technical figuers and the stakeholder is even more fundamental when the sensitive attributes are taken into account in the AI system design.
+
+The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as established in the usual data pre-processing sub-step of the \emph{Fair-by-Design Workflow} proposed in this work.
+
+\subsection{Fairness Assessment}
+
+Having detected the sensitive attributes within the dataset, a crucial step in the fair-by-design workflow involves a comprehensive fairness assessment. This assessment aims to quantify and evaluate any potential biases that may exist in the model predictions, focusing on the disparate impact over the identified protected attributes. The fairness assessment is not merely a formality but a meticulous examination designed to ensure the model's equitable treatment across different demographic groups. By leveraging appropriate fairness metrics, statistical analyses, and quantitative evaluations, this assessment plays a pivotal role in upholding the ethical foundation of the machine learning model and guiding further refinements in pursuit of fairness and unbiased outcomes.
+
+\section{Data pre-processing}
+
+The protected attributes and the output have been pre-processed according to the workflow's rule described in \cref{section:pre-proc}
+
+\section{Algorithm Design}
+
+The success of the fair-by-design workflow in predicting English proficiency levels for students in the Canary Islands hinges on the thoughtful selection and implementation of fairness algorithms across three key categories: pre-processing, in-processing, and post-processing. Each category plays a distinctive role in mitigating biases and ensuring equitable predictions.
+
+\subsection{Pre-processing Algorithms}
+
+In the realm of pre-processing, where the focus is on transforming the input data before it reaches the core machine learning model, it has been adopted the algorithm proposed in \cref{subsec:ftdr}
+
+\subsection{In-Processing Algorithm}
+
+Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, a state-of-the-art algorithm from the IBM's \emph{AI Fairness 360} (AIF360) library has been employed.
+
+\subsubsection{GridSearch Reduction}
+
+The in-processing algorithm chosen for fairness enhancement is GridSearch Reduction from the \emph{Fairlearn} library. GridSearch Reduction is a powerful technique that systematically explores a grid of hyperparameters to find the optimal combination that minimizes bias in model predictions. It employs a reduction-based approach, optimizing the trade-off between accuracy and fairness by iteratively adjusting model parameters.
+
+GridSearch Reduction operates by conducting a grid search over specified hyperparameter values, considering fairness metrics along with accuracy. This approach allows for the identification of an optimal set of hyperparameters that achieves a balance between predictive performance and fairness objectives. The algorithm aims to discover the most suitable configuration that mitigates bias in the model's decision-making process, ensuring equitable outcomes for diverse student groups. \cite{agarwal2018reductions}
+
+\subsection{Post-Processing Algorithm}
+
+In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the \emph{Fairlearn} library has been selected to further refine fairness.
+
+\subsubsection{Equalized Odds Post-Processing with Threshold Optimizer}
+
+The chosen post-processing algorithm is Equalized Odds Post-Processing with Threshold Optimizer from Fairlearn. This algorithm focuses on adjusting decision thresholds to ensure equalized odds across different demographic groups. By optimizing the threshold values based on protected attributes, the algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions. \cite{10.5555/3157382.3157469}
+
+Equalized Odds Post-Processing with Threshold Optimizer involves fine-tuning the decision boundaries to align with fairness considerations. The threshold optimizer dynamically adjusts thresholds for different groups, aiming to achieve equalized odds without compromising predictive accuracy. This meticulous post-processing step contributes to the overall fairness of the model's predictions, promoting equity and mitigating bias in decision outcomes. 
+
+\subsection{Technology-Agnostic Workflow}
+
+One of the notable strengths of the fair-by-design workflow is its technology-agnostic nature. The workflow is designed to be adaptable and flexible, accommodating various technologies and frameworks to implement its principles. This adaptability allows researchers and practitioners the freedom to choose the tools and technologies that best suit their preferences, expertise, and the specific requirements of their environment.
+
+The workflow can be implemented using different technologies, and the fair-by-design workflow embraces this diversity. The adoption of diverse technologies may stem from considerations such as the existing technology stack within an organization, the availability of specific machine learning libraries, or the preferences of the data scientists involved in the project.
+
+For instance, the workflow can be implemented using popular machine learning libraries such as scikit-learn, TensorFlow, PyTorch, or proprietary tools specific to a particular organization's infrastructure. The choice of technologies for data storage, processing, and model deployment can also vary based on the organizational context.
+
+The technology-agnostic nature of the fair-by-design workflow underscores its universality and applicability across different machine learning ecosystems. This adaptability allows for the replication of the workflow in various settings, fostering collaboration and knowledge sharing among researchers who may have different technology preferences.
+
+By being agnostic to specific technologies, the fair-by-design workflow encourages innovation and experimentation, enabling the broader machine learning community to apply ethical and fair machine learning practices regardless of the technological landscape. This adaptability ensures that the principles of fairness, transparency, and accountability are not confined to a particular technology stack but can be integrated seamlessly into diverse machine learning environments.
+
+\section{Model Training and Evaluation}
+
+The successful implementation of the fair-by-design workflow requires not only the training of an accurate predictive model but also a meticulous evaluation process that considers both predictive performance and fairness. In this section, we detail the steps involved in training the model, evaluating its accuracy over the test set, and assessing fairness using functions from the fairlearn library.
+
+\subsection{Model Training}
+
+The predictive model undergoes a rigorous training process using the pre-processed and fairness-enhanced dataset. Leveraging the fair-by-design algorithms, the model is trained to predict English proficiency levels for students in the Canary Islands. The learning process involves optimizing parameters, minimizing loss functions, and adapting the model to the intricacies of the dataset.
+
+\subsection{Model Evaluation}
+
+Following the training phase, the model's performance is assessed through rigorous evaluation over a dedicated test set. The accuracy of the model is a primary focus, providing insights into its ability to make precise predictions. The accuracy metric is calculated by comparing the model's predictions to the true English proficiency levels in the test set, quantifying the proportion of correct predictions.
+
+\subsection{Fairness Assessment}
+
+Beyond accuracy, the fair-by-design workflow places a significant emphasis on fairness considerations. To assess the fairness of the model, an implementation of demographic parity by \emph{fairlearn} is used
+
+\section{Model deployment}
+\label{section:model-deployment}
+
+After the evaluation step in which is assessed whether the model perform its predcition task with a reasonable trade-off between the accuracy and the fairness the model can be deployed and be used to prediction.
 
 %----------------------------------------------------------------------------------------
 \chapter{Validation} % possible chapter for Projects
