@@ -513,24 +513,6 @@ Demographic parity requires that the proportion of positive outcomes is the same
 A value close to 0 indicates fairness, suggesting that the model's predictions are not influenced by the sensitive attribute.
 
 \newpage
-\section{AIF360}
-\label{section:aif350}
-
-AI Fairness 360 (AIF360) is a comprehensive open-source toolkit developed by IBM to facilitate fairness-aware machine learning and promote responsible AI practices. Designed to address the challenges of bias and fairness in algorithmic decision-making, AIF360 offers a suite of algorithms, metrics, and functionalities that enable researchers and practitioners to assess, mitigate, and monitor bias in machine learning models.
-
-\subsection{Key Components}
-
-AIF360 encompasses a range of key components, each tailored to address specific aspects of fairness in the machine learning lifecycle:
-
-\subsubsection{Algorithms}
-
-AIF360 provides a selection of pre-processing, in-processing, and post-processing fairness algorithms. These algorithms are designed to mitigate biases at different stages of the machine learning pipeline. Notable examples include Learning Fair Representations, Adversarial Debiasing, and Equalized Odds Post-Processing.
-
-\subsubsection{Metrics}
-
-The toolkit offers a variety of fairness metrics that enable users to quantitatively evaluate the fairness of their models. These metrics cover disparate impact, equalized odds, and various other measures that help assess the impact of model predictions on different demographic groups.
-
-\newpage
 \section{Fairlearn Library}
 \label{section:fairlearn}
 
@@ -1659,7 +1641,7 @@ In the realm of pre-processing, where the focus is on transforming the input dat
 
 \subsection{In-Processing Algorithm}
 
-Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, a state-of-the-art algorithm from the IBM's \emph{AI Fairness 360} (AIF360) library has been employed.
+Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, a state-of-the-art algorithm from the \emph{Fairlearn} library has been employed.
 
 \subsubsection{GridSearch Reduction}
 
@@ -1725,11 +1707,11 @@ For each of the previous approaches have been chosen 3 models to perform the pre
 
 \begin{enumerate}
 
-    \item \text{RandomForest Classifier}: RandomForest Classifier is a popular machine learning algorithm that leverages an ensemble of decision trees to make predictions. It excels at tasks like classification and regression, offering robustness against overfitting and high accuracy by aggregating the predictions of multiple decision trees. It's a versatile tool used in various applications, from finance to healthcare and image analysis.
+    \item \emph{RandomForest Classifier}: RandomForest Classifier is a popular machine learning algorithm that leverages an ensemble of decision trees to make predictions. It excels at tasks like classification and regression, offering robustness against overfitting and high accuracy by aggregating the predictions of multiple decision trees. It's a versatile tool used in various applications, from finance to healthcare and image analysis.
     
-    \item \textbf{LGB Classifier}: LightGBM, short for Light Gradient Boosting Machine, stands out as a powerful gradient boosting framework that originated from the innovation labs at Microsoft. Engineered with a specific focus on efficiency, speed, and scalability, LightGBM has become a prominent choice in the realm of machine learning, demonstrating exceptional performance across various tasks.
+    \item \emph{LGB Classifier}: LightGBM, short for Light Gradient Boosting Machine, stands out as a powerful gradient boosting framework that originated from the innovation labs at Microsoft. Engineered with a specific focus on efficiency, speed, and scalability, LightGBM has become a prominent choice in the realm of machine learning, demonstrating exceptional performance across various tasks.
     
-    \item \textbf{DecisionTree Classifier}: DecisionTree Classifier is a specific type of machine learning algorithm primarily used for classification tasks. It constructs a tree-like model, where each internal node represents a decision based on a specific feature, and each leaf node denotes the predicted class label for the input data point.
+    \item \emph{DecisionTree Classifier}: DecisionTree Classifier is a specific type of machine learning algorithm primarily used for classification tasks. It constructs a tree-like model, where each internal node represents a decision based on a specific feature, and each leaf node denotes the predicted class label for the input data point.
 
 \end{enumerate}
 
@@ -1778,11 +1760,11 @@ On the previous models is applied the GridSearch with a \emph{cv} of 10 in order
 
 \end{enumerate}
 
-Each machine learning model in our study is trained using a training dataset comprising 67\% of the original data, with the remaining 33\% reserved for testing purposes. To provide a more granular analysis, we've segmented the data based on the students' grade levels. Let \( G3 \) represent the subset of the original dataset filtered to include only students enrolled in grade 3.
+Each machine learning model in our study is trained using a training dataset comprising 67\% of the original data, with the remaining 33\% reserved for testing purposes. To provide a more granular analysis, we've segmented the data based on the students' grade levels. Let \( G4 \) represent the subset of the original dataset filtered to include only students enrolled in grade 4.
 
-For the grade 3 dataset (\( G3 \)), the outcomes for every model are presented. Specifically, are highlighted the best-performing model identified during our evaluation process and report its accuracy on the corresponding test set.
+For the grade 4 dataset (\( G4 \)), the outcomes for every model are presented. Specifically, are highlighted the best-performing model identified during our evaluation process and report its accuracy on the corresponding test set.
 
-This focused analysis on grade 3 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
+This focused analysis on grade 4 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
 
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
 
@@ -1816,9 +1798,9 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
 
 \subsection{Fairness evaluation}
 
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|c|}
     \hline
-    \textbf{Model} & \textbf{Demographic parity ratio} & \textbf{Equalized odds ratio} \\
+    \textbf{Model} & \textbf{Demographic parity difference} \\
     \hline
     RandomForest Classifier & & \\
     \hline
@@ -1860,9 +1842,9 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
 
 \subsection{Fairness evaluation}
 
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|c|}
     \hline
-    \textbf{Model} & \textbf{Demographic parity ratio} & \textbf{Equalized odds ratio} \\
+    \textbf{Model} & \textbf{Demographic parity difference} \\
     \hline
     RandomForest Classifier & & \\
     \hline
@@ -1906,7 +1888,7 @@ This focused analysis on grade 3 allows us to uncover insights that are specific
 
 \begin{tabular}{|c|c|c|}
     \hline
-    \textbf{Model} & \textbf{Demographic parity ratio} & \textbf{Equalized odds ratio} \\
+    \textbf{Model} & \textbf{Demographic parity difference} \\
     \hline
     RandomForest Classifier & & \\
     \hline
