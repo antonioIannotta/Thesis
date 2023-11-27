@@ -1766,7 +1766,28 @@ For the grade 4 dataset (\( G4 \)), the outcomes for every model are presented. 
 
 This focused analysis on grade 4 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
 
+\subsection{Fairness assessment on G4 dataset}
+
+It's important to report the fairness assessment computed on the G4 dataset. This assessment has been performed through the disparate impact metric over the protected attributes chosen in the data collection stage.
+
+The results of this assessment has beeen that the dataset is unfair over the following protected attributes:
+
+\begin{itemize}
+    
+    \item \emph{public\textunderscore private}
+
+    \item \emph{f23}
+
+    \item \emph{household\textunderscore income\textunderscore q}
+
+    \item \emph{escs}
+
+\end{itemize}
+
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
+
+Before reporting the accuracy and fairness of trained models it's important to report the percentage increase of the dataset on which the rebalance algorithm has been applied.
+Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
 
 \subsubsection{Best models}
 
@@ -1862,7 +1883,7 @@ This focused analysis on grade 4 allows us to uncover insights that are specific
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
     \hline
-    RandomForest Classifier  &  \\
+    RandomForest Classifier  &  {40, log\textunderscore loss, 40, 40}\\
     \hline
     LGB Classifier & \\
     \hline
@@ -1876,7 +1897,7 @@ This focused analysis on grade 4 allows us to uncover insights that are specific
     \hline
     \textbf{Model} & \textbf{Accuracy} \\ 
     \hline
-    RandomForest Classifier  &  \\
+    RandomForest Classifier  &  0.5919876733436056\\
     \hline
     LGB Classifier & \\
     \hline
@@ -1890,11 +1911,11 @@ This focused analysis on grade 4 allows us to uncover insights that are specific
     \hline
     \textbf{Model} & \textbf{Demographic parity difference} \\
     \hline
-    RandomForest Classifier & & \\
+    RandomForest Classifier & 1.0 \\
     \hline
-    LGB Classifier & & \\
+    LGB Classifier & \\
     \hline
-    DecisionTree Classifier & & \\
+    DecisionTree Classifier & \\
     \hline
 \end{tabular}
 
