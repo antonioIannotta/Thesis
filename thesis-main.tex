@@ -576,7 +576,7 @@ By adopting a fair-by-design approach, stakeholders in AI development, ranging f
 
     \item \emph{Stakeholder Identification:} Identify and involve key stakeholders, ensuring a diverse representation that reflects the potential impacts of the system.
 
-    \item \emph{Data Collection and Assessment:} Determine the types of data needed for the application, establish ethical data collection protocols, and conduct a fairness impact assessment.
+    \item \emph{Data Collection:} Determine the types of data needed for the application, establish ethical data collection protocols.
 
     \item \emph{Data pre-processing:} Prepare the data for the fairness algorithm, through data cleaning and featyre engineering
     
@@ -984,14 +984,6 @@ Through the fair-by-design methodology, stakeholders act as critical agents in t
     \item Provide clear documentation of the integration process to maintain transparency and facilitate reproducibility.
 
 \end{itemize}
-
-\subsection{Assessing Fairness}
-
-In evaluating the fairness of a dataset over the protected attributes identified with stakeholders, various fairness metrics can be employed to provide a nuanced understanding of potential biases. While the disparate impact metric is commonly used, it is just one among several fairness metrics available.
-
-These fairness metrics serve to quantify and assess disparities in outcomes among different groups, shedding light on how the dataset represents protected attributes. By considering a range of fairness metrics, such as equalized odds, predictive parity, or disparate mistreatment, a more comprehensive analysis of potential biases and fairness issues within the dataset can be achieved.
-
-This broader approach to fairness evaluation aligns with the fair-by-design methodology, emphasizing a thorough examination of the dataset's composition and its implications for different groups. The selection of specific fairness metrics can be tailored to the context of the application and the concerns raised by stakeholders, ensuring that the evaluation process is not only robust but also aligns with the diverse perspectives and considerations identified in the collaborative objective-setting process.
 
 \section{Data Pre-processing}
 \label{section:pre-proc}
@@ -1621,10 +1613,6 @@ The sensitive attributes detection, and its filtering to detect the main relevan
 
 The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as established in the usual data pre-processing sub-step of the \emph{Fair-by-Design Workflow} proposed in this work.
 
-\subsection{Fairness Assessment}
-
-Having detected the sensitive attributes within the dataset, a crucial step in the fair-by-design workflow involves a comprehensive fairness assessment. This assessment aims to quantify and evaluate any potential biases that may exist in the model predictions, focusing on the disparate impact over the identified protected attributes. The fairness assessment is not merely a formality but a meticulous examination designed to ensure the model's equitable treatment across different demographic groups. By leveraging appropriate fairness metrics, statistical analyses, and quantitative evaluations, this assessment plays a pivotal role in upholding the ethical foundation of the machine learning model and guiding further refinements in pursuit of fairness and unbiased outcomes.
-
 \section{Data pre-processing}
 
 The protected attributes and the output have been pre-processed according to the workflow's rule described in \cref{section:pre-proc}
@@ -1764,23 +1752,6 @@ For the grade 4 dataset (\( G4 \)), the outcomes for every model are presented. 
 
 This focused analysis on grade 4 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
 
-\subsection{Fairness assessment on G4 dataset}
-
-It's important to report the fairness assessment computed on the G4 dataset. This assessment has been performed through the disparate impact metric over the protected attributes chosen in the data collection stage.
-
-The results of this assessment has beeen that the dataset is unfair over the following protected attributes:
-
-\begin{itemize}
-    
-    \item \emph{public\textunderscore private}
-
-    \item \emph{f23}
-
-    \item \emph{household\textunderscore income\textunderscore q}
-
-    \item \emph{escs}
-
-\end{itemize}
 
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
 
