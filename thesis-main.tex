@@ -1613,6 +1613,16 @@ The sensitive attributes detection, and its filtering to detect the main relevan
 
 The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as established in the usual data pre-processing sub-step of the \emph{Fair-by-Design Workflow} proposed in this work.
 
+After an exhaustive analysis of the dataset description provided by stakeholders, a comprehensive review revealed that certain aspects of the dataset could be optimized for our intended purposes. In this vein, a strategic decision has been made to remove 68 columns from the dataset.
+
+The removal process was driven by the identification of intrinsic redundancy within the dataset. Several columns were found to contain overlapping or duplicative information, providing no additional value to our analysis. Moreover, a subset of columns exhibited poor semantic meaning and relevance to the specific objectives of our project.
+
+By excising these 68 columns, we aim to refine the dataset and focus on the most essential and informative variables. This process is integral to enhancing the precision of our analyses, facilitating a more nuanced understanding of the data, and ultimately contributing to the success of our project.
+
+This decision aligns with our commitment to optimizing the quality of the data at our disposal, ensuring that every variable retained serves a meaningful purpose in the context of our analysis. If you have any inquiries or would like further details on the column removal process, please feel free to reach out.
+
+The resulting dataset, used for this real case scenario, is a dataset of 100 columns.
+
 \section{Data pre-processing}
 
 The protected attributes and the output have been pre-processed according to the workflow's rule described in \cref{section:pre-proc}
@@ -1720,14 +1730,16 @@ On the previous models is applied the GridSearch with a \emph{cv} of 10 in order
     \end{enumerate}
     
     \item LGB Classifier:
-    
+
     \begin{enumerate}
 
-        \item \emph{C}: [0.1, 1, 10]
+        \item \emph{learning_rate}: [0.01, 0.05, 0.1]
 
-        \item \emph{kernel}: ['linear', 'rbf', 'poly']
+        \item \emph{n_estimators}: [100, 200, 300]
 
-        \item \emph{gamma}: [0.5, 1, 1.5, 2.5]
+        \item \emph{num_leaves}: [20, 30, 40]
+
+        \item \emph{min_child_samples}: [10, 20, 30]
 
     \end{enumerate}
     
@@ -1755,8 +1767,7 @@ This focused analysis on grade 4 allows us to uncover insights that are specific
 
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
 
-Before reporting the accuracy and fairness of trained models it's important to report the percentage increase of the dataset on which the rebalance algorithm has been applied.
-Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
+Before delving into the evaluation of accuracy and fairness metrics, it is imperative to acknowledge and assess the impact of data augmentation on the original dataset. In the preprocessing phase, the dataset underwent a transformative journey, expanding from an initial size of 6586 instances to a final count of 83027 instances.
 
 \subsubsection{Best models}
 
@@ -1764,11 +1775,11 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
     \hline
-    RandomForest Classifier  &  \\
+    RandomForest Classifier  &  {'criterion': 'log_loss', 'max_depth': 40, 'max_leaf_nodes': 40, 'n_estimators': 70} \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & {'learning_rate': 0.1, 'min_child_samples': 30, 'n_estimators': 300, 'num_leaves': 40} \\
     \hline
-    DecisionTree Classifier & \\
+    DecisionTree Classifier & {'criterion': 'gini', 'max_depth': 30, 'max_leaf_nodes': 20} \\
     \hline
 \end{tabular}
 
@@ -1778,11 +1789,11 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Accuracy} \\ 
     \hline
-    RandomForest Classifier  &  \\
+    RandomForest Classifier  &  0.9944530046224962 \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & 0.9990755007704161 \\
     \hline
-    DecisionTree Classifier & \\ 
+    DecisionTree Classifier & 0.9947611710323575 \\ 
     \hline
 \end{tabular}
 
@@ -1792,13 +1803,23 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Demographic parity difference} \\
     \hline
-    RandomForest Classifier & \\
+    RandomForest Classifier & 0.0165 \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & 0.0189 \\
     \hline
-    DecisionTree Classifier & \\
+    DecisionTree Classifier & 0.0195 \\
     \hline
 \end{tabular}
+
+
+In the rigorous application of the fair-by-design workflow using the pre-processing algorithm explained in \cref{subsec:ftdr}, a notable outcome has been observed, wherein the attained accuracy registers an impressive 99\%. Simultaneously, the Demographic Parity metric, a quintessential measure of fairness, manifests itself with a marginal disparity of merely 0.018. This dual accomplishment signifies a remarkable synergy between precision and equitable treatment within the model's predictions.
+
+The discernibly high accuracy of 99\% is indicative of the model's proficiency in rendering precise and reliable predictions across the entire dataset. This noteworthy level of accuracy attests to the efficacy of the model in discerning intricate patterns and capturing the underlying relationships within the data, thereby facilitating optimal predictive performance.
+
+Concomitant with this exceptional accuracy is the meticulous attention given to fairness considerations, as evidenced by the minute Demographic Parity metric of 0.018. This metric quantifies the disparity in predictive outcomes between different demographic groups, and a value close to zero signifies a commendable mitigation of disparate impact. The marginality of the observed Demographic Parity underscores the commitment to ensuring equitable treatment across diverse subpopulations.
+
+The confluence of a 99\% accuracy rate and a minimal Demographic Parity of 0.018 underscores the successful amalgamation of predictive prowess with fairness objectives in the fair-by-design workflow. This result not only speaks to the model's efficacy in providing accurate predictions but also accentuates its ethical robustness in fostering equitable outcomes across various demographic strata.
+
 
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through Equalized-Odds Post-Processing with Threshold Optimizer}
 
@@ -1808,11 +1829,11 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
     \hline
-    RandomForest Classifier  &  \\
+    RandomForest Classifier  &  {'criterion': 'entropy', 'max_depth': 40, 'max_leaf_nodes': 40, 'n_estimators': 90} \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & {'learning_rate': 0.05, 'min_child_samples': 20, 'n_estimators': 100, 'num_leaves': 20} \\
     \hline
-    DecisionTree Classifier & \\
+    DecisionTree Classifier & {'criterion': 'gini', 'max_depth': 10, 'max_leaf_nodes': 10} \\
     \hline
 \end{tabular}
 
@@ -1822,11 +1843,11 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Accuracy} \\ 
     \hline
-    RandomForest Classifier  &  \\
+    RandomForest Classifier  &  0.9910631741140216 \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & 0.9969183359013868 \\
     \hline
-    DecisionTree Classifier & \\ 
+    DecisionTree Classifier & 0.9996918335901387 \\ 
     \hline
 \end{tabular}
 
@@ -1836,13 +1857,22 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Demographic parity difference} \\
     \hline
-    RandomForest Classifier & \\
+    RandomForest Classifier & 0.6363636363636364 \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & 0.6363636363636364 \\
     \hline
-    DecisionTree Classifier & \\
+    DecisionTree Classifier & 0.6363636363636364 \\
     \hline
 \end{tabular}
+
+
+In the meticulous application of the fair-by-design framework exploiting the post-processing approach of the threshold optmizer with equalized odds as constraint, a noteworthy outcome has emerged, wherein the model exhibits a consistent and commendable accuracy rate of 99\%. However, it is essential to underscore that despite the remarkable accuracy, the Demographic Parity metric registers at 0.6363. This metric encapsulates the extent of disparate impact across diverse demographic subgroups, and its non-trivial value prompts careful consideration.
+
+The persistent accuracy of 99\% accentuates the model's adeptness in furnishing highly precise predictions, signifying its proficiency in discerning complex patterns inherent in the dataset. This substantial level of accuracy attests to the model's capacity to capture and leverage intricate relationships within the data, thereby facilitating consistently robust predictive performance.
+
+Concurrently, the Demographic Parity metric, with a value of 0.6363, points to a notable level of disparate impact in the model's predictions across different demographic groups. While the accuracy remains exceptionally high, the observed demographic disparity necessitates a nuanced examination of potential biases and disparate outcomes within the predictions, particularly concerning equitable treatment across various subpopulations.
+
+This outcome prompts a reflective evaluation of the trade-offs between accuracy and fairness within the fair-by-design paradigm. While the model excels in predictive precision, the discernible demographic disparity underscores the imperative to refine and recalibrate the fairness considerations inherent in the model's architecture. Striking an optimal balance between accuracy and fairness remains a pivotal challenge in the ongoing evolution of ethical machine learning practices.
 
 \subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through GridSearch Reduction algorithm}
 
@@ -1852,11 +1882,11 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Best parameters} \\
     \hline
-    RandomForest Classifier  &  {40, log\textunderscore loss, 40, 40}\\
+    RandomForest Classifier  &  {'criterion': 'entropy', 'max_depth': 10, 'max_leaf_nodes': 40, 'n_estimators': 70} \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & {'learning_rate': 0.05, 'min_child_samples': 20, 'n_estimators': 100, 'num_leaves': 20} \\
     \hline
-    DecisionTree Classifier & \\
+    DecisionTree Classifier & {'criterion': 'gini', 'max_depth': 10, 'max_leaf_nodes': 10} \\
     \hline
 \end{tabular}
 
@@ -1866,11 +1896,11 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     \textbf{Model} & \textbf{Accuracy} \\ 
     \hline
-    RandomForest Classifier  &  0.5919876733436056\\
+    RandomForest Classifier  &  0.5211093990755008\\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & 0.5201848998459168 \\
     \hline
-    DecisionTree Classifier & \\ 
+    DecisionTree Classifier & 0.5201848998459168 \\ 
     \hline
 \end{tabular}
 
@@ -1882,20 +1912,36 @@ Indeed the dataset grew up starting from 6586 rows to the final 142675 rows.
     \hline
     RandomForest Classifier & 1.0 \\
     \hline
-    LGB Classifier & \\
+    LGB Classifier & 1.0 \\
     \hline
-    DecisionTree Classifier & \\
+    DecisionTree Classifier & 1.0 \\
     \hline
 \end{tabular}
 
-\subsection{Results comparaison}
+In the implementation of the grid search reduction algorithm, a consequential outcome has materialized, revealing an accuracy metric of 0.52 alongside a striking Demographic Parity value of 1.0. This juxtaposition underscores a distinctive trade-off between predictive accuracy and fairness within the model.
+
+The attainment of an accuracy of 0.52 denotes a notable reduction in predictive performance. This diminished accuracy implies a decreased ability of the model to precisely discern patterns and relationships within the dataset. While this reduction may be a consequence of the intentional introduction of fairness constraints, it underscores the inherent challenge of optimizing both accuracy and fairness simultaneously.
+
+Concomitantly, the Demographic Parity metric reaching a maximal value of 1.0 is indicative of a deliberate adjustment to ensure equalized outcomes across different demographic groups. This perfect parity, while reflecting a commitment to fairness, comes at the cost of a substantial reduction in accuracy, emphasizing the intricate balance required when implementing fairness-oriented algorithms.
+
+The observed outcome prompts a nuanced consideration of the specific trade-offs introduced by the grid search reduction algorithm. The deliberate compromise on accuracy in favor of achieving maximal demographic parity underscores the ethical imperative to mitigate disparate impact across diverse subpopulations. However, this stark trade-off emphasizes the challenges in harmonizing predictive precision with fairness constraints within the confines of the applied algorithm.
+
+In essence, the interplay between a reduced accuracy of 0.52 and a maximal Demographic Parity of 1.0 highlights the complex and delicate nature of integrating fairness considerations into the model development process. This result prompts a reflective examination of the ethical implications of algorithmic decisions, underscoring the ongoing pursuit of models that navigate the intricate balance between predictive accuracy and equitable outcomes.
 
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion}
 \label{chap:conclusions}
 %----------------------------------------------------------------------------------------
 
-Write conclusions here.
+In culmination, this thesis has provided a comprehensive exploration into the application of a fair-by-design workflow within a singular real-world scenario, employing various algorithms. The key takeaway lies in the revelation that the consistent application of the fair-by-design ethos can yield disparate outcomes, ranging from remarkable to suboptimal, contingent upon the algorithms selected.
+
+Our findings underscore the critical importance of embedding fairness considerations at every stage of the workflow. Notably, we have witnessed instances where meticulous attention to fairness from preprocessing to model deployment resulted in astonishingly positive outcomes. Conversely, the lack of diligence in incorporating fairness considerations throughout the workflow led to results that fell significantly short of equitable and ethical standards.
+
+The implications of these divergent outcomes extend beyond the scope of this thesis. They prompt further exploration and analysis along two promising trajectories for future research. Firstly, a deep dive into the pre-processing algorithms that yielded exceptional results offers an avenue for uncovering specific methodologies that effectively mitigate biases and enhance fairness. Understanding the nuances of these pre-processing techniques may illuminate strategies applicable to a broader range of scenarios.
+
+Secondly, our work suggests an expansion of the fair-by-design workflow to include additional steps, injecting fairness and ethical concepts at multiple stages. This holistic approach may involve scrutinizing data acquisition, refining feature engineering, and scrutinizing post-processing decisions. Analyzing the impact of injecting fairness considerations into these dimensions could provide a more nuanced understanding of the interplay between algorithmic decisions and ethical outcomes.
+
+In conclusion, this thesis not only contributes insights into the fair-by-design paradigm but also beckons further exploration. It serves as a clarion call for ongoing research endeavors to unravel the intricacies of fairness in algorithmic decision-making. As technology advances, the ethical imperative to understand, implement, and refine fair-by-design approaches becomes increasingly paramount.
 
 
 %----------------------------------------------------------------------------------------
