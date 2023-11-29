@@ -1000,23 +1000,37 @@ Following the completion of data collection and the incorporation of stakeholder
 
     \item \emph{Handling Protected Attributes:} 
     
-    Within the Fair-by-Design workflow, a meticulous transformation process is applied to protected attributes, assumed to be categorical in nature. This transformative step is pivotal for ensuring fairness in subsequent stages of the machine learning pipeline, aiming to mitigate potential biases associated with these attributes and foster equitable treatment within the model.
+    Within the Fair-by-Design workflow, categorical protected attributes undergo a transformation process to ensure fairness in subsequent machine learning stages. This process involves setting a threshold for each protected attribute and replacing values above the threshold with 1, and values below the threshold with 0.
 
-    The transformation process for categorical protected attributes involves the identification of the most frequent value and the subsequent application of a binary encoding scheme. This nuanced procedure plays a crucial role in aligning the dataset with the fairness objectives of the Fair-by-Design workflow.
-
-    Let $P$ be the set of protected attributes, and $p_i$ represent a specific protected attribute within $P$. The most frequent value, denoted as $v_{\text{freq}}$, is determined for each categorical protected attribute $p_i$ in the dataset through the following formalism:
+    Let \(P\) be the set of protected attributes, and \(p_i\) represent a specific protected attribute within \(P\). The threshold, denoted as \(t_i\), is determined for each categorical protected attribute \(p_i\) in the dataset through the following formalism:
 
     \[
-    v_{\text{freq}} = \text{argmax}_v \left( \text{count}(p_i = v) \right)
-    \]
+
+    t_i = \frac{\text{min}(p_i) + \text{max}(p_i)}{2}
     
-    This calculation ensures a comprehensive understanding of the prevalent categories within these attributes.
+    \]
 
-    The binary representation preserves the essential information about protected attributes, providing a condensed yet informative encoding that reflects the privilege or lack thereof concerning specific attributes.
+    This calculation ensures a nuanced understanding of the prevalent categories within these attributes and establishes a threshold \(t_i\) for distinguishing between them.
 
-    During the training phase, the model learns to distinguish instances based on privilege or lack thereof concerning specific attributes, as represented by the binary encoding. This facilitates effective model incorporation and decision-making during training and prediction phases.
+    The binary representation preserves essential information about protected attributes, providing a condensed yet informative encoding that reflects the privilege or lack thereof concerning specific attributes.
 
-    This nuanced encoding strategy serves as the foundation for unbiased and fair treatment of instances within the model. By transforming categorical protected attributes into a binary representation, the Fair-by-Design workflow ensures that subsequent machine learning models can effectively incorporate and act upon this information during training and prediction phases, contributing significantly to the development of a more equitable and ethically sound machine learning model.
+    During the training phase, the model learns to distinguish instances based on privilege or lack thereof concerning specific attributes, as represented by the binary encoding. This is achieved by replacing values according to the following transformation:
+
+    \[
+
+    \text{Binary Encoding}(p_i) = \begin{cases} 
+
+        1 & \text{if } p_i \geq t_i \\
+
+        0 & \text{if } p_i < t_i 
+
+    \end{cases}
+
+    \]
+
+    This facilitates effective model incorporation and decision-making during training and prediction phases.
+
+    The nuanced encoding strategy, where values over the threshold are replaced with 1 and values under the threshold are replaced with 0, serves as the foundation for unbiased and fair treatment of instances within the model. By transforming categorical protected attributes based on the specified threshold definition, the Fair-by-Design workflow ensures that subsequent machine learning models can effectively incorporate and act upon this information during training and prediction phases, contributing significantly to the development of a more equitable and ethically sound machine learning model.
 
     \item \emph{Handling Output Variable:} 
     
