@@ -1002,12 +1002,10 @@ Following the completion of data collection and the incorporation of stakeholder
     
     Within the Fair-by-Design workflow, categorical protected attributes undergo a transformation process to ensure fairness in subsequent machine learning stages. This process involves setting a threshold for each protected attribute and replacing values above the threshold with 1, and values below the threshold with 0.
 
-    Let \(P\) be the set of protected attributes, and \(p\) represent a specific protected attribute within \(P\). The threshold, denoted as \(t\), is determined for each categorical protected attribute \(p\) in the dataset through the following formalism:
+    Let \(P\) be the set of protected attributes, and \(p_i\) represent a specific protected attribute within \(P\). The threshold, denoted as \(t_i\), is determined for each categorical protected attribute \(p_i\) in the dataset through the following formalism:
 
     \[
-
-    t = \frac{\text{min}(p) + \text{max}(p)}{2}
-    
+    t_i = \frac{\text{min}(p_i) + \text{max}(p_i)}{2}
     \]
 
     This calculation ensures a nuanced understanding of the prevalent categories within these attributes and establishes a threshold \(t_i\) for distinguishing between them.
@@ -1017,15 +1015,13 @@ Following the completion of data collection and the incorporation of stakeholder
     During the training phase, the model learns to distinguish instances based on privilege or lack thereof concerning specific attributes, as represented by the binary encoding. This is achieved by replacing values according to the following transformation:
 
     \[
+    \text{Binary Encoding}(p_i) = \begin{cases} 
 
-    \text{Binary Encoding}(p) = \begin{cases} 
+        1 & \text{if } p_i > t_i \\
 
-        1 & \text{if } p > t \\
-
-        0 & \text{if } p \leq t 
+        0 & \text{if } p_i \leq t_i 
 
     \end{cases}
-
     \]
 
     This facilitates effective model incorporation and decision-making during training and prediction phases.
