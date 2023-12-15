@@ -7,6 +7,7 @@ on:
       - workflow-version
       - workflow-right
       - workflow-final-version
+      - final-thesis-workflow
 env:
   LATEX_ROOT: thesis-main
 jobs:
