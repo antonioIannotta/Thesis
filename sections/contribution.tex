@@ -319,3 +319,38 @@ The data collection stage is fundamental for the Fair-by-Design workflow. It inv
 
 In summary, the data collection stage provides the necessary foundation for the Fair-by-Design workflow. It includes a comprehensive understanding of the dataset's statistical properties and guides informed data pre-processing decisions, crucial for developing fair and unbiased machine learning models.
 
+\subsection{Data Pre-processing}
+
+The data pre-processing stage is a critical component of the Fair-by-Design workflow, designed to transform the raw dataset obtained from the data collection stage into a format suitable for training machine learning models. This stage involves intricate processes, including converting categorical attributes into numerical representations and handling protected attributes with specific considerations.
+
+\subsubsection{Categorical to Numerical Transformation}
+
+Categorical attributes, often represented as strings, must be converted into numerical format to facilitate their integration into machine learning models.
+
+\paragraph{One-Hot Encoding:}
+One-hot encoding is a widely used method for categorical attributes without a natural order. It transforms a categorical attribute with \(K\) distinct categories into \(K\) binary columns, each indicating the presence or absence of a specific category. This approach prevents the model from assigning unintended ordinal relationships to the categories.
+
+\paragraph{Ordinal Encoding:}
+When there exists an ordinal relationship between categories, ordinal encoding is applied. In this method, each category is assigned a numerical value based on its order. This preserves the ordinal information while representing the categorical attribute in a numerical format.
+
+\paragraph{Label Encoding:}
+For binary categorical attributes, label encoding is employed. It assigns 0 and 1 to the respective categories, providing a straightforward numerical representation that aligns with the binary nature of the attribute.
+
+\subsubsection{Protected Attribute Transformation}
+
+Protected attributes, which play a pivotal role in ensuring fairness, require special treatment during the data pre-processing stage.
+
+\paragraph{Discrete Protected Attributes:}
+If a protected attribute is discrete (e.g., gender, ethnicity), it is left unchanged during the transformation process. This ensures that the inherent categories of the attribute are preserved, and the model can account for these categories without introducing bias.
+
+\paragraph{Continuous Protected Attributes: Quantization Operation}
+Continuous protected attributes, such as age, undergo a quantization process. Quantization is a method to discretize the continuous attribute into equal-width bins. This operation is represented mathematically as:
+
+\[ Q(x) = \text{{floor}}\left(\frac{{x - \text{{min}}}}{{\text{{bin width}}}}\right) \]
+
+where \( Q(x) \) denotes the quantized value of \( x \), \(\text{{min}}\) is the minimum value of the attribute, and the bin width is determined based on insights from the data collection stage. The goal is to create discrete bins that accurately represent the distribution of the continuous attribute within the population. This process ensures fairness by preserving the underlying characteristics of the attribute while converting it into a suitable format for machine learning models.
+
+Quantization is particularly essential for continuous protected attributes to avoid introducing bias during the transformation. It aligns with the overarching goal of the Fair-by-Design workflow to maintain fairness throughout the machine learning model development.
+
+In summary, the data pre-processing stage involves sophisticated transformations, ensuring that both categorical attributes are numerically represented and protected attributes are handled with precision. These steps are crucial for developing fair and accurate machine learning models within the Fair-by-Design framework.
+
