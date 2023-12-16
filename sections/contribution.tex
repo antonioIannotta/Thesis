@@ -553,10 +553,10 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 \subsubsection{Pre-processing Algorithm Proposed}
 
-\paragraph{Fairness through data rebalancing}
+\paragraph{Fairness through data augmentation}
 \label{subsec:ftdr}
 
-In this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
+IIn this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
 
 The essence of this approach revolves around the augmentation of the dataset by introducing new data instances that offer a more comprehensive and inclusive representation of the underlying population. This expanded dataset is designed to be more diverse, representative, and balanced, transcending the limitations of the original data and fostering a more nuanced understanding of fairness. 
 
@@ -575,62 +575,56 @@ A fair dataset is defined as one in which, for each combination of protected att
 \]
 
 where:
-- $D$ is the dataset,
-- $|D_{i_1, i_2, \ldots, i_k, j}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ and output $O_j$,
-- $|D|$ is the total number of samples in the dataset.
+\begin{itemize}
+
+    \item $D$ is the dataset
+
+    \item $|D_{i_1, i_2, \ldots, i_k, j}|$ is the number of samples with the specific combination of protected attributes $A_{i_1}, A_{i_2}, \ldots, A_{i_k}$ and output $O_j$
+
+    \item $|D|$ is the total number of samples in the dataset
+    
+\end{itemize}
 
 This entails that any combination of demographic groups, defined by the protected attributes, and the output should have comparable representation, thereby fostering a balanced and unbiased dataset.
 
 By striving for equal representation of combinations of protected attributes, is addressed a fundamental aspect of fairness that transcends individual attributes. This approach provides a more nuanced understanding of fairness by considering the intersections of various demographic groups. It encourages a broader examination of potential biases that may arise when considering multiple attributes simultaneously.
 
-Incorporating this definition of fairness into the dataset rebalancing process enables us to promote a comprehensive notion of fairness, aligning with the principles of equal opportunity and non-discrimination across all combinations of protected attributes. The subsequent algorithm and experimental evaluation are designed to actualize this definition and demonstrate its effectiveness in achieving a more equitable representation within the dataset.
+Incorporating this definition of fairness into the data augmentation process enables us to promote a comprehensive notion of fairness, aligning with the principles of equal opportunity and non-discrimination across all combinations of protected attributes. The subsequent algorithm and experimental evaluation are designed to actualize this definition and demonstrate its effectiveness in achieving a more equitable representation within the dataset.
 
-At this point it's necessary to begin with a formalization for the algorithm itself.
+Let $D$ be a dataset $R^{n \times m}$, where $n$ is the number of samples and $m$ is the number of features. Let $k$ be the number of protected variables represented as $R^{n \times 1}$, with $u_i$ the number of unique values for the $i$-th protected variable. Let there be a single output variable represented as $R^{n \times 1}$.
 
-
-Let \( D \) be a dataset \( R^{n \times m} \), where \( n \) is the number of samples and \( m \) is the number of features. Let \( k \) be the number of protected variables represented as \( R^{n \times 1} \), and let there be a single output variable represented as \( R^{n \times 1} \).
-
-A rebalancing function \( \mathcal{R} \) can be formally defined as a mapping:
-
+A data augmentation function $\mathcal{R}$ can be formally defined as a mapping:
 \[
-\mathcal{R}: R^{n \times m} \rightarrow R^{l \times m}
+\mathcal{R}: R^{n \times m} \rightarrow R^{a \times m}
+\]
+where $a > n$, and the function $\mathcal{R}$ transforms the input dataset $D$ of dimensions $n \times m$ into an output dataset $D'$ of dimensions $a \times m$.
+
+The number of possible combinations of these variables is $\prod_{i=1}^{k+1} u_i$. The limit of the product is ${k + 1}$ because for the combination are considered the protected attributes together with the output.
+
+Consider a set $\text{Combinations}$ with occurrences of all $\prod_{i=1}^{k+1} u_i$ combinations within the dataset. 
+
+Consider a set $\text{Frequencies}$ with frequency of all combination in $\text{Combinations}$ set.
+
+For each combination, the number of rows in which that combination appears should be equal to the maximum of $\text{Frequencies}$ set, denoted as $\text{Max(Frequencies)}$
+
+Mathematically, the number of rows ($a - n$) that will be added to the dataset by the data augmentation algorithm is given by:
+\[
+a - n = \sum_{i=1}^{|Combinations|}(\text{Max}(\text{Frequency}) - (\text{Frequency\textunderscore i}))
 \]
 
-where \( l > m \), and the function \( \mathcal{R} \) transforms the input dataset \( D \) of dimensions \( n \times m \) into an output dataset \( D' \) of dimensions \( l \times m \).
+Once having detected the number of rows to add for each combination it's important to define how to are detected the element of each row.
 
-
-
-Let \( k \) be the number of binary protected variables in the dataset \( D \), and consider the output variable to be binary as well. The number of possible combinations of these variables is \( 2^{(k+1)} \).
-
-Consider a set \( \text{Combination-frequency} \) with occurrences of all \( 2^{(k+1)} \) combinations within the dataset. For each combination, the number of rows in which that combination appears should be equal to the maximum occurrence among all combinations present in the set \( \text{Combination\textunderscore frequency} \). This maximum value is denoted as \( \text{Max}(\text{Combination-frequency}) \).
-
-Mathematically, the number of rows (\( l \)) the final dataset should have for each combination is given by:
-
-\[
-l = \text{Max}(\text{Combination-frequency})
-\]
-
-
-
-Let \( l \) be the desired number of rows for the final dataset. For each combination of values, is calculated the occurrence count \( \text{occurrence}_i \), where \( i \) ranges from 1 to \( 2^{(k+1)} \), with \( k \) being the number of protected binary variables and considering the output variable as binary.
-
-The total number of rows to be added is given by:
-
-\[
-\text{total\_rows\_to\_add} = l - \sum_{i=1}^{2^{(k+1)}} \text{occurrence}_i
-\]
-
-For each iteration:
+Let $C$ be the sub-dataset of $D$ with a specific combination $\text{c\textunderscore i}$ for the protected attributes. Given the number of rows \text{Max}(\text{Frequency}) - (\text{Frequency\textunderscore i}) each row is added according to the following rules:
 
 \begin{itemize}
-
-    \item The values of the protected and output variables are set according to the specific combination.
     
-    \item For all other attributes, a random value \( \text{random\_value}_{ij} \) is generated, where \( j \) represents the specific attribute and \( i \) represents the row being added for that attribute. \( \text{random\_value}_{ij} \) is within the minimum and maximum range for attribute \( j \).
+    \item The values of the protected and output variables are set according to the specific combination.
+   
+    \item For all other attributes, a random value $\text{random\_value}_{ij}$ is generated, where $j$ represents the specific attribute, and $i$ represents the row being added for that attribute. $\text{random\_value}_{ij}$ is within the minimum and maximum range for attribute $j$.
 
 \end{itemize}
 
-As showed in the following pseudocode
+Before proceeding in the theoretical analysis of the algorithm here's the proposed pseudocode:
 
 \begin{algorithm}[H]
     \caption{Reabalancing}
@@ -665,8 +659,28 @@ As showed in the following pseudocode
     \end{algorithmic}
 \end{algorithm}
 
-this algorithm adds rows to the dataset until every combination have the same frequency. Fundamental for this algorithm is the way in which are generate the value for the variables not involved into the combination. These are added considering the sub-dataset of the original dataset in which the combination occurs. 
+The proposed data augmentation algorithm aims to achieve fairness by ensuring an equal representation of all possible combinations of protected and output variables. Here, we provide a theoretical analysis of the algorithm's key aspects, including time complexity, space complexity, and additional considerations.
 
+The time complexity is influenced by the dataset size ($n$), the number of features ($m$), and the number of combinations of protected attributes and output. The overall time complexity is given by the number of combinations:
+\[
+\mathcal{O}(n \cdot m \cdot |Combinations|)
+\]
+where $|Combinations|$ is the number of combinations that have been computed
+
+The space complexity is determined by the storage of combination frequencies and the occurrence count array. The overall space complexity is given by:
+\[
+\mathcal{O}(\prod_{i=1}^{k+1} u_i)
+\]
+
+\begin{itemize}
+    \item \textbf{Number of Combinations:} The number of combinations \(\prod_{i=1}^{k+1} u_i\) grows exponentially with the number of protected binary variables (\(k\)), significantly influencing both time and space complexity.
+    
+    \item \textbf{Data Augmentation Techniques:} The algorithm's effectiveness depends on the chosen data augmentation techniques, which may introduce additional computational costs.
+    
+    \item \textbf{Random Value Generation:} The quality of randomness in generated values is crucial for the diversity of the augmented dataset and, consequently, the algorithm's fairness outcomes.
+    
+    \item \textbf{Implementation and Optimization:} The efficiency of the algorithm is affected by implementation details, language choice, and potential optimizations.
+\end{itemize}
 
 \subsubsection{Significance}
 
