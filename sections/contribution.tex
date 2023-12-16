@@ -246,5 +246,76 @@ This meticulous alignment process ensures that the chosen fairness metrics quant
 
 In summary, the objective definition stage of the Fair-by-Design workflow involves a meticulous and well-informed selection of protected attributes, fairness notions, and fairness metrics. This precision ensures the subsequent stages of the workflow are grounded in a robust foundation for addressing bias and promoting fairness in AI systems.
 
+\subsection{Data Collection}
+\label{subsection:data_collection}
 
+The data collection stage is fundamental for the Fair-by-Design workflow. It involves systematically gathering data to train machine learning models, coupled with a detailed study of the dataset's statistical properties, with a specific focus on protected attributes.
+
+\subsubsection{Dataset Overview}
+
+\paragraph{Data Representation:}
+\begin{itemize}
+    \item Define features and their types (categorical, numerical).
+    \item Specify the structure of the data, especially in the context of demographic information.
+\end{itemize}
+
+\paragraph{Data Sources:}
+\begin{itemize}
+    \item Transparently describe the origin of the data (surveys, administrative records, etc.).
+    \item Indicate methods used for data collection, emphasizing potential biases introduced.
+\end{itemize}
+
+\subsubsection{Study of Statistical Properties}
+
+\paragraph{Descriptive Statistics:}
+\begin{itemize}
+    \item Present essential statistics: mean, median, standard deviation, quartiles (for numerical features).
+    \item Provide frequency distributions (for categorical features).
+\end{itemize}
+
+\paragraph{Exploration of Protected Attributes:}
+\begin{itemize}
+    \item Calculate distributional metrics: proportions, counts, entropy.
+    \item Focus on understanding the representation of different groups within protected attributes.
+\end{itemize}
+
+\paragraph{Correlation Analysis:}
+\begin{itemize}
+    \item Explore correlations between features, especially with protected attributes.
+    \item Utilize correlation matrices and scatter plots for visual assessment.
+\end{itemize}
+
+\paragraph{Outlier Detection:}
+\begin{itemize}
+    \item Employ statistical methods or visualizations to detect and analyze outliers.
+    \item Highlight the potential impact of outliers on model training and fairness considerations.
+\end{itemize}
+
+\subsubsection{Outputs for Data Pre-processing}
+
+\paragraph{Feature Engineering Possibilities:}
+\begin{itemize}
+    \item Leverage insights from the dataset overview for feature engineering opportunities.
+    \item Consider transformations or combinations of features to enhance model performance and fairness.
+\end{itemize}
+
+\paragraph{Bias Identification:}
+\begin{itemize}
+    \item Use statistical properties, especially focused on protected attributes, to identify potential biases.
+    \item Understand the distribution of groups within protected attributes for addressing fairness concerns.
+\end{itemize}
+
+\paragraph{Data Cleaning Strategies:}
+\begin{itemize}
+    \item Formulate strategies based on outlier detection and correlation analysis.
+    \item Decide on the treatment of outliers and correlations, impacting overall model quality and fairness.
+\end{itemize}
+
+\paragraph{Fairness-Aware Sampling Techniques:}
+\begin{itemize}
+    \item If disparities exist in the representation of different groups, consider fairness-aware sampling.
+    \item Aim to address imbalances during data pre-processing for equitable model training.
+\end{itemize}
+
+In summary, the data collection stage provides the necessary foundation for the Fair-by-Design workflow. It includes a comprehensive understanding of the dataset's statistical properties and guides informed data pre-processing decisions, crucial for developing fair and unbiased machine learning models.
 
