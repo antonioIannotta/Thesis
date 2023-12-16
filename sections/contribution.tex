@@ -115,5 +115,136 @@ By adopting a Fair-by-Design approach, stakeholders in AI development, ranging f
 
 \textbf{********************ADD FIGURE HERE***************************+}
 
+\subsection{Objective Definition}
+\label{subsection:objective}
+
+The first critical step in the Fair-by-Design workflow involves a precise definition of the objectives, laying the groundwork for subsequent fairness considerations. This stage encompasses the identification of protected attributes, the selection of fairness notions, and the choice of an appropriate fairness metric.
+
+\subsubsection{Protected Attributes}
+
+Protected attributes refer to the characteristics of individuals or groups that are explicitly considered to prevent discrimination and bias. The criteria for choosing specific protected attributes must be well-defined to ensure the relevance of fairness considerations. This may involve:
+
+\begin{itemize}
+
+    \item Conducting a comprehensive literature review to identify historically disadvantaged or underrepresented groups.
+    
+    \item Collaborating with domain experts, ethicists, and stakeholders to determine attributes with potential societal impact.
+    
+    \item Assessing the legal and ethical implications of including or excluding certain attributes within the specific context of the AI application.
+
+\end{itemize}
+
+The selected protected attributes form the basis for subsequent fairness evaluations and interventions.
+
+\subsubsection{Fairness Notions}
+
+Fairness notions represent the abstract principles guiding the desired equitable behavior within the AI system. The choice of fairness notions is a pivotal decision, influencing subsequent stages of the workflow. Common fairness notions, as explained in detail in \cref{section:fairness_notions}, include:
+
+\begin{itemize}
+  
+    \item \textbf{Demographic Parity:} Ensuring equal representation of protected groups across different outcomes.
+  
+    \item \textbf{Equalized Odds:} Balancing the true positive and false positive rates across protected groups.
+  
+    \item \textbf{Individual Fairness:} Treating similar individuals similarly, regardless of their protected attributes.
+   
+    \item \textbf{Group Fairness:} Ensuring fair treatment for entire groups, typically based on statistical measures.
+
+\end{itemize}
+
+The selection of a fairness notion should align with the specific goals of the AI application, ethical considerations, and legal requirements.
+
+\subsubsection{Fairness Metric}
+
+A fairness metric quantifies the level of fairness achieved by the AI system with respect to the chosen fairness notion. The choice of a fairness metric depends on the specific fairness notion and the underlying characteristics of the data. Common fairness metrics include:
+
+\begin{itemize}
+   
+    \item \textbf{Disparate Impact:} Measures the ratio of favorable outcomes between protected and unprotected groups.
+   
+    \item \textbf{Equalized Odds Difference:} Quantifies the disparity in error rates between protected groups.
+   
+    \item \textbf{Theil Index:} Evaluates the distribution of outcomes across different demographic groups.
+   
+    \item \textbf{Statistical Parity Difference:} Measures the difference in favorable outcomes between protected and unprotected groups.
+
+\end{itemize}
+
+\subsubsection{Fairness Notions and Metric Alignment}
+
+The alignment between fairness notions and fairness metrics is a critical aspect of the Fair-by-Design workflow, as it establishes a systematic and measurable framework for evaluating fairness. The following considerations guide the selection process:
+
+\paragraph{Demographic Parity:}
+
+For the fairness notion of Demographic Parity, the primary concern is ensuring equal representation of protected groups across different outcomes. This notion is often aligned with the fairness metric known as \textbf{Disparate Impact}, which quantifies the ratio of favorable outcomes between protected and unprotected groups. Specifically, the Disparate Impact metric is calculated as:
+
+\[
+\text{Disparate Impact} = \frac{\text{Favorable Outcome Rate for Protected Group}}{\text{Favorable Outcome Rate for Unprotected Group}}
+\]
+
+A Disparate Impact value close to 1 indicates a balanced representation, while values significantly deviating from 1 may suggest unfairness.
+
+\paragraph{Equalized Odds:}
+
+The Equalized Odds fairness notion aims to balance the true positive and false positive rates across protected groups. This aligns with the \textbf{Equalized Odds Difference} fairness metric, which quantifies the disparity in error rates between protected groups. The Equalized Odds Difference is computed as:
+
+\[
+\text{Equalized Odds Difference} = \text{True Positive Rate}_{\text{Protected}} - \text{True Positive Rate}_{\text{Unprotected}}
+\]
+
+A value of 0 indicates perfect balance, with positive or negative values signifying imbalances in the error rates.
+
+\paragraph{Individual Fairness:}
+
+Individual Fairness focuses on treating similar individuals similarly, regardless of their protected attributes. This notion is inherently challenging to quantify, but proxy metrics such as \textbf{Theil Index} may be employed. The Theil Index evaluates the distribution of outcomes across different demographic groups and is given by:
+
+\[
+\text{Theil Index} = \sum \left( \frac{X_{i}}{\mu} \ln \frac{X_{i}}{\mu} \right)
+\]
+
+where \(X_{i}\) represents the outcome distribution for a specific group, and \(\mu\) is the overall average outcome. A lower Theil Index indicates a more equitable distribution.
+
+\paragraph{Group Fairness:}
+
+Group Fairness ensures fair treatment for entire groups, typically based on statistical measures. The \textbf{Statistical Parity Difference} is a common metric aligned with this notion. It measures the difference in favorable outcomes between protected and unprotected groups and is computed as:
+
+\[
+\text{Statistical Parity Difference} = \text{Favorable Outcome Rate}_{\text{Protected}} - \text{Favorable Outcome Rate}_{\text{Unprotected}}
+\]
+
+A value of 0 suggests parity, while positive or negative values indicate disparities.
+
+\subsubsection{Choosing Fairness Metrics Given Notions or Vice Versa}
+
+Choosing a fairness metric given a fairness notion, or vice versa, requires a nuanced understanding of the specific fairness goals and the characteristics of the data. Here's a step-by-step guide:
+
+\paragraph{Given a Fairness Notion:}
+
+\begin{enumerate}
+ 
+    \item \textbf{Define Fairness Goals:} Clearly articulate the fairness goals, considering the desired equitable outcomes for protected groups.
+ 
+    \item \textbf{Identify Relevant Fairness Notion:} Select the fairness notion that aligns most closely with the defined fairness goals (e.g., Demographic Parity, Equalized Odds, Individual Fairness, or Group Fairness).
+ 
+    \item \textbf{Choose Aligned Fairness Metric:} Based on the selected fairness notion, choose the fairness metric that provides a quantitative measure of the specified fairness goals (e.g., Disparate Impact, Equalized Odds Difference, Theil Index, or Statistical Parity Difference).
+
+\end{enumerate}
+
+\paragraph{Given a Fairness Metric:}
+
+\begin{enumerate}
+
+    \item \textbf{Understand Fairness Metric:} Gain a deep understanding of the chosen fairness metric, considering its strengths, limitations, and relevance to specific fairness goals.
+
+    \item \textbf{Determine Fairness Notion Alignment:} Identify the fairness notion that aligns with the underlying principles of the chosen fairness metric (e.g., Disparate Impact aligns with Demographic Parity).
+ 
+    \item \textbf{Ensure Consistency:} Confirm that the selected fairness metric is consistent with the broader fairness goals and ethical considerations of the AI application.
+
+\end{enumerate}
+
+This meticulous alignment process ensures that the chosen fairness metrics quantitatively capture the intended fairness notions, providing a meaningful and interpretable basis for evaluating and comparing fairness across different models and interventions within the Fair-by-Design workflow.
+
+In summary, the objective definition stage of the Fair-by-Design workflow involves a meticulous and well-informed selection of protected attributes, fairness notions, and fairness metrics. This precision ensures the subsequent stages of the workflow are grounded in a robust foundation for addressing bias and promoting fairness in AI systems.
+
 
 

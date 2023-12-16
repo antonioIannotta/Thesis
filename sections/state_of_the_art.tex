@@ -346,6 +346,45 @@ Furthermore, post-processing methods are often utilized to ensure that the outco
 The ultimate goal of fair-by-design methods is to create AI systems that, from their very conception, are inherently fair and unbiased. By considering fairness as a fundamental design principle, it's possible to work towards eliminating discriminatory effects in AI systems, contributing to a more equitable and just technological landscape. 
 
 \newpage
+\section{Fairness notions}
+\label{section:fairness_notions}
+
+Fairness notions serve as the foundational pillars that define the ethical considerations and objectives guiding the development of AI systems within the Fair-by-Design workflow. These notions articulate specific principles for mitigating bias and promoting fairness, each with its unique characteristics and mathematical underpinnings.
+
+\subsection{Demographic Parity}
+
+Demographic Parity represents a fundamental fairness notion that addresses the equal representation of protected groups across different outcomes. In a binary classification context, it can be expressed as:
+
+\[ P(\hat{Y} = 1 | A = a) = P(\hat{Y} = 1), \]
+
+where \( \hat{Y} \) denotes the predicted outcome, \( A \) is the protected attribute, and \( a \) signifies a specific value of the protected attribute. The goal of Demographic Parity is to ensure that the distribution of positive outcomes is consistent across various demographic groups. While conceptually straightforward, Demographic Parity may overlook nuances in individual experiences and predictive accuracy.
+
+\subsection{Equalized Odds}
+
+Equalized Odds is a fairness notion that focuses on balancing the true positive and false positive rates across protected groups. Mathematically, it can be formalized as:
+
+\[ P(\hat{Y} = 1 | A = a, Y = y) = P(\hat{Y} = 1 | Y = y), \]
+
+where \( Y \) represents the true outcome. Equalized Odds strives to rectify disparities in prediction accuracy between protected groups, ensuring that both favorable and unfavorable outcomes are predicted with similar precision. This notion addresses concerns related to disparate error rates and aims to provide equal predictive performance for different demographic groups.
+
+\subsection{Individual Fairness}
+
+Individual Fairness introduces a nuanced dimension by emphasizing the fair treatment of similar individuals, irrespective of their protected attributes. While challenging to formalize precisely, it can be understood as:
+
+\[ d(x, x') \leq \epsilon \Rightarrow |P(\hat{Y} = 1 | X = x, A = a) - P(\hat{Y} = 1 | X = x', A = a)| \leq \delta, \]
+
+where \( d(x, x') \) measures the similarity between instances \( x \) and \( x' \), and \( \epsilon \) and \( \delta \) are predefined thresholds. Individual Fairness recognizes the unique characteristics of each instance and aims to ensure comparable treatment for similar individuals.
+
+\subsection{Group Fairness}
+
+Group Fairness extends fairness considerations to demographic groups, focusing on statistical parity in predicted outcomes. Formally, it can be expressed as:
+
+\[ P(\hat{Y} = 1 | A = a) = P(\hat{Y} = 1 | A = a'), \]
+
+where \( a \) and \( a' \) denote different values of the protected attribute. Group Fairness advocates for equitable treatment at the collective level, ensuring parity in the overall distribution of predicted outcomes among various demographic groups.
+
+
+\newpage
 \section{Fairness metrics}
 \label{section:metrics}
 
