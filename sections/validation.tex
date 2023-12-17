@@ -74,6 +74,7 @@ The two protected attributes detected in \cref{section:val_obj} are both discret
 Starting from the information provided by \cref{section:val_dc} in this section all the variables represend as string as been labeled the same manner. This led to a consistent dataset to be used in the models training.
 
 \section{Algorithm design}
+\label{section:val_alg}
 
 In the context of the Fair-by-Design workflow, six key fairness algorithms have been strategically chosen to comprehensively test the workflow's effectiveness. Each algorithm serves a specific purpose within the workflow, contributing to the overarching goal of achieving fairness in predictions.
 
@@ -145,3 +146,42 @@ ThresholdOptimizer is included to evaluate the effectiveness of post-processing 
 
 The choice of these six algorithms is driven by the aim of obtaining a holistic view of the Fair-by-Design workflow's performance. By incorporating diverse pre-processing, in-processing, and post-processing strategies, the evaluation can capture the nuances of fairness considerations at different stages of the machine learning pipeline. This comprehensive approach ensures a thorough exploration of potential biases and fairness enhancements, laying the foundation for a robust and equitable model.
 
+\section{Model training and evaluation}
+\label{section:val_mt_eval}
+
+\subsection{Model Training}
+
+\subsubsection{Training Models}
+
+The model training process involves the utilization of three distinct classifiers:
+
+1. \textbf{SGD Classifier}
+   \begin{itemize}
+       \item \textit{Description:} Stochastic Gradient Descent (SGD) classifier is employed for its efficiency in training large datasets and adaptability to different problem domains.
+   \end{itemize}
+
+2. \textbf{RandomForest Classifier}
+   \begin{itemize}
+       \item \textit{Description:} RandomForest classifier, known for its ensemble learning approach, is chosen to capture complex relationships in the data and enhance predictive performance.
+   \end{itemize}
+
+3. \textbf{XGBoost}
+   \begin{itemize}
+       \item \textit{Description:} XGBoost, an optimized gradient boosting algorithm, is selected for its ability to handle diverse datasets and deliver high predictive accuracy.
+   \end{itemize}
+
+\subsection{Performance Evaluation}
+
+\subsubsection{General Results Evaluation}
+
+The evaluation of general results encompasses an assessment of the overall model performance and the computation of fairness metrics.
+
+\subsubsection{Accuracy Grouped by Fairness Algorithm}
+
+For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
+
+\subsubsection{Fairness Values Grouped by Fairness Algorithm}
+
+Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
+
+This structured evaluation approach ensures a detailed examination of both general model performance and fairness considerations, allowing for a nuanced understanding of the effectiveness of the Fair-by-Design workflow across multiple classifiers and fairness algorithms.
