@@ -220,12 +220,13 @@ where \(X_{i}\) represents the outcome distribution for a specific group, and \(
 Group Fairness ensures fair treatment for entire groups, typically based on statistical measures. The \textbf{Statistical Parity Difference} is a common metric aligned with this notion. It measures the difference in favorable outcomes between protected and unprotected groups and is computed as:
 
 \[
-\text{Statistical Parity Difference} = \text{Favorable Outcome Rate}_{\text{Protected}} - \text{Favorable Outcome Rate}_{\text{Unprotected}}
+\text{Statistical Parity Difference} = \text{Favorable Outcome Rate}_{\text{Prot}} - \text{Favorable Outcome Rate}_{\text{Unprot}}
 \]
 
 A value of 0 suggests parity, while positive or negative values indicate disparities.
 
 These alighnments are well-represented in the following table
+
 
 \begin{tabular}{|c|c|}
     \hline
@@ -273,7 +274,7 @@ This decisional process is well-represented in the following image:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.3\textwidth, height=.8\textwidth]{notion-metric.png}
+    \includegraphics[width=.7\textwidth, height=1.1\textwidth]{notion-metric.png}
     \label{fig:choice}
     \caption{Fairness Notion and Metric choice}
 \end{figure}
