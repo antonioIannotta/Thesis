@@ -82,33 +82,15 @@ In the context of the Fair-by-Design workflow, six key fairness algorithms have 
 
 \subsubsection{Data Augmentation Algorithm}
 
-\textbf{Algorithm Description:}
-
-The proposed data augmentation algorithm introduces synthetic samples to the training dataset. By augmenting the data, especially focusing on underrepresented groups, the algorithm aims to enhance the model's exposure to diverse scenarios, promoting a more robust understanding of the underlying patterns.
-
-\textbf{Reasoning:}
-
-Data augmentation is crucial for addressing imbalances in the training data, allowing the model to generalize better across different groups and mitigating biases stemming from insufficient representation.
-
-\subsubsection{Reweighing Algorithm}
-
-\textbf{Algorithm Description:}
-
-In the context of the Fair-by-Design workflow, five key fairness algorithms have been strategically chosen to comprehensively test the workflow's effectiveness. Each algorithm serves a specific purpose within the workflow, contributing to the overarching goal of achieving fairness in predictions.
-
-\subsection{Pre-processing Algorithms}
-
-\subsubsection{Data Augmentation Algorithm}
-
 \textbf{Algorithm Description:} The proposed data augmentation algorithm introduces synthetic samples to the training dataset. By augmenting the data, especially focusing on underrepresented groups, the algorithm aims to enhance the model's exposure to diverse scenarios, promoting a more robust understanding of the underlying patterns.
 
 \textbf{Reasoning:} Data augmentation is crucial for addressing imbalances in the training data, allowing the model to generalize better across different groups and mitigating biases stemming from insufficient representation.
 
-\subsubsection{Correlation Removal Algorithm}
+\subsubsection{Fairness Through Unawareness}
 
-\textbf{Algorithm Description:} Correlation removal focuses on identifying and mitigating correlations between sensitive attributes and features. It acts as a pre-processing step to reduce the influence of sensitive attributes on the model's predictions.
+\textbf{Algorithm Description:} Fairness through unawareness involves deliberately avoiding the use of sensitive attributes in the modeling process. This pre-processing approach aims to promote fairness by excluding potentially biased features, thus reducing the risk of discrimination based on sensitive attributes.
 
-\textbf{Reasoning:} Correlation removal is essential for eliminating potential sources of bias by disentangling correlations between sensitive attributes and features, contributing to fair model training.
+\textbf{Reasoning:} Fairness through unawareness is considered to mitigate biases by preventing the model from directly using sensitive attributes, thereby minimizing the potential for biased predictions associated with these attributes.
 
 \subsection{In-processing Algorithms}
 
