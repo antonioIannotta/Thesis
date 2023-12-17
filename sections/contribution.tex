@@ -120,7 +120,6 @@ By adopting a Fair-by-Design approach, stakeholders in AI development, ranging f
 \end{figure}
     
 
-
 \subsection{Objective Definition}
 \label{subsection:objective}
 
@@ -226,7 +225,21 @@ Group Fairness ensures fair treatment for entire groups, typically based on stat
 
 A value of 0 suggests parity, while positive or negative values indicate disparities.
 
+These alighnments are well-represented in the following table
 
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Fairness notion} & \textbf{Fairness metric} \\
+    \hline
+    Demographic Parity & Disparate Impact \\
+    \hline
+    Equalized Odds & Equalized Odds Difference \\
+    \hline
+    Individual Fairness & Theil Index \\
+    \hline
+    Group Fairness & Demographic Parity Difference \\
+    \hline
+\end{tabular}
 
 \subsubsection{Choosing Fairness Metrics Given Notions or Vice Versa}
 
@@ -255,6 +268,15 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
     \item \textbf{Ensure Consistency:} Confirm that the selected fairness metric is consistent with the broader fairness goals and ethical considerations of the AI application.
 
 \end{enumerate}
+
+This decisional process is well-represented in the following image:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.3\textwidth, height=.8\textwidth]{notion-metric.png}
+    \label{fig:choice}
+    \caption{Fairness Notion and Metric choice}
+\end{figure}
 
 This meticulous alignment process ensures that the chosen fairness metrics quantitatively capture the intended fairness notions, providing a meaningful and interpretable basis for evaluating and comparing fairness across different models and interventions within the Fair-by-Design workflow.
 
