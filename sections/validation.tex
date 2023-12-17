@@ -75,5 +75,73 @@ Starting from the information provided by \cref{section:val_dc} in this section 
 
 \section{Algorithm design}
 
+In the context of the Fair-by-Design workflow, six key fairness algorithms have been strategically chosen to comprehensively test the workflow's effectiveness. Each algorithm serves a specific purpose within the workflow, contributing to the overarching goal of achieving fairness in predictions.
 
+\subsection{Pre-processing Algorithms}
+
+\subsubsection{Data Augmentation Algorithm}
+
+\textbf{Algorithm Description:}
+
+The proposed data augmentation algorithm introduces synthetic samples to the training dataset. By augmenting the data, especially focusing on underrepresented groups, the algorithm aims to enhance the model's exposure to diverse scenarios, promoting a more robust understanding of the underlying patterns.
+
+\textbf{Reasoning:}
+
+Data augmentation is crucial for addressing imbalances in the training data, allowing the model to generalize better across different groups and mitigating biases stemming from insufficient representation.
+
+\subsubsection{Reweighing Algorithm}
+
+\textbf{Algorithm Description:}
+
+The reweighing algorithm adjusts sample weights based on sensitive attributes, aiming to equalize the impact of different groups in the training process. It acts as a pre-processing step to ensure fair model training.
+
+\textbf{Reasoning:}
+
+Reweighing is fundamental for treating different groups fairly during model training. By assigning appropriate weights, the algorithm helps counteract the biases present in the training data.
+
+\subsection{In-processing Algorithms}
+
+\subsubsection{ExponentiatedGradient}
+
+\textbf{Algorithm Description:}
+
+The ExponentiatedGradient algorithm applies iterative re-weighting to the training data, seeking to find a fair classifier by minimizing the disparity in predictions across sensitive groups.
+
+\textbf{Reasoning:}
+
+ExponentiatedGradient is chosen for its versatility and effectiveness in in-processing fairness. It provides a fine-tuning mechanism during training to achieve parity in predicted outcomes.
+
+\subsubsection{LFR (Learning Fair Representations)}
+
+\textbf{Algorithm Description:}
+
+LFR focuses on learning fair representations of the data by mapping it to a latent space. It aims to encode features in a way that separates the influence of sensitive attributes from the overall prediction.
+
+\textbf{Reasoning:}
+
+LFR is selected for its ability to disentangle predictive features from sensitive attributes, allowing for fairer representations and reducing the risk of biased predictions.
+
+\subsection{Post-processing Algorithms}
+
+\subsubsection{MetaFairClassifier}
+
+\textbf{Algorithm Description:}
+
+MetaFairClassifier acts as both a post-processing and in-processing meta-algorithm. It modifies a base classifier to achieve fairness by adjusting decision boundaries and re-weighting samples.
+
+\textbf{Reasoning:}
+
+MetaFairClassifier is chosen to assess the impact of modifying a base classifier in both post-processing and in-processing scenarios, offering insights into the versatility of the approach.
+
+\subsubsection{ThresholdOptimizer}
+
+\textbf{Algorithm Description:}
+
+ThresholdOptimizer focuses on adjusting decision thresholds post-modeling to achieve fairness goals. It provides flexibility in fine-tuning predictions without retraining the entire model.
+
+\textbf{Reasoning:}
+
+ThresholdOptimizer is included to evaluate the effectiveness of post-processing adjustments in achieving fairness objectives. It offers a practical and interpretable way to balance accuracy and fairness.
+
+The choice of these six algorithms is driven by the aim of obtaining a holistic view of the Fair-by-Design workflow's performance. By incorporating diverse pre-processing, in-processing, and post-processing strategies, the evaluation can capture the nuances of fairness considerations at different stages of the machine learning pipeline. This comprehensive approach ensures a thorough exploration of potential biases and fairness enhancements, laying the foundation for a robust and equitable model.
 
