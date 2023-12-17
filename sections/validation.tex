@@ -146,6 +146,44 @@ The model training process involves the utilization of three distinct classifier
 
 The evaluation of general results encompasses an assessment of the overall model performance and the computation of fairness metrics.
 
+In order to provide a tabular representation of the results it's necessary to assign some labels to have a more compressed representation:
+
+\begin{itemize}
+    \item \emph{Fairness algorithm}: FairAlg
+    \begin{itemize}
+        \item \emph{Data augmentation}: DA
+        \item \emph{Fairness through unawareness}: FtU
+        \item \emph{Exponentiated Gradient}: EG
+        \item \emph{GridSearch}: GS
+        \item \emph{Threshold Optimizer}: TO
+    \end{itemize}
+    \item \emph{Model}
+    \begin{itemize}
+        \item \emph{XGB Classifier}: XGB
+        \item \emph{SGD Classifier}: SGD
+        \item \emph{RandomForest Classifier}: RF
+    \end{itemize}
+    \item \emph{Accuracy}: Acc
+    \item \emph{Fairness metric}: FairMet
+    \begin{itemize}
+        \item \emph{Disparate Impact}: DI
+        \item \emph{Demographic Parity Difference}: DPD
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Model} & \textbf{Acc} & \textbf{FairMet} \\
+        \hline
+        & & & \\
+        \hline
+    \end{tabular}
+    \caption{Models training results}
+    \label{fig:results}
+\end{figure}
+
 \subsubsection{Accuracy Grouped by Fairness Algorithm}
 
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
