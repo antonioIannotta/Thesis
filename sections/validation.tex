@@ -1,419 +1,56 @@
-\chapter{Implementation of Fair-by-Design Workfow in Canary Island Educational Performance Prediction}
-\label{chap:real-world-scenario}
+\chapter{Validation}
+\label{chap:validation}
 
 \section{Introduction}
 
-The implementation of machine learning models in real-world contexts demands a careful consideration of ethical and fairness implications, especially in domains with significant societal impact, such as education. In this chapter, it will be inspected the application of the fair-by-design workflow to the specific context of predicting educational performance in the Canary Islands. The objective is not merely to develop an accurate predictive model but to ensure that the predictions align with fairness principles, fostering equitable opportunities for all students.
+This chapter unfolds as a meticulous exploration into the performance and reliability of the Fair-by-Design workflow. To conduct a thorough assessment, the well known dataset Adult has been strategically chosen as the testing ground. The dataset, rich in socioeconomic and demographic attributes, provides a robust platform for evaluating the workflow's effectiveness across various machine learning algorithms.
 
-The educational landscape presents a complex interplay of factors, including socio-economic backgrounds, cultural diversity, and historical disparities. Traditional machine learning models may inadvertently perpetuate biases, leading to unequal treatment and outcomes for different student groups. The fair-by-design workflow offers a systematic approach to address these challenges, providing a framework where fairness is ingrained from data preprocessing to model deployment.
+The central emphasis of this validation endeavor is to ascertain not only the accuracy and predictive capabilities of the implemented models but also the extent to which the Fair-by-Design workflow succeeds in fostering fairness. The Adult dataset, carefully selected for its representativeness and complexity, allows for a nuanced examination of how different algorithms respond to the intricacies of real-world data, shedding light on the interplay between accuracy and fairness.
 
-\section{Objective Definition}
+Throughout this chapter, the validation process unfolds systematically, encompassing diverse algorithms applied to the Adult dataset. The goal is to detect both the strengths and potential limitations of the Fair-by-Design approach, providing valuable insights for its application in scenarios where the equitable treatment of individuals and the accuracy of predictions are of paramount importance. The subsequent sections detail the experimental setup, algorithmic choices, and the rigorous evaluation metrics employed to ensure a comprehensive understanding of the Fair-by-Design workflow's performance on the chosen dataset.
 
-The primary objective of this study is to predict the English proficiency level for individual students in the educational landscape of the Canary Islands. The predictive model aims to provide accurate assessments, contributing to a better understanding of students' language capabilities. However, beyond accuracy alone, a crucial emphasis is placed on the integration of fairness considerations throughout the prediction process.
+\section{Objective definition}
 
-In this context, fairness goes beyond raw predictions and addresses potential biases and disparities related to sensitive attributes. The study recognizes the ethical responsibility associated with predicting students' English proficiency levels and strives for predictions that are not only technically robust but also ethically sound.
+In this section, we precisely outline the objectives guiding the Fair-by-Design workflow, focusing on effective income prediction while addressing fairness and mitigating biases. The key components include the identification of protected attributes, selection of fairness notions, and corresponding fairness metrics.
 
-The fair-by-design approach is woven into the fabric of the study, guiding the entire predictive modeling process. This involves a meticulous examination of potential biases in the data or model and strategies to mitigate these biases. The study aims to create a predictive model that is accurate and equitable across different student groups, considering sensitive attributes that may influence predictions.
+\subsection{Prediction Objective}
 
-The overarching goal is to foster a predictive model that aligns with principles of fairness, inclusivity, and equity. By embracing the fair-by-design approach, the study seeks to contribute to a more equitable educational environment where language proficiency assessments consider the diverse backgrounds and characteristics of students.
+\begin{itemize}
+    \item Goal: Develop models for accurate income prediction.
+\end{itemize}
 
-In conclusion, this study emphasizes that technical excellence in predicting English proficiency must go hand in hand with ethical considerations and fairness. The integration of the fair-by-design approach serves as a foundation for building a model that upholds the principles of fairness and inclusivity, contributing to a more equitable educational landscape in the Canary Islands and beyond.
+\subsection{Protected Attributes}
 
-\subsection{Performance Evaluation Metrics}
+\begin{itemize}
+    \item Attributes: "Ethnicity" and "Sex"
+\end{itemize}
 
-The performance of the predictive model in this study will be assessed using two key metrics: accuracy and fairness. Accuracy is a fundamental measure representing the model's ability to precisely predict English proficiency levels. A highly accurate model is crucial for ensuring the practical utility of the system, contributing to effective decision-making and providing valuable insights into students' language skills.
+\subsection{Fairness Notions}
 
-Simultaneously, fairness in predictions across different demographic groups is given utmost importance. Protected attributes, such as gender, socio-economic background, or ethnic origin, often play a role in educational disparities. To address potential biases and ensure equitable outcomes, the model will be evaluated based on fairness metrics. This evaluation approach ensures that predictions do not disproportionately favor or disfavor specific subpopulations, aligning with the fair-by-design framework. The goal is to create a predictive model that excels not only in accuracy but also in equity, contributing to a more inclusive and unbiased assessment of English proficiency in the educational context.
-
-\subsection{Fairness as a Core Principle}
-
-In this study, fairness is not merely an ancillary consideration but a core principle embedded throughout the entire predictive workflow. The primary objective is to develop a machine learning model that not only excels in accuracy but also consistently demonstrates equitable treatment across diverse student groups. By explicitly considering protected attributes such as gender, socio-economic background, or ethnic origin, the model aims to proactively mitigate potential biases that could adversely impact historically marginalized or disadvantaged populations.
-
-This approach reflects a commitment to fairness from the outset of the predictive modeling process. The goal is to ensure that the model's predictions contribute to educational insights without perpetuating or exacerbating existing disparities. By acknowledging the historical and contextual factors that can influence educational outcomes, the study strives to create a predictive model that fosters inclusivity, actively working to eliminate, rather than reinforce, systemic inequalities. Through this conscientious approach, the study aims to contribute to a more equitable and just educational landscape in the context of English proficiency prediction.
-
-\subsection{Protected Attributes and Ethical Considerations}
-
-The identification of protected attributes, including gender, socio-economic background, and ethnicity, plays a crucial role in the fair-by-design approach. Recognizing the potential impact of these attributes on predictions is fundamental for implementing targeted interventions to ensure fairness in the predictive model. This proactive stance allows for a more nuanced understanding of how certain demographic factors may influence outcomes, paving the way for informed and equitable model development.
-
-Ethical considerations guide the responsible handling of sensitive information, emphasizing transparency and accountability throughout the entire predictive process. The awareness of potential biases associated with protected attributes ensures a conscientious and ethical approach to data collection, preprocessing, and model design. By integrating ethical principles into the fair-by-design workflow, the study aims to not only enhance the accuracy of predictions but also uphold a commitment to fairness, transparency, and equitable treatment across diverse student groups. This approach aligns with the broader goal of creating a predictive model that contributes positively to educational insights without perpetuating or reinforcing existing disparities.
-
-\subsection{Balancing Accuracy and Fairness}
-
-The challenge in this study lies in striking a balance between maximizing accuracy and ensuring fairness. While accuracy is pivotal for providing valuable insights, fairness guarantees that the benefits of accurate predictions are distributed equitably across diverse student populations. The fair-by-design workflow incorporates algorithmic strategies and preprocessing techniques to achieve this delicate equilibrium, recognizing that an undue focus on accuracy alone may lead to disparities in outcomes.
-
-In summary, the objective of this study is two-fold: to predict the English proficiency level for individual students with a high degree of accuracy and to ensure the fairness of these predictions across protected attributes. This dual commitment reflects a dedication to not only advancing the state-of-the-art in educational performance prediction but also contributing to a more equitable and ethical application of machine learning in education. By navigating the nuanced interplay between accuracy and fairness, the study aspires to set a standard for responsible and inclusive predictive modeling in the realm of English proficiency assessment.
-
-\section{Stakeholder Identification}
-
-In any data-driven research endeavor, identifying and understanding the key stakeholders is paramount to the success and ethical conduct of the study. In the context of predicting English proficiency levels for students in the Canary Islands, one of the primary stakeholders playing a pivotal role is the University of La Laguna (ULL).
-
-\subsection{Primary Stakeholder: University of La Laguna (ULL)}
-
-The University of La Laguna serves as a central figure in this study, functioning as the primary data provider. ULL's comprehensive database encompasses a wealth of information, including student demographics, academic performance records, and English proficiency assessments. The institution's commitment to academic excellence and research makes it a key stakeholder in shaping the trajectory and outcomes of this study.
-
-As the custodian of the data used for predictive modeling, ULL's engagement is critical for ensuring the accuracy, relevance, and ethical use of the information. The university's active involvement in the study is not merely as a data source but as a collaborator in the pursuit of equitable and insightful predictions regarding students' English proficiency levels.
-
-\subsection{Additional Stakeholders}
-
-While the University of La Laguna (ULL) holds a central role in this study, it's important to recognize that other stakeholders contribute significantly to the broader context of the research. These stakeholders may include educational policymakers, English language instructors, students, and parents, each bringing unique perspectives and interests in the outcomes of the predictive model.
-
-Identifying and actively engaging with these diverse stakeholders enriches the study by incorporating a range of viewpoints and experiences. Educational policymakers may be interested in how the model aligns with broader educational goals, while English language instructors could provide valuable insights into the practical implications of the predictions within the classroom. Students and parents, on the other hand, may offer perspectives on the perceived impact of the model on individual educational journeys.
-
-This multi-stakeholder approach fosters a more comprehensive understanding of the implications of the research. It ensures that the predictive model not only meets the academic and technical standards set by ULL but is also aligned with the broader needs and expectations of the educational community. The collaborative input from diverse stakeholders enhances the study's 
-
-\section{Data collection}
-
-It's important, once having presented the main stakeholder, present the data collected.
-
-\subsection{Dataset description}
-
-BBefore delving into the intricate details of the algorithm implementations presented earlier, it is imperative to provide a comprehensive overview of the dataset on which these algorithms have been applied. The chosen dataset for this work is the \emph{Canary Island Educational dataset}, an invaluable resource that underpins the empirical exploration of bias mitigation strategies in the context of the educational system in the Canary Islands.
-
-The Canary Island Educational dataset is a rich and expansive repository of information, meticulously compiled to capture various facets of the educational landscape within the Canary Islands. This dataset comprises the comprehensive census of students enrolled over four distinct academic years, offering a multifaceted glimpse into the educational ecosystem.
-
-The dataset encompasses a diverse array of attributes and data points, encapsulating critical information such as student demographics, academic performance, socioeconomic factors, and other pertinent variables. These attributes collectively provide a holistic perspective on the educational landscape, enabling a nuanced analysis of the factors that influence student outcomes and experiences.
-
-The temporal dimension of the dataset, spanning four academic years, further enriches the analytical potential. It allows for the investigation of temporal trends, shifts in educational policies, and the evolution of student characteristics over time. This temporal depth is particularly valuable when examining the efficacy of bias mitigation strategies, as it facilitates the assessment of their impact across different academic years.
-
-The Canary Island Educational dataset is not merely a repository of numbers and statistics; it is a window into the educational opportunities and challenges faced by students in the Canary Islands. By harnessing the insights gleaned from this dataset, it becomes possible to proactively address biases and promote equity within the educational system, ultimately striving for a more inclusive and just educational landscape. The dataset serves as a foundation for evidence-based decision-making, ensuring that algorithmic approaches are not only technically sound but also deeply rooted in the realities of the educational context they seek to improve.
-
-\subsubsection{Preliminary analysis on Canary Island Educational dataset}
-
-The first operation required to choose the subset on which implement the chosen algorithm. It has been choice the subset of the students enrolled in the 3rd grade due its amount of data, greater than the other subsets, and then more suitable to fit a real world scenario.
-
-A deep analysis of the dataset led us to make a first features selection. More specifically for this work only the \emph{important} and \emph{protected} attributes have been selected.
-
-After a proper domain analysis the protected attributes selected to be passed to the algorithms have been a subset of the orginal selected:
-
-\begin{enumerate}
-
-    \item sex
-
-    \item capital island: if the student comes from the capital of the city
-
-    \item public\textunderscore private: if the school is public or private
+\begin{itemize}
+    \item Demographic Parity:
+    \begin{itemize}
+        \item Objective: Ensure consistent distribution of predicted outcomes across different subgroups based on protected attributes.
+    \end{itemize}
     
-    \item mothly houseold income
+    \item Group Fairness:
+    \begin{itemize}
+        \item Objective: Guarantee equitable predictions within specific subgroups defined by protected attributes.
+    \end{itemize}
+\end{itemize}
 
-    \item economic, social and cultural satus index
+\subsection{Fairness Metrics}
 
-\end{enumerate}
-
-The sensitive attributes detection, and its filtering to detect the main relevant avoiding semantic duplicates, has been possible only through the information provided by the ULL about the dataset. As specified in the general workflow the interation between the technical figuers and the stakeholder is even more fundamental when the sensitive attributes are taken into account in the AI system design.
-
-The dataset documentation provided the information related to the type of each attribute (e.g. Continuous or Categorical). Starting from this information the variables have been pre-processed as established in the usual data pre-processing sub-step of the \emph{Fair-by-Design Workflow} proposed in this work.
-
-After an exhaustive analysis of the dataset description provided by stakeholders, a comprehensive review revealed that certain aspects of the dataset could be optimized for the purposes. In this vein, a strategic decision has been made to remove 68 columns from the dataset.
-
-The removal process was driven by the identification of intrinsic redundancy within the dataset. Several columns were found to contain overlapping or duplicative information, providing no additional value to the analysis. Moreover, a subset of columns exhibited poor semantic meaning and relevance to the specific objectives of this project.
-
-By excising these 68 columns, we aim to refine the dataset and focus on the most essential and informative variables. This process is integral to enhancing the precision of the work, facilitating a more nuanced understanding of the data, and ultimately contributing to the success of it.
-
-This decision aligns with the commitment to optimizing the quality of the data available, ensuring that every variable retained serves a meaningful purpose in the analytical job. 
-
-The resulting dataset, used for this real case scenario, is a dataset of 100 columns.
-
-\section{Data pre-processing}
-
-The protected attributes and the output have been pre-processed according to the workflow's rule described in \cref{section:pre-proc}
-
-\section{Algorithm Design}
-
-The success of the fair-by-design workflow in predicting English proficiency levels for students in the Canary Islands hinges on the thoughtful selection and implementation of fairness algorithms across three key categories: pre-processing, in-processing, and post-processing. Each category plays a distinctive role in mitigating biases and ensuring equitable predictions.
-
-\subsection{Pre-processing Algorithms}
-
-In the realm of pre-processing, where the focus is on transforming the input data before it reaches the core machine learning model, it has been adopted the algorithm proposed in \cref{subsec:ftdr}
-
-\subsection{In-Processing Algorithm}
-
-Moving to the in-processing stage, where fairness considerations are incorporated directly into the learning process, a state-of-the-art algorithm from the \emph{Fairlearn} library has been employed.
-
-\subsubsection{GridSearch Reduction}
-
-The in-processing algorithm chosen for fairness enhancement is GridSearch Reduction from the \emph{Fairlearn} library. GridSearch Reduction is a powerful technique that systematically explores a grid of hyperparameters to find the optimal combination that minimizes bias in model predictions. It employs a reduction-based approach, optimizing the trade-off between accuracy and fairness by iteratively adjusting model parameters.
-
-GridSearch Reduction operates by conducting a grid search over specified hyperparameter values, considering fairness metrics along with accuracy. This approach allows for the identification of an optimal set of hyperparameters that achieves a balance between predictive performance and fairness objectives. The algorithm aims to discover the most suitable configuration that mitigates bias in the model's decision-making process, ensuring equitable outcomes for diverse student groups. \cite{agarwal2018reductions}
-
-\subsection{Post-Processing Algorithm}
-
-In the post-processing phase, which occurs after the model has generated predictions, an algorithm from the \emph{Fairlearn} library has been selected to further refine fairness.
-
-\subsubsection{Equalized Odds Post-Processing with Threshold Optimizer}
-
-The chosen post-processing algorithm is Equalized Odds Post-Processing with Threshold Optimizer from Fairlearn. This algorithm focuses on adjusting decision thresholds to ensure equalized odds across different demographic groups. By optimizing the threshold values based on protected attributes, the algorithm seeks to rectify any remaining disparities in prediction outcomes, striving for a more balanced and fair distribution of positive and negative predictions. \cite{10.5555/3157382.3157469}
-
-Equalized Odds Post-Processing with Threshold Optimizer involves fine-tuning the decision boundaries to align with fairness considerations. The threshold optimizer dynamically adjusts thresholds for different groups, aiming to achieve equalized odds without compromising predictive accuracy. This meticulous post-processing step contributes to the overall fairness of the model's predictions, promoting equity and mitigating bias in decision outcomes. 
-
-\subsection{Technology-Agnostic Workflow}
-
-One of the notable strengths of the fair-by-design workflow is its technology-agnostic nature. The workflow is designed to be adaptable and flexible, accommodating various technologies and frameworks to implement its principles. This adaptability allows researchers and practitioners the freedom to choose the tools and technologies that best suit their preferences, expertise, and the specific requirements of their environment.
-
-The workflow can be implemented using different technologies, and the fair-by-design workflow embraces this diversity. The adoption of diverse technologies may stem from considerations such as the existing technology stack within an organization, the availability of specific machine learning libraries, or the preferences of the data scientists involved in the project.
-
-For instance, the workflow can be implemented using popular machine learning libraries such as scikit-learn, TensorFlow, PyTorch, or proprietary tools specific to a particular organization's infrastructure. The choice of technologies for data storage, processing, and model deployment can also vary based on the organizational context.
-
-The technology-agnostic nature of the fair-by-design workflow underscores its universality and applicability across different machine learning ecosystems. This adaptability allows for the replication of the workflow in various settings, fostering collaboration and knowledge sharing among researchers who may have different technology preferences.
-
-By being agnostic to specific technologies, the fair-by-design workflow encourages innovation and experimentation, enabling the broader machine learning community to apply ethical and fair machine learning practices regardless of the technological landscape. This adaptability ensures that the principles of fairness, transparency, and accountability are not confined to a particular technology stack but can be integrated seamlessly into diverse machine learning environments.
-
-\section{Model Training and Evaluation}
-
-The successful implementation of the fair-by-design workflow requires not only the training of an accurate predictive model but also a meticulous evaluation process that considers both predictive performance and fairness. In this section, there will be detailed the steps involved in training the model, evaluating its accuracy over the test set, and assessing fairness using functions from the fairlearn library.
-
-\subsection{Model Training}
-
-The predictive model undergoes a rigorous training process using the pre-processed and fairness-enhanced dataset. Leveraging the fair-by-design algorithms, the model is trained to predict English proficiency levels for students in the Canary Islands. The learning process involves optimizing parameters, minimizing loss functions, and adapting the model to the intricacies of the dataset.
-
-For this training, have been employed three machine learning models: RandomForest, DecisionTree, and LGB Classifier. These models are chosen for their ability to capture complex patterns in the data and make accurate predictions. The ensemble learning approach of RandomForest, the interpretability of DecisionTree, and the boosting capabilities of LGB Classifier contribute to a comprehensive training strategy.
-
-\subsection{Model Evaluation}
-
-Following the training phase, the model's performance is assessed through rigorous evaluation over a dedicated test set. The accuracy of the model is a primary focus, providing insights into its ability to make precise predictions. The accuracy metric is calculated by comparing the model's predictions to the true English proficiency levels in the test set, quantifying the proportion of correct predictions.
-
-\subsection{Fairness Assessment}
-
-Beyond accuracy, the fair-by-design workflow places a significant emphasis on fairness considerations. To assess the fairness of the model, an implementation of demographic parity by \emph{fairlearn} is used
-
-\section{Model deployment}
-\label{section:model-deployment}
-
-After the evaluation step in which is assessed whether the model perform its predcition task with a reasonable trade-off between the accuracy and the fairness the model can be deployed and be used to prediction.
-
-%----------------------------------------------------------------------------------------
-\chapter{Validation} % possible chapter for Projects
-\label{chap:validation}
-%----------------------------------------------------------------------------------------
-
-Since every algorithm choice in the algorithm design step of the workflow required pre-trained estimator, 3 estimators have been choice to have a comprehensive evaluation of the performance of the workflow proposed here.
-
-\section{Experiment setup}
-
-For each of the previous approaches have been chosen 3 models to perform the prediction:
-
-\begin{enumerate}
-
-    \item \emph{RandomForest Classifier}: RandomForest Classifier is a popular machine learning algorithm that leverages an ensemble of decision trees to make predictions. It excels at tasks like classification and regression, offering robustness against overfitting and high accuracy by aggregating the predictions of multiple decision trees. It's a versatile tool used in various applications, from finance to healthcare and image analysis.
+\begin{itemize}
+    \item For Demographic Parity:
+    \begin{itemize}
+        \item Metric: Disparate Impact
+    \end{itemize}
     
-    \item \emph{LGB Classifier}: LightGBM, short for Light Gradient Boosting Machine, stands out as a powerful gradient boosting framework that originated from the innovation labs at Microsoft. Engineered with a specific focus on efficiency, speed, and scalability, LightGBM has become a prominent choice in the realm of machine learning, demonstrating exceptional performance across various tasks.
-    
-    \item \emph{DecisionTree Classifier}: DecisionTree Classifier is a specific type of machine learning algorithm primarily used for classification tasks. It constructs a tree-like model, where each internal node represents a decision based on a specific feature, and each leaf node denotes the predicted class label for the input data point.
+    \item For Group Fairness:
+    \begin{itemize}
+        \item Metric: Demographic Parity Difference
+    \end{itemize}
+\end{itemize}
 
-\end{enumerate}
-
-On the previous models is applied the GridSearch with a \emph{cv} of 10 in order to select the best parameters combination for each one. In the following are reported the specific parameters for each model:
-
-\begin{enumerate}
-    
-    \item RandomForest Classifier:
-    
-    \begin{enumerate}
-       
-        \item \emph{n\textunderscore estimators}: [10, 100, 10]
-       
-        \item \emph{criterion}: [gini, entropy, log\textunderscore loss]
-       
-        \item \emph{max\textunderscore depth}: [10, 50, 10]
-       
-        \item \emph{max\textunderscore leaf\textunderscore nodes}: [10, 50, 10]
-    
-    \end{enumerate}
-    
-    \item LGB Classifier:
-
-    \begin{enumerate}
-
-        \item \emph{learning\textunderscore rate}: [0.01, 0.05, 0.1]
-
-        \item \emph{n\textunderscore estimators}: [100, 200, 300]
-
-        \item \emph{num\textunderscore leaves}: [20, 30, 40]
-
-        \item \emph{min\textunderscore child\textunderscore samples}: [10, 20, 30]
-
-    \end{enumerate}
-    
-    \item DecisionTree Classifier:
-    
-    \begin{enumerate}
-    
-        \item \emph{criterion}: [gini, entropy, log\textunderscore loss]
-    
-        \item \emph{max\textunderscore depth}: [10, 50, 10]
-    
-        \item \emph{max\textunderscore leaf\textunderscore nodes}: [10, 50, 10]
-    
-    
-    \end{enumerate}
-
-\end{enumerate}
-
-Each machine learning model in this study is trained using a training dataset comprising 67\% of the original data, with the remaining 33\% reserved for testing purposes. To provide a more granular analysis, we've segmented the data based on the students' grade levels. Let \( G4 \) represent the subset of the original dataset filtered to include only students enrolled in grade 4.
-
-For the grade 4 dataset (\( G4 \)), the outcomes for every model are presented. Specifically, are highlighted the best-performing model identified during the evaluation process and report its accuracy on the corresponding test set.
-
-This focused analysis on grade 4 allows us to uncover insights that are specific to this grade level. Beyond the accuracy, for each algorithm chosen in the workflow it's performed a fairness evaluation on the results in order to assess the trade-off and the relationship between accuracy and fairness.
-
-
-\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through data rebalancing algorithm}
-
-Before delving into the evaluation of accuracy and fairness metrics, it is imperative to acknowledge and assess the impact of data augmentation on the original dataset. In the preprocessing phase, the dataset underwent a transformative journey, expanding from an initial size of 6586 instances to a final count of 83027 instances.
-
-\subsubsection{Best models}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  {70, 'log\textunderscore loss', 40, 40} \\
-    \hline
-    LGB Classifier & {0.1, 300, 'n\textunderscore estimators': 300, 40, 30} \\
-    \hline
-    DecisionTree Classifier & {'gini', 30, 20} \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\ 
-    \hline
-    RandomForest Classifier  &  0.9944530046224962 \\
-    \hline
-    LGB Classifier & 0.9990755007704161 \\
-    \hline
-    DecisionTree Classifier & 0.9947611710323575 \\ 
-    \hline
-\end{tabular}
-
-\subsection{Fairness evaluation}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Demographic parity difference} \\
-    \hline
-    RandomForest Classifier & 0.0165 \\
-    \hline
-    LGB Classifier & 0.0189 \\
-    \hline
-    DecisionTree Classifier & 0.0195 \\
-    \hline
-\end{tabular}
-
-
-In the rigorous application of the fair-by-design workflow using the pre-processing algorithm explained in \cref{subsec:ftdr}, a notable outcome has been observed, wherein the attained accuracy registers an impressive 99\%. Simultaneously, the Demographic Parity metric, a quintessential measure of fairness, manifests itself with a marginal disparity of merely 0.018. This dual accomplishment signifies a remarkable synergy between precision and equitable treatment within the model's predictions.
-
-The discernibly high accuracy of 99\% is indicative of the model's proficiency in rendering precise and reliable predictions across the entire dataset. This noteworthy level of accuracy attests to the efficacy of the model in discerning intricate patterns and capturing the underlying relationships within the data, thereby facilitating optimal predictive performance.
-
-Concomitant with this exceptional accuracy is the meticulous attention given to fairness considerations, as evidenced by the minute Demographic Parity metric of 0.018. This metric quantifies the disparity in predictive outcomes between different demographic groups, and a value close to zero signifies a commendable mitigation of disparate impact. The marginality of the observed Demographic Parity underscores the commitment to ensuring equitable treatment across diverse subpopulations.
-
-The confluence of a 99\% accuracy rate and a minimal Demographic Parity of 0.018 underscores the successful amalgamation of predictive prowess with fairness objectives in the fair-by-design workflow. This result not only speaks to the model's efficacy in providing accurate predictions but also accentuates its ethical robustness in fostering equitable outcomes across various demographic strata.
-
-
-\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through Equalized-Odds Post-Processing with Threshold Optimizer}
-
-\subsubsection{Best models}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  {90, 'entropy', 40, 40} \\
-    \hline
-    LGB Classifier & {0.05, 100, 20, 20} \\
-    \hline
-    DecisionTree Classifier & {'gini', 10, 10} \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\ 
-    \hline
-    RandomForest Classifier  &  0.9910631741140216 \\
-    \hline
-    LGB Classifier & 0.9969183359013868 \\
-    \hline
-    DecisionTree Classifier & 0.9996918335901387 \\ 
-    \hline
-\end{tabular}
-
-\subsection{Fairness evaluation}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Demographic parity difference} \\
-    \hline
-    RandomForest Classifier & 0.6363636363636364 \\
-    \hline
-    LGB Classifier & 0.6363636363636364 \\
-    \hline
-    DecisionTree Classifier & 0.6363636363636364 \\
-    \hline
-\end{tabular}
-
-
-In the meticulous application of the fair-by-design framework exploiting the post-processing approach of the threshold optmizer with equalized odds as constraint, a noteworthy outcome has emerged, wherein the model exhibits a consistent and commendable accuracy rate of 99\%. However, it is essential to underscore that despite the remarkable accuracy, the Demographic Parity metric registers at 0.6363. This metric encapsulates the extent of disparate impact across diverse demographic subgroups, and its non-trivial value prompts careful consideration.
-
-The persistent accuracy of 99\% accentuates the model's adeptness in furnishing highly precise predictions, signifying its proficiency in discerning complex patterns inherent in the dataset. This substantial level of accuracy attests to the model's capacity to capture and leverage intricate relationships within the data, thereby facilitating consistently robust predictive performance.
-
-Concurrently, the Demographic Parity metric, with a value of 0.6363, points to a notable level of disparate impact in the model's predictions across different demographic groups. While the accuracy remains exceptionally high, the observed demographic disparity necessitates a nuanced examination of potential biases and disparate outcomes within the predictions, particularly concerning equitable treatment across various subpopulations.
-
-This outcome prompts a reflective evaluation of the trade-offs between accuracy and fairness within the fair-by-design paradigm. While the model excels in predictive precision, the discernible demographic disparity underscores the imperative to refine and recalibrate the fairness considerations inherent in the model's architecture. Striking an optimal balance between accuracy and fairness remains a pivotal challenge in the ongoing evolution of ethical machine learning practices.
-
-\subsection{Performance and fairness evaluation for the Workflow applied with the Fairness through GridSearch Reduction algorithm}
-
-\subsubsection{Best models}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Best parameters} \\
-    \hline
-    RandomForest Classifier  &  {70, 'entropy', 10, 40} \\
-    \hline
-    LGB Classifier & {0.05, 100, 20, 20} \\
-    \hline
-    DecisionTree Classifier & {'gini', 10, 10} \\
-    \hline
-\end{tabular}
-
-\subsubsection{Accuracy}
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Accuracy} \\ 
-    \hline
-    RandomForest Classifier  &  0.5211093990755008\\
-    \hline
-    LGB Classifier & 0.5201848998459168 \\
-    \hline
-    DecisionTree Classifier & 0.5201848998459168 \\ 
-    \hline
-\end{tabular}
-
-\subsection{Fairness evaluation}
-
-\begin{tabular}{|c|c|c|}
-    \hline
-    \textbf{Model} & \textbf{Demographic parity difference} \\
-    \hline
-    RandomForest Classifier & 1.0 \\
-    \hline
-    LGB Classifier & 1.0 \\
-    \hline
-    DecisionTree Classifier & 1.0 \\
-    \hline
-\end{tabular}
-
-In the implementation of the grid search reduction algorithm, a consequential outcome has materialized, revealing an accuracy metric of 0.52 alongside a striking Demographic Parity value of 1.0. This juxtaposition underscores a distinctive trade-off between predictive accuracy and fairness within the model.
-
-The attainment of an accuracy of 0.52 denotes a notable reduction in predictive performance. This diminished accuracy implies a decreased ability of the model to precisely discern patterns and relationships within the dataset. While this reduction may be a consequence of the intentional introduction of fairness constraints, it underscores the inherent challenge of optimizing both accuracy and fairness simultaneously.
-
-Concomitantly, the Demographic Parity metric reaching a maximal value of 1.0 is indicative of a deliberate adjustment to ensure equalized outcomes across different demographic groups. This perfect parity, while reflecting a commitment to fairness, comes at the cost of a substantial reduction in accuracy, emphasizing the intricate balance required when implementing fairness-oriented algorithms.
-
-The observed outcome prompts a nuanced consideration of the specific trade-offs introduced by the grid search reduction algorithm. The deliberate compromise on accuracy in favor of achieving maximal demographic parity underscores the ethical imperative to mitigate disparate impact across diverse subpopulations. However, this stark trade-off emphasizes the challenges in harmonizing predictive precision with fairness constraints within the confines of the applied algorithm.
-
-In essence, the interplay between a reduced accuracy of 0.52 and a maximal Demographic Parity of 1.0 highlights the complex and delicate nature of integrating fairness considerations into the model development process. This result prompts a reflective examination of the ethical implications of algorithmic decisions, underscoring the ongoing pursuit of models that navigate the intricate balance between predictive accuracy and equitable outcomes.
+These succinctly defined objectives, paired with chosen fairness notions and metrics, lay the groundwork for the Fair-by-Design workflow, ensuring a focused approach toward accurate predictions while fostering fairness across diverse subgroups.
