@@ -82,37 +82,57 @@ In the context of the Fair-by-Design workflow, six key fairness algorithms have 
 
 \subsubsection{Data Augmentation Algorithm}
 
-\textbf{Algorithm Description:} The proposed data augmentation algorithm introduces synthetic samples to the training dataset. By augmenting the data, especially focusing on underrepresented groups, the algorithm aims to enhance the model's exposure to diverse scenarios, promoting a more robust understanding of the underlying patterns.
+\begin{itemize}
 
-\textbf{Reasoning:} Data augmentation is crucial for addressing imbalances in the training data, allowing the model to generalize better across different groups and mitigating biases stemming from insufficient representation.
+    \item \emph{Algorithm Description:} The proposed data augmentation algorithm introduces synthetic samples to the training dataset. By augmenting the data, especially focusing on underrepresented groups, the algorithm aims to enhance the model's exposure to diverse scenarios, promoting a more robust understanding of the underlying patterns.
+
+    \item \emph{Reasoning:} Data augmentation is crucial for addressing imbalances in the training data, allowing the model to generalize better across different groups and mitigating biases stemming from insufficient representation.
+
+\end{itemize}
 
 \subsubsection{Fairness Through Unawareness}
 
-\textbf{Algorithm Description:} Fairness through unawareness involves deliberately avoiding the use of sensitive attributes in the modeling process. This pre-processing approach aims to promote fairness by excluding potentially biased features, thus reducing the risk of discrimination based on sensitive attributes.
+\begin{itemize}
 
-\textbf{Reasoning:} Fairness through unawareness is considered to mitigate biases by preventing the model from directly using sensitive attributes, thereby minimizing the potential for biased predictions associated with these attributes.
+    \item \emph{Algorithm Description:} Fairness through unawareness involves deliberately avoiding the use of sensitive attributes in the modeling process. This pre-processing approach aims to promote fairness by excluding potentially biased features, thus reducing the risk of discrimination based on sensitive attributes.
+
+    \item \emph{Reasoning:} Fairness through unawareness is considered to mitigate biases by preventing the model from directly using sensitive attributes, thereby minimizing the potential for biased predictions associated with these attributes.
+
+\end{itemize}
 
 \subsection{In-processing Algorithms}
 
 \subsubsection{ExponentiatedGradient}
 
-\textbf{Algorithm Description:} The ExponentiatedGradient algorithm applies iterative re-weighting to the training data, seeking to find a fair classifier by minimizing the disparity in predictions across sensitive groups.
+\begin{itemize}
 
-\textbf{Reasoning:} ExponentiatedGradient is chosen for its versatility and effectiveness in in-processing fairness. It provides a fine-tuning mechanism during training to achieve parity in predicted outcomes.
+    \item \emph{Algorithm Description}: The ExponentiatedGradient algorithm applies iterative re-weighting to the training data, seeking to find a fair classifier by minimizing the disparity in predictions across sensitive groups.
+
+    \item \emph{Reasoning:} ExponentiatedGradient is chosen for its versatility and effectiveness in in-processing fairness. It provides a fine-tuning mechanism during training to achieve parity in predicted outcomes.
+
+\end{itemize}
 
 \subsubsection{GridSearch}
 
-\textbf{Algorithm Description:} GridSearch is a generic algorithm that explores a range of hyperparameter values to find the optimal configuration for a fair classifier.
+\begin{itemize}
 
-\textbf{Reasoning:} GridSearch is included to assess the impact of hyperparameter tuning on fairness outcomes, offering insights into the versatility of the approach.
+    \item \emph{Algorithm Description:} GridSearch is a generic algorithm that explores a range of hyperparameter values to find the optimal configuration for a fair classifier.
+
+    \item \emph{Reasoning:} GridSearch is included to assess the impact of hyperparameter tuning on fairness outcomes, offering insights into the versatility of the approach.
+
+\end{itemize}
 
 \subsection{Post-processing Algorithms}
 
 \subsubsection{ThresholdOptimizer}
 
-\textbf{Algorithm Description:} ThresholdOptimizer focuses on adjusting decision thresholds post-modeling to achieve fairness goals. It provides flexibility in fine-tuning predictions without retraining the entire model.
+\begin{itemize}
 
-\textbf{Reasoning:} ThresholdOptimizer is included to evaluate the effectiveness of post-processing adjustments in achieving fairness objectives. It offers a practical and interpretable way to balance accuracy and fairness.
+    \item \emph{Algorithm Description:} ThresholdOptimizer focuses on adjusting decision thresholds post-modeling to achieve fairness goals. It provides flexibility in fine-tuning predictions without retraining the entire model.
+
+    \item \emph{Reasoning:} ThresholdOptimizer is included to evaluate the effectiveness of post-processing adjustments in achieving fairness objectives. It offers a practical and interpretable way to balance accuracy and fairness.
+
+\end{itemize}
 
 The choice of these five algorithms is driven by the aim of obtaining a holistic view of the Fair-by-Design workflow's performance. By incorporating diverse pre-processing, in-processing, and post-processing strategies, the evaluation can capture the nuances of fairness considerations at different stages of the machine learning pipeline. This comprehensive approach ensures a thorough exploration of potential biases and fairness enhancements, laying the foundation for a robust and equitable model.
 
@@ -125,20 +145,16 @@ The choice of these five algorithms is driven by the aim of obtaining a holistic
 
 The model training process involves the utilization of three distinct classifiers:
 
-1. \textbf{SGD Classifier}
-   \begin{itemize}
-       \item \textit{Description:} Stochastic Gradient Descent (SGD) classifier is employed for its efficiency in training large datasets and adaptability to different problem domains.
-   \end{itemize}
+\begin{itemize}
 
-2. \textbf{RandomForest Classifier}
-   \begin{itemize}
-       \item \textit{Description:} RandomForest classifier, known for its ensemble learning approach, is chosen to capture complex relationships in the data and enhance predictive performance.
-   \end{itemize}
+    \item \emph{SGD Classifier}: Stochastic Gradient Descent (SGD) classifier is employed for its efficiency in training large datasets and adaptability to different problem domains.
 
-3. \textbf{XGBoost}
-   \begin{itemize}
-       \item \textit{Description:} XGBoost, an optimized gradient boosting algorithm, is selected for its ability to handle diverse datasets and deliver high predictive accuracy.
-   \end{itemize}
+    \item \emph{XGBoost}: XGBoost, an optimized gradient boosting algorithm, is selected for its ability to handle diverse datasets and deliver high predictive accuracy.
+
+    \item \emph{RandomForest Classifier:} RandomForest classifier, known for its ensemble learning approach, is chosen to capture complex relationships in the data and enhance predictive performance.
+
+\end{itemize}
+
 
 \subsection{Performance Evaluation}
 
