@@ -218,29 +218,30 @@ where \(X_{i}\) represents the outcome distribution for a specific group, and \(
 \paragraph{Group Fairness:}
 
 Group Fairness ensures fair treatment for entire groups, typically based on statistical measures. The \textbf{Statistical Parity Difference} is a common metric aligned with this notion. It measures the difference in favorable outcomes between protected and unprotected groups and is computed as:
-
 \[
 \text{Statistical Parity Difference} = \text{Favorable Outcome Rate}_{\text{Prot}} - \text{Favorable Outcome Rate}_{\text{Unprot}}
 \]
-
 A value of 0 suggests parity, while positive or negative values indicate disparities.
 
-These alighnments are well-represented in the following table
+\begin{figure}
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Fairness notion} & \textbf{Fairness metric} \\
+        \hline
+        Demographic Parity & Disparate Impact \\
+        \hline
+        Equalized Odds & Equalized Odds Difference \\
+        \hline
+        Individual Fairness & Theil Index \\
+        \hline
+        Group Fairness & Demographic Parity Difference \\
+        \hline
+    \end{tabular}
+    \caption{Fairness metric and notion alignment}
+    \label{fig:alignment}
+\end{figure}
 
-
-\begin{tabular}{|c|c|}
-    \hline
-    \textbf{Fairness notion} & \textbf{Fairness metric} \\
-    \hline
-    Demographic Parity & Disparate Impact \\
-    \hline
-    Equalized Odds & Equalized Odds Difference \\
-    \hline
-    Individual Fairness & Theil Index \\
-    \hline
-    Group Fairness & Demographic Parity Difference \\
-    \hline
-\end{tabular}
 \newpage
 \subsubsection{Choosing Fairness Metrics Given Notions or Vice Versa}
 
