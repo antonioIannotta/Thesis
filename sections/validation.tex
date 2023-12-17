@@ -10,13 +10,14 @@ The central emphasis of this validation endeavor is to ascertain not only the ac
 Throughout this chapter, the validation process unfolds systematically, encompassing diverse algorithms applied to the Adult dataset. The goal is to detect both the strengths and potential limitations of the Fair-by-Design approach, providing valuable insights for its application in scenarios where the equitable treatment of individuals and the accuracy of predictions are of paramount importance. The subsequent sections detail the experimental setup, algorithmic choices, and the rigorous evaluation metrics employed to ensure a comprehensive understanding of the Fair-by-Design workflow's performance on the chosen dataset.
 
 \section{Objective definition}
+\label{section:val_obj}
 
 In this section, we precisely outline the objectives guiding the Fair-by-Design workflow, focusing on effective income prediction while addressing fairness and mitigating biases. The key components include the identification of protected attributes, selection of fairness notions, and corresponding fairness metrics.
 
 \subsection{Prediction Objective}
 
 \begin{itemize}
-    \item Goal: Develop models for accurate income prediction.
+    \item Goal: Classify in a fairness way if an individual earns more or less than 50,000\$ / year.
 \end{itemize}
 
 \subsection{Protected Attributes}
@@ -54,3 +55,25 @@ In this section, we precisely outline the objectives guiding the Fair-by-Design 
 \end{itemize}
 
 These succinctly defined objectives, paired with chosen fairness notions and metrics, lay the groundwork for the Fair-by-Design workflow, ensuring a focused approach toward accurate predictions while fostering fairness across diverse subgroups.
+
+\section{Data collection}
+\label{section:val_dc}
+
+The dataset is already divided into two sets:
+\begin{itemize}
+    \item \emph{Training set}: 32,561 items
+    \item \emph{Test set}: 16,281 items
+\end{itemize}
+
+There are 14 independent features of different types and one dependent variable. Each record represents one individual and the output represents if the individual earns more or less than 50,000\$ on year basis.
+
+The two protected attributes detected in \cref{section:val_obj} are both discrete ones, while a consideration useful for the next steps is related to the output variable. This attribute is a binary one, but it is represented as a string. So it's important to ensure that the encoding in both training and test set are the same.
+
+\section{Data pre-processing}
+
+Starting from the information provided by \cref{section:val_dc} in this section all the variables represend as string as been labeled the same manner. This led to a consistent dataset to be used in the models training.
+
+\section{Algorithm design}
+
+
+
