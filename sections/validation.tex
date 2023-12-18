@@ -160,6 +160,13 @@ The model training process involves the utilization of two distinct classifiers:
 
 The evaluation of general results encompasses an assessment of the overall model performance and the computation of fairness metrics.
 
+It's important, before to provide a general view of the results, provide some considerations on the pre-processing algorithms:
+
+\begin{itemize}
+    \item \emph{Data augmentation}: this algorithm led the dataset from 32,561 to 261,700.
+    \item \emph{Fairness through unawareness}: in order to apply this algorithm the protected attribute have been replaced with their \emph{median} value.
+\end{itemize}
+
 In order to provide a tabular representation of the results it's necessary to assign some labels to have a more compressed representation:
 
 \begin{itemize}
