@@ -221,9 +221,18 @@ In order to provide a tabular representation of the results it's necessary to as
     \label{fig:results}
 \end{figure}
 
+About these results is possible to make some considerations:
+\begin{itemize}
+    \item The Threshold Optimizer algorithm with a constant accuracy of 76.3\% achieves a perfect group fairness but there's an absolute lack of demographic parity.
+    \item Along the several algorithms and models is possible to notice how the group fairness is approximately better achieved than the demographic parity.
+    \item The accuracy is around the 80\% in every scenarios, with the minimum value for the post-processing algorithm and the maximum value for the XGB model with the Fairness through Unawareness algorithm.
+    \item It's important to consider the results obtained from the FtU tests because this raises issues opened in literature, more specifically the ones related to the proxy attributes that may lead to the protected ones.
+\end{itemize}
+
 \subsubsection{Accuracy Grouped by Fairness Algorithm}
 
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
+
 
 \subsubsection{Fairness Values Grouped by Fairness Algorithm}
 
