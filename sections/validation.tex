@@ -143,11 +143,9 @@ The choice of these five algorithms is driven by the aim of obtaining a holistic
 
 \subsubsection{Training Models}
 
-The model training process involves the utilization of three distinct classifiers:
+The model training process involves the utilization of two distinct classifiers:
 
 \begin{itemize}
-
-    \item \emph{SGD Classifier}: Stochastic Gradient Descent (SGD) classifier is employed for its efficiency in training large datasets and adaptability to different problem domains.
 
     \item \emph{XGBoost}: XGBoost, an optimized gradient boosting algorithm, is selected for its ability to handle diverse datasets and deliver high predictive accuracy.
 
@@ -176,24 +174,40 @@ In order to provide a tabular representation of the results it's necessary to as
     \item \emph{Model}
     \begin{itemize}
         \item \emph{XGB Classifier}: XGB
-        \item \emph{SGD Classifier}: SGD
         \item \emph{RandomForest Classifier}: RF
     \end{itemize}
     \item \emph{Accuracy}: Acc
-    \item \emph{Fairness metric}: FairMet
+    \item \emph{Fairness metric}:
     \begin{itemize}
-        \item \emph{Disparate Impact}: DI
-        \item \emph{Demographic Parity Difference}: DPD
+        \item Protected attribute: Sex
+        \begin{itemize}
+            \item \emph{Disparate Impact }: DIs
+            \item \emph{Demographic Parity Difference}: DPDs
+        \end{itemize}
+        \item Protected attribute: Race
+        \begin{itemize}
+            \item \emph{Disparate Impact }: DIr
+            \item \emph{Demographic Parity Difference}: DPDr
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|}
         \hline
-        \textbf{FairAlg} & \textbf{Model} & \textbf{Acc} & \textbf{FairMet} \\
+        \textbf{FairAlg} & \textbf{Model} & \textbf{Acc} & \textbf{DIs} & \textbf{DIr} & \textbf{DPDs} & \textbf{DPDr} \\
         \hline
-        & & & \\
+        DA & XGB & 0.7918 & 0.5409 & 0.7352 & 0.0171 & 0.0053 \\
+        DA & RF & 0.7890 & 0.5950 & 0.7486 & 0.0155 & 0.0051 \\
+        FtU & XGB & 0.8235 & 0.3809 & 0.5703 & 0.0242 & 0.0083 \\
+        FtU & RF & 0.8162 & 0.4075 & 0.6308 & 0.0197 & 0.0063 \\
+        EG & XGB & 0.8079 & 0.5102 & 0.6802 & 0.0265 & 0.0092 \\
+        EG & RF & 0.7949 & 0.6154 & 0.7442 & 0.0174 & 0.0064 \\
+        GS & XGB & 0.8086 & 0.4103 & 0.6247 & 0.0149 & 0.0046 \\
+        GS & RF & 0.8109 & 0.4325 & 0.6376 & 0.0163 & 0.0052 \\
+        TO & XGB & 0.7637 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+        TO & RF & 0.7637 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
         \hline
     \end{tabular}
     \caption{Models training results}
