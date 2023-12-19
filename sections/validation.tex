@@ -233,9 +233,49 @@ About these results is possible to make some considerations:
 
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{acc_alg.png}
+    \label{fig:acc_alg}
+    \caption{Min-Max accuracy for each fairness algorithm}
+\end{figure}
 
 \subsubsection{Fairness Values Grouped by Fairness Algorithm}
 
 Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
 
-This structured evaluation approach ensures a detailed examination of both general model performance and fairness considerations, allowing for a nuanced understanding of the effectiveness of the Fair-by-Design workflow across multiple classifiers and fairness algorithms.
+\paragraph{Disparate impact for sex protected attribute}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dis.png}
+    \label{fig:dis}
+    \caption{Min-Max Disparate Impact Metric for Sex protected attributes and for each fairness algorithm}
+\end{figure}
+
+\paragraph{Disparate impact for race protected attribute}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dir.png}
+    \label{fig:dir}
+    \caption{Min-Max Disparate Impact Metric for Race protected attributes and for each fairness algorithm}
+\end{figure}
+
+\paragraph{Demographic parity difference for sex protected attribute}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dpds.png}
+    \label{fig:dpds}
+    \caption{Min-Max Demographic Parity Difference Metric for Sex protected attributes and for each fairness algorithm}
+\end{figure}
+
+\paragraph{Demographic parity difference for race protected attribute}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dpdr.png}
+    \label{fig:dpdr}
+    \caption{Min-Max Demographic Parity Difference for Race protected attributes and for each fairness algorithm}
+\end{figure}
