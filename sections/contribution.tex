@@ -152,13 +152,13 @@ Fairness notions represent the abstract principles guiding the desired equitable
 
 \begin{itemize}
   
-    \item \textbf{Demographic Parity:} Ensuring equal representation of protected groups across different outcomes.
+    \item \emph{Demographic Parity:} Ensuring equal representation of protected groups across different outcomes.
   
-    \item \textbf{Equalized Odds:} Balancing the true positive and false positive rates across protected groups.
+    \item \emph{Equalized Odds:} Balancing the true positive and false positive rates across protected groups.
   
-    \item \textbf{Individual Fairness:} Treating similar individuals similarly, regardless of their protected attributes.
+    \item \emph{Individual Fairness:} Treating similar individuals similarly, regardless of their protected attributes.
    
-    \item \textbf{Group Fairness:} Ensuring fair treatment for entire groups, typically based on statistical measures.
+    \item \emph{Group Fairness:} Ensuring fair treatment for entire groups, typically based on statistical measures.
 
 \end{itemize}
 
@@ -170,13 +170,13 @@ A fairness metric quantifies the level of fairness achieved by the AI system wit
 
 \begin{itemize}
    
-    \item \textbf{Disparate Impact:} Measures the ratio of favorable outcomes between protected and unprotected groups.
+    \item \emph{Disparate Impact:} Measures the ratio of favorable outcomes between protected and unprotected groups.
    
-    \item \textbf{Equalized Odds Difference:} Quantifies the disparity in error rates between protected groups.
+    \item \emph{Equalized Odds Difference:} Quantifies the disparity in error rates between protected groups.
    
-    \item \textbf{Theil Index:} Evaluates the distribution of outcomes across different demographic groups.
+    \item \emph{Theil Index:} Evaluates the distribution of outcomes across different demographic groups.
    
-    \item \textbf{Statistical Parity Difference:} Measures the difference in favorable outcomes between protected and unprotected groups.
+    \item \emph{Dempraphic Parity Difference:} Measures the difference in favorable outcomes between protected and unprotected groups.
 
 \end{itemize}
 
@@ -187,7 +187,7 @@ The alignment between fairness notions and fairness metrics is a critical aspect
 
 \paragraph{Demographic Parity:}
 
-For the fairness notion of Demographic Parity, the primary concern is ensuring equal representation of protected groups across different outcomes. This notion is often aligned with the fairness metric known as \textbf{Disparate Impact}, which quantifies the ratio of favorable outcomes between protected and unprotected groups. Specifically, the Disparate Impact metric is calculated as:
+For the fairness notion of Demographic Parity, the primary concern is ensuring equal representation of protected groups across different outcomes. This notion is often aligned with the fairness metric known as \emph{Disparate Impact}, which quantifies the ratio of favorable outcomes between protected and unprotected groups. Specifically, the Disparate Impact metric is calculated as:
 
 \[
 \text{Disparate Impact} = \frac{\text{Favorable Outcome Rate for Protected Group}}{\text{Favorable Outcome Rate for Unprotected Group}}
@@ -197,7 +197,7 @@ A Disparate Impact value close to 1 indicates a balanced representation, while v
 
 \paragraph{Equalized Odds:}
 
-The Equalized Odds fairness notion aims to balance the true positive and false positive rates across protected groups. This aligns with the \textbf{Equalized Odds Difference} fairness metric, which quantifies the disparity in error rates between protected groups. The Equalized Odds Difference is computed as:
+The Equalized Odds fairness notion aims to balance the true positive and false positive rates across protected groups. This aligns with the \emph{Equalized Odds Difference} fairness metric, which quantifies the disparity in error rates between protected groups. The Equalized Odds Difference is computed as:
 
 \[
 \text{Equalized Odds Difference} = \text{True Positive Rate}_{\text{Protected}} - \text{True Positive Rate}_{\text{Unprotected}}
@@ -207,7 +207,7 @@ A value of 0 indicates perfect balance, with positive or negative values signify
 
 \paragraph{Individual Fairness:}
 
-Individual Fairness focuses on treating similar individuals similarly, regardless of their protected attributes. This notion is inherently challenging to quantify, but proxy metrics such as \textbf{Theil Index} may be employed. The Theil Index evaluates the distribution of outcomes across different demographic groups and is given by:
+Individual Fairness focuses on treating similar individuals similarly, regardless of their protected attributes. This notion is inherently challenging to quantify, but proxy metrics such as \emph{Theil Index} may be employed. The Theil Index evaluates the distribution of outcomes across different demographic groups and is given by:
 
 \[
 \text{Theil Index} = \sum \left( \frac{X_{i}}{\mu} \ln \frac{X_{i}}{\mu} \right)
@@ -217,7 +217,7 @@ where \(X_{i}\) represents the outcome distribution for a specific group, and \(
 
 \paragraph{Group Fairness:}
 
-Group Fairness ensures fair treatment for entire groups, typically based on statistical measures. The \textbf{Statistical Parity Difference} is a common metric aligned with this notion. It measures the difference in favorable outcomes between protected and unprotected groups and is computed as:
+Group Fairness ensures fair treatment for entire groups, typically based on statistical measures. The \emph{Demographic Parity Difference} is a common metric aligned with this notion. It measures the difference in favorable outcomes between protected and unprotected groups and is computed as:
 \[
 \text{Statistical Parity Difference} = \text{Favorable Outcome Rate}_{\text{Prot}} - \text{Favorable Outcome Rate}_{\text{Unprot}}
 \]
@@ -251,11 +251,11 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
 
 \begin{enumerate}
  
-    \item \textbf{Define Fairness Goals:} Clearly articulate the fairness goals, considering the desired equitable outcomes for protected groups.
+    \item \emph{Define Fairness Goals:} Clearly articulate the fairness goals, considering the desired equitable outcomes for protected groups.
  
-    \item \textbf{Identify Relevant Fairness Notion:} Select the fairness notion that aligns most closely with the defined fairness goals (e.g., Demographic Parity, Equalized Odds, Individual Fairness, or Group Fairness).
+    \item \emph{Identify Relevant Fairness Notion:} Select the fairness notion that aligns most closely with the defined fairness goals (e.g., Demographic Parity, Equalized Odds, Individual Fairness, or Group Fairness).
  
-    \item \textbf{Choose Aligned Fairness Metric:} Based on the selected fairness notion, choose the fairness metric that provides a quantitative measure of the specified fairness goals (e.g., Disparate Impact, Equalized Odds Difference, Theil Index, or Statistical Parity Difference).
+    \item \emph{Choose Aligned Fairness Metric:} Based on the selected fairness notion, choose the fairness metric that provides a quantitative measure of the specified fairness goals (e.g., Disparate Impact, Equalized Odds Difference, Theil Index, or Demographic Parity Difference).
 
 \end{enumerate}
 
@@ -263,11 +263,11 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
 
 \begin{enumerate}
 
-    \item \textbf{Understand Fairness Metric:} Gain a deep understanding of the chosen fairness metric, considering its strengths, limitations, and relevance to specific fairness goals.
+    \item \emph{Understand Fairness Metric:} Gain a deep understanding of the chosen fairness metric, considering its strengths, limitations, and relevance to specific fairness goals.
 
-    \item \textbf{Determine Fairness Notion Alignment:} Identify the fairness notion that aligns with the underlying principles of the chosen fairness metric (e.g., Disparate Impact aligns with Demographic Parity).
+    \item \emph{Determine Fairness Notion Alignment:} Identify the fairness notion that aligns with the underlying principles of the chosen fairness metric (e.g., Disparate Impact aligns with Demographic Parity).
  
-    \item \textbf{Ensure Consistency:} Confirm that the selected fairness metric is consistent with the broader fairness goals and ethical considerations of the AI application.
+    \item \emph{Ensure Consistency:} Confirm that the selected fairness metric is consistent with the broader fairness goals and ethical considerations of the AI application.
 
 \end{enumerate}
 
@@ -396,7 +396,7 @@ In summary, the data pre-processing stage involves sophisticated transformations
 \subsection{Algorithm design}
 \label{subsection:algorithm}
 
-he stage of Algorithm Design within the fair-by-design workflow stands as a pivotal phase wherein the selection, adaptation, or creation of machine learning models takes place to harmonize with the specified objectives and fairness considerations. The primary objective is to craft models that not only excel in accuracy but also steadfastly adhere to ethical and fair principles. This section undertakes an in-depth exploration of the crucial considerations, strategic approaches, and the step-by-step implementation processes entailed in Algorithm Design. By navigating through these aspects, the aim is to foster the development of models that not only deliver superior performance but also champion the ideals of ethics and fairness in their predictive outcomes.
+The stage of Algorithm Design within the Fair-by-Design workflow stands as a pivotal phase wherein the selection, adaptation, or creation of machine learning models takes place to harmonize with the specified objectives and fairness considerations. The primary objective is to craft models that not only excel in accuracy but also steadfastly adhere to ethical and fair principles. This section undertakes an in-depth exploration of the crucial considerations, strategic approaches, and the step-by-step implementation processes entailed in algorithm design. By navigating through these aspects, the aim is to foster the development of models that not only deliver superior performance but also champion the ideals of ethics and fairness in their predictive outcomes.
 
 \subsubsection{Key Considerations}
 
@@ -454,7 +454,7 @@ In-processing algorithms intervene directly during the model training process, i
 
 \end{itemize}
 
-\textbf{Post-processing Algorithms}
+\paragraph{Post-processing Algorithms}
 
 Post-processing algorithms come into play after model training, adjusting predictions to align with fairness objectives. This approach offers a corrective mechanism to fine-tune model outputs based on fairness considerations.
 
@@ -488,7 +488,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 % Include the detailed implementation steps for each key consideration as per the previous discussion.
 
-\textbf{Fairness-Aware Model Selection}
+\paragraph{Fairness-Aware Model Selection}
 
 \begin{itemize}
 
@@ -500,7 +500,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
     
         \item When delving into the realm of fairness-aware models tailored for a specific application domain, it is judicious to prioritize models explicitly designed to address bias. This consideration encompasses, but is not confined to, adversarial networks or models featuring inherent fairness constraints. Adversarial networks serve the purpose of mitigating bias by introducing a secondary network that identifies and counteracts any discriminatory patterns discerned in the primary model. Conversely, models with built-in fairness constraints integrate predefined fairness metrics into the optimization process, ensuring the model adheres to fairness criteria throughout training.
 
-        The evaluation of these specialized models yields a nuanced understanding of their efficacy in handling bias, furnishing practitioners with invaluable insights into the most suitable approach for mitigating bias within their specific context. This deliberate consideration solidifies the fair-by-design approach, underscoring the paramount importance of selecting models that actively address and rectify biases to foster equitable outcomes in the realm of machine learning applications.    
+        The evaluation of these specialized models yields a nuanced understanding of their efficacy in handling bias, furnishing practitioners with invaluable insights into the most suitable approach for mitigating bias within their specific context. This deliberate consideration solidifies the Fair-by-Design approach, underscoring the paramount importance of selecting models that actively address and rectify biases to foster equitable outcomes in the realm of machine learning applications.    
     
     \end{itemize}
     
@@ -510,17 +510,17 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
     
         \item Following the selection of a fairness-aware model tailored for the specific application domain, the subsequent imperative involves its implementation within the chosen machine learning framework. This intricate process necessitates the translation of model specifications and architecture into code, meticulous configuration of essential parameters, and seamless integration into the overarching machine learning pipeline. The implementation procedure should strictly adhere to industry best practices and guidelines stipulated by the chosen framework, ensuring not only optimal performance but also seamless compatibility.
 
-        Furthermore, developers must prioritize the interpretability of the model, recognizing that transparency is pivotal in comprehending how fairness considerations are intricately embedded within the system. The successful execution of the implementation phase represents a pivotal juncture in the fair-by-design workflow. It sets the groundwork for subsequent stages encompassing model training, rigorous evaluation, and eventual deployment, all underscored by an unwavering commitment to fostering equitable and unbiased machine learning outcomes.    
+        Furthermore, developers must prioritize the interpretability of the model, recognizing that transparency is pivotal in comprehending how fairness considerations are intricately embedded within the system. The successful execution of the implementation phase represents a pivotal juncture in the Fair-by-Design workflow. It sets the groundwork for subsequent stages encompassing model training, rigorous evaluation, and eventual deployment, all underscored by an unwavering commitment to fostering equitable and unbiased machine learning outcomes.    
     
         \item Subsequent to the implementation of the chosen fairness-aware model, a pivotal phase entails customizing the model to harmonize with the unique characteristics of the dataset and the precise fairness objectives delineated earlier in the workflow. This customization process necessitates the fine-tuning of model parameters, adjustment of hyperparameters, and incorporation of features that aptly accommodate the nuanced intricacies present in the dataset.
 
-        Moreover, developers may find it imperative to introduce specific fairness-oriented adjustments to the model's architecture. This ensures the model's adeptness in effectively handling and mitigating biases associated with protected attributes. Such meticulous and tailored customization stands as an indispensable step for optimizing the model's performance within the paradigm of the fair-by-design approach. Here, the overarching objective extends beyond technical excellence, encompassing the ethical imperative of delivering unbiased machine learning outcomes.    
+        Moreover, developers may find it imperative to introduce specific fairness-oriented adjustments to the model's architecture. This ensures the model's adeptness in effectively handling and mitigating biases associated with protected attributes. Such meticulous and tailored customization stands as an indispensable step for optimizing the model's performance within the paradigm of the Fair-by-Design approach. Here, the overarching objective extends beyond technical excellence, encompassing the ethical imperative of delivering unbiased machine learning outcomes.    
     
     \end{itemize}
 
 \end{itemize}
 
-\textbf{Explainability and Interpretability}
+\paragraph{Explainability and Interpretability}
 
 \begin{itemize}
 
@@ -528,21 +528,21 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
     \begin{itemize}
 
-        \item Within the fair-by-design workflow, the strategic choice of models renowned for their high explainability and interpretability holds paramount significance. Decision trees and rule-based models, celebrated for their inherent transparency, stand out as preferred choices in this context. The rationale underpinning this selection is deeply rooted in the commitment to transparency and accountability.
+        \item Within the Fair-by-Design workflow, the strategic choice of models renowned for their high explainability and interpretability holds paramount significance. Decision trees and rule-based models, celebrated for their inherent transparency, stand out as preferred choices in this context. The rationale underpinning this selection is deeply rooted in the commitment to transparency and accountability.
 
-        Models characterized by easy interpretability empower stakeholders, including end-users and decision-makers, to comprehend the intricate decision-making processes. This transparency not only cultivates trust but also facilitates the identification and mitigation of any potential biases or fairness concerns embedded within the model. By deliberately opting for models with high explainability, the fair-by-design workflow aligns seamlessly with its overarching goal of cultivating machine learning systems that excel not only in technical robustness but also in ethical soundness, ensuring they are readily understandable by a diverse range of stakeholders.
+        Models characterized by easy interpretability empower stakeholders, including end-users and decision-makers, to comprehend the intricate decision-making processes. This transparency not only cultivates trust but also facilitates the identification and mitigation of any potential biases or fairness concerns embedded within the model. By deliberately opting for models with high explainability, the Fair-by-Design workflow aligns seamlessly with its overarching goal of cultivating machine learning systems that excel not only in technical robustness but also in ethical soundness, ensuring they are readily understandable by a diverse range of stakeholders.
 
-        \item Within the fair-by-design workflow, when infusing fairness considerations into model selection, a critical aspect is to judiciously navigate the trade-offs between model complexity and interpretability. The optimal balance hinges significantly on the specific application requirements, playing a pivotal role in the decision-making process.
+        \item Within the Fair-by-Design workflow, when infusing fairness considerations into model selection, a critical aspect is to judiciously navigate the trade-offs between model complexity and interpretability. The optimal balance hinges significantly on the specific application requirements, playing a pivotal role in the decision-making process.
 
         Highly complex models, while potentially offering superior predictive performance, often come at the cost of diminished interpretability. Conversely, interpretable models such as decision trees or rule-based models may exhibit limitations in capturing intricate patterns present in the data. Striking the right balance becomes paramount; the fair-by-design approach is not solely concerned with ensuring fairness but also places a premium on transparency.
         
-        Therefore, the strategic selection of models aligning with the interpretability needs of stakeholders while still meeting performance requirements becomes a key consideration in the design process. This deliberate and conscious decision-making process contributes significantly to the development of machine learning models that are not only fair but also understandable and accountable, embodying the principles of the fair-by-design approach.
+        Therefore, the strategic selection of models aligning with the interpretability needs of stakeholders while still meeting performance requirements becomes a key consideration in the design process. This deliberate and conscious decision-making process contributes significantly to the development of machine learning models that are not only fair but also understandable and accountable, embodying the principles of the Fair-by-Design approach.
 
     \end{itemize}
 
 \end{itemize}
 
-\textbf{Regularization Techniques}
+\paragraph{Regularization Techniques}
 
 \begin{itemize}
 
@@ -550,17 +550,17 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
     \begin{itemize}
 
-        \item The incorporation of fairness constraints mandates a nuanced comprehension of the precise fairness goals and metrics germane to the application domain. In the fair-by-design approach, there is a pronounced emphasis on the principled and systematic integration of these constraints into the machine learning model's training process. This deliberate embedding of fairness into the training regimen aims to mitigate biases and advocate for equitable outcomes.
+        \item The incorporation of fairness constraints mandates a nuanced comprehension of the precise fairness goals and metrics germane to the application domain. In the proposed approach, there is a pronounced emphasis on the principled and systematic integration of these constraints into the machine learning model's training process. This deliberate embedding of fairness into the training regimen aims to mitigate biases and advocate for equitable outcomes.
 
-        The overarching objective of the fair-by-design workflow extends beyond the mere delivery of accurate predictions. It is intricately woven with the commitment to ethical and fairness considerations, thereby contributing substantively to the cultivation of responsible and unbiased machine learning practices. This concerted effort reinforces the imperative of aligning machine learning models with ethical principles, ensuring they operate within a framework that prioritizes fairness and equity.
+        The overarching objective of the workflow extends beyond the mere delivery of accurate predictions. It is intricately woven with the commitment to ethical and fairness considerations, thereby contributing substantively to the cultivation of responsible and unbiased machine learning practices. This concerted effort reinforces the imperative of aligning machine learning models with ethical principles, ensuring they operate within a framework that prioritizes fairness and equity.
 
-        \item Within the fair-by-design approach to machine learning, a pivotal facet involves the systematic experimentation with various regularization techniques. These methods, exemplified by demographic parity constraints or equalized odds constraints, assume a substantial role in the concerted effort to mitigate biases and champion fairness within machine learning models. Tailored to address specific fairness considerations linked to protected attributes, these techniques are meticulously designed to ascertain that the model's predictions remain uninfluenced by factors such as gender, race, or other sensitive attributes. This intentional and exploratory engagement with regularization techniques underscores the commitment to cultivating models that not only excel in predictive accuracy but also uphold the ethical imperative of fairness and equity.
+        \item Within the Fair-by-Design approach to machine learning, a pivotal facet involves the systematic experimentation with various regularization techniques. These methods, exemplified by demographic parity constraints or equalized odds constraints, assume a substantial role in the concerted effort to mitigate biases and champion fairness within machine learning models. Tailored to address specific fairness considerations linked to protected attributes, these techniques are meticulously designed to ascertain that the model's predictions remain uninfluenced by factors such as gender, race, or other sensitive attributes. This intentional and exploratory engagement with regularization techniques underscores the commitment to cultivating models that not only excel in predictive accuracy but also uphold the ethical imperative of fairness and equity.
     
     \end{itemize}
 
 \end{itemize}
 
-\textbf{Bias Detection and Mitigation}
+\paragraph{Bias Detection and Mitigation}
 
 \begin{itemize}
     
@@ -568,15 +568,15 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
     
     \begin{itemize}
     
-        \item A proactive strategy within the fair-by-design framework involves the development of adaptive algorithms that dynamically adjust to emerging biases in the data. These algorithms are meticulously designed to engage in continuous monitoring and evaluation of the model's performance, adept at identifying any potential biases that may manifest during operational phases. The adaptive nature of these algorithms empowers them to dynamically tweak parameters or decision boundaries in response to emerging biases, thereby ensuring an ongoing commitment to fairness in real-world applications. This forward-thinking approach aligns seamlessly with the ethos of the fair-by-design framework, emphasizing not only initial fairness but also the continuous vigilance and adaptation necessary for sustained equity in machine learning outcomes.
+        \item A proactive strategy within the Fair-by-Design framework involves the development of adaptive algorithms that dynamically adjust to emerging biases in the data. These algorithms are meticulously designed to engage in continuous monitoring and evaluation of the model's performance, adept at identifying any potential biases that may manifest during operational phases. The adaptive nature of these algorithms empowers them to dynamically tweak parameters or decision boundaries in response to emerging biases, thereby ensuring an ongoing commitment to fairness in real-world applications. This forward-thinking approach aligns seamlessly with the ethos of the framework, emphasizing not only initial fairness but also the continuous vigilance and adaptation necessary for sustained equity in machine learning outcomes.
 
-        \item A pivotal step in the fair-by-design workflow involves the implementation of corrective measures, such as re-weighting or re-sampling, to actively mitigate biases as they are detected. As biases are identified through ongoing monitoring, these targeted corrective measures are strategically applied to address imbalances and promote fairness in the model's predictions. This iterative and adaptive approach not only acknowledges the inevitability of biases but also proactively works towards rectifying them, reinforcing the commitment to fairness and equity embedded within the fair-by-design methodology.
+        \item A pivotal step in the Fair-by-Design workflow involves the implementation of corrective measures, such as re-weighting or re-sampling, to actively mitigate biases as they are detected. As biases are identified through ongoing monitoring, these targeted corrective measures are strategically applied to address imbalances and promote fairness in the model's predictions. This iterative and adaptive approach not only acknowledges the inevitability of biases but also proactively works towards rectifying them, reinforcing the commitment to fairness and equity embedded within the Fair-by-Design methodology.
 
     \end{itemize}
 
 \end{itemize}
 
-\textbf{Human-in-the-Loop Approaches}
+\paragraph{Human-in-the-Loop Approaches}
 
 \begin{itemize}
     
@@ -584,10 +584,10 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
     
     \begin{itemize}
     
-        \item Organize collaborative sessions with domain experts and stakeholders to delve into the intricacies of fairness considerations. These sessions serve as a platform for a comprehensive exploration of nuances related to fairness, leveraging the collective insights and expertise of domain specialists and key stakeholders. The aim is to foster a shared understanding of fairness challenges, identify contextual nuances, and coalesce diverse perspectives. Such collaborative endeavors contribute significantly to the fair-by-design approach, ensuring that the developed models align not only with technical requirements but also with the ethical and contextual considerations of the specific application domain.
+        \item Organize collaborative sessions with domain experts and stakeholders to delve into the intricacies of fairness considerations. These sessions serve as a platform for a comprehensive exploration of nuances related to fairness, leveraging the collective insights and expertise of domain specialists and key stakeholders. The aim is to foster a shared understanding of fairness challenges, identify contextual nuances, and coalesce diverse perspectives. Such collaborative endeavors contribute significantly to the workflow, ensuring that the developed models align not only with technical requirements but also with the ethical and contextual considerations of the specific application domain.
     
         
-        \item Engage stakeholders actively in both model validation and decision-making processes. This participatory approach ensures that the perspectives and insights of stakeholders are integral to the validation of the model's performance and the decision-making procedures. By involving stakeholders, including end-users and decision-makers, in these crucial stages, the fair-by-design workflow embraces transparency and inclusivity. This collaborative involvement contributes to the development of models that are not only technically sound but also align with the diverse needs and expectations of the stakeholders, fostering a sense of ownership and accountability in the overall machine learning process.
+        \item Engage stakeholders actively in both model validation and decision-making processes. This participatory approach ensures that the perspectives and insights of stakeholders are integral to the validation of the model's performance and the decision-making procedures. By involving stakeholders, including end-users and decision-makers, in these crucial stages, the workflow embraces transparency and inclusivity. This collaborative involvement contributes to the development of models that are not only technically sound but also align with the diverse needs and expectations of the stakeholders, fostering a sense of ownership and accountability in the overall machine learning process.
     
     \end{itemize}
 
@@ -598,13 +598,11 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 \paragraph{Fairness through data augmentation}
 \label{subsec:ftdr}
 
-IIn this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
+In this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
 
 The essence of this approach revolves around the augmentation of the dataset by introducing new data instances that offer a more comprehensive and inclusive representation of the underlying population. This expanded dataset is designed to be more diverse, representative, and balanced, transcending the limitations of the original data and fostering a more nuanced understanding of fairness. 
 
 The introduction of augmented data instances leads to a redefined notion of fairness within the AI system. Instead of solely focusing on the absence of biased attributes, fairness is now measured in terms of the dataset's inclusivity and its ability to capture the diversity and nuances present within the population it seeks to serve. 
-
-This approach aligns with the broader philosophy of ensuring that AI systems are equitable, just, and capable of making informed and unbiased decisions. By augmenting the dataset, it strives to bridge the gaps in representation and provide a more equitable playing field for all individuals, regardless of their background or characteristics. 
 
 The process of data augmentation necessitates a careful selection of techniques and methodologies that can introduce new data instances while maintaining the integrity and quality of the dataset. These techniques may encompass oversampling, synthetic data generation, or other data synthesis methods, each tailored to the specific context and objectives of the AI system.
 
@@ -669,7 +667,7 @@ Let $C$ be the sub-dataset of $D$ with a specific combination $\text{c\textunder
 Before proceeding in the theoretical analysis of the algorithm here's the proposed pseudocode:
 
 \begin{algorithm}[H]
-    \caption{Reabalancing}
+    \caption{Data augmentation}
     \begin{algorithmic}[1]
         \State \textbf{Input:} combination\_set, combination\_frequency, protected\_attributes, dataset\_attributes
         \State \textbf{Output:} Updated dataset
@@ -726,7 +724,7 @@ The space complexity is determined by the storage of combination frequencies and
 
 \subsubsection{Significance}
 
-The Algorithm Design stage is pivotal in shaping the ethical and fair behavior of machine learning models within the fair-by-design framework. By carefully selecting, customizing, and integrating fairness-aware models, and incorporating transparency and human-in-the-loop approaches, this stage ensures that the resulting models align with ethical considerations and promote equitable outcomes.
+The Algorithm Design stage is pivotal in shaping the ethical and fair behavior of machine learning models within the workflow. By carefully selecting, customizing, and integrating fairness-aware models, and incorporating transparency and human-in-the-loop approaches, this stage ensures that the resulting models align with ethical considerations and promote equitable outcomes.
 
 \subsection{Model training and evaluation}
 \label{subsection:model-training}
@@ -789,7 +787,7 @@ Fairness metrics are instrumental in evaluating the model's behavior across diff
 
 \begin{itemize}
     
-    \item \emph{Equalized Odds Evaluation Metric}: The Equalized Odds metric serves as a critical assessment tool for gauging the model's performance concerning fairness. This evaluation metric specifically investigates whether the model exhibits comparable false positive and false negative rates across distinct demographic groups. By scrutinizing disparities in these rates, the Equalized Odds metric offers insights into the model's capacity to provide equitable outcomes for diverse segments of the population, contributing to a comprehensive understanding of its fairness considerations, as reported in \cref{section:metrics}
+    \item \emph{Equalized Odds}: The Equalized Odds metric serves as a critical assessment tool for gauging the model's performance concerning fairness. This evaluation metric specifically investigates whether the model exhibits comparable false positive and false negative rates across distinct demographic groups. By scrutinizing disparities in these rates, the Equalized Odds metric offers insights into the model's capacity to provide equitable outcomes for diverse segments of the population, contributing to a comprehensive understanding of its fairness considerations, as reported in \cref{section:metrics}
     
     \item \emph{Statistical Parity:} The Statistical Parity metric is a meticulous examination of the distribution of positive outcomes within each demographic group. This evaluation metric meticulously analyzes the proportion of positive results for each group, aiming to identify and quantify any disparities that may exist. By shedding light on these disparities, the Statistical Parity metric offers a nuanced perspective on how the model's predictions align with different demographic segments. This in-depth analysis contributes to a comprehensive assessment of fairness, facilitating a more detailed understanding of potential imbalances in positive outcomes across diverse groups, as reported in \cref{section:metrics}
 
