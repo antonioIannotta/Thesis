@@ -257,6 +257,24 @@ Similarly, for each fairness algorithm, the minimum and maximum fairness values 
     \caption{Min-Max Disparate Impact Metric for Sex protected attributes and for each fairness algorithm}
 \end{figure}
 
+The disparate impact metric measures the degree on which each algorithm reach the demographic parity for a certain protected attribute. In this scenario the \emph{Sex} protected attribute is considered and the following consideration can be made:
+
+\begin{itemize}
+
+    \item The Threshold Optimizer completely fail in the goal of reaching the demographic parity, since this value is always 0.
+
+    \item The Exponentiated Gradient is the algorithm that better work on this protected attribute in terms of maximum disparate impact value. On the other side this algorithm is also the one with the maximum variance in terms of minimum and maximum value for the metric.
+
+    \item The Grid Search is the algorithm that produces the minimum variance but at the same time it also produces a low value for this metric, meaning the fail into the reach of demographic parity.
+
+    \item The Fairness through Unawareness algorithm fails to achieve the demographic parity even being the algorithm that produces the maximum accuracy.
+
+    \item The Data Augmentation algorithm is the algorithm that, after the Exponentiated Gradient produces the highest value for disparate impact.
+
+    \item Finally, in order to consider the trade-off between accuracy and the metric, the algorithms that better would suit if the goal was to ensure fairness for the \emph{Sex} protected attributes would be the Exponentiated Gradient algorithm and the Data Augmentation algorithm.
+
+\end{itemize}
+
 \paragraph{Disparate impact for race protected attribute}
 
 \begin{figure}[H]
@@ -265,6 +283,11 @@ Similarly, for each fairness algorithm, the minimum and maximum fairness values 
     \label{fig:dir}
     \caption{Min-Max Disparate Impact Metric for Race protected attributes and for each fairness algorithm}
 \end{figure}
+
+Still considering the disparate impact metric but considering the \emph{Race} protected attribute it's possible to make the following considerations:
+
+\begin{itemize}
+\end{itemize}
 
 \paragraph{Demographic parity difference for sex protected attribute}
 
