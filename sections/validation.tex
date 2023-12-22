@@ -233,7 +233,7 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{accuracy.png}
+    \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{accuracy.png}
     \label{fig:acc_alg}
     \caption{Min-Max accuracy for each fairness algorithm}
 \end{figure}
@@ -247,12 +247,10 @@ There are some considerations that can be made about the accurencies presented:
 \end{itemize}
 
 Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
-
-\paragraph{Disparate impact for sex protected attribute}
-
+%\paragraph{Disparate impact for sex protected attribute}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dis.png}
+    \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{dis.png}
     \label{fig:dis}
     \caption{Min-Max Disparate Impact Metric for Sex protected attributes and for each fairness algorithm}
 \end{figure}
@@ -275,31 +273,67 @@ The disparate impact metric measures the degree on which each algorithm reach th
 
 \end{itemize}
 
-\paragraph{Disparate impact for race protected attribute}
+%\paragraph{Disparate impact for race protected attribute}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dir.png}
+    \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{dir.png}
     \label{fig:dir}
     \caption{Min-Max Disparate Impact Metric for Race protected attributes and for each fairness algorithm}
 \end{figure}
 
 Still considering the disparate impact metric but considering the \emph{Race} protected attribute it's possible to make the following considerations:
 
-\paragraph{Demographic parity difference for sex protected attribute}
+\begin{itemize}
+
+    \item For the \emph{Race} protected attribute it's possible to notice how the Data Augmentation algorithm provides both a very low variance in the disparate impact values and the hightest value. It's immediate the consideration about the fact that this algorithm is the one that best satisfy the trade-off requirements.
+
+    \item The Threshold Optimizer completely fail in the goal of reaching the demographic parity, since this value is always 0.
+
+    \item The Exponentiated Gradient algorithm is the one that provides the highest value for disparate impact together with the Data Augmentation. The reason why this algorithm does not satisfy the trade-off requirements is due to its bigger variance than the Data Augmentation values.
+
+\end{itemize}
+
+%\paragraph{Demographic parity difference for sex protected attribute}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dpds.png}
+    \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{dpds.png}
     \label{fig:dpds}
     \caption{Min-Max Demographic Parity Difference Metric for Sex protected attributes and for each fairness algorithm}
 \end{figure}
 
-\paragraph{Demographic parity difference for race protected attribute}
+The demographic parity difference metric measures the degree on which each algorithm reach the group fairness for a certain protected attribute. In this scenario the \emph{Sex} protected attribute is considered and the following consideration can be made:
+
+\begin{itemize}
+
+    \item The maximum value for the DPD metric is provided by the Exponentiated Gradient algorithm, which also provides the highest variance for these values.
+
+    \item The minimum value is provided by the Threshold Optimizer algorithm, which perfectly achieves the group fairness.
+
+    \item The Data Augmentation and the Grid Search algorithm have similar performances, so it's possible to conclude how the best algorithm is the Grid Search. The reason is that this algorithm, instead of Data Augmentation, provides an accuracy of 0.1\% better, which better satisfy the trade off requirements.
+
+\end{itemize}
+
+%\paragraph{Demographic parity difference for race protected attribute}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{dpdr.png}
+    \includegraphics[width=0.5\textwidth, height=0.5\textwidth]{dpdr.png}
     \label{fig:dpdr}
     \caption{Min-Max Demographic Parity Difference for Race protected attributes and for each fairness algorithm}
 \end{figure}
+
+Still considering the demographic parity difference metric but considering the \emph{Race} protected attribute it's possible to make the following considerations:
+
+\begin{itemize}
+    
+    \item The minimum value is provided by the Threshold Optimizer algorithm, which perfectly achieves the group fairness.
+
+    \item The maximum value for the DPD metric is provided by the Exponentiated Gradient algorithm, which also provides the highest variance for these values.
+
+    \item The Data Augmentation algorithm have values similar to the Grid Search algorithm. The reason why the Data Augmentation algorithm may be selected as the algorithm that satisfies the trade off requirements is due to the lower variance in the DPD values.
+
+\end{itemize}
+
+It's important to notice that every algorithm but Threshold Optimizer, which perfectly achieves the group fairness, for both the protected attributes, has values for the DPD that are very close to the 0. This means that the algorithms perform better achieving the Group Fairness than the Demographic Parity.
