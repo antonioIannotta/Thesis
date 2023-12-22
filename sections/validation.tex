@@ -5,14 +5,14 @@
 
 This chapter unfolds as a meticulous exploration into the performance and reliability of the Fair-by-Design workflow. To conduct a thorough assessment, the well known dataset Adult has been strategically chosen as the testing ground. The dataset, rich in socioeconomic and demographic attributes, provides a robust platform for evaluating the workflow's effectiveness across various machine learning algorithms.
 
-The central emphasis of this validation endeavor is to ascertain not only the accuracy and predictive capabilities of the implemented models but also the extent to which the Fair-by-Design workflow succeeds in fostering fairness. The Adult dataset, carefully selected for its representativeness and complexity, allows for a nuanced examination of how different algorithms respond to the intricacies of real-world data, shedding light on the interplay between accuracy and fairness.
+The central emphasis of this validation endeavor is to ascertain not only the accuracy and predictive capabilities of the implemented models but also the extent to which the Fair-by-Design workflow succeeds in fostering fairness. The Adult dataset allows for a nuanced examination of how different algorithms respond to the intricacies of real-world data, shedding light on the interplay between accuracy and fairness.
 
-Throughout this chapter, the validation process unfolds systematically, encompassing diverse algorithms applied to the Adult dataset. The goal is to detect both the strengths and potential limitations of the Fair-by-Design approach, providing valuable insights for its application in scenarios where the equitable treatment of individuals and the accuracy of predictions are of paramount importance. The subsequent sections detail the experimental setup, algorithmic choices, and the rigorous evaluation metrics employed to ensure a comprehensive understanding of the Fair-by-Design workflow's performance on the chosen dataset.
+Throughout this chapter, the validation process unfolds systematically, encompassing diverse algorithms applied to the dataset. The goal is to detect both the strengths and potential limitations of the Fair-by-Design approach, providing valuable insights for its application in scenarios where the equitable treatment of individuals and the accuracy of predictions are of paramount importance. The subsequent sections detail the experimental setup, algorithmic choices, and the rigorous evaluation metrics employed to ensure a comprehensive understanding of the Fair-by-Design workflow's performance on the chosen dataset.
 
 \section{Objective definition}
 \label{section:val_obj}
 
-In this section, we precisely outline the objectives guiding the Fair-by-Design workflow, focusing on effective income prediction while addressing fairness and mitigating biases. The key components include the identification of protected attributes, selection of fairness notions, and corresponding fairness metrics.
+In this section, are precicely outlined the objectives guiding the Fair-by-Design workflow, focusing on effective income prediction while addressing fairness and mitigating biases. The key components include the identification of protected attributes, selection of fairness notions, and corresponding fairness metrics.
 
 \subsection{Prediction Objective}
 
@@ -54,7 +54,7 @@ In this section, we precisely outline the objectives guiding the Fair-by-Design 
     \end{itemize}
 \end{itemize}
 
-These succinctly defined objectives, paired with chosen fairness notions and metrics, lay the groundwork for the Fair-by-Design workflow, ensuring a focused approach toward accurate predictions while fostering fairness across diverse subgroups.
+These succinctly defined objectives, paired with chosen fairness notions and metrics, lay the groundwork for the  workflow, ensuring a focused approach toward accurate predictions while fostering fairness across diverse subgroups.
 
 \section{Data collection}
 \label{section:val_dc}
@@ -229,17 +229,33 @@ About these results is possible to make some considerations:
     \item It's important to consider the results obtained from the FtU tests because this raises issues opened in literature, more specifically the ones related to the proxy attributes that may lead to the protected ones.
 \end{itemize}
 
+\newpage
 \subsubsection{Accuracy Grouped by Fairness Algorithm}
 
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{acc_alg.png}
+    \includegraphics[width=1.0\textwidth, height=1.0\textwidth]{accuracy.png}
     \label{fig:acc_alg}
     \caption{Min-Max accuracy for each fairness algorithm}
 \end{figure}
 
+There are some considerations that can be made about the accurencies presented:
+
+\begin{itemize}
+
+    \item The accuracy value for the Threshold Optimizer algorithm is always 0.7673 as showed in the table \cref{fig:results}.
+
+    \item The algorith that leads to the minimum variance in the accuracy results for the two models considered is the Grid Search.
+
+    \item The algorithm that leads to the maximum variance in the accuracy values for the two models considered is the Exponentiated Gradient.
+
+    \item The algorithm that leads to the maximum accuracy interval is, as previously already reported, the Fairness through Unawareness algorithm.
+
+\end{itemize}
+
+\newpage
 \subsubsection{Fairness Values Grouped by Fairness Algorithm}
 
 Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
