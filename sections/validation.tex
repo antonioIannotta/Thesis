@@ -9,66 +9,64 @@ The central emphasis of this validation endeavor is to ascertain not only the ac
 
 Throughout this chapter, the validation process unfolds systematically, encompassing diverse algorithms applied to the dataset. The goal is to detect both the strengths and potential limitations of the Fair-by-Design approach, providing valuable insights for its application in scenarios where the equitable treatment of individuals and the accuracy of predictions are of paramount importance. The subsequent sections detail the experimental setup, algorithmic choices, and the rigorous evaluation metrics employed to ensure a comprehensive understanding of the Fair-by-Design workflow's performance on the chosen dataset.
 
-\section{Objective definition}
+\section{Precise Definition of Objectives}
 \label{section:val_obj}
 
-In this section, are precicely outlined the objectives guiding the Fair-by-Design workflow, focusing on effective income prediction while addressing fairness and mitigating biases. The key components include the identification of protected attributes, selection of fairness notions, and corresponding fairness metrics.
+In this section, we meticulously outline the objectives that intricately guide the Fair-by-Design workflow, with a primary focus on achieving effective income prediction while concurrently addressing fairness considerations and mitigating biases. The critical components encompass the meticulous identification of protected attributes, the strategic selection of fairness notions, and the corresponding choice of fairness metrics.
 
 \subsection{Prediction Objective}
 
-\begin{itemize}
-    \item Goal: Classify in a fairness way if an individual earns more or less than 50,000\$ / year.
-\end{itemize}
+The overarching objective is to execute a fairness-driven classification task, discerning whether an individual's income exceeds or falls below \$50,000 per year.
 
 \subsection{Protected Attributes}
 
-\begin{itemize}
-    \item Attributes: "Ethnicity" and "Sex"
-\end{itemize}
+The identified protected attributes for scrutiny within the Fair-by-Design framework are "Ethnicity" and "Sex." These attributes hold particular significance in the context of potential biases and fairness considerations.
 
 \subsection{Fairness Notions}
 
+To operationalize fairness, two distinct notions are employed, each serving specific objectives:
+
 \begin{itemize}
-    \item Demographic Parity:
-    \begin{itemize}
-        \item Objective: Ensure consistent distribution of predicted outcomes across different subgroups based on protected attributes.
-    \end{itemize}
-    
-    \item Group Fairness:
-    \begin{itemize}
-        \item Objective: Guarantee equitable predictions within specific subgroups defined by protected attributes.
-    \end{itemize}
+    \item \emph{Demographic Parity:} The objective is to ensure a consistent distribution of predicted outcomes across different subgroups delineated by the protected attributes. This aligns with the broader goal of fostering equity in predictions.
+
+    \item \emph{Group Fairness:} The goal is to guarantee equitable predictions within specific subgroups defined by protected attributes. This notion emphasizes the need for fairness at a more granular level, considering distinct demographic categories.
 \end{itemize}
 
 \subsection{Fairness Metrics}
 
+To quantify and assess fairness in the context of the defined notions, specific fairness metrics are employed:
+
 \begin{itemize}
-    \item For Demographic Parity:
-    \begin{itemize}
-        \item Metric: Disparate Impact
-    \end{itemize}
-    
-    \item For Group Fairness:
-    \begin{itemize}
-        \item Metric: Demographic Parity Difference
-    \end{itemize}
+    \item \emph{For Demographic Parity:} The chosen metric is "Disparate Impact," offering a quantitative measure of the disparate outcomes across different subgroups.
+
+    \item \emph{For Group Fairness:} The metric utilized is "Demographic Parity Difference," providing a nuanced assessment of fairness within specific demographic subgroups.
 \end{itemize}
 
-These succinctly defined objectives, paired with chosen fairness notions and metrics, lay the groundwork for the  workflow, ensuring a focused approach toward accurate predictions while fostering fairness across diverse subgroups.
+These meticulously defined objectives, coupled with the chosen fairness notions and metrics, collectively establish a robust foundation for the Fair-by-Design workflow. This ensures a focused approach towards accurate predictions while concurrently fostering fairness and equity across diverse subgroups.
 
-\section{Data collection}
+\section{Data Collection Details}
 \label{section:val_dc}
 
-The dataset is already divided into two sets:
+In this section, we delve into the specifics of the data collection process, providing a comprehensive overview of the dataset and its division into distinct training and test sets.
+
+\subsection{Dataset Overview}
+
+The dataset comprises two distinct sets:
+
 \begin{itemize}
-    \item \emph{Training set}: 32,561 items
-    \item \emph{Test set}: 16,281 items
+    \item \emph{Training Set:} Consisting of 32,561 items.
+    \item \emph{Test Set:} Comprising 16,281 items.
 \end{itemize}
 
-There are 14 independent features of different types and one dependent variable. Each record represents one individual and the output represents if the individual earns more or less than 50,000\$ on year basis.
+\subsection{Dataset Composition}
 
-The two protected attributes detected in \cref{section:val_obj} are both discrete ones, while a consideration useful for the next steps is related to the output variable. This attribute is a binary one, but it is represented as a string. So it's important to ensure that the encoding in both training and test set are the same.
+The dataset encompasses 14 independent features of diverse types, each contributing valuable information for predictive modeling. Additionally, there is one dependent variable, representing whether an individual earns more or less than \$50,000 on an annual basis. Each record within the dataset corresponds to an individual, and the output variable is binary, delineating income categories.
 
+\subsection{Protected Attributes and Encoding Consistency}
+
+As identified in \cref{section:val_obj}, two discrete protected attributes, namely "Ethnicity" and "Sex," play a crucial role in fairness considerations. It is imperative to note that these attributes are discrete in nature. Furthermore, an essential consideration for subsequent analyses pertains to the representation of the output variable. Although it is binary, it is currently encoded as a string. Ensuring consistency in the encoding of this variable across both the training and test sets is of paramount importance for accurate and meaningful analyses in subsequent stages.
+
+This detailed understanding of the dataset's composition and attributes provides a solid foundation for subsequent steps in the Fair-by-Design workflow, facilitating informed decisions regarding model development and fairness considerations.
 \section{Data pre-processing}
 
 Starting from the information provided by \cref{section:val_dc} in this section all the variables represend as string as been labeled the same manner. This led to a consistent dataset to be used in the models training.
@@ -222,12 +220,15 @@ In order to provide a tabular representation of the results it's necessary to as
 \end{figure}
 
 About these results is possible to make some considerations:
-\begin{itemize}
-    \item The Threshold Optimizer algorithm with a constant accuracy of 76.3\% achieves a perfect group fairness but there's an absolute lack of demographic parity.
-    \item Along the several algorithms and models is possible to notice how the group fairness is approximately better achieved than the demographic parity.
-    \item The accuracy is around the 80\% in every scenarios, with the minimum value for the post-processing algorithm and the maximum value for the XGB model with the Fairness through Unawareness algorithm.
-    \item It's important to consider the results obtained from the FtU tests because this raises issues opened in literature, more specifically the ones related to the proxy attributes that may lead to the protected ones.
-\end{itemize}
+\begin{enumerate}
+    \item \emph{Threshold Optimizer Performance:} The Threshold Optimizer (TO) algorithm consistently maintains an accuracy of 76.3\%, showcasing a perfect achievement of group fairness while completely lacking in demographic parity. This suggests a trade-off between group fairness and demographic parity, emphasizing the need for careful consideration of the ethical implications associated with eliminating disparate impact.
+    
+    \item \emph{Discrepancy Between Group Fairness and Demographic Parity:} Across multiple algorithms and models, a consistent pattern emerges where group fairness is approximately better achieved than demographic parity. This divergence highlights the nuanced challenges in simultaneously optimizing for different fairness metrics and calls for a deeper exploration into algorithmic design choices.
+    
+    \item \emph{Uniform Accuracy Levels:} The accuracy across various scenarios hovers around 80\%, with the post-processing algorithm (TO) showing the minimum accuracy and the XGB model coupled with the Fairness through Unawareness (FtU) algorithm achieving the maximum accuracy. This consistent accuracy level underscores the stability of the Fair-by-Design workflow in maintaining predictive performance while incorporating fairness considerations.
+    
+    \item \emph{Significance of Fairness through Unawareness (FtU):} The results obtained from the FtU tests are of particular importance as they shed light on concerns raised in the literature, specifically those related to proxy attributes potentially leading to protected ones. The FtU algorithm, paired with the XGB model, demonstrates competitive accuracy and fairness outcomes, emphasizing its role in addressing challenges associated with biased features and mitigating the risk of discrimination.
+\end{enumerate}
 
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
 
@@ -239,12 +240,15 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
 \end{figure}
 
 There are some considerations that can be made about the accurencies presented:
-\begin{itemize}
-    \item The accuracy value for the Threshold Optimizer algorithm is always 0.7673 as showed in the table \cref{fig:results}.
-    \item The algorith that leads to the minimum variance in the accuracy results for the two models considered is the Grid Search.
-    \item The algorithm that leads to the maximum variance in the accuracy values for the two models considered is the Exponentiated Gradient.
-    \item The algorithm that leads to the maximum accuracy interval is, as previously already reported, the Fairness through Unawareness algorithm.
-\end{itemize}
+\begin{enumerate}
+    \item \emph{Threshold Optimizer (TO) Consistency:} The accuracy value for the Threshold Optimizer algorithm consistently remains at 76.73%, as evidenced by the data presented in Table \ref{fig:results}. This uniformity underscores the algorithm's predictability and reliability in maintaining a constant accuracy level across diverse experimental conditions.
+
+    \item \emph{Minimum Variance with Grid Search:} The algorithm that demonstrates the minimum variance in accuracy results for both the XGB and RF models is Grid Search (GS). This indicates that GS is robust in yielding consistent accuracy outcomes, showcasing its stability in diverse scenarios.
+
+    \item \emph{Maximum Variance with Exponentiated Gradient:} In contrast, the Exponentiated Gradient (EG) algorithm exhibits the maximum variance in accuracy values across different configurations. This suggests that EG's sensitivity to variations in experimental conditions leads to a broader range of accuracy outcomes.
+
+    \item \emph{Maximum Accuracy Interval with Fairness through Unawareness (FtU):} As previously highlighted, the Fairness through Unawareness (FtU) algorithm stands out by leading to the maximum accuracy interval. This implies that FtU, when coupled with both XGB and RF models, achieves a balance between high accuracy and adaptability across various fairness considerations, making it a noteworthy candidate for scenarios where a diverse set of fairness metrics is desired.
+\end{enumerate}
 
 Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
 %\paragraph{Disparate impact for sex protected attribute}
@@ -257,21 +261,19 @@ Similarly, for each fairness algorithm, the minimum and maximum fairness values 
 
 The disparate impact metric measures the degree on which each algorithm reach the demographic parity for a certain protected attribute. In this scenario the \emph{Sex} protected attribute is considered and the following consideration can be made:
 
-\begin{itemize}
+\begin{enumerate}
+    \item \emph{Threshold Optimizer (TO) Demographic Parity Failure:} The Threshold Optimizer algorithm consistently fails to achieve demographic parity, as indicated by the perpetually zero values for this metric. This underscores the limitation of TO in addressing disparities associated with the \emph{Sex} attribute.
 
-    \item The Threshold Optimizer completely fail in the goal of reaching the demographic parity, since this value is always 0.
+    \item \emph{Exponentiated Gradient (EG) Efficacy and Variability:} EG emerges as the algorithm that most effectively addresses demographic parity, showcasing the highest disparate impact values. However, it is also the algorithm with the maximum variance, indicating sensitivity to different experimental conditions.
 
-    \item The Exponentiated Gradient is the algorithm that better work on this protected attribute in terms of maximum disparate impact value. On the other side this algorithm is also the one with the maximum variance in terms of minimum and maximum value for the metric.
+    \item \emph{Grid Search (GS) Trade-off:} While GS demonstrates the minimum variance, it concurrently fails to achieve high values for demographic parity. This suggests a trade-off between stability and the ability to address demographic disparities in this context.
 
-    \item The Grid Search is the algorithm that produces the minimum variance but at the same time it also produces a low value for this metric, meaning the fail into the reach of demographic parity.
+    \item \emph{Fairness Through Unawareness (FtU) Challenges:} Despite being the algorithm with the maximum accuracy, FtU fails to achieve demographic parity, highlighting potential challenges in its effectiveness for this specific fairness metric.
 
-    \item The Fairness through Unawareness algorithm fails to achieve the demographic parity even being the algorithm that produces the maximum accuracy.
+    \item \emph{Data Augmentation (DA) Performance:} DA, following EG, produces the highest values for disparate impact, indicating its efficacy in mitigating disparities associated with the \emph{Sex} attribute.
 
-    \item The Data Augmentation algorithm is the algorithm that, after the Exponentiated Gradient produces the highest value for disparate impact.
-
-    \item Finally, in order to consider the trade-off between accuracy and the metric, the algorithms that better would suit if the goal was to ensure fairness for the \emph{Sex} protected attributes would be the Exponentiated Gradient algorithm and the Data Augmentation algorithm.
-
-\end{itemize}
+    \item \emph{Trade-off Consideration:} Assessing the trade-off between accuracy and the fairness metric, EG and DA emerge as promising candidates, showcasing a balance between achieving high accuracy and addressing demographic parity for the \emph{Sex} attribute.
+\end{enumerate}
 
 %\paragraph{Disparate impact for race protected attribute}
 
@@ -284,16 +286,15 @@ The disparate impact metric measures the degree on which each algorithm reach th
 
 Still considering the disparate impact metric but considering the \emph{Race} protected attribute it's possible to make the following considerations:
 
-\begin{itemize}
+\begin{enumerate}
+    \item \emph{Data Augmentation (DA) Performance:} DA not only provides the highest value for disparate impact but also exhibits minimal variance in its values. This makes DA a compelling choice as it effectively addresses disparities associated with the \emph{Race} attribute while maintaining stability.
 
-    \item For the \emph{Race} protected attribute it's possible to notice how the Data Augmentation algorithm provides both a very low variance in the disparate impact values and the hightest value. It's immediate the consideration about the fact that this algorithm is the one that best satisfy the trade-off requirements.
+    \item \emph{Threshold Optimizer (TO) Demographic Parity Failure:} Similar to the findings for the \emph{Sex} attribute, TO consistently fails to achieve demographic parity for the \emph{Race} attribute, underscoring its limitations in addressing disparities related to this protected attribute.
 
-    \item The Threshold Optimizer completely fail in the goal of reaching the demographic parity, since this value is always 0.
+    \item \emph{Exponentiated Gradient (EG) Efficacy and Variability:} EG demonstrates high values for disparate impact, comparable to DA, but exhibits greater variance. Despite its efficacy, practitioners should be mindful of its sensitivity to different experimental conditions.
 
-    \item The Exponentiated Gradient algorithm is the one that provides the highest value for disparate impact together with the Data Augmentation. The reason why this algorithm does not satisfy the trade-off requirements is due to its bigger variance than the Data Augmentation values.
-
-\end{itemize}
-
+    \item \emph{Trade-off Consideration:} DA emerges as a standout performer, providing both the highest disparate impact values and minimal variance. This aligns with the trade-off requirements, making DA a strong candidate for practitioners seeking a balanced solution for the \emph{Race} attribute.
+\end{enumerate}
 %\paragraph{Demographic parity difference for sex protected attribute}
 
 \begin{figure}[H]
@@ -305,15 +306,13 @@ Still considering the disparate impact metric but considering the \emph{Race} pr
 
 The demographic parity difference metric measures the degree on which each algorithm reach the group fairness for a certain protected attribute. In this scenario the \emph{Sex} protected attribute is considered and the following consideration can be made:
 
-\begin{itemize}
+\begin{enumerate}
+    \item \emph{Exponentiated Gradient (EG) Dominance:} EG attains the maximum DPD value, indicating its success in achieving demographic parity. However, practitioners must consider the higher variance associated with these values, highlighting the algorithm's sensitivity to experimental conditions.
 
-    \item The maximum value for the DPD metric is provided by the Exponentiated Gradient algorithm, which also provides the highest variance for these values.
+    \item \emph{Threshold Optimizer (TO) Group Fairness Achievement:} TO consistently provides the minimum DPD values, demonstrating its ability to perfectly achieve group fairness. Despite its lack of success in demographic parity, TO remains a strong contender for scenarios prioritizing group fairness.
 
-    \item The minimum value is provided by the Threshold Optimizer algorithm, which perfectly achieves the group fairness.
-
-    \item The Data Augmentation and the Grid Search algorithm have similar performances, so it's possible to conclude how the best algorithm is the Grid Search. The reason is that this algorithm, instead of Data Augmentation, provides an accuracy of 0.1\% better, which better satisfy the trade off requirements.
-
-\end{itemize}
+    \item \emph{Data Augmentation (DA) and Grid Search (GS) Trade-off Consideration:} DA and GS exhibit comparable performances in terms of DPD. However, GS outperforms DA by a marginal accuracy improvement of 0.1\%. This nuanced trade-off consideration positions GS as a slightly more favorable choice, aligning with the objective of balancing accuracy and fairness.
+\end{enumerate}
 
 %\paragraph{Demographic parity difference for race protected attribute}
 
@@ -326,14 +325,13 @@ The demographic parity difference metric measures the degree on which each algor
 
 Still considering the demographic parity difference metric but considering the \emph{Race} protected attribute it's possible to make the following considerations:
 
-\begin{itemize}
-    
-    \item The minimum value is provided by the Threshold Optimizer algorithm, which perfectly achieves the group fairness.
+\begin{enumerate}
+    \item \emph{Threshold Optimizer (TO) Group Fairness Excellence:} TO consistently provides the minimum DPD values, showcasing its ability to achieve perfect group fairness. This makes TO an ideal choice for scenarios where group fairness is paramount.
 
-    \item The maximum value for the DPD metric is provided by the Exponentiated Gradient algorithm, which also provides the highest variance for these values.
+    \item \emph{Exponentiated Gradient (EG) DPD Extremes:} EG attains the maximum DPD value, indicating its capability to maximize demographic parity. However, practitioners should be mindful of the higher variance associated with EG, suggesting sensitivity to experimental conditions.
 
-    \item The Data Augmentation algorithm have values similar to the Grid Search algorithm. The reason why the Data Augmentation algorithm may be selected as the algorithm that satisfies the trade off requirements is due to the lower variance in the DPD values.
+    \item \emph{Data Augmentation (DA) and Grid Search (GS) Comparative Trade-off:} DA and GS exhibit comparable DPD values, with DA showcasing a slightly lower variance. This makes DA a potential selection when seeking a balanced trade-off between accuracy and fairness, with a preference for lower variance in DPD values.
+\end{enumerate}
 
-\end{itemize}
 
 It's important to notice that every algorithm but Threshold Optimizer, which perfectly achieves the group fairness, for both the protected has values for the DPD that are very close to the 0. This means that the algorithms perform better achieving the Group Fairness than the Demographic Parity.
