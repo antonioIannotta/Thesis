@@ -333,15 +333,15 @@ This decisional process is well-represented in the following schema:
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Protected attribute chosen};
-        \node (choice) [decision, below of=start] {Starting point};
+        \node (choice) [decision, below of=start, yshift=-1cm] {Starting point};
         \node (fm) [startstop, left of=choice, xshift=-2cm] {Fairness Metric};
         \node (fn) [startstop, right of=choice, xshift=2cm] {Fairness Notion};
         \node (dfg) [startstop, below of=fm] {Definition of fairness goals};
-        \node (fns) [startstop, below of=dfg] {Fairness metric selection};
-        \node (fms) [startstop, below of=fns] {Selection of the fairness notion that better aligns with fairness metric};
+        \node (fns) [startstop, below of=dfg] {Fairness notion study};
+        \node (fms) [startstop, below of=fns] {Fairness notion selection};
         \node (dfgfn) [startstop, below of=fn] {Definition of fairness goals};
-        \node (fmst) [startstop, below of=dfgfn] {Understanding and study of the several fairness metrics};
-        \node (end) [startstop, below of=fmst] {Selection of the fairness metric that better aligns with the fairness notion};
+        \node (fmst) [startstop, below of=dfgfn] {Fairness metric study};
+        \node (end) [startstop, below of=fmst] {Fairness metric selection};
 
         \draw [arrow] (start) -- (choice);
         \draw [arrow] (choice) -- (fm);
