@@ -243,7 +243,7 @@ A fairness metric quantifies the level of fairness achieved by the AI system wit
 
 The alignment between fairness notions and fairness metrics is a critical aspect of the Fair-by-Design workflow, as it establishes a systematic and measurable framework for evaluating fairness. The following considerations guide the selection process:
 
-\paragraph{Demographic Parity:}
+\textbf{Demographic Parity:}
 
 For the fairness notion of Demographic Parity, the primary concern is ensuring equal representation of protected groups across different outcomes. This notion is often aligned with the fairness metric known as \emph{Disparate Impact}, which quantifies the ratio of favorable outcomes between protected and unprotected groups. Specifically, the Disparate Impact metric is calculated as:
 
@@ -253,7 +253,7 @@ For the fairness notion of Demographic Parity, the primary concern is ensuring e
 
 A Disparate Impact value close to 1 indicates a balanced representation, while values significantly deviating from 1 may suggest unfairness.
 
-\paragraph{Equalized Odds:}
+\textbf{Equalized Odds:}
 
 The Equalized Odds fairness notion aims to balance the true positive and false positive rates across protected groups. This aligns with the \emph{Equalized Odds Difference} fairness metric, which quantifies the disparity in error rates between protected groups. The Equalized Odds Difference is computed as:
 
@@ -263,7 +263,7 @@ The Equalized Odds fairness notion aims to balance the true positive and false p
 
 A value of 0 indicates perfect balance, with positive or negative values signifying imbalances in the error rates.
 
-\paragraph{Individual Fairness:}
+\textbf{Individual Fairness:}
 
 Individual Fairness focuses on treating similar individuals similarly, regardless of their protected attributes. This notion is inherently challenging to quantify, but proxy metrics such as \emph{Theil Index} may be employed. The Theil Index evaluates the distribution of outcomes across different demographic groups and is given by:
 
@@ -273,7 +273,7 @@ Individual Fairness focuses on treating similar individuals similarly, regardles
 
 where \(X_{i}\) represents the outcome distribution for a specific group, and \(\mu\) is the overall average outcome. A lower Theil Index indicates a more equitable distribution.
 
-\paragraph{Group Fairness:}
+\textbf{Group Fairness:}
 
 Group Fairness ensures fair treatment for entire groups, typically based on statistical measures. The \emph{Demographic Parity Difference} is a common metric aligned with this notion. It measures the difference in favorable outcomes between protected and unprotected groups and is computed as:
 \[
@@ -304,7 +304,7 @@ A value of 0 suggests parity, while positive or negative values indicate dispari
 
 Choosing a fairness metric given a fairness notion, or vice versa, requires a nuanced understanding of the specific fairness goals and the characteristics of the data. Here's a step-by-step guide:
 
-\paragraph{Given a Fairness Notion:}
+\textbf{Given a Fairness Notion:}
 
 \begin{enumerate}
  
@@ -316,7 +316,7 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
 
 \end{enumerate}
 
-\paragraph{Given a Fairness Metric:}
+\textbf{Given a Fairness Metric:}
 
 \begin{enumerate}
 
@@ -367,13 +367,13 @@ The data collection stage is fundamental for the Fair-by-Design workflow. It inv
 
 \subsubsection{Dataset Overview}
 
-\paragraph{Data Representation:}
+\textbf{Data Representation:}
 \begin{itemize}
     \item Define features and their types (categorical, numerical).
     \item Specify the structure of the data, especially in the context of demographic information.
 \end{itemize}
 
-\paragraph{Data Sources:}
+\textbf{Data Sources:}
 \begin{itemize}
     \item Transparently describe the origin of the data (surveys, administrative records, etc.).
     \item Indicate methods used for data collection, emphasizing potential biases introduced.
@@ -381,25 +381,25 @@ The data collection stage is fundamental for the Fair-by-Design workflow. It inv
 
 \subsubsection{Study of Statistical Properties}
 
-\paragraph{Descriptive Statistics:}
+\textbf{Descriptive Statistics:}
 \begin{itemize}
     \item Present essential statistics: mean, median, standard deviation, quartiles (for numerical features).
     \item Provide frequency distributions (for categorical features).
 \end{itemize}
 
-\paragraph{Exploration of Protected Attributes:}
+\textbf{Exploration of Protected Attributes:}
 \begin{itemize}
     \item Calculate distributional metrics: proportions, counts, entropy.
     \item Focus on understanding the representation of different groups within protected attributes.
 \end{itemize}
 
-\paragraph{Correlation Analysis:}
+\textbf{Correlation Analysis:}
 \begin{itemize}
     \item Explore correlations between features, especially with protected attributes.
     \item Utilize correlation matrices and scatter plots for visual assessment.
 \end{itemize}
 
-\paragraph{Outlier Detection:}
+\textbf{Outlier Detection:}
 \begin{itemize}
     \item Employ statistical methods or visualizations to detect and analyze outliers.
     \item Highlight the potential impact of outliers on model training and fairness considerations.
@@ -407,25 +407,25 @@ The data collection stage is fundamental for the Fair-by-Design workflow. It inv
 
 \subsubsection{Outputs for Data Pre-processing}
 
-\paragraph{Feature Engineering Possibilities:}
+\textbf{Feature Engineering Possibilities:}
 \begin{itemize}
     \item Leverage insights from the dataset overview for feature engineering opportunities.
     \item Consider transformations or combinations of features to enhance model performance and fairness.
 \end{itemize}
 
-\paragraph{Bias Identification:}
+\textbf{Bias Identification:}
 \begin{itemize}
     \item Use statistical properties, especially focused on protected attributes, to identify potential biases.
     \item Understand the distribution of groups within protected attributes for addressing fairness concerns.
 \end{itemize}
 
-\paragraph{Data Cleaning Strategies:}
+\textbf{Data Cleaning Strategies:}
 \begin{itemize}
     \item Formulate strategies based on outlier detection and correlation analysis.
     \item Decide on the treatment of outliers and correlations, impacting overall model quality and fairness.
 \end{itemize}
 
-\paragraph{Fairness-Aware Sampling Techniques:}
+\textbf{Fairness-Aware Sampling Techniques:}
 \begin{itemize}
     \item If disparities exist in the representation of different groups, consider fairness-aware sampling.
     \item Aim to address imbalances during data pre-processing for equitable model training.
@@ -442,23 +442,23 @@ The data pre-processing stage is a critical component of the Fair-by-Design work
 
 Categorical attributes, often represented as strings, must be converted into numerical format to facilitate their integration into machine learning models.
 
-\paragraph{One-Hot Encoding:}
+\textbf{One-Hot Encoding:}
 One-hot encoding is a widely used method for categorical attributes without a natural order. It transforms a categorical attribute with \(K\) distinct categories into \(K\) binary columns, each indicating the presence or absence of a specific category. This approach prevents the model from assigning unintended ordinal relationships to the categories.
 
-\paragraph{Ordinal Encoding:}
+\textbf{Ordinal Encoding:}
 When there exists an ordinal relationship between categories, ordinal encoding is applied. In this method, each category is assigned a numerical value based on its order. This preserves the ordinal information while representing the categorical attribute in a numerical format.
 
-\paragraph{Label Encoding:}
+\textbf{Label Encoding:}
 For binary categorical attributes, label encoding is employed. It assigns 0 and 1 to the respective categories, providing a straightforward numerical representation that aligns with the binary nature of the attribute.
 
 \subsubsection{Protected Attribute Transformation}
 
 Protected attributes, which play a pivotal role in ensuring fairness, require special treatment during the data pre-processing stage.
 
-\paragraph{Discrete Protected Attributes:}
+\textbf{Discrete Protected Attributes:}
 If a protected attribute is discrete (e.g., gender, ethnicity), it is left unchanged during the transformation process. This ensures that the inherent categories of the attribute are preserved, and the model can account for these categories without introducing bias.
 
-\paragraph{Continuous Protected Attributes: Quantization Operation}
+\textbf{Continuous Protected Attributes: Quantization Operation}
 Continuous protected attributes, such as age, undergo a quantization process. Quantization is a method to discretize the continuous attribute into equal-width bins. This operation is represented mathematically as:
 
 \[ Q(x) = \text{{floor}}\left(\frac{{x - \text{{min}}}}{{\text{{bin width}}}}\right) \]
@@ -494,7 +494,7 @@ The pursuit of fairness in machine learning models involves a nuanced considerat
 
 The strategic decision regarding the adoption of pre-processing, in-processing, or post-processing algorithms is a nuanced and crucial aspect of the Fair-by-Design workflow. This decision is intricately tied to the specific characteristics of the data and the defined fairness goals, and it plays a pivotal role in shaping the overall fairness of the machine learning model.
 
-\paragraph{Pre-processing Algorithms}
+\textbf{Pre-processing Algorithms}
 
 Pre-processing algorithms play a pivotal role in shaping the initial conditions for fairness considerations within the machine learning workflow. Distinguished by their capability to transform the dataset before model training, these algorithms are instrumental in mitigating biases inherent in raw data. This preprocessing phase aims to optimize the data, rendering it more conducive to addressing fairness considerations during subsequent stages. The selection and application of pre-processing algorithms are closely intertwined with the defined fairness goals for the specific machine learning task.
 
@@ -508,7 +508,7 @@ Pre-processing algorithms play a pivotal role in shaping the initial conditions 
 
 \end{itemize}
 
-\paragraph{In-processing Algorithms}
+\textbf{In-processing Algorithms}
 
 In-processing algorithms intervene directly during the model training process, introducing fairness mechanisms at this crucial stage. This approach modifies the learning process to ensure fairness considerations are embedded in the model's development.
 
@@ -522,7 +522,7 @@ In-processing algorithms intervene directly during the model training process, i
 
 \end{itemize}
 
-\paragraph{Post-processing Algorithms}
+\textbf{Post-processing Algorithms}
 
 Post-processing algorithms come into play after model training, adjusting predictions to align with fairness objectives. This approach offers a corrective mechanism to fine-tune model outputs based on fairness considerations.
 
@@ -536,7 +536,7 @@ Post-processing algorithms come into play after model training, adjusting predic
 
 \end{itemize}
 
-\paragraph{Strategic Decision Factors}
+\textbf{Strategic Decision Factors}
 
 When making the strategic decision among pre-processing, in-processing, or post-processing algorithms, several factors come into play:
 
@@ -556,7 +556,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 % Include the detailed implementation steps for each key consideration as per the previous discussion.
 
-\paragraph{Fairness-Aware Model Selection}
+\textbf{Fairness-Aware Model Selection}
 
 \begin{itemize}
 
@@ -588,7 +588,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 \end{itemize}
 
-\paragraph{Explainability and Interpretability}
+\textbf{Explainability and Interpretability}
 
 \begin{itemize}
 
@@ -610,7 +610,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 \end{itemize}
 
-\paragraph{Regularization Techniques}
+\textbf{Regularization Techniques}
 
 \begin{itemize}
 
@@ -628,7 +628,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 \end{itemize}
 
-\paragraph{Bias Detection and Mitigation}
+\textbf{Bias Detection and Mitigation}
 
 \begin{itemize}
     
@@ -644,7 +644,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 \end{itemize}
 
-\paragraph{Human-in-the-Loop Approaches}
+\textbf{Human-in-the-Loop Approaches}
 
 \begin{itemize}
     
@@ -663,7 +663,7 @@ In essence, the choice among pre-processing, in-processing, or post-processing a
 
 \subsubsection{Pre-processing Algorithm Proposed}
 
-\paragraph{Fairness through data augmentation}
+\textbf{Fairness through data augmentation}
 \label{subsec:ftdr}
 
 In this approach, the paradigm of bias mitigation takes on a unique and innovative perspective, one that prioritizes data augmentation over attribute removal. Unlike traditional approaches that center on the exclusion of specific attributes, this methodology embraces the concept of data augmentation, introducing a distinctive definition of fairness and equity within the AI system.
@@ -803,15 +803,15 @@ This section delivers a thorough overview of the model training and evaluation p
 
 \subsubsection{Training Process}
 
-\paragraph{Data Splitting}
+\textbf{Data Splitting}
 
 The dataset undergoes a deliberate split into training, validation, and test sets, each serving a distinct strategic purpose. The training set acts as the foundation for the model's learning process, enabling it to grasp patterns and relationships within the data. The validation set plays a crucial role in hyperparameter tuning, fine-tuning the model to enhance its generalization capabilities. Finally, the test set serves as the litmus test for the final model's performance, offering a reliable measure of its predictive capabilities. This meticulous division ensures a comprehensive and robust evaluation of the model's effectiveness and generalizability within the Fair-by-Design framework.
 
-\paragraph{Model Architecture}
+\textbf{Model Architecture}
 
 The architecture of the selected model is meticulously crafted to strike a delicate balance between accuracy and fairness considerations within the Fair-by-Design framework. Architectures may incorporate innovative components, such as adversarial layers or customized modules specifically designed to enforce fairness constraints. The focal point is to develop a model that excels not only in capturing intricate patterns but is also interpretable and transparent in its decision-making process. This intentional design reflects the commitment to fostering models that go beyond predictive prowess, embodying principles of interpretability and transparency while addressing fairness concerns.
 
-\paragraph{Training Parameters}
+\textbf{Training Parameters}
 
 Critical training parameters, spanning the learning rate, batch size, and convergence criteria, undergo meticulous tuning in the Fair-by-Design framework. The learning rate assumes significance as it dictates the step size in the optimization process, thereby influencing the pace of updates to model parameters. This parameter is pivotal in determining the balance between the model's adaptability and stability during training.
 
@@ -821,13 +821,13 @@ Convergence criteria hold a crucial role by ensuring that the training process h
 
 This comprehensive tuning process, applicable beyond deep models, reflects a nuanced approach in optimizing key parameters to foster models that not only exhibit accuracy but also align with fairness considerations in the Fair-by-Design paradigm.
 
-\paragraph{Fairness Constraints}
+\textbf{Fairness Constraints}
 
 In scenarios where fairness constraints are seamlessly integrated into the training process within the Fair-by-Design framework, a deliberate and systematic approach is adopted. These constraints are explicitly defined and enforced, often involving the introduction of regularization terms designed to penalize disparate treatment of different demographic groups. This strategic incorporation aims to instill fairness by discouraging the model from exhibiting biased behavior towards specific groups.
 
 Adversarial training components might also be leveraged in this process. These components act as a countermeasure to mitigate bias, introducing a dynamic element that works to identify and neutralize any discriminatory patterns that may emerge during training. The overall objective is to foster models that not only deliver accurate predictions but also adhere to ethical principles of fairness and equity. This intentional integration of fairness constraints reinforces the commitment to cultivating machine learning models that contribute to just and unbiased outcomes.
 
-\paragraph{Model Training}
+\textbf{Model Training}
 
 The model undergoes training for a specified number of iterations, leveraging the training set to iteratively update its parameters and increase accuracy. This iterative training process is not limited to deep learning models and is applicable across various model categories. The overarching goal remains to strike a balance between accuracy and fairness, contributing to the development of a machine learning model proficient in capturing underlying patterns while being conscious of potential biases.
 
@@ -835,7 +835,7 @@ Through successive iterations on the training set, the model refines its underst
 
 \subsubsection{Evaluation Metrics}
 
-\paragraph{Accuracy Metrics}
+\textbf{Accuracy Metrics}
 
 A suite of accuracy metrics is employed to holistically assess the model's overall performance:
 
@@ -849,7 +849,7 @@ A suite of accuracy metrics is employed to holistically assess the model's overa
     \item \emph{F1-score:} The harmonic mean of precision and recall, providing a balanced measure of accuracy.
 \end{itemize}
 
-\paragraph{Fairness Metrics}
+\textbf{Fairness Metrics}
 
 Fairness metrics are instrumental in evaluating the model's behavior across different demographic groups:
 
@@ -863,17 +863,17 @@ Fairness metrics are instrumental in evaluating the model's behavior across diff
 
 \subsubsection{Results and Analysis}
 
-\paragraph{Accuracy Results}
+\textbf{Accuracy Results}
 
 A meticulous analysis of accuracy results stands as a cornerstone in gaining valuable insights into the model's predictive prowess concerning the target variable. Precision, recall, and F1-score metrics play a pivotal role in offering a nuanced understanding of the intricate trade-offs between true positives, false positives, and false negatives.
 
 Precision provides insights into the accuracy of positive predictions, recall assesses the model's ability to capture all positive instances, and the F1-score encapsulates a harmonized view, considering both precision and recall. The overarching goal transcends mere accuracy; it extends to cultivating a balanced and informed prediction capability. This multifaceted evaluation approach ensures a comprehensive grasp of the model's performance, allowing for a nuanced interpretation of its predictive accuracy while considering the intricate interplay between different performance metrics.
 
-\paragraph{Fairness Results}
+\textbf{Fairness Results}
 
 Fairness metrics serve as a crucial lens through which biases within the model are identified and addressed. Disparate impact, equalized odds, and statistical parity results undergo thorough analysis to evaluate whether the model demonstrates disparate treatment among various demographic groups. The emphasis is not only on recognizing but also on actively mitigating disparities, fostering the development of a model that upholds principles of fairness and equity. By leveraging these metrics, the evaluation process goes beyond traditional performance measures, ensuring a diligent scrutiny of how the model's predictions may impact different demographic segments and actively working towards an unbiased and equitable predictive system.
 
-\paragraph{Trade-offs}
+\textbf{Trade-offs}
 
 Achieving a delicate equilibrium between accuracy and fairness is a pivotal consideration in the development of a balanced machine learning model. This nuanced trade-off recognition necessitates a thoughtful approach, often involving adjustments to the model architecture and training process. Various techniques, such as re-weighting, re-sampling, or the introduction of customized loss functions, can be strategically employed to specifically address fairness concerns identified during model evaluation.
 
@@ -889,15 +889,15 @@ Achieving a delicate equilibrium between accuracy and fairness is a pivotal cons
 
 \subsubsection{Discussion}
 
-\paragraph{Interpretability}
+\textbf{Interpretability}
 
 The interpretability of the model's decisions holds paramount importance. Techniques such as SHAP (SHapley Additive exPlanations) values or LIME (Local Interpretable Model-agnostic Explanations) are thoroughly explored to enhance transparency in the decision-making process. The focus is on understanding and elucidating how the model arrives at its predictions. This commitment to interpretability contributes significantly to the model's trustworthiness, providing stakeholders with clear insights into the factors influencing predictions. By adopting these interpretability techniques, the model not only meets technical excellence standards but also aligns with the broader goal of fostering trust and confidence in its decision-making capabilities.
 
-\paragraph{Ethical Considerations}
+\textbf{Ethical Considerations}
 
 The discussion extends beyond technical aspects to encompass ethical considerations arising from the model's behavior. Rigorous attention is dedicated to uncovering potential biases, identifying unintended consequences, and evaluating the impact on different demographic groups. Strategies for addressing ethical concerns are thoughtfully proposed, emphasizing a steadfast commitment to responsible and ethical AI practices. This holistic examination ensures that the model's deployment aligns not only with technical efficacy but also with a profound awareness of its societal implications, fostering a responsible and ethical approach to artificial intelligence.
 
-\paragraph{Further Refinement}
+\textbf{Further Refinement}
 
 Derived from the observed results, proposals for further refinement are thoughtfully put forth. This iterative process may encompass adjusting fairness constraints, fine-tuning hyperparameters, or exploring alternative algorithms, all aimed at enhancing both accuracy and fairness in model predictions. The iterative nature of this refinement process underscores a steadfast commitment to continuous improvement and the unwavering pursuit of fairness. This dynamic approach ensures that the model evolves in response to insights gained from its performance, fostering a resilient and adaptive system that continually strives to achieve the highest standards of accuracy and fairness.
 
