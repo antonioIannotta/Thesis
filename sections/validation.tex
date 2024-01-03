@@ -234,8 +234,23 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth, height=0.6\textwidth]{accuracy.png}
-    \label{fig:acc_alg}
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Year,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(DA, 0.7890) (FTU, 0.8162) (GS, 0.8086) (EG, 0.7949) (TO, 0.7637)};
+        \addplot 
+            coordinates {(DA, 0.7918) (FTU, 0.8235) (GS, 0.8109) (EG, 0.8079) (TO, 0.7637)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
     \caption{Min-Max accuracy for each fairness algorithm}
 \end{figure}
 
@@ -254,8 +269,23 @@ Similarly, for each fairness algorithm, the minimum and maximum fairness values 
 %\paragraph{Disparate impact for sex protected attribute}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth, height=0.6\textwidth]{dis.png}
-    \label{fig:dis}
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Year,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(DA, 0.5409) (FTU, 0.3809) (GS, 0.4103) (EG, 0.5102) (TO, 0.0000)};
+        \addplot 
+            coordinates {(DA, 0.5950) (FTU, 0.4075) (GS, 0.4325) (EG, 0.6154) (TO, 0.0000)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
     \caption{Min-Max Disparate Impact Metric for Sex protected attributes and for each fairness algorithm}
 \end{figure}
 
@@ -279,8 +309,23 @@ The disparate impact metric measures the degree on which each algorithm reach th
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth, height=0.6\textwidth]{dir.png}
-    \label{fig:dir}
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Year,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(DA, 0.7352) (FTU, 0.5703) (GS, 0.6247) (EG, 0.6802) (TO, 0.0000)};
+        \addplot 
+            coordinates {(DA, 0.7486) (FTU, 0.6308) (GS, 0.6376) (EG, 0.7442) (TO, 0.0000)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
     \caption{Min-Max Disparate Impact Metric for Race protected attributes and for each fairness algorithm}
 \end{figure}
 
@@ -299,8 +344,23 @@ Still considering the disparate impact metric but considering the \emph{Race} pr
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth, height=0.6\textwidth]{dpds.png}
-    \label{fig:dpds}
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Year,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(DA, 0.0155) (FTU, 0.0197) (GS, 0.0149) (EG, 0.0174) (TO, 0.0000)};
+        \addplot 
+            coordinates {(DA, 0.0171) (FTU, 0.0242) (GS, 0.0163) (EG, 0.0265) (TO, 0.0000)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
     \caption{Min-Max Demographic Parity Difference Metric for Sex protected attributes and for each fairness algorithm}
 \end{figure}
 
@@ -318,8 +378,23 @@ The demographic parity difference metric measures the degree on which each algor
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth, height=0.6\textwidth]{dpdr.png}
-    \label{fig:dpdr}
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Year,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(DA, 0.0051) (FTU, 0.0063) (GS, 0.0046) (EG, 0.0064) (TO, 0.0000)};
+        \addplot 
+            coordinates {(DA, 0.0053) (FTU, 0.0083) (GS, 0.0052) (EG, 0.0092) (TO, 0.0000)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
     \caption{Min-Max Demographic Parity Difference for Race protected attributes and for each fairness algorithm}
 \end{figure}
 
