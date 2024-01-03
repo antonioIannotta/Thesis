@@ -160,15 +160,13 @@ By delving into these specific areas, a more detailed and schematic understandin
 
 \end{enumerate}
 
-
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Objective Definition};
         \node (dc) [startstop, below of=start] {Data Collection};
         \node (dpr) [startstop, below of=dc] {Data Pre-processing};
-        \node (mtpe) [startstop, below of=dpr] {Model traning and Performance evaluation}
-
+        \node (mtpe) [startstop, below of=dpr] {Model traning and Performance evaluation};
         \draw [arrow] (start) -- (dc);
         \draw [arrow] (dc) -- (dpr);
         \draw [arrow] (dpr) -- (mtpe);
