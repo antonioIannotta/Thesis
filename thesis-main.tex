@@ -12,9 +12,11 @@
 \usepackage{notes}
 \usepackage{shortcuts}
 \usepackage{acronym}
+\usepackage{tikz}
 \usepackage{float}
 %\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 
+\usetikzlibrary{shapes.geometric, arrows}
 \graphicspath{{./sections/}}
 
 \newcommand{\thesislang}{english} % commentare in caso di tesi in italiano
@@ -43,6 +45,21 @@
 \acrodef{vm}[VM]{Virtual Machine}
 \acrodef{AI}{Artificial Intelligence}
 
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30]
+
+\tikzstyle{arrow} = [thick,->,>=stealth]
 
 \mainlinespacing{1.241} % line spacing in mainmatter, comment to default
 

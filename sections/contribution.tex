@@ -163,8 +163,16 @@ By delving into these specific areas, a more detailed and schematic understandin
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.3\textwidth, height=.8\textwidth]{workflow-steps.png}
-    \label{fig:steps}
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Objective Definition};
+        \node (dc) [startstop, below of=start] {Data Collection};
+        \node (dpr) [startstop, below of=dc] {Data Pre-processing};
+        \node (mtpe) [startstop, below of=dpr] {Model traning and Performance evaluation}
+
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (dc) -- (dpr);
+        \draw [arrow] (dpr) -- (mtpe);
+    \end{tikzpicture}
     \caption{Fair-by-Design steps}
 \end{figure}
     
