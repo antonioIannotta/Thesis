@@ -231,6 +231,17 @@ About these results is possible to make some considerations:
 \end{enumerate}
 
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
+In order to report a more compact visualization of the results to each algorithm is assigned a numerical identifier:
+
+\begin{itemize}
+
+    \item \emph{DA}: 1
+    \item \emph{FTU}: 2
+    \item \emph{GS}: 3
+    \item \emph{EG}: 4
+    \item \emph{TO}: 5
+
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -245,9 +256,9 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
             ybar interval=0.7,
         ]
         \addplot 
-            coordinates {(DA, 0.7890) (FTU, 0.8162) (GS, 0.8086) (EG, 0.7949) (TO, 0.7637)};
+            coordinates {(1, 0.7890) (2, 0.8162) (3, 0.8086) (4, 0.7949) (5, 0.7637)};
         \addplot 
-            coordinates {(DA, 0.7918) (FTU, 0.8235) (GS, 0.8109) (EG, 0.8079) (TO, 0.7637)};
+            coordinates {(1, 0.7918) (2, 0.8235) (3, 0.8109) (4, 0.8079) (5, 0.7637)};
         \legend{Min,Max}
         \end{axis}
         \end{tikzpicture}
