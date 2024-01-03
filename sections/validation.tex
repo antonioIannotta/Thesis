@@ -287,6 +287,8 @@ There are some considerations that can be made about the accurencies presented:
 \end{enumerate}
 
 Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
+\newpage
+\textbf{Disparate Impact Sex}
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -324,7 +326,8 @@ The disparate impact metric measures the degree on which each algorithm reach th
 
     \item \emph{Trade-off Consideration:} Assessing the trade-off between accuracy and the fairness metric, EG and DA emerge as promising candidates, showcasing a balance between achieving high accuracy and addressing demographic parity for the \emph{Sex} attribute.
 \end{enumerate}
-
+\newpage
+\textbf{Disparate Impact Race}
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -359,6 +362,8 @@ Still considering the disparate impact metric but considering the \emph{Race} pr
     \item \emph{Trade-off Consideration:} DA emerges as a standout performer, providing both the highest disparate impact values and minimal variance. This aligns with the trade-off requirements, making DA a strong candidate for practitioners seeking a balanced solution for the \emph{Race} attribute.
 \end{enumerate}
 
+\newpage
+\textbf{Demographic Parity Difference Sex}
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -391,6 +396,8 @@ The demographic parity difference metric measures the degree on which each algor
     \item \emph{Data Augmentation (DA) and Grid Search (GS) Trade-off Consideration:} DA and GS exhibit comparable performances in terms of DPD. However, GS outperforms DA by a marginal accuracy improvement of 0.1\%. This nuanced trade-off consideration positions GS as a slightly more favorable choice, aligning with the objective of balancing accuracy and fairness.
 \end{enumerate}
 
+\newpage
+\textbf{Demographic Parity Difference Race}
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
