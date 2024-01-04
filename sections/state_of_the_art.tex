@@ -89,9 +89,9 @@ It's possible to establish 3 different sources of biases across several perspect
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Sources of Bias};
-        \node (dc) [startstop, left of=start] {Historical bias};
+        \node (dc) [startstop, left of=start, xshift=-2cm] {Historical bias};
         \node (dpr) [startstop, below of=start] {Human bias};
-        \node (mtpe) [startstop, right of=start] {Algorithmic bias};
+        \node (mtpe) [startstop, right of=start, xshift=2cm] {Algorithmic bias};
         \draw [arrow] (start) -- (dc);
         \draw [arrow] (start) -- (dpr);
         \draw [arrow] (start) -- (mtpe);
