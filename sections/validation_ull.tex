@@ -254,7 +254,7 @@ In order to provide a tabular representation of the results it's necessary to as
     \caption{Models training results for disparate impact metric}
     \label{fig:results}
 \end{figure}
-\newpage
+
 \textbf{Fairness metric: Demographic Parity}
 
 \begin{figure}[H]
@@ -360,3 +360,29 @@ There are some considerations that can be made about the accurencies presented:
 
     \item \emph{Minimum Variance with Fairness through Unawareness:} In contrast, the Fairness through Unawareness (FtU) algorithm exhibits the minmum variance in accuracy values across different configurations. More specifically the accuracy is the same for both models. Furthermore this algorithm has the maximum accuracy, values that it shares with other 2 algorithms (DA and EG), but in contrast with them it has the maximum minimum value. This result suggests to choose FtU as fairness algorithm to achieve the maximum accuracy.
 \end{enumerate}
+
+Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
+\newpage
+\textbf{Disparate Impact Sex}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Disparate Impact Sex,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(1, 0.5409) (2, 0.3809) (3, 0.4103) (4, 0.5102) (5, 0.0000)};
+        \addplot 
+            coordinates {(1, 0.5950) (2, 0.4075) (3, 0.4325) (4, 0.6154) (5, 0.0000)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
+    \caption{Min-Max Disparate Impact Metric for Sex protected attributes and for each fairness algorithm}
+\end{figure}
+
