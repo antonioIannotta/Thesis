@@ -117,6 +117,20 @@ Effectively addressing bias originating from historical data necessitates a mult
 
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Historical bias addressing};
+        \node (dc) [startstop, below of=start] {Data pre-processing};
+        \node (dpr) [startstop, below of=start] {Algorithmic intervention to inject bias addresssing in ML algorithms};
+        \node (mtpe) [startstop, below of=start] {Continuous monitoring};
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (start) -- (dpr);
+        \draw [arrow] (start) -- (mtpe);
+    \end{tikzpicture}
+    \caption{Historical bias addressing}
+\end{figure}
+
 Ultimately, the overarching goal is to foster a future where machine learning not only learns from historical data but actively works to transcend the bonds of bias. In this vision, AI systems operate as champions of fairness and social justice, contributing to the construction of a more equitable and just society where decisions and predictions are untainted by historical prejudices. This endeavor is not just a technical challenge but a moral imperative, driving the AI community to build a more equitable future for all.
 
 \subsubsection{Human bias}
@@ -139,6 +153,22 @@ The recognition and mitigation of human bias represent an imperative for the dev
 
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Human bias addressing};
+        \node (dc) [startstop, below of=start] {Unfairness and bias recognition and awareness};
+        \node (dpr) [startstop, below of=dc] {Diversity and inclution promotion};
+        \node (mtpe) [startstop, below of=dpr] {Practical strategies to address bias and unfairness};
+        \node (cm) [startstop, below of=mtpe] {Continuous monitoring};
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (dc) -- (dpr);
+        \draw [arrow] (dpr) -- (mtpe);
+        \draw [arrow] (mtpe) -- (cm);
+    \end{tikzpicture}
+    \caption{Human bias addressing}
+\end{figure}
+
 The ultimate goal is to harness the transformative potential of machine learning while eliminating the inadvertent perpetuation of human biases, thereby ushering in a more equitable and just era in technological advancement.
 
 \subsubsection{Algorithmic bias}
@@ -158,6 +188,20 @@ The algorithmic bias mitigation requires several steps:
     \item Transparency and fairness represent integral aspects of the decision-making process. The incorporation of these elements ensures that algorithms operate equitably, are devoid of bias, and actively promote fairness and equal treatment for all individuals, irrespective of their backgrounds. 
 
 \end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Algorithmic bias addressing};
+        \node (dc) [startstop, below of=start] {Bias assessment within the data};
+        \node (dpr) [startstop, below of=dc] {Fairness-aware algorithm design};
+        \node (mtpe) [startstop, below of=dpr] {Achieving transparency within the algorithms};
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (dc) -- (dpr);
+        \draw [arrow] (dpr) -- (mtpe);
+    \end{tikzpicture}
+    \caption{Algorithmic bias addressing}
+\end{figure}
 
 In essence, the mission of addressing algorithmic bias is pivotal for harnessing the true potential of AI systems. It involves forging a future where AI, far from perpetuating biases, serves as a champion of fairness and social justice, contributing to the construction of an equitable and just society in the digital age.
 
