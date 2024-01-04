@@ -35,15 +35,15 @@ The identified protected attributes for scrutiny within the Fair-by-Design frame
 
 \begin{itemize}
 
-    \item sex
+    \item Sex
 
-    \item capital island: if the student comes from the capital of the city
+    \item Capital Island: if the student comes from the capital of the city
 
-    \item public\textunderscore private: if the school is public or private
+    \item Public-Private: if the school is public or private
     
-    \item mothly houseold income
+    \item Household Income: mothly houseold income
 
-    \item economic, social and cultural satus index
+    \item ESCS: economic, social and cultural satus index
 
 \end{itemize}
 
@@ -366,6 +366,135 @@ There are some considerations that can be made about the values presented above:
 
 \end{itemize}
 
-According to the analysis of the results it's possible to conclude how if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Sex} in this scenario the best choice would be the Exponentiated Gradient algorithm.
+According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Sex} in this scenario the best choice would be the Exponentiated Gradient algorithm.
 
 % Keep going with capital island
+
+\newpage
+\textbf{Disparate Impact Capital Island}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.9770 & 0.9813 \\
+        \hline
+        FtU & 0.9770 & 0.9813 \\
+        \hline
+        EG & 0.9743 & 0.9770 \\
+        \hline
+        GS & 0.0000 & 0.9770 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Disparate Impact value for \emph{Capital Island} protected attribute}
+\end{figure}
+
+There are some considerations that can be made about the values presented above:
+
+\begin{itemize}
+
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
+    \item The Exponentiated Gradient (EG) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
+
+    \item The performacne of the pre-processing algorithms are the same
+
+\end{itemize}
+
+According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Capital Island} in this scenario the best choice would be adopt a Pre-processing algorithm.
+
+
+\newpage
+\textbf{Disparate Impact Private-Public}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.9901 & 0.9901 \\
+        \hline
+        FtU & 0.9901 & 0.9942 \\
+        \hline
+        EG & 0.9901 & 0.9919 \\
+        \hline
+        GS & 0.0000 & 0.9901 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Disparate Impact value for \emph{Private-Public} protected attribute}
+\end{figure}
+
+There are some considerations that can be made about the values presented above:
+
+\begin{itemize}
+
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
+    \item The Fairness through Unawareness (FtU) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
+
+    \item The Exponentiated Gradient is the algorithm that has the greatest maximum value, with a variance that is double that the one of FtU.
+
+\end{itemize}
+
+According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Private-Public} in this scenario the best choice would be adopt the Exponentiated Gradient algorithm.
+
+\newpage
+\textbf{Disparate Impact Household Income}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.8610 & 0.9340 \\
+        \hline
+        FtU & 0.8610 & 0.8610 \\
+        \hline
+        EG & 0.8610 & 0.8622 \\
+        \hline
+        GS & 0.0000 & 0.8610 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Disparate Impact value for \emph{Household Income} protected attribute}
+\end{figure}
+
+There are some considerations that can be made about the values presented above:
+
+\begin{itemize}
+
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
+    \item The Fairness through Unawareness (FtU) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
+
+    \item The Exponentiated Gradient is the algorithm that has the greatest maximum value.
+
+\end{itemize}
+
+According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Household Income} in this scenario the best choice would be adopt the Exponentiated Gradient algorithm.
+
+
+\newpage
+\textbf{Disparate Impact ESCS}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.0007 & 0.0013 \\
+        \hline
+        FtU & 0.0013 & 0.0019 \\
+        \hline
+        EG & 0.0013 & 0.0019 \\
+        \hline
+        GS & 0.0013 & 0.00759 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Disparate Impact value for \emph{ESCS} protected attribute}
+\end{figure}
+
+According to thes results it's possible to conclude that it's impossible to achieve the Demographic Parity with the combination of models and algorithm previously presented for the protected attribute \emph{ESCS}
+
+%Keep going with demographic parity
+
