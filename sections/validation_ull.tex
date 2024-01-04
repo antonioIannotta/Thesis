@@ -283,3 +283,80 @@ In order to provide a tabular representation of the results it's necessary to as
     \caption{Models training results for demographic parity difference metric}
     \label{fig:results}
 \end{figure}
+
+About these results it's possible to make some consideration:
+
+\begin{enumerate}
+
+    \item \emph{Disparate Impact metric:}
+    \begin{itemize}
+        
+        \item For each model the metric for \emph{ESCS} is close to 0. This means that each algorithm the demographic parity is not achieved.
+
+        \item On the other hand for every other protected attribute is close to 1, this means that for each algorithm, except the GridSearch, for these protected attributes, the demographic parity is achieved.
+
+        \item The GridSearch algorithm with the XGB model completely fails into the achieving of the demographic parity, since the DI value is 0 for each protected attribute but \emph{ESCS}, for which it's close to 0.
+    
+    \end{itemize}
+
+    \item \emph{Demographic Parity Difference:}
+    \begin{itemize}
+
+        \item Every algorithm achieve a reasonable degree of group fairness.
+
+        \item The GridSearch algorithm with the XGB model is the combination of algorithm and model that fails into the achieving of trade-off between fairness and accuracy.
+
+    \end{itemize}
+
+\end{enumerate}
+
+or each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
+In order to report a more compact visualization of the results to each algorithm is assigned a numerical identifier. Since the Threshold Optimizer algorithm always returns the same results these are not encoded in the graphics to show the differences.
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Algorithm} & \textbf{Code} \\
+        \hline
+        DA & 1 \\
+        \hline
+        FTU & 2 \\
+        \hline
+        EG & 3 \\
+        \hline
+        GS & 4 \\
+        \hline
+    \end{tabular}
+    \caption{Algorithm encoding}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            x tick label style={
+                /pgf/number format/1000 sep=},
+            ylabel=Accuracy,
+            enlargelimits=0.001,
+            legend style={at={(0.5,-0.1)},
+            anchor=north,legend columns=-1},
+            ybar interval=0.7,
+        ]
+        \addplot 
+            coordinates {(1, 0.9975) (2, 0.9987) (3, 0.9944) (4, 0.5201)};
+        \addplot 
+            coordinates {(1, 0.9987) (2, 0.9987) (3, 0.9987) (4, 0.9987)};
+        \legend{Min,Max}
+        \end{axis}
+        \end{tikzpicture}
+    \caption{Min-Max accuracy for each fairness algorithm}
+\end{figure}
+
+There are some considerations that can be made about the accurencies presented:
+\begin{enumerate}
+
+    \item \emph{Maximum Variance with Grid Search:} The algorithm that demonstrates the maximum variance in accuracy results for both the XGB and RF models is Grid Search (GS). This indicates that GS is robust in yielding consistent accuracy outcomes, showcasing its stability in diverse scenarios.
+
+    \item \emph{Minimum Variance with Fairness through Unawareness:} In contrast, the Fairness through Unawareness (FtU) algorithm exhibits the minmum variance in accuracy values across different configurations. More specifically the accuracy is the same for both models. Furthermore this algorithm has the maximum accuracy, values that it shares with other 2 algorithms (DA and EG), but in contrast with them it has the maximum minimum value. This result suggests to choose FtU as fairness algorithm to achieve the maximum accuracy.
+\end{enumerate}
