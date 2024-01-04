@@ -261,7 +261,7 @@ The Equalized Odds fairness notion aims to balance the true positive and false p
 \text{Equalized Odds Difference} = \text{True Positive Rate}_{\text{Protected}} - \text{True Positive Rate}_{\text{Unprotected}}
 \]
 
-A value of 0 indicates perfect balance, with positive or negative values signifying imbalances in the error rates.
+A value of equal or close to 0 indicates perfect balance.
 
 \paragraph{Individual Fairness:}
 
@@ -279,7 +279,7 @@ Group Fairness ensures fair treatment for entire groups, typically based on stat
 \[
 \text{Statistical Parity Difference} = \text{Favorable Outcome Rate}_{\text{Prot}} - \text{Favorable Outcome Rate}_{\text{Unprot}}
 \]
-A value of 0 suggests parity, while positive or negative values indicate disparities.
+A value equal or close to 0 suggests parity.
 
 \begin{figure}[H]
     \centering
@@ -478,7 +478,7 @@ The stage of Algorithm Design within the Fair-by-Design workflow stands as a piv
 
 The pursuit of fairness in machine learning models involves a nuanced consideration of several key aspects, each contributing to the overarching goal of cultivating just and impartial predictive systems. The following enumerates these considerations in detail:
 
-\begin{enumerate}
+\begin{itemize}
     
     \item \emph{Fairness-Aware Model Selection:} The selection of machine learning models assumes a pivotal role in addressing fairness objectives. It involves the deliberate consideration of models equipped with inherent mechanisms to tackle biases and promote equitable outcomes. Models such as adversarial networks, fairness-aware classifiers, and re-weighted learning algorithms are systematically explored and evaluated for their capacity to mitigate biases and foster fairness. This strategic approach ensures that the chosen models align with the principles of ethical and fair machine learning.
 
@@ -488,7 +488,7 @@ The pursuit of fairness in machine learning models involves a nuanced considerat
 
     \item \emph{Pre-processing, In-processing, or Post-processing Algorithms:} The strategic decision regarding the selection of pre-processing, in-processing, or post-processing algorithms is intricately tied to the specific characteristics of the data and defined fairness goals. Each approach—pre-processing, in-processing, or post-processing—offers distinct advantages and considerations. The choice among them should be informed by a comprehensive understanding of the specific fairness challenges and objectives inherent to the machine learning task at hand. Factors such as the nature of biases in the data, dataset characteristics, and the desired level of fairness all play a crucial role in this decision-making process.
 
-\end{enumerate}
+\end{itemize}
 
 \subsubsection{Strategic choice for the fairness algorithm}
 
@@ -732,7 +732,6 @@ Let $C$ be the sub-dataset of $D$ with a specific combination $\text{c\textunder
 
 \end{itemize}
 
-\newpage
 Before proceeding in the theoretical analysis of the algorithm here's the proposed pseudocode:
 
 \begin{algorithm}[H]
@@ -858,7 +857,9 @@ Fairness metrics are instrumental in evaluating the model's behavior across diff
     
     \item \emph{Equalized Odds}: The Equalized Odds metric serves as a critical assessment tool for gauging the model's performance concerning fairness. This evaluation metric specifically investigates whether the model exhibits comparable false positive and false negative rates across distinct demographic groups. By scrutinizing disparities in these rates, the Equalized Odds metric offers insights into the model's capacity to provide equitable outcomes for diverse segments of the population, contributing to a comprehensive understanding of its fairness considerations, as reported in \cref{section:metrics}
     
-    \item \emph{Statistical Parity:} The Statistical Parity metric is a meticulous examination of the distribution of positive outcomes within each demographic group. This evaluation metric meticulously analyzes the proportion of positive results for each group, aiming to identify and quantify any disparities that may exist. By shedding light on these disparities, the Statistical Parity metric offers a nuanced perspective on how the model's predictions align with different demographic segments. This in-depth analysis contributes to a comprehensive assessment of fairness, facilitating a more detailed understanding of potential imbalances in positive outcomes across diverse groups, as reported in \cref{section:metrics}
+    \item \emph{Demographic Parity Difference:} The Demographic Parity Difference metric is a meticulous examination of the distribution of positive outcomes within each demographic group. This evaluation metric meticulously analyzes the proportion of positive results for each group, aiming to identify and quantify any disparities that may exist. By shedding light on these disparities, the Statistical Parity metric offers a nuanced perspective on how the model's predictions align with different demographic segments. This in-depth analysis contributes to a comprehensive assessment of fairness, facilitating a more detailed understanding of potential imbalances in positive outcomes across diverse groups, as reported in \cref{section:metrics}
+
+    \item \emph{Disparate Impact:} The Disparate Impact metric serves to establish the degree on which a certain group is related to the output to provide a fairness evaluation, as better explained in \cref{section:metrics}
 
 \end{itemize}
 
