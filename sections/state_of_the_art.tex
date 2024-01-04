@@ -98,7 +98,7 @@ It's possible to establish 3 different sources of biases across several perspect
     \end{tikzpicture}
     \caption{Sources of bias}
 \end{figure}
-
+\newpage
 \subsubsection{Historical bias} 
 
 The issue of bias originating from historical data is a critical and intricate challenge that looms large in the landscape of machine learning. When machine learning models are trained on datasets culled from the annals of history, they inevitably inherit the biases and patterns encoded within that data. These historical biases, often a reflection of deeply ingrained societal prejudices and structural inequalities, can persist and intensify when the model is operationalized. \cite{10.1145/3308560.3317590}
@@ -122,8 +122,8 @@ Effectively addressing bias originating from historical data necessitates a mult
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Historical bias addressing};
         \node (dc) [startstop, below of=start] {Data pre-processing};
-        \node (dpr) [startstop, below of=start] {Algorithmic intervention to inject bias addresssing in ML algorithms};
-        \node (mtpe) [startstop, below of=start] {Continuous monitoring};
+        \node (dpr) [startstop, below of=dc] {Algorithmic intervention to inject bias addresssing in ML algorithms};
+        \node (mtpe) [startstop, below of=dpr] {Continuous monitoring};
         \draw [arrow] (start) -- (dc);
         \draw [arrow] (start) -- (dpr);
         \draw [arrow] (start) -- (mtpe);
@@ -132,7 +132,7 @@ Effectively addressing bias originating from historical data necessitates a mult
 \end{figure}
 
 Ultimately, the overarching goal is to foster a future where machine learning not only learns from historical data but actively works to transcend the bonds of bias. In this vision, AI systems operate as champions of fairness and social justice, contributing to the construction of a more equitable and just society where decisions and predictions are untainted by historical prejudices. This endeavor is not just a technical challenge but a moral imperative, driving the AI community to build a more equitable future for all.
-
+\newpage
 \subsubsection{Human bias}
 
 Bias introduced by human factors represents a pervasive and intricate challenge within the realm of machine learning. It is essential to understand that human bias, which can emanate from societal, cultural, or personal beliefs and attitudes, has the potential to inadvertently permeate the entire spectrum of the machine learning pipeline. This influence spans from the initial stages of data collection and annotation to the model training and decision-making processes. 
@@ -170,7 +170,7 @@ The recognition and mitigation of human bias represent an imperative for the dev
 \end{figure}
 
 The ultimate goal is to harness the transformative potential of machine learning while eliminating the inadvertent perpetuation of human biases, thereby ushering in a more equitable and just era in technological advancement.
-
+\newpage
 \subsubsection{Algorithmic bias}
 
 Algorithmic bias, an intrinsic challenge in the domain of machine learning, underscores the presence of inherent biases that can manifest in the design, development, and deployment of machine learning algorithms. These biases, often unintended, can originate from a myriad of sources, encompassing factors such as biased training data, skewed feature selection, or implicit assumptions woven into the algorithm's development process. 
