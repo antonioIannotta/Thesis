@@ -7,9 +7,9 @@ Artificial Intelligence (\emph{AI}) stands at the forefront of technological inn
 
 However, the proliferation of AI brings with it the inherent challenge of bias. As AI systems learn from vast datasets, they may inadvertently perpetuate and exacerbate existing prejudices, resulting in \emph{bias} within the algorithms. Recognizing this challenge as a critical one, this exploration extends into the various dimensions of bias, highlighting its multifaceted nature and the potential consequences it carries. 
 
-Moreover, looking for for equitable AI, the concept of \emph{fairness} emerges as a beacon of hope. This chapter dissects the concept of fairness within AI systems, exploring the intricate ethical considerations that underlie the pursuit of equitable outcomes for all individuals. The chapter further investigates technical dimensions of fairness, acknowledging that it is not merely a goal but a fundamental ethical principle that underpins our work. 
+Moreover, looking for equitable AI, the concept of \emph{fairness} emerges as a beacon of hope. This chapter dissects the concept of fairness within AI systems, exploring the intricate ethical considerations that underlie the pursuit of equitable outcomes for all individuals. The chapter further investigates technical dimensions of fairness, acknowledging that it is not merely a goal but a fundamental ethical principle that underpins our work. 
 
-Through this comprehensive exploration, it's provided the way for the implementation of fair-by-design methods. This chapter is not only a testament to the foundation on which the research stands but also a testament to the complexity of the AI landscape, its potential for societal transformation, and the imperative of mitigating bias and promoting fairness while forging ahead in the development of AI systems. 
+Through this comprehensive exploration, it's provided the way for the implementation of Fair-by-Design methods. This chapter is not only a testament to the foundation on which the research stands but also a testament to the complexity of the AI landscape, its potential for societal transformation, and the imperative of mitigating bias and promoting fairness while forging ahead in the development of AI systems. 
 
 
 \section{Artificial Intelligence}
@@ -48,6 +48,21 @@ With pre-processed data, the next step is to select and train a machine learning
 
 The final stage of the traditional ML workflow is evaluating the model's performance on unseen data. This is typically done using a separate test dataset that the model has not encountered during training. Common evaluation metrics include accuracy, precision, recall, F1 score, and area under the receiver operating characteristic (ROC) curve. The goal is to assess how well the model generalizes to new, unseen instances and to identify areas for potential improvement.
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Data Acquisition};
+        \node (dc) [startstop, below of=start] {Data Pre-processing};
+        \node (dpr) [startstop, below of=dc] {Modelling};
+        \node (mtpe) [startstop, below of=dpr] {Performance Evaluation};
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (dc) -- (dpr);
+        \draw [arrow] (dpr) -- (mtpe);
+    \end{tikzpicture}
+    \caption{Traditional Machine Learning workflow}
+\end{figure}
+
+\newpage
 \section{Bias}
 
 Artificial Intelligence (AI) is undeniably a transformative force, poised to reshape multiple dimensions of the existence in profound ways. Its versatile applications extend far and wide, from refining and expediting decision-making processes to seamlessly automating mundane and repetitive tasks. In this ever-evolving landscape, AI systems are becoming increasingly integrated into daily experiences, orchestrating a paradigm shift in the way people interact with the world around them. 
@@ -68,7 +83,23 @@ Bias in AI is a critical issue, signifying the presence of unjust and skewed rep
 
 \subsection{Sources of Bias}
 
-\subsubsection{Historical data} 
+It's possible to establish 3 different sources of biases across several perspectives: historical, human and algorithmic perspective.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Sources of Bias};
+        \node (dc) [startstop, left of=start] {Historical bias};
+        \node (dpr) [startstop, below of=start] {Human bias};
+        \node (mtpe) [startstop, right of=start] {Algorithmic bias};
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (start) -- (dpr);
+        \draw [arrow] (start) -- (mtpe);
+    \end{tikzpicture}
+    \caption{Sources of bias}
+\end{figure}
+
+\subsubsection{Historical bias} 
 
 The issue of bias originating from historical data is a critical and intricate challenge that looms large in the landscape of machine learning. When machine learning models are trained on datasets culled from the annals of history, they inevitably inherit the biases and patterns encoded within that data. These historical biases, often a reflection of deeply ingrained societal prejudices and structural inequalities, can persist and intensify when the model is operationalized. \cite{10.1145/3308560.3317590}
 
