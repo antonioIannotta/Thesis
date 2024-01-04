@@ -305,7 +305,7 @@ In essence, post-processing represents the culmination of efforts to instill fai
         \node (fa) [startstop, below of=dp] {Fair Adversarial Training};
         \node (ta) [startstop, below of=postproc] {Threshold Adjustments};
         \node (ac) [startstop, below of=ta] {Additive Counterfactuals};
-        \node (eo) [startstop, below of=eo] {Equalized Odds Post-processing};
+        \node (eo) [startstop, below of=ac] {Equalized Odds Post-processing};
         \draw [arrow] (start) -- (preproc);
         \draw [arrow] (start) -- (inproc);
         \draw [arrow] (start) -- (postproc);
