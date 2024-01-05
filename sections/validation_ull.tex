@@ -91,7 +91,7 @@ The dataset encompasses 99 independent features of diverse types, each contribut
 
 \subsection{Protected Attributes and Encoding Consistency}
 
-As identified in \cref{section:val_obj}, five discrete protected attributes play a crucial role in fairness considerations. It is imperative to note that these attributes are discrete in nature. Furthermore, an essential consideration for subsequent analyses pertains to the representation of the output variable. Although it is binary, it is currently encoded as a string. Ensuring consistency in the encoding of this variable across both the training and test sets is of paramount importance for accurate and meaningful analyses in subsequent stages.
+As identified in \cref{section:val_obj}, five discrete protected attributes play a crucial role in fairness considerations. It is imperative to note that these attributes are discrete in nature. Furthermore, an essential consideration for subsequent analysis pertains to the representation of the output variable. Although it is binary, it is currently encoded as a string. Ensuring consistency in the encoding of this variable across both the training and test sets is of paramount importance for accurate and meaningful analysis in subsequent stages.
 
 This detailed understanding of the dataset's composition and attributes provides a solid foundation for subsequent steps in the Fair-by-Design workflow, facilitating informed decisions regarding model development and fairness considerations.
 
@@ -498,3 +498,152 @@ According to thes results it's possible to conclude that it's impossible to achi
 
 %Keep going with demographic parity
 
+\newpage
+\textbf{Demographic Parity Difference Sex}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.0068 & 0.0074 \\
+        \hline
+        FtU & 0.0056 & 0.0068 \\
+        \hline
+        EG & 0.0049 & 0.0068 \\
+        \hline
+        GS & 0.0068 & 0.1204 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Demographic Parity Difference value for \emph{Sex} protected attribute}
+\end{figure}
+
+About these results it's possible to make the following consideration:
+
+\begin{itemize}
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
+    \item The value of DPD for the GS algorithm adopted together with the XGB model is the highest value. Although this is a small value it suggests that this combination of model and algorithm is not the best choice to achieve the Group Fairness for the specified protected attribute.
+
+    \item The Exponentiated Gradient (EG) algorithm is the best choice because in the best scenario it has the lowest value, and to achieve Group Fairness the goal is to have values of DPD close to 0, but in the worst scenario it has a value (0.0068) that it is not high on one hand and on the other hand it is the best scenario for other algorithms.
+
+\end{itemize}
+
+
+\newpage
+\textbf{Demographic Parity Difference Capital Island}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.0026 & 0.0032 \\
+        \hline
+        FtU & 0.0026 & 0.0032 \\
+        \hline
+        EG & 0.0032 & 0.0036 \\
+        \hline
+        GS & 0.0032 & 0.0556 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Demographic Parity Difference value for \emph{Capital Island} protected attribute}
+\end{figure}
+
+About these results it's possible to make the following consideration:
+
+\begin{itemize}
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
+    \item The value of DPD for the GS algorithm adopted together with the XGB model is the highest value. Although this is a small value it suggests that this combination of model and algorithm is not the best choice to achieve the Group Fairness for the specified protected attribute.
+
+    \item The best choice to ensure Group Fairness for the specified protected attribute is one of the presented pre-processing algorithms. The reason why is that these algorithms have the same performance and in their worst results they present a value (0.0032) that it is equal to the best result for the EG algorithm
+\end{itemize}
+
+\newpage
+\textbf{Demographic Parity Difference Public-Private}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.0014 & 0.0014 \\
+        \hline
+        FtU & 0.0008 & 0.0014 \\
+        \hline
+        EG & 0.0012 & 0.0014 \\
+        \hline
+        GS & 0.0014 & 0.0556 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Demographic Parity Difference value for \emph{Public-Private} protected attribute}
+\end{figure}
+
+About these results it's possible to make the following consideration:
+
+\begin{itemize}
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
+    \item The value of DPD for the GS algorithm adopted together with the XGB model is the highest value. Although this is a small value it suggests that this combination of model and algorithm is not the best choice to achieve the Group Fairness for the specified protected attribute.
+
+    \item The best choice to guarantee Group Fairness having at the same time a reasonable level of accuracy (99\%) is to adopt the Fairness through Unawareness (FtU) algorithm. Even if the variance is greater than the EG's one, it has the lowest value in the best scenario and in the worst it is a value that is either equal or 0.0002 beyond the best scenario of the other algorithms., 
+\end{itemize}
+
+\newpage
+\textbf{Demographic Parity Difference Household Income}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.0011 & 0.0023 \\
+        \hline
+        FtU & 0.0023 & 0.0023 \\
+        \hline
+        EG & 0.0023 & 0.0023 \\
+        \hline
+        GS & 0.0023 & 0.0049 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Demographic Parity Difference value for \emph{Household Income} protected attribute}
+\end{figure}
+
+About these results it's possible to make the following consideration:
+
+\begin{itemize}
+    \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.
+
+    \item In contrast to the analysis for the other protected attributes the results obtained for the Grid Search (GS) algorithm are not outlier and the algorithm itself does not present a huge variance.
+
+    \item The best choice is the Data Augmentation (DA) algorithm. The reason why is that this algorithm has the same performance and its worst result it presents a value (0.0023) that it is equal to the best result for the EG, FtU and GS algorithms.
+\end{itemize}
+
+\newpage
+\textbf{Demographic Parity Difference ESCS}
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
+        \hline
+        DA & 0.0007 & 0.0013 \\
+        \hline
+        FtU & 0.0013 & 0.0019 \\
+        \hline
+        EG & 0.0013 & 0.0019 \\
+        \hline
+        GS & 0.0013 & 0.0759 \\
+        \hline
+    \end{tabular}
+    \caption{Min-Max Demographic Parity Difference value for \emph{ESCS} protected attribute}
+\end{figure}
+
+About these results it's possible to make the following consideration:
+
+\begin{itemize}
+    \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.
+
+    \item The best choice is the Data Augmentation (DA) algorithm. The reason why is that this algorithm has the same performance and its worst result it presents a value (0.0013) that it is equal to the best result for the EG, FtU and GS algorithms.
+\end{itemize}
