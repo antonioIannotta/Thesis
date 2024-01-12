@@ -30,7 +30,23 @@ These ethical frameworks serve as a safeguard, ensuring that AI systems adhere t
 
 \section{Traditional Machine Learning Workflow}
 
-The traditional machine learning (ML) workflow comprises several fundamental steps, each playing a crucial role in the development of predictive models. These steps are designed to transform raw data into a trained and evaluated model. The following sections outline the four main stages of the traditional ML workflow: data acquisition, data pre-processing, modeling, and performance evaluation.
+The traditional machine learning (ML) workflow comprises several fundamental steps, each playing a crucial role in the development of predictive models. These steps are designed to transform raw data into a trained and evaluated model. The following sections outline the four main stages of the traditional ML workflow: data acquisition, data pre-processing, modeling, and performance evaluation. An overview of the whole workflow, along with its steps, is depicted in \cref{fig:traditiona-ml-workflow}.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {Data Acquisition};
+        \node (dc) [startstop, below of=start] {Data Pre-processing};
+        \node (dpr) [startstop, below of=dc] {Modelling};
+        \node (mtpe) [startstop, below of=dpr] {Performance Evaluation};
+        \draw [arrow] (start) -- (dc);
+        \draw [arrow] (dc) -- (dpr);
+        \draw [arrow] (dpr) -- (mtpe);
+    \end{tikzpicture}
+    \caption{Traditional Machine Learning workflow}
+    \label{fig:traditiona-ml-workflow}
+\end{figure}
+
 
 \subsection{Data Acquisition}
 
@@ -48,21 +64,6 @@ With pre-processed data, the next step is to select and train a machine learning
 
 The final stage of the traditional ML workflow is evaluating the model's performance on unseen data. This is typically done using a separate test dataset that the model has not encountered during training. Common evaluation metrics include accuracy, precision, recall, F1 score, and area under the receiver operating characteristic (ROC) curve. The goal is to assess how well the model generalizes to new, unseen instances and to identify areas for potential improvement.
 
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}[node distance=2cm]
-        \node (start) [startstop] {Data Acquisition};
-        \node (dc) [startstop, below of=start] {Data Pre-processing};
-        \node (dpr) [startstop, below of=dc] {Modelling};
-        \node (mtpe) [startstop, below of=dpr] {Performance Evaluation};
-        \draw [arrow] (start) -- (dc);
-        \draw [arrow] (dc) -- (dpr);
-        \draw [arrow] (dpr) -- (mtpe);
-    \end{tikzpicture}
-    \caption{Traditional Machine Learning workflow}
-\end{figure}
-
-\newpage
 \section{Bias}
 
 Artificial Intelligence (AI) is undeniably a transformative force, poised to reshape multiple dimensions of the existence in profound ways. Its versatile applications extend far and wide, from refining and expediting decision-making processes to seamlessly automating mundane and repetitive tasks. In this ever-evolving landscape, AI systems are becoming increasingly integrated into daily experiences, orchestrating a paradigm shift in the way people interact with the world around them. 
