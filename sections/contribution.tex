@@ -146,6 +146,8 @@ By delving into these specific areas, a more detailed and schematic understandin
 \section{Steps to Implement a Fair-by-Design Workflow}
 \label{section:steps}
 
+The sequence of steps needed to implement a Fair-by-Design Workflow, as showed in \cref{fig:steps}, is:
+
 \begin{enumerate}
 
     \item \emph{Objective Definition:} Clearly articulate the objectives of the system or process being designed, emphasizing the importance of fairness.
@@ -160,7 +162,7 @@ By delving into these specific areas, a more detailed and schematic understandin
 
 \end{enumerate}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Objective Definition};
@@ -172,6 +174,7 @@ By delving into these specific areas, a more detailed and schematic understandin
         \draw [arrow] (dpr) -- (mtpe);
     \end{tikzpicture}
     \caption{Fair-by-Design steps}
+    \label{fig:steps}
 \end{figure}
     
 
@@ -241,7 +244,7 @@ A fairness metric quantifies the level of fairness achieved by the AI system wit
 \subsubsection{Fairness Notions and Metric Alignment}
 \label{subsub:alignment}
 
-The alignment between fairness notions and fairness metrics is a critical aspect of the Fair-by-Design workflow, as it establishes a systematic and measurable framework for evaluating fairness. The following considerations guide the selection process:
+The alignment between fairness notions and fairness metrics is a critical aspect of the Fair-by-Design workflow, as it establishes a systematic and measurable framework for evaluating fairness. The following considerations guide the selection process with the results also showed in \cref{fig:alignment}:
 
 \paragraph{Demographic Parity:}
 
@@ -281,7 +284,7 @@ Group Fairness ensures fair treatment for entire groups, typically based on stat
 \]
 A value equal or close to 0 suggests parity.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tabular}{|c|c|}
         \hline
@@ -302,7 +305,7 @@ A value equal or close to 0 suggests parity.
 
 \subsubsection{Choosing Fairness Metrics Given Notions or Vice Versa}
 
-Choosing a fairness metric given a fairness notion, or vice versa, requires a nuanced understanding of the specific fairness goals and the characteristics of the data. Here's a step-by-step guide:
+Choosing a fairness metric given a fairness notion, or vice versa, requires a nuanced understanding of the specific fairness goals and the characteristics of the data. The process, as well delighted in \cref{fig:choose} is the following:
 
 \paragraph{Given a Fairness Notion:}
 
@@ -328,12 +331,11 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
 
 \end{enumerate}
 
-This decisional process is well-represented in the following schema:
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Protected attribute chosen};
-        \node (choice) [decision, below of=start, yshift=-1cm] {Starting point};
+        \node (choice) [decision, below of=start, yshift=-1cm] {What is the starting point?};
         \node (fm) [startstop, left of=choice, xshift=-2cm] {Fairness Metric};
         \node (fn) [startstop, right of=choice, xshift=2cm] {Fairness Notion};
         \node (dfg) [startstop, below of=fm] {Definition of fairness goals};
@@ -354,6 +356,7 @@ This decisional process is well-represented in the following schema:
         \draw [arrow] (fmst) -- (end);
     \end{tikzpicture}
     \caption{Fairness Notion and Metric choice}
+    \label{fig:choose}
 \end{figure}
 
 This meticulous alignment process ensures that the chosen fairness metrics quantitatively capture the intended fairness notions, providing a meaningful and interpretable basis for evaluating and comparing fairness across different models and interventions within the Fair-by-Design workflow.

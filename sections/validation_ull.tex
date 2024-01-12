@@ -225,10 +225,10 @@ In order to provide a tabular representation of the results it's necessary to as
         \end{itemize}
     \end{itemize}
 \end{itemize}
-\newpage
+
 \textbf{Fairness metric: Disparate Impact}
 
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
         \hline
@@ -252,10 +252,10 @@ In order to provide a tabular representation of the results it's necessary to as
         \hline
     \end{tabular}
     \caption{Models training results for disparate impact metric}
-    \label{fig:results}
-\end{figure}
+    \label{tab:results_di}
+\end{table}
 
-About these results it's possible to make some consideration:
+About the results showed in \cref{tab:results_di} results it's possible to make some consideration:
 
 \begin{itemize}
 
@@ -267,10 +267,9 @@ About these results it's possible to make some consideration:
     
 \end{itemize}
 
-\newpage
 \textbf{Fairness metric: Demographic Parity}
 
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
         \hline
@@ -294,10 +293,10 @@ About these results it's possible to make some consideration:
         \hline
     \end{tabular}
     \caption{Models training results for demographic parity difference metric}
-    \label{fig:results}
-\end{figure}
+    \label{fig:results_dpd}
+\end{table}
 
-About these results it's possible to make some consideration:
+About the results reported in \cref{tab:results_dpd} it's possible to make some consideration:
 
 \begin{itemize}
         \item Every algorithm achieve a reasonable degree of group fairness.
@@ -306,10 +305,9 @@ About these results it's possible to make some consideration:
 
 \end{itemize}
 
-\newpage
 For each fairness algorithm employed in the Fair-by-Design workflow, the minimum and maximum accuracy values are presented. This analysis provides insights into the range of accuracy outcomes associated with each fairness algorithm.
 
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -325,9 +323,10 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
         \hline
     \end{tabular}
     \caption{Min-Max accuracy for each fairness algorithm}
-\end{figure}
+    \label{tab:accuracies}
+\end{table}
 
-There are some considerations that can be made about the accurencies presented:
+There are some considerations about accuracies represented in \cref{tab:accuracies} that can be made about the accurencies presented:
 \begin{itemize}
 
     \item The algorithm that demonstrates the maximum variance in accuracy results for both the XGB and RF models is Grid Search (GS). This indicates that GS is robust in yielding consistent accuracy outcomes, showcasing its stability in diverse scenarios.
@@ -336,9 +335,9 @@ There are some considerations that can be made about the accurencies presented:
 \end{itemize}
 
 Similarly, for each fairness algorithm, the minimum and maximum fairness values are presented. This evaluation allows for an understanding of the fairness outcomes associated with different algorithms, providing a comprehensive view of the trade-offs between accuracy and fairness.
-\newpage
+
 \textbf{Disparate Impact Sex}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -354,9 +353,10 @@ Similarly, for each fairness algorithm, the minimum and maximum fairness values 
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Sex} protected attribute}
-\end{figure}
+    \label{tab:s_di}
+\end{table}
 
-There are some considerations that can be made about the values presented above:
+There are some considerations about the results reported in \cref{tab:s_di}:
 
 \begin{itemize}
 
@@ -370,9 +370,8 @@ According to the analysis of the results it's possible to conclude that if the g
 
 % Keep going with capital island
 
-\newpage
 \textbf{Disparate Impact Capital Island}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -388,9 +387,10 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Capital Island} protected attribute}
-\end{figure}
+    \label{tab:ci_di}
+\end{table}
 
-There are some considerations that can be made about the values presented above:
+There are some considerations about the results reported in \cref{tab:ci_di}:
 
 \begin{itemize}
 
@@ -407,7 +407,7 @@ According to the analysis of the results it's possible to conclude that if the g
 
 \newpage
 \textbf{Disparate Impact Private-Public}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -423,9 +423,10 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Private-Public} protected attribute}
-\end{figure}
+    \label{tab:pp_di}
+\end{table}
 
-There are some considerations that can be made about the values presented above:
+There are some considerations about the results reported in \cref{tab:pp_di}:
 
 \begin{itemize}
 
@@ -441,7 +442,7 @@ According to the analysis of the results it's possible to conclude that if the g
 
 \newpage
 \textbf{Disparate Impact Household Income}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -457,9 +458,10 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Household Income} protected attribute}
-\end{figure}
+    \label{tab:h_di}
+\end{table}
 
-There are some considerations that can be made about the values presented above:
+There are some considerations about the results reported in \cref{tab:h_di}:
 
 \begin{itemize}
 
@@ -476,7 +478,7 @@ According to the analysis of the results it's possible to conclude that if the g
 
 \newpage
 \textbf{Disparate Impact ESCS}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -492,15 +494,15 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{ESCS} protected attribute}
-\end{figure}
+    \label{tab:e_di}
+\end{table}
 
-According to thes results it's possible to conclude that it's impossible to achieve the Demographic Parity with the combination of models and algorithm previously presented for the protected attribute \emph{ESCS}
-
+There are some considerations about the results reported in \cref{tab:e_di}:
 %Keep going with demographic parity
 
 \newpage
 \textbf{Demographic Parity Difference Sex}
-\begin{figure}[H]
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -516,9 +518,10 @@ According to thes results it's possible to conclude that it's impossible to achi
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Sex} protected attribute}
-\end{figure}
+    \label{tab:s_dpd}
+\end{table}
 
-About these results it's possible to make the following consideration:
+There are some considerations about the results reported in \cref{tab:s_dpd}:
 
 \begin{itemize}
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
@@ -532,7 +535,7 @@ About these results it's possible to make the following consideration:
 
 \newpage
 \textbf{Demographic Parity Difference Capital Island}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -548,9 +551,10 @@ About these results it's possible to make the following consideration:
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Capital Island} protected attribute}
-\end{figure}
+    \label{tab:ci_dpd}
+\end{table}
 
-About these results it's possible to make the following consideration:
+There are some considerations about the results reported in \cref{tab:ci_dpd}:
 
 \begin{itemize}
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
@@ -562,7 +566,7 @@ About these results it's possible to make the following consideration:
 
 \newpage
 \textbf{Demographic Parity Difference Public-Private}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -578,9 +582,10 @@ About these results it's possible to make the following consideration:
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Public-Private} protected attribute}
-\end{figure}
+    \label{tab:pp_dpd}
+\end{table}
 
-About these results it's possible to make the following consideration:
+There are some considerations about the results reported in \cref{tab:pp_dpd}:
 
 \begin{itemize}
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
@@ -592,7 +597,7 @@ About these results it's possible to make the following consideration:
 
 \newpage
 \textbf{Demographic Parity Difference Household Income}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -608,9 +613,10 @@ About these results it's possible to make the following consideration:
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Household Income} protected attribute}
-\end{figure}
+    \label{tab:h_dpd}
+\end{table}
 
-About these results it's possible to make the following consideration:
+There are some considerations about the results reported in \cref{tab:h_dpd}:
 
 \begin{itemize}
     \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.
@@ -622,7 +628,7 @@ About these results it's possible to make the following consideration:
 
 \newpage
 \textbf{Demographic Parity Difference ESCS}
-\begin{figure}[H]
+\begin{table}
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -638,9 +644,10 @@ About these results it's possible to make the following consideration:
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{ESCS} protected attribute}
-\end{figure}
+    \label{tab:e_dpd}
+\end{table}
 
-About these results it's possible to make the following consideration:
+There are some considerations about the results reported in \cref{tab:e_dpd}:
 
 \begin{itemize}
     \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.

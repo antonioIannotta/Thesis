@@ -84,9 +84,9 @@ Bias in AI is a critical issue, signifying the presence of unjust and skewed rep
 
 \subsection{Sources of Bias}
 
-It's possible to establish 3 different sources of biases across several perspectives: historical, human and algorithmic perspective.
+It's possible to establish 3 different sources of biases across several perspectives: historical, human and algorithmic perspective as well highlighted in \cref{fig:sources_of_bias}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Sources of Bias};
@@ -98,15 +98,17 @@ It's possible to establish 3 different sources of biases across several perspect
         \draw [arrow] (start) -- (mtpe);
     \end{tikzpicture}
     \caption{Sources of bias}
+    \label{fig:sources_of_bias}
 \end{figure}
-\newpage
+
+
 \subsubsection{Historical bias} 
 
 The issue of bias originating from historical data is a critical and intricate challenge that looms large in the landscape of machine learning. When machine learning models are trained on datasets culled from the annals of history, they inevitably inherit the biases and patterns encoded within that data. These historical biases, often a reflection of deeply ingrained societal prejudices and structural inequalities, can persist and intensify when the model is operationalized. \cite{10.1145/3308560.3317590}
 
 Consider a scenario where historical data contains systemic biases against specific demographics, such as gender, race, or other socio-demographic attributes. The machine learning model, in its quest to optimize performance, dutifully replicates and perpetuates these biases in its predictions and decision-making processes. The consequence of this perpetuation is the perpetuation of historical injustices, potentially leading to the endorsement of discriminatory practices and the exacerbation of preexisting societal inequalities, significantly disadvantaging certain groups. 
 
-Effectively addressing bias originating from historical data necessitates a multidimensional approach, coupled with proactive measures.
+Effectively addressing bias originating from historical data necessitates a multidimensional approach, coupled with proactive measures, as also showed in \cref{fig:h_b_addr}
 
 \begin{enumerate}
 
@@ -118,7 +120,7 @@ Effectively addressing bias originating from historical data necessitates a mult
 
 \end{enumerate}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Historical bias addressing};
@@ -130,6 +132,7 @@ Effectively addressing bias originating from historical data necessitates a mult
         \draw [arrow] (start) -- (mtpe);
     \end{tikzpicture}
     \caption{Historical bias addressing}
+    \label{fig:h_b_addr}
 \end{figure}
 
 Ultimately, the overarching goal is to foster a future where machine learning not only learns from historical data but actively works to transcend the bonds of bias. In this vision, AI systems operate as champions of fairness and social justice, contributing to the construction of a more equitable and just society where decisions and predictions are untainted by historical prejudices. This endeavor is not just a technical challenge but a moral imperative, driving the AI community to build a more equitable future for all.
@@ -140,7 +143,7 @@ Bias introduced by human factors represents a pervasive and intricate challenge 
 
 Human bias can manifest in multifarious ways, thereby complicating the quest for fair and unbiased machine learning models. These manifestations may include the biased selection of training data, subjectivity in annotations, or implicit prejudices that insidiously seep into the very fabric of algorithm design and evaluation. When humans are intricately involved in the decision-making processes or contribute to the development of algorithms, their biases, often unperceived, can become unintentionally embedded in the model. This results in a cascade of skewed predictions and the inadvertent reinforcement of preexisting societal inequalities. \cite{https://doi.org/10.1002/widm.1356} 
 
-The recognition and mitigation of human bias represent an imperative for the development of equitable and just machine learning models. This mission encompasses several facets:
+The recognition and mitigation of human bias represent an imperative for the development of equitable and just machine learning models. This mission encompasses several facets, as also showed in \cref{fig:hu_b_addr}
 
 \begin{enumerate}
 
@@ -154,7 +157,7 @@ The recognition and mitigation of human bias represent an imperative for the dev
 
 \end{enumerate}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Human bias addressing};
@@ -168,6 +171,7 @@ The recognition and mitigation of human bias represent an imperative for the dev
         \draw [arrow] (mtpe) -- (cm);
     \end{tikzpicture}
     \caption{Human bias addressing}
+    \label{fig:hu_b_addr}
 \end{figure}
 
 The ultimate goal is to harness the transformative potential of machine learning while eliminating the inadvertent perpetuation of human biases, thereby ushering in a more equitable and just era in technological advancement.
@@ -178,7 +182,7 @@ Algorithmic bias, an intrinsic challenge in the domain of machine learning, unde
 
 Algorithmic bias possesses the insidious potential to perpetuate and magnify preexisting societal prejudices and disparities, culminating in outcomes that are patently unfair and discriminatory. Consider the scenario in which a machine learning model is trained on historical data that inherently encapsulates societal biases. The model, in its endeavor to optimize predictive accuracy, inadvertently assimilates and reinforces these biases. The result is an algorithm that produces predictions and decisions that are tinged with bias, potentially aggravating societal inequalities and offering unequal treatment to specific groups. \cite{10.1145/2983270} 
 
-The algorithmic bias mitigation requires several steps:
+The algorithmic bias mitigation requires several steps, as also showed in \cref{fig:alg_b_addr}:
 
 \begin{enumerate}
 
@@ -190,7 +194,7 @@ The algorithmic bias mitigation requires several steps:
 
 \end{enumerate}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Algorithmic bias addressing};
@@ -202,6 +206,7 @@ The algorithmic bias mitigation requires several steps:
         \draw [arrow] (dpr) -- (mtpe);
     \end{tikzpicture}
     \caption{Algorithmic bias addressing}
+    \label{fig:alg_b_addr}
 \end{figure}
 
 In essence, the mission of addressing algorithmic bias is pivotal for harnessing the true potential of AI systems. It involves forging a future where AI, far from perpetuating biases, serves as a champion of fairness and social justice, contributing to the construction of an equitable and just society in the digital age.
@@ -288,7 +293,9 @@ Ongoing evaluation represents an indispensable element of the post-processing ph
 
 In essence, post-processing represents the culmination of efforts to instill fairness within AI models, serving as the final safeguard against bias and discrimination in the model's predictions.
 
-\begin{figure}[H]
+A comprehensive list of the several fairness techniques is showed in \cref{fig:fairness_techniques}
+
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=2cm]
         \node (start) [startstop] {Fairness techniques};
@@ -324,6 +331,7 @@ In essence, post-processing represents the culmination of efforts to instill fai
         \draw [arrow] (ac) -- (eo);
     \end{tikzpicture}
     \caption{Fairness addressing techniques}
+    \label{fig:fairness_techniques}
 \end{figure}
 
 \subsection{Pre-processing Techniques for Addressing Fairness in AI}
