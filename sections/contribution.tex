@@ -19,49 +19,17 @@ The conceptual framework of a Fair-by-Design (FBD) workflow represents a meticul
 
 Adopting a Fair-by-Design approach implies a shared responsibility among stakeholders in AI development, ranging from researchers and engineers to policymakers and end-users. This shared commitment aims to cultivate a technological landscape where the ethical imperatives of fairness and equity are integral components, guiding the trajectory of AI systems towards societal benefit and justice. In essence, the pursuit of ethical AI underscores not only the advancement of technological capabilities but also the conscientious stewardship of these capabilities to ensure alignment with ethical norms and societal values.
 
-\section{Specific Aspects of AI Development}
+\section{Fairness and Ethics in AI: Preparing the Ground}
 
-To further elaborate on the depth and intricacies of this ethical framework, it is essential to delve into specific aspects of AI design, development, and deployment. Let us explore these facets in more detail:
+Before immersing ourselves in the intricate details of the Fair-by-Design (FBD) workflow, it is crucial to lay the ethical foundation upon which this comprehensive approach to AI development stands. In this section, we explore specific aspects of AI design, development, and deployment with a keen focus on fairness and ethical considerations.
 
 \subsection{Ethical Scrutiny of AI Influence}
 
-\begin{itemize}[label=--]
-    \item Examine the specific domains where AI and ML technologies exert a profound influence on decision-making.
-    \item Evaluate the ethical considerations arising from the consequential impact of these technologies on individuals' lives.
-    \item Analyze recent cases or examples that highlight the ethical implications of AI influence in various sectors.
-\end{itemize}
+In this first facet, we critically examine the domains where AI and ML technologies wield significant influence over decision-making. By evaluating the ethical considerations stemming from these technologies' consequential impact on individuals' lives, we gain insights into the nuanced challenges and ethical implications associated with AI influence. Additionally, real-world examples and recent cases provide tangible illustrations of the ethical dimensions that arise in various sectors.
 
-\subsection*{Foundational Role of Fairness in AI Design}
+\subsection{Foundational Role of Fairness in AI Design}
 
-\begin{itemize}[label=--]
-    \item Provide a nuanced discussion on the principle of fairness as a foundational element in the AI design process.
-    \item Explore the nuances of fairness, emphasizing its broader implications beyond accuracy and efficiency.
-    \item Illustrate the importance of incorporating justice and equity considerations in the design phase through relevant examples.
-\end{itemize}
-
-\subsection*{Comprehensive Fair-by-Design Workflow}
-
-\begin{itemize}[label=--]
-    \item Break down the Fair-by-Design (FBD) workflow into distinct procedural steps, elucidating each stage's significance.
-    \item Explore real-world applications of FBD principles in notable AI projects or implementations.
-    \item Discuss challenges and potential solutions associated with implementing FBD across the entire lifecycle of an AI system.
-\end{itemize}
-
-\subsection*{Iterative Nature of Fairness Strategies}
-
-\begin{itemize}[label=--]
-    \item Emphasize the iterative nature of fairness strategies in the context of AI development.
-    \item Explore how ongoing reassessment and refinement of fairness considerations align with technological advancements.
-    \item Provide examples of instances where iterative approaches have led to improved fairness in AI systems.
-\end{itemize}
-
-\subsection*{Shared Responsibility Among Stakeholders}
-
-\begin{itemize}[label=--]
-    \item Investigate the roles and responsibilities of various stakeholders, including researchers, engineers, policymakers, and end-users, in promoting fairness in AI development.
-    \item Discuss collaborative efforts and initiatives that showcase shared responsibility in cultivating an ethical technological landscape.
-    \item Analyze the potential challenges and ethical dilemmas faced by different stakeholders in upholding fairness in AI.
-\end{itemize}
+The second aspect delves into the foundational role of fairness in the AI design process. This nuanced discussion explores fairness as a fundamental element, extending beyond accuracy and efficiency considerations. By emphasizing justice and equity, we illustrate the importance of incorporating fairness considerations in the design phase through relevant examples, setting the stage for a more ethical AI development process.
 
 By delving into these specific areas, a more detailed and schematic understanding of the ethical considerations surrounding AI can be offered, making the discourse both comprehensive and informative.
 
@@ -735,8 +703,7 @@ Let $C$ be the sub-dataset of $D$ with a specific combination $\text{c\textunder
 
 \end{itemize}
 
-\newpage
-Before proceeding in the theoretical analysis of the algorithm here's the proposed pseudocode:
+In \cref{alg:prepro} is delighted the pseudocode of the previously described algorithm:
 
 \begin{algorithm}[H]
     \caption{Data augmentation}
@@ -769,6 +736,8 @@ Before proceeding in the theoretical analysis of the algorithm here's the propos
 
         \State \textbf{return} Updated dataset
     \end{algorithmic}
+    \caption{Data augmentation algorithm pseudocode}
+    \label{alg:prepro}
 \end{algorithm}
 
 The proposed data augmentation algorithm aims to achieve fairness by ensuring an equal representation of all possible combinations of protected and output variables. Here, we provide a theoretical analysis of the algorithm's key aspects, including time complexity, space complexity, and additional considerations.

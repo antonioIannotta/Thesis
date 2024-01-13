@@ -236,21 +236,21 @@ In order to provide a tabular representation of the results it's necessary to as
         \hline
         \textbf{FairAlg} & \textbf{Model} & \textbf{Acc} $uparrow$ & \textbf{DIs} $uparrow$ & \textbf{DIc} $uparrow$ & \textbf{DIp} $uparrow$ & \textbf{DIh} $uparrow$ & \textbf{DIe} $uparrow$ \\
         \hline
-        DA & XGB & 0.9975 & 0.9670 & 0.9813 & 0.9901 & 0.9340 & 0.0007 \\
+        DA & XGB & 0.9975 & 0.9670 & 0.9813 & 0.9901 & 0.9340 & \cellcolor{red}0.0007 \\
         \hline
-        DA & RF & 0.9987 & 0.9670 & 0.9770 & 0.9901 & 0.8610 & 0.0013 \\
+        DA & RF & 0.9987 & 0.9670 & 0.9770 & 0.9901 & 0.8610 & \cellcolor{red}0.0013 \\
         \hline
-        FtU & XGB & 0.9987 & 0.9750 & 0.9813 & 0.9942 & 0.8610 & 0.0019 \\
+        FtU & XGB & 0.9987 & 0.9750 & 0.9813 & 0.9942 & 0.8610 & \cellcolor{red}0.0019 \\
         \hline
-        FtU & RF & 0.9987 & 0.9697 & 0.9770 & 0.9901 & 0.8610 & 0.0013 \\
+        FtU & RF & 0.9987 & 0.9697 & 0.9770 & 0.9901 & 0.8610 & \cellcolor{red}0.0013 \\
         \hline
-        EG & XGB & 0.9944 & 0.9779 & 0.9743 & 0.9919 & 0.8622 & 0.0019 \\
+        EG & XGB & 0.9944 & 0.9779 & 0.9743 & 0.9919 & 0.8622 & \cellcolor{red}0.0019 \\
         \hline
-        EG & RF & 0.9987 & 0.9697 & 0.9770 & 0.9901 & 0.8610 & 0.0013 \\
+        EG & RF & 0.9987 & 0.9697 & 0.9770 & 0.9901 & 0.8610 & \cellcolor{red}0.0013 \\
         \hline
-        GS & XGB & 0.5201 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0759 \\
+        \cellcolor{red}GS & \cellcolor{red}XGB & 0.5201 & 0.0000 & \cellcolor{red}0.0000 & 0.0000 & 0.0000 & 0.0759 \\
         \hline
-        GS & RF & 0.9987 & 0.9697 & 0.9770 & 0.9901 & 0.8610 & 0.0013 \\
+        GS & RF & 0.9987 & 0.9697 & 0.9770 & 0.9901 & 0.8610 & \cellcolor{red}0.0013 \\
         \hline
     \end{tabular}
     \caption{Models training results for disparate impact metric}
@@ -289,7 +289,7 @@ About the results showed in \cref{tab:results_di} results it's possible to make 
         \hline
         EG & RF & 0.9987 & 0.0068 & 0.0032 & 0.0014 & 0.0023 & 0.0013 \\
         \hline
-        GS & XGB & 0.5201 & 0.1204 & 0.0504 & 0.0556 & 0.0049 & 0.0759 \\
+        \cellcolor{red}GS & \cellcolor{red}XGB & 0.5201 & 0.1204 & 0.0504 & 0.0556 & 0.0049 & 0.0759 \\
         \hline
         GS & RF & 0.9987 & 0.0068 & 0.0032 & 0.0014 & 0.0023 & 0.0013 \\
         \hline
@@ -317,11 +317,11 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
         \hline
         DA & 0.9975 & 0.9987 \\
         \hline
-        FtU & 0.9987 & 0.9987 \\
+        \cellcolor{green}FtU & 0.9987 & 0.9987 \\
         \hline
         EG & 0.9944 & 0.9987 \\
         \hline
-        GS & 0.5201 & 0.9987 \\
+        \cellcolor{red}GS & 0.5201 & 0.9987 \\
         \hline
     \end{tabular}
     \caption{Min-Max accuracy for each fairness algorithm}
@@ -349,9 +349,9 @@ Similarly, for each fairness algorithm, the minimum and maximum fairness values 
         \hline
         FtU & 0.9697 & 0.9750 \\
         \hline
-        EG & 0.9697 & 0.9779 \\
+        \cellcolor{green}EG & 0.9697 & 0.9779 \\
         \hline
-        GS & 0.0000 & 0.9697 \\
+        \cellcolor{red}GS & 0.0000 & 0.9697 \\
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Sex} protected attribute}
@@ -383,9 +383,9 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
         FtU & 0.9770 & 0.9813 \\
         \hline
-        EG & 0.9743 & 0.9770 \\
+        \cellcolor{green}EG & 0.9743 & 0.9770 \\
         \hline
-        GS & 0.0000 & 0.9770 \\
+        \cellcolor{red}GS & 0.0000 & 0.9770 \\
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Capital Island} protected attribute}
@@ -406,8 +406,6 @@ There are some considerations about the results reported in \cref{tab:ci_di}:
 
 According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Capital Island} in this scenario the best choice would be adopt a Pre-processing algorithm.
 
-
-\newpage
 \textbf{Disparate Impact Private-Public}
 \begin{table}
     \centering
@@ -417,11 +415,11 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
         DA & 0.9901 & 0.9901 \\
         \hline
-        FtU & 0.9901 & 0.9942 \\
+        \cellcolor{green}FtU & 0.9901 & 0.9942 \\
         \hline
         EG & 0.9901 & 0.9919 \\
         \hline
-        GS & 0.0000 & 0.9901 \\
+        \cellcolor{red}GS & 0.0000 & 0.9901 \\
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Private-Public} protected attribute}
@@ -434,15 +432,12 @@ There are some considerations about the results reported in \cref{tab:pp_di}:
 
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
 
-    \item The Fairness through Unawareness (FtU) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
-
-    \item The Exponentiated Gradient is the algorithm that has the greatest maximum value, with a variance that is double that the one of FtU.
+    \item The Fairness through Unawareness (FtU) is the algorithm that has the maximum value even if the variance is the greatest with respect to (EG) and (DA)
 
 \end{itemize}
 
 According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Private-Public} in this scenario the best choice would be adopt the Exponentiated Gradient algorithm.
 
-\newpage
 \textbf{Disparate Impact Household Income}
 \begin{table}
     \centering
@@ -450,13 +445,13 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
         \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
         \hline
-        DA & 0.8610 & 0.9340 \\
+        \cellcolor{green}DA & 0.8610 & 0.9340 \\
         \hline
         FtU & 0.8610 & 0.8610 \\
         \hline
         EG & 0.8610 & 0.8622 \\
         \hline
-        GS & 0.0000 & 0.8610 \\
+        \cellcolor{red}GS & 0.0000 & 0.8610 \\
         \hline
     \end{tabular}
     \caption{Min-Max Disparate Impact value for \emph{Household Income} protected attribute}
@@ -471,14 +466,12 @@ There are some considerations about the results reported in \cref{tab:h_di}:
 
     \item The Fairness through Unawareness (FtU) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
 
-    \item The Exponentiated Gradient is the algorithm that has the greatest maximum value.
+    \item The Data Augmentation is the algorithm that has the greatest maximum value.
 
 \end{itemize}
 
-According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Household Income} in this scenario the best choice would be adopt the Exponentiated Gradient algorithm.
+According to the analysis of the results it's possible to conclude that if the goal is to achieve the Demographic Parity with a high accuracy for the protected attribute \emph{Household Income} in this scenario the best choice would be adopt the Data Augmentation algorithm.
 
-
-\newpage
 \textbf{Disparate Impact ESCS}
 \begin{table}
     \centering
@@ -499,7 +492,8 @@ According to the analysis of the results it's possible to conclude that if the g
     \label{tab:e_di}
 \end{table}
 
-There are some considerations about the results reported in \cref{tab:e_di}:
+About the results reported in \cref{tab:e_di} it's possible to assess how the \emph{Demographic Parity} for this protected attribute is never achieved.
+
 %Keep going with demographic parity
 
 \newpage
@@ -514,9 +508,9 @@ There are some considerations about the results reported in \cref{tab:e_di}:
         \hline
         FtU & 0.0056 & 0.0068 \\
         \hline
-        EG & 0.0049 & 0.0068 \\
+        \cellcolor{green}EG & 0.0049 & 0.0068 \\
         \hline
-        GS & 0.0068 & 0.1204 \\
+        \cellcolor{red}GS & 0.0068 & 0.1204 \\
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Sex} protected attribute}
@@ -535,7 +529,6 @@ There are some considerations about the results reported in \cref{tab:s_dpd}:
 \end{itemize}
 
 
-\newpage
 \textbf{Demographic Parity Difference Capital Island}
 \begin{table}
     \centering
@@ -543,13 +536,13 @@ There are some considerations about the results reported in \cref{tab:s_dpd}:
         \hline
         \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
         \hline
-        DA & 0.0026 & 0.0032 \\
+        \cellcolor{green}DA & 0.0026 & 0.0032 \\
         \hline
-        FtU & 0.0026 & 0.0032 \\
+        \cellcolor{green}FtU & 0.0026 & 0.0032 \\
         \hline
         EG & 0.0032 & 0.0036 \\
         \hline
-        GS & 0.0032 & 0.0556 \\
+        \cellcolor{red}GS & 0.0032 & 0.0556 \\
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Capital Island} protected attribute}
@@ -576,11 +569,11 @@ There are some considerations about the results reported in \cref{tab:ci_dpd}:
         \hline
         DA & 0.0014 & 0.0014 \\
         \hline
-        FtU & 0.0008 & 0.0014 \\
+        \cellcolor{green}FtU & 0.0008 & 0.0014 \\
         \hline
         EG & 0.0012 & 0.0014 \\
         \hline
-        GS & 0.0014 & 0.0556 \\
+        \cellcolor{red}GS & 0.0014 & 0.0556 \\
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{Public-Private} protected attribute}
@@ -605,7 +598,7 @@ There are some considerations about the results reported in \cref{tab:pp_dpd}:
         \hline
         \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
         \hline
-        DA & 0.0011 & 0.0023 \\
+        \cellcolor{green}DA & 0.0011 & 0.0023 \\
         \hline
         FtU & 0.0023 & 0.0023 \\
         \hline
@@ -636,13 +629,13 @@ There are some considerations about the results reported in \cref{tab:h_dpd}:
         \hline
         \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
         \hline
-        DA & 0.0007 & 0.0013 \\
+        \cellcolor{green}DA & 0.0007 & 0.0013 \\
         \hline
         FtU & 0.0013 & 0.0019 \\
         \hline
         EG & 0.0013 & 0.0019 \\
         \hline
-        GS & 0.0013 & 0.0759 \\
+        \cellcolor{red}GS & 0.0013 & 0.0759 \\
         \hline
     \end{tabular}
     \caption{Min-Max Demographic Parity Difference value for \emph{ESCS} protected attribute}
@@ -652,6 +645,9 @@ There are some considerations about the results reported in \cref{tab:h_dpd}:
 There are some considerations about the results reported in \cref{tab:e_dpd}:
 
 \begin{itemize}
+
+    \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
+
     \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.
 
     \item The best choice is the Data Augmentation (DA) algorithm. The reason why is that this algorithm has the same performance and its worst result it presents a value (0.0013) that it is equal to the best result for the EG, FtU and GS algorithms.
