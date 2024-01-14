@@ -21,17 +21,7 @@ Adopting a Fair-by-Design approach implies a shared responsibility among stakeho
 
 \section{Fairness and Ethics in AI: Preparing the Ground}
 
-Before immersing ourselves in the intricate details of the Fair-by-Design (FBD) workflow, it is crucial to lay the ethical foundation upon which this comprehensive approach to AI development stands. In this section, we explore specific aspects of AI design, development, and deployment with a keen focus on fairness and ethical considerations.
-
-\subsection{Ethical Scrutiny of AI Influence}
-
-In this first facet, we critically examine the domains where AI and ML technologies wield significant influence over decision-making. By evaluating the ethical considerations stemming from these technologies' consequential impact on individuals' lives, we gain insights into the nuanced challenges and ethical implications associated with AI influence. Additionally, real-world examples and recent cases provide tangible illustrations of the ethical dimensions that arise in various sectors.
-
-\subsection{Foundational Role of Fairness in AI Design}
-
-The second aspect delves into the foundational role of fairness in the AI design process. This nuanced discussion explores fairness as a fundamental element, extending beyond accuracy and efficiency considerations. By emphasizing justice and equity, we illustrate the importance of incorporating fairness considerations in the design phase through relevant examples, setting the stage for a more ethical AI development process.
-
-By delving into these specific areas, a more detailed and schematic understanding of the ethical considerations surrounding AI can be offered, making the discourse both comprehensive and informative.
+Here is reported the set of principles that led our design and development of the Fair-by-Design (FbD) workflow.
 
 \subsection{Principles of Fair-by-Design Workflow}
 \label{subsection:workflow-principles}
@@ -151,15 +141,13 @@ The sequence of steps needed to implement a Fair-by-Design Workflow, as showed i
 
 The first critical step in the Fair-by-Design workflow involves a precise definition of the objectives, laying the groundwork for subsequent fairness considerations. This stage encompasses the identification of the goal of the study, the identification of protected attributes, the selection of fairness notions, and the choice of an appropriate fairness metric.
 
-\subsubsection{Objective of the Research}
+\subsubsection{Objective of the workflow application}
 
-At the outset of the Fair-by-Design workflow, a foundational consideration is the precise identification of the research objective. This initial step is pivotal in determining the overarching goal of the study, laying the groundwork for a comprehensive understanding of whether the research necessitates a classification approach or a regression model.
+At the outset of the Fair-by-Design workflow, a foundational consideration is the precise identification of the objective. This initial step is pivotal in determining the overarching goal of the workflow, laying the groundwork for a comprehensive understanding of whether a classification approach or a regression model is needed.
 
-In this context, the elucidation of the research goal involves a detailed examination of the problem domain, aiming to discern the nature of the outcomes sought. This discernment is crucial not only for formulating a clear research question but also for guiding subsequent decisions related to the choice of methodologies, algorithms, and evaluation metrics.
+In this context, the elucidation of the goal involves a detailed examination of the problem domain, aiming to discern the nature of the outcomes sought. This discernment is crucial not only for formulating a clear question about the goals that the workflow is intended to achieve but also for guiding subsequent decisions related to the choice of methodologies, algorithms, and evaluation metrics.
 
-The intricacies of the research objective are examined to ascertain whether the study primarily involves categorizing data into distinct classes, indicating a classification task, or predicting numerical values, signifying a regression-oriented inquiry. This nuanced exploration is essential for aligning the research approach with the inherent characteristics of the problem at hand.
-
-By fostering a meticulous understanding of the research objective at this early stage, the Fair-by-Design workflow ensures a deliberate and well-informed trajectory, setting the stage for the subsequent phases of the research process.
+The intricacies of the workflow objective are examined to ascertain whether the study primarily involves categorizing data into distinct classes, indicating a classification task, or predicting numerical values, signifying a regression-oriented inquiry. This nuanced exploration is essential for aligning the approach with the inherent characteristics of the problem at hand.
 
 \subsubsection{Identification and Definition of Protected Attributes}
 
@@ -191,11 +179,11 @@ Fairness notions represent the abstract principles guiding the desired equitable
 
 \end{itemize}
 
-The selection of a fairness notion should align with the specific goals of the AI application, ethical considerations, and legal requirements.
+The selection of a fairness notion should align with the specific goals of the workflow application, ethical considerations, and legal requirements.
 
 \subsubsection{Fairness Metric}
 
-A fairness metric quantifies the level of fairness achieved by the AI system with respect to the chosen fairness notion. The choice of a fairness metric depends on the specific fairness notion and the underlying characteristics of the data. Common fairness metrics include:
+A fairness metric quantifies the level of fairness achieved with respect to the chosen fairness notion. The choice of a fairness metric depends on the specific fairness notion and the underlying characteristics of the data. Common fairness metrics include:
 
 \begin{itemize}
    
@@ -306,12 +294,12 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
         \node (choice) [decision, below of=start, yshift=-1cm] {Metric or Notion?};
         \node (fm) [startstop, left of=choice, xshift=-2cm] {Fairness Metric};
         \node (fn) [startstop, right of=choice, xshift=2cm] {Fairness Notion};
-        \node (dfg) [startstop, below of=fm] {Definition of fairness goals};
-        \node (fns) [startstop, below of=dfg] {Fairness notion study};
-        \node (fms) [startstop, below of=fns] {Fairness notion selection};
+        \node (dfg) [startstop, below of=fm] {Fairness metric understanding};
+        \node (fns) [startstop, below of=dfg] {Aligned Fairness notion choice};
+        \node (fms) [startstop, below of=fns] {Consistency assurance};
         \node (dfgfn) [startstop, below of=fn] {Definition of fairness goals};
-        \node (fmst) [startstop, below of=dfgfn] {Fairness metric study};
-        \node (end) [startstop, below of=fmst] {Fairness metric selection};
+        \node (fmst) [startstop, below of=dfgfn] {Fairness notion identification};
+        \node (end) [startstop, below of=fmst] {Aligned fairness metric choice};
 
         \draw [arrow] (start) -- (choice);
         \draw [arrow] (choice) -- (fm);

@@ -47,7 +47,6 @@ The traditional machine learning (ML) workflow comprises several fundamental ste
     \label{fig:traditiona-ml-workflow}
 \end{figure}
 
-
 \subsection{Data Acquisition}
 
 The first step in any machine learning project is acquiring the necessary data. This involves identifying and collecting datasets relevant to the problem at hand. The quality and quantity of the data directly impact the performance and generalization ability of the model. Data acquisition may involve obtaining datasets from public repositories, creating custom datasets, or integrating data from various sources.
@@ -101,7 +100,6 @@ It's possible to establish 3 different sources of biases across several perspect
     \label{fig:sources_of_bias}
 \end{figure}
 
-
 \subsubsection{Historical bias} 
 
 The issue of bias originating from historical data is a critical and intricate challenge that looms large in the landscape of machine learning. When machine learning models are trained on datasets culled from the annals of history, they inevitably inherit the biases and patterns encoded within that data. These historical biases, often a reflection of deeply ingrained societal prejudices and structural inequalities, can persist and intensify when the model is operationalized. \cite{10.1145/3308560.3317590}
@@ -128,15 +126,15 @@ Effectively addressing bias originating from historical data necessitates a mult
         \node (dpr) [startstop, below of=dc] {Algorithmic intervention to inject bias addresssing in ML algorithms};
         \node (mtpe) [startstop, below of=dpr] {Continuous monitoring};
         \draw [arrow] (start) -- (dc);
-        \draw [arrow] (start) -- (dpr);
-        \draw [arrow] (start) -- (mtpe);
+        \draw [arrow] (dc) -- (dpr);
+        \draw [arrow] (dpr) -- (mtpe);
     \end{tikzpicture}
     \caption{Historical bias addressing}
     \label{fig:h_b_addr}
 \end{figure}
 
 Ultimately, the overarching goal is to foster a future where machine learning not only learns from historical data but actively works to transcend the bonds of bias. In this vision, AI systems operate as champions of fairness and social justice, contributing to the construction of a more equitable and just society where decisions and predictions are untainted by historical prejudices. This endeavor is not just a technical challenge but a moral imperative, driving the AI community to build a more equitable future for all.
-\newpage
+
 \subsubsection{Human bias}
 
 Bias introduced by human factors represents a pervasive and intricate challenge within the realm of machine learning. It is essential to understand that human bias, which can emanate from societal, cultural, or personal beliefs and attitudes, has the potential to inadvertently permeate the entire spectrum of the machine learning pipeline. This influence spans from the initial stages of data collection and annotation to the model training and decision-making processes. 
@@ -175,7 +173,7 @@ The recognition and mitigation of human bias represent an imperative for the dev
 \end{figure}
 
 The ultimate goal is to harness the transformative potential of machine learning while eliminating the inadvertent perpetuation of human biases, thereby ushering in a more equitable and just era in technological advancement.
-\newpage
+
 \subsubsection{Algorithmic bias}
 
 Algorithmic bias, an intrinsic challenge in the domain of machine learning, underscores the presence of inherent biases that can manifest in the design, development, and deployment of machine learning algorithms. These biases, often unintended, can originate from a myriad of sources, encompassing factors such as biased training data, skewed feature selection, or implicit assumptions woven into the algorithm's development process. 
@@ -292,6 +290,7 @@ The successful implementation of post-processing techniques hinges on a profound
 Ongoing evaluation represents an indispensable element of the post-processing phase. Continual assessments and audits are essential to ensure that AI models adhere to ethical standards and actively promote fairness. This continuous vigilance and adjustment are pivotal in fostering AI technologies that contribute to the construction of a more equitable and just society. 
 
 In essence, post-processing represents the culmination of efforts to instill fairness within AI models, serving as the final safeguard against bias and discrimination in the model's predictions.
+
 
 A comprehensive list of the several fairness techniques is showed in \cref{fig:fairness_techniques}
 
@@ -485,7 +484,7 @@ The ultimate goal of fair-by-design methods is to create AI systems that, from t
 \section{Fairness notions}
 \label{section:fairness_notions}
 
-Fairness notions serve as the foundational pillars that define the ethical considerations and objectives guiding the development of AI systems within the Fair-by-Design workflow. These notions articulate specific principles for mitigating bias and promoting fairness, each with its unique characteristics and mathematical underpinnings.
+Fairness notions serve as the foundational pillars that define the ethical considerations and objectives guiding the development of fair AI systems. These notions articulate specific principles for mitigating bias and promoting fairness, each with its unique characteristics and mathematical underpinnings.
 
 \subsection{Demographic Parity}
 
