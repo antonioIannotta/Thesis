@@ -377,11 +377,11 @@ According to the analysis of the results it's possible to conclude that if the g
         \hline
         \textbf{FairAlg} & \textbf{Minimum value} & \textbf{Maximum Value} \\
         \hline
-        DA & 0.9770 & 0.9813 \\
+        \textcolor{darkgreen}{\textbf{DA}} & 0.9770 & 0.9813 \\
         \hline
-        FtU & 0.9770 & 0.9813 \\
+        \textcolor{darkgreen}{\textbf{FtU}} & 0.9770 & 0.9813 \\
         \hline
-        \textcolor{darkgreen}{\textbf{EG}} & 0.9743 & 0.9770 \\
+        EG & 0.9743 & 0.9770 \\
         \hline
         \textcolor{darkred}{\textbf{GS}} & 0.0000 & 0.9770 \\
         \hline
@@ -396,9 +396,9 @@ There are some considerations about the results reported in \cref{tab:ci_di}:
 
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
 
-    \item The Exponentiated Gradient (EG) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
+    \item The Exponentiated Gradient (EG) is the algorithm that has the minimum variance, this means a very small sensitivity to the model used in the training step.
 
-    \item The performacne of the pre-processing algorithms are the same
+    \item The performacne of the pre-processing algorithms are the same and are the best in the maximum value.
 
 \end{itemize}
 
