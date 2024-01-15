@@ -329,7 +329,7 @@ For each fairness algorithm employed in the Fair-by-Design workflow, the minimum
 There are some considerations about accuracies represented in \cref{tab:accuracies} that can be made about the accurencies presented:
 \begin{itemize}
 
-    \item The algorithm that demonstrates the maximum variance in accuracy results for both the XGB and RF models is Grid Search (GS). This indicates that GS is robust in yielding consistent accuracy outcomes, showcasing its stability in diverse scenarios.
+    \item The algorithm that demonstrates the maximum variance in accuracy results for both the XGB and RF models is Grid Search (GS).
 
     \item In contrast, the Fairness through Unawareness (FtU) algorithm exhibits the minmum variance in accuracy values across different configurations. More specifically the accuracy is the same for both models. Furthermore this algorithm has the maximum accuracy, values that it shares with other 2 algorithms (DA and EG), but in contrast with them it has the maximum minimum value. This result suggests to choose FtU as fairness algorithm to achieve the maximum accuracy.
 \end{itemize}
@@ -462,7 +462,7 @@ There are some considerations about the results reported in \cref{tab:h_di}:
 
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
 
-    \item The Fairness through Unawareness (FtU) is the algorithm that has the least variance, this means a very small sensitivity to the model used in the training step.
+    \item The Fairness through Unawareness (FtU) is the algorithm that has the minimum variance, this means a very small sensitivity to the model used in the training step.
 
     \item The Data Augmentation is the algorithm that has the greatest maximum value.
 
@@ -609,7 +609,7 @@ There are some considerations about the results reported in \cref{tab:pp_dpd}:
 There are some considerations about the results reported in \cref{tab:h_dpd}:
 
 \begin{itemize}
-    \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.
+    \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithms present the same results.
 
     \item In contrast to the analysis for the other protected attributes the results obtained for the Grid Search (GS) algorithm are not outlier and the algorithm itself does not present a huge variance.
 
@@ -642,7 +642,7 @@ There are some considerations about the results reported in \cref{tab:e_dpd}:
 
     \item The huge variance for the Grid Search (GS) algorithm suggests that it's great sensitivity to the model used in the training step. Even if the models are similar. In this case XGB and RF have completely different behaviors.
 
-    \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithm present the same results.
+    \item The Exponentiated Gradient (EG) and the Fairness through Unawareness (FtU) algorithms present the same results.
 
     \item The best choice is the Data Augmentation (DA) algorithm. The reason why is that this algorithm has the same performance and its worst result it presents a value (0.0013) that it is equal to the best result for the EG, FtU and GS algorithms.
 \end{itemize}
