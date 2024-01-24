@@ -426,6 +426,22 @@ where \( Q(x) \) denotes the quantized value of \( x \), \(\text{{min}}\) is the
 
 Quantization is particularly essential for continuous protected attributes to avoid introducing bias during the transformation. It aligns with the overarching goal of the Fair-by-Design workflow to maintain fairness throughout the machine learning model development.
 
+\paragraph{Handling Null Values in Discrete Attributes:}
+For discrete attributes, such as categorical variables, the strategy involves filling null values with the median of the respective attribute. Mathematically, this operation can be expressed as:
+
+\[ \text{{Fill\_value}}(x) = \text{{median}}(\text{{attribute}}) \]
+
+where \( \text{{Fill\_value}}(x) \) represents the filled value for the null entry in the discrete attribute. Utilizing the median ensures a robust imputation strategy that is less sensitive to outliers compared to using the mean.
+
+\paragraph{Handling Null Values in Continuous Attributes:}
+In the case of continuous attributes, such as age or income, null values are filled using the mean of the attribute. The mathematical representation for this process is:
+
+\[ \text{{Fill\_value}}(x) = \text{{mean}}(\text{{attribute}}) \]
+
+Here, \( \text{{Fill\_value}}(x) \) denotes the filled value for the null entry in the continuous attribute. Filling null values with the mean provides a balanced approach, preserving the central tendency of the data.
+
+These strategies for null value handling contribute to the overall robustness of the dataset, ensuring that fillings align with the characteristics of the respective attributes. By incorporating these techniques, the Fair-by-Design workflow maintains the reliability and completeness of the data, essential for training machine learning models that adhere to fairness principles.
+
 In summary, the data pre-processing stage involves sophisticated transformations, ensuring that both categorical attributes are numerically represented and protected attributes are handled with precision. These steps are crucial for developing fair and accurate machine learning models within the Fair-by-Design framework.
 
 \subsection{Algorithm design}
