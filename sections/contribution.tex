@@ -20,11 +20,27 @@ The conceptual framework of a Fair-by-Design (FBD) workflow represents a meticul
 Adopting a Fair-by-Design approach implies a shared responsibility among stakeholders in AI development, ranging from researchers and engineers to policymakers and end-users. This shared commitment aims to cultivate a technological landscape where the ethical imperatives of fairness and equity are integral components, guiding the trajectory of AI systems towards societal benefit and justice. In essence, the pursuit of ethical AI underscores not only the advancement of technological capabilities but also the conscientious stewardship of these capabilities to ensure alignment with ethical norms and societal values.
 
 \section{Fairness and Ethics in AI: Preparing the Ground}
+\label{section:workflow-principles}
 
-Here is reported the set of principles that led our design and development of the Fair-by-Design (FbD) workflow.
+Here is reported the set of principles that led our design and development of the Fair-by-Design (FbD) workflow, as highlighted in \cref{fig:workflow_principles}
 
-\subsection{Principles of Fair-by-Design Workflow}
-\label{subsection:workflow-principles}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        \node (start) [startstop] {FbD foundations};
+        \node (pfi) [startstop, left of=start, xshift=-2cm] {Proactive Fairness Integration};
+        \node (te) [startstop, below of=start, xshift=-2cm] {Transparency and Explainability};
+        \node (uca) [startstop, below of=start, xshift=2cm] {User-Centered Approach};
+        \node (cmd) [startstop, right of=start, xshift=2cm] {Continuous Monitoring and Development};
+        \draw [arrow] (start) -- (pfi);
+        \draw [arrow] (start) -- (te);
+        \draw [arrow] (start) -- (uca);
+        \draw [arrow] (start) -- (cmd);
+    \end{tikzpicture}
+    \caption{Principles at the basis of the Fair-by-Design workflow}
+    \label{fig:workflow_principles}
+\end{figure}
+
 
 \begin{enumerate}[label=\arabic*.]
     \item \emph{Proactive Fairness Integration:}
@@ -200,7 +216,7 @@ A fairness metric quantifies the level of fairness achieved with respect to the 
 \subsubsection{Fairness Notions and Metric Alignment}
 \label{subsub:alignment}
 
-The alignment between fairness notions and fairness metrics is a critical aspect of the Fair-by-Design workflow, as it establishes a systematic and measurable framework for evaluating fairness. The following considerations guide the selection process with the results also showed in \cref{fig:alignment}:
+The alignment between fairness notions and fairness metrics is a critical aspect of the Fair-by-Design workflow, as it establishes a systematic and measurable framework for evaluating fairness. The following considerations guide the selection process with the results also showed in \cref{table:alignment}:
 
 \paragraph{Demographic Parity:}
 
@@ -240,7 +256,7 @@ Group Fairness ensures fair treatment for entire groups, typically based on stat
 \]
 A value equal or close to 0 suggests parity.
 
-\begin{figure}
+\begin{table}
     \centering
     \begin{tabular}{|c|c|}
         \hline
@@ -256,8 +272,8 @@ A value equal or close to 0 suggests parity.
         \hline
     \end{tabular}
     \caption{Fairness metric and notion alignment}
-    \label{fig:alignment}
-\end{figure}
+    \label{table:alignment}
+\end{table}
 
 \subsubsection{Choosing Fairness Metrics Given Notions or Vice Versa}
 
@@ -306,7 +322,7 @@ Choosing a fairness metric given a fairness notion, or vice versa, requires a nu
         \draw [arrow] (choice) -- (fn);
         \draw [arrow] (fm) -- (dfg);
         \draw [arrow] (dfg) -- (fns);
-        \draw [arrow] (fms) -- (fns);
+        \draw [arrow] (fns) -- (fms);
         \draw [arrow] (fn) -- (dfgfn);
         \draw [arrow] (dfgfn) -- (fmst);
         \draw [arrow] (fmst) -- (end);
@@ -465,51 +481,6 @@ The pursuit of fairness in machine learning models involves a nuanced considerat
 
 \end{itemize}
 
-\subsubsection{Strategic choice for the fairness algorithm}
-
-The strategic decision regarding the adoption of pre-processing, in-processing, or post-processing algorithms is a nuanced and crucial aspect of the Fair-by-Design workflow. This decision is intricately tied to the specific characteristics of the data and the defined fairness goals, and it plays a pivotal role in shaping the overall fairness of the machine learning model.
-
-\paragraph{Pre-processing Algorithms}
-
-Pre-processing algorithms play a pivotal role in shaping the initial conditions for fairness considerations within the machine learning workflow. Distinguished by their capability to transform the dataset before model training, these algorithms are instrumental in mitigating biases inherent in raw data. This preprocessing phase aims to optimize the data, rendering it more conducive to addressing fairness considerations during subsequent stages. The selection and application of pre-processing algorithms are closely intertwined with the defined fairness goals for the specific machine learning task.
-
-\begin{itemize}
-
-    \item \emph{Relation to Fairness Goals:} The judicious choice of pre-processing algorithms necessitates alignment with the fairness goals set forth at the commencement of the workflow. For instance, if the overarching objective is to ensure equal representation of different demographic groups, pre-processing algorithms may strategically employ re-sampling or re-weighting strategies to balance the distribution of protected attributes.
-
-    \item \emph{Dependency on Fairness Notion:} The strategic decision between pre-processing, in-processing, or post-processing is intricately linked to the chosen fairness notion. In the context of achieving demographic parity, pre-processing algorithms may involve adjustments to the dataset's composition, ensuring proportional representation and alignment with the chosen fairness criterion.
-
-    \item \emph{Evaluation Metrics:} The efficacy of pre-processing algorithms is evaluated through metrics such as statistical parity, disparate impact, or equal opportunity. The selection of a specific metric is contingent on the defined fairness goals and the nuanced aspects of fairness prioritized for the given machine learning task.
-
-\end{itemize}
-
-\paragraph{In-processing Algorithms}
-
-In-processing algorithms intervene directly during the model training process, introducing fairness mechanisms at this crucial stage. This approach modifies the learning process to ensure fairness considerations are embedded in the model's development.
-
-\begin{itemize}
-
-    \item \emph{Relation to Fairness Goals:} In-processing algorithms should be tailored to the specific fairness goals defined for the task. For instance, if the objective is to minimize disparate impact, in-processing techniques may involve adjusting the model's objective function to incorporate fairness constraints.
-
-    \item \emph{Dependency on Fairness Notion:} The choice of in-processing algorithms depends on the fairness notion guiding the workflow. If the focus is on individual fairness, algorithms may be designed to treat similar individuals similarly during the learning process.
-
-    \item \emph{Evaluation Metrics:} Metrics such as equalized odds, calibration, or predictive parity are often employed to assess the fairness of in-processing algorithms. The selection of the metric aligns with the fairness goals and the particular aspects of fairness under consideration.
-
-\end{itemize}
-
-\paragraph{Post-processing Algorithms}
-
-Post-processing algorithms come into play after model training, adjusting predictions to align with fairness objectives. This approach offers a corrective mechanism to fine-tune model outputs based on fairness considerations.
-
-\begin{itemize}
-
-    \item \emph{Relation to Fairness Goals:} Post-processing algorithms should be chosen to complement the defined fairness goals. If the aim is to rectify disparate impact in predictions, post-processing techniques may involve re-calibrating predicted probabilities.
-
-    \item \emph{Dependency on Fairness Notion:} The choice of post-processing algorithms is contingent on the fairness notion guiding the workflow. If the focus is on group fairness, post-processing methods may involve re-weighting predictions to achieve parity across protected attribute groups.
-
-    \item \emph{Evaluation Metrics:} Common evaluation metrics for post-processing algorithms include reweighted accuracy, demographic parity, or predictive rate parity. The choice of the metric is aligned with the specific fairness goals and considerations.
-
-\end{itemize}
 
 \paragraph{Strategic Decision Factors}
 
