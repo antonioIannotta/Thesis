@@ -417,14 +417,14 @@ The data pre-processing stage is a critical component of the Fair-by-Design work
 
 Categorical attributes, often represented as strings, must be converted into numerical format to facilitate their integration into machine learning models.
 
-\paragraph{One-Hot Encoding:}
-One-hot encoding is a widely used method for categorical attributes without a natural order. It transforms a categorical attribute with \(K\) distinct categories into \(K\) binary columns, each indicating the presence or absence of a specific category. This approach prevents the model from assigning unintended ordinal relationships to the categories.
-
 \paragraph{Ordinal Encoding:}
 When there exists an ordinal relationship between categories, ordinal encoding is applied. In this method, each category is assigned a numerical value based on its order. This preserves the ordinal information while representing the categorical attribute in a numerical format.
 
 \paragraph{Label Encoding:}
 For binary categorical attributes, label encoding is employed. It assigns 0 and 1 to the respective categories, providing a straightforward numerical representation that aligns with the binary nature of the attribute.
+
+\paragraph{Null values handling:}
+For categorical attributes each null values is filled with the median value, while for the continuous attribute each null value is filled with the mean value.
 
 \subsubsection{Protected Attribute Transformation}
 
@@ -441,22 +441,6 @@ Continuous protected attributes, such as age, undergo a quantization process. Qu
 where \( Q(x) \) denotes the quantized value of \( x \), \(\text{{min}}\) is the minimum value of the attribute, and the bin width is determined based on insights from the data collection stage. The goal is to create discrete bins that accurately represent the distribution of the continuous attribute within the population. This process ensures fairness by preserving the underlying characteristics of the attribute while converting it into a suitable format for machine learning models.
 
 Quantization is particularly essential for continuous protected attributes to avoid introducing bias during the transformation. It aligns with the overarching goal of the Fair-by-Design workflow to maintain fairness throughout the machine learning model development.
-
-\paragraph{Handling Null Values in Discrete Attributes:}
-For discrete attributes, such as categorical variables, the strategy involves filling null values with the median of the respective attribute. Mathematically, this operation can be expressed as:
-
-\[ \text{{Fill\_value}}(x) = \text{{median}}(\text{{attribute}}) \]
-
-where \( \text{{Fill\_value}}(x) \) represents the filled value for the null entry in the discrete attribute. Utilizing the median ensures a robust imputation strategy that is less sensitive to outliers compared to using the mean.
-
-\paragraph{Handling Null Values in Continuous Attributes:}
-In the case of continuous attributes, such as age or income, null values are filled using the mean of the attribute. The mathematical representation for this process is:
-
-\[ \text{{Fill\_value}}(x) = \text{{mean}}(\text{{attribute}}) \]
-
-Here, \( \text{{Fill\_value}}(x) \) denotes the filled value for the null entry in the continuous attribute. Filling null values with the mean provides a balanced approach, preserving the central tendency of the data.
-
-These strategies for null value handling contribute to the overall robustness of the dataset, ensuring that fillings align with the characteristics of the respective attributes. By incorporating these techniques, the Fair-by-Design workflow maintains the reliability and completeness of the data, essential for training machine learning models that adhere to fairness principles.
 
 In summary, the data pre-processing stage involves sophisticated transformations, ensuring that both categorical attributes are numerically represented and protected attributes are handled with precision. These steps are crucial for developing fair and accurate machine learning models within the Fair-by-Design framework.
 
