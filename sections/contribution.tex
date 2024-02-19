@@ -658,7 +658,7 @@ Let $C$ be the sub-dataset of $D$ with a specific combination $\text{c\textunder
     
     \item The values of the protected and output variables are set according to the specific combination.
    
-    \item For all other attributes, a random value $\text{random\_value}_{ij}$ is generated, where $j$ represents the specific attribute, and $i$ represents the row being added for that attribute. $\text{random\_value}_{ij}$ is within the minimum and maximum range for attribute $j$.
+    \item For all other attributes, a random value $\text{random\_value}_{ij}$ is generated, where $j$ represents the specific attribute, and $i$ represents the row being added for that attribute. $\text{random\_value}_{ij}$ is within the most and least represented value for $j$.
 
 \end{itemize}
 
@@ -685,7 +685,7 @@ In \cref{alg:prepro} is delighted the pseudocode of the previously described alg
                 \EndFor
 
                 \For{attr \textbf{in} dataset\_attributes \textbf{and not in} protected\_attributes}
-                    \State new\_row[attr] $\gets$ random(min(combination\_dataset[attr]), max(combination\_dataset[attr]))
+                    \State new\_row[attr] $\gets$ random((least\_freq\_combination\_dataset[attr]), (most\_freq\_combination\_dataset[attr]))
                 \EndFor
 
                 \State dataset.add(new\_row)
